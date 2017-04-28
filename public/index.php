@@ -10,6 +10,12 @@
 //$router = new Router();
 //echo get_class($router);
 
+/* Twig */
+require_once dirname(__DIR__) . '/vendor/Twig/lib/Twig/autoloader.php';
+Twig_Autoloader::register();
+
+
+/* Autoload */
 spl_autoload_register(function($class){
     $root = dirname(__DIR__); // get the parent directory
     $file = $root . '/' .  str_replace('\\', '/', $class) . '.php';
