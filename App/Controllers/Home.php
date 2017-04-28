@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+use \Core\View;
 
 /**
  * Created by PhpStorm.
@@ -11,7 +12,8 @@ namespace App\Controllers;
 class Home extends \Core\Controller {
 
     public function indexAction(){
-        echo "Hello from Home controller index() method";
+        // here we pass the name of a file to render as well as some data in array to display in view
+        View::render("Home/index.php", ['name' => 'David', 'colors' => ['blue', 'red', 'black']]);
     }
 
     protected function before(){
