@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+use \Core\View;
 
 /**
  * Created by PhpStorm.
@@ -11,7 +12,8 @@ namespace App\Controllers;
 class Post extends \Core\Controller {
 
     public function indexAction(){
-        echo "Hello from Post controller index() method";
+        //echo "Hello from Post controller index() method";
+        View::renderTemplate('Posts/index.html');
     }
 
     public function addNewAction(){
