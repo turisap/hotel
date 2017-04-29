@@ -33,3 +33,108 @@ Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 86
 Stack trace: #0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('favicon.ico')
 #1 {main}
 Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 90
+[29-Apr-2017 09:47:20 Europe/Berlin] Uncaught exception: 'Exception' with message 'Controller class App\Controllers\Hoer not found'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('hoer/action')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 86
+[29-Apr-2017 09:47:20 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('favicon.ico')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 90
+[29-Apr-2017 09:48:43 Europe/Berlin] Uncaught exception: 'Exception' with message 'Controller class App\Controllers\Dkld not found'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('dkld/dj')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 86
+[29-Apr-2017 09:49:06 Europe/Berlin] Uncaught exception: 'Exception' with message 'Controller class App\Controllers\Dkld not found'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('dkld/dj')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 86
+[29-Apr-2017 09:51:44 Europe/Berlin] Uncaught exception: 'Exception' with message 'Controller class App\Controllers\Dkld not found'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('dkld/dj')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 86
+[29-Apr-2017 09:54:50 Europe/Berlin] Uncaught exception: 'Exception' with message 'Controller class App\Controllers\Dkld not found'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('dkld/dj')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 86
+[29-Apr-2017 09:54:51 Europe/Berlin] Uncaught exception: 'Exception' with message 'Controller class App\Controllers\Dkld not found'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('dkld/dj')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 86
+[29-Apr-2017 09:54:51 Europe/Berlin] Uncaught exception: 'Exception' with message 'Controller class App\Controllers\Dkld not found'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('dkld/dj')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 86
+[29-Apr-2017 09:54:51 Europe/Berlin] Uncaught exception: 'Exception' with message 'Controller class App\Controllers\Dkld not found'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('dkld/dj')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 86
+[29-Apr-2017 09:58:56 Europe/Berlin] Uncaught exception: 'Exception' with message 'Controller class App\Controllers\Dkld not found'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('dkld/dj')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 86
+[29-Apr-2017 09:59:22 Europe/Berlin] Uncaught exception: 'Exception' with message 'Controller class App\Controllers\Dkld not found'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('dkld/dj')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 86
+[29-Apr-2017 09:59:37 Europe/Berlin] Uncaught exception: 'Exception' with message 'Controller class App\Controllers\Dkld not found'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('dkld/dj')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 86
+[29-Apr-2017 10:02:27 Europe/Berlin] Uncaught exception: 'Exception' with message 'Controller class App\Controllers\Dkld not found'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('dkld/dj')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 86
+[29-Apr-2017 10:06:03 Europe/Berlin] Uncaught exception: 'Exception' with message 'Controller class App\Controllers\Dkld not found'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('dkld/dj')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 86
+[29-Apr-2017 10:06:04 Europe/Berlin] Uncaught exception: 'Exception' with message 'Controller class App\Controllers\Dkld not found'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('dkld/dj')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 86
+[29-Apr-2017 10:07:14 Europe/Berlin] Uncaught exception: 'Exception' with message 'Controller class App\Controllers\Dkld not found'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('dkld/dj')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 86
+[29-Apr-2017 10:08:51 Europe/Berlin] Uncaught exception: 'Error' with message 'Call to undefined method Core\Router::removeQueryStringVariables()'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('dkld/dj')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 64
+[29-Apr-2017 10:08:52 Europe/Berlin] Uncaught exception: 'Error' with message 'Call to undefined method Core\Router::removeQueryStringVariables()'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('dkld/dj')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 64
+[29-Apr-2017 10:08:52 Europe/Berlin] Uncaught exception: 'Error' with message 'Call to undefined method Core\Router::removeQueryStringVariables()'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('dkld/dj')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 64
+[29-Apr-2017 10:10:57 Europe/Berlin] Uncaught exception: 'Twig_Error_Loader' with message 'Unable to find template "Home/indx.html" (looked into: C:\xampp\htdocs\MVC_fw/App/Views).'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Loader\Filesystem.php(143): Twig_Loader_Filesystem->findTemplate('Home/indx.html')
+#1 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Environment.php(269): Twig_Loader_Filesystem->getCacheKey('Home/indx.html')
+#2 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Environment.php(345): Twig_Environment->getTemplateClass('Home/indx.html')
+#3 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Environment.php(288): Twig_Environment->loadTemplate('Home/indx.html')
+#4 C:\xampp\htdocs\MVC_fw\Core\View.php(39): Twig_Environment->render('Home/indx.html', Array)
+#5 C:\xampp\htdocs\MVC_fw\App\Controllers\Home.php(17): Core\View::renderTemplate('Home/indx.html', Array)
+#6 [internal function]: App\Controllers\Home->indexAction()
+#7 C:\xampp\htdocs\MVC_fw\Core\Controller.php(24): call_user_func_array(Array, Array)
+#8 C:\xampp\htdocs\MVC_fw\Core\Router.php(78): Core\Controller->__call('index', Array)
+#9 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('')
+#10 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Loader\Filesystem.php' on line 226
+[29-Apr-2017 14:23:13 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('favicon.ico')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 90
+[29-Apr-2017 14:23:22 Europe/Berlin] Uncaught exception: 'Exception' with message 'Controller class App\Controllers\Rise not found'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('rise/st')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 86
+[29-Apr-2017 14:23:37 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('rise/st/45')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 90
+[29-Apr-2017 14:51:14 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('test')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 90

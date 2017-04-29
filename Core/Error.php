@@ -34,8 +34,17 @@ class Error
      *
      * @return void
      */
-    public static function exceptionHandler($exception)
-    {
+    public static function exceptionHandler($exception) {
+
+        // code 404 page not found or 500 (general error)
+        $code = $exception->getCode();
+        echo "<br>" . $code . "</br>";
+        if($code != 404){
+            $code = 500;
+        }
+
+        http_response_code($code);
+
         if(\App\Config::SHOW_ERRORS) { // show error message only to users with admin access (SHOW_ERRORS = true)
             echo "<h1>Fatal error</h1>";
             echo "<p>Uncaught exception: '" . get_class($exception) . "'</p>";
@@ -53,7 +62,13 @@ class Error
             $message .= "\nThrown in '" . $exception->getFile() . "' on line " . $exception->getLine();
 
             error_log($message);
-            echo "<h1>An error occurred</h1>";
+            if($code == 404){
+                echo "<h1>Page not found</h1>";
+                echo $code;
+            } else {
+                echo "<h1>An error occurred</h1>";
+                echo $code;
+            }
         }
 
     }

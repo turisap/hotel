@@ -27,7 +27,7 @@ spl_autoload_register(function($class){
 });*/
 
 /* Error and exception handling */
-error_reporting(E_ALL); // set up report about all types of errors (instead of making it in the php.ini for all scripts)
+error_reporting(E_ALL); // set up report about all types of errors (instead of making it in the php.ini for all scr
 set_error_handler('Core\Error::errorHandler');
 set_exception_handler('Core\Error::exceptionHandler');
 
