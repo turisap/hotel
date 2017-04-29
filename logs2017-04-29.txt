@@ -1,0 +1,20 @@
+[29-Apr-2017 09:06:47 Europe/Berlin] Uncaught exception: 'Exception'Message: 'Method actionAction in controller App\Controllers\HomeStack trace:#0 C:\xampp\htdocs\MVC_fw\Core\Router.php(78): Core\Controller->__call('action', Array)
+#1 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('home/action')
+#2 {main}Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Controller.php' on line 28
+[29-Apr-2017 09:06:47 Europe/Berlin] Uncaught exception: 'Exception'Message: 'No route matchedStack trace:#0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('favicon.ico')
+#1 {main}Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 90
+[29-Apr-2017 09:08:58 Europe/Berlin] Uncaught exception: 'Exception'Message: 'Method actionAction in controller App\Controllers\HomeStack trace:#0 C:\xampp\htdocs\MVC_fw\Core\Router.php(78): Core\Controller->__call('action', Array)
+#1 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('home/action')
+#2 {main}Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Controller.php' on line 28
+[29-Apr-2017 09:08:58 Europe/Berlin] Uncaught exception: 'Exception'Message: 'No route matchedStack trace:#0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('favicon.ico')
+#1 {main}Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 90
+[29-Apr-2017 09:09:00 Europe/Berlin] Uncaught exception: 'Exception'Message: 'Method actioAction in controller App\Controllers\HomeStack trace:#0 C:\xampp\htdocs\MVC_fw\Core\Router.php(78): Core\Controller->__call('actio', Array)
+#1 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('home/actio')
+#2 {main}Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Controller.php' on line 28
+[29-Apr-2017 09:09:00 Europe/Berlin] Uncaught exception: 'Exception'Message: 'No route matchedStack trace:#0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('favicon.ico')
+#1 {main}Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 90
+[29-Apr-2017 09:20:18 Europe/Berlin] Uncaught exception: 'Exception'Message: 'Method actioAction in controller App\Controllers\HomeStack trace:#0 C:\xampp\htdocs\MVC_fw\Core\Router.php(78): Core\Controller->__call('actio', Array)
+#1 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('home/actio')
+#2 {main}Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Controller.php' on line 28
+[29-Apr-2017 09:20:18 Europe/Berlin] Uncaught exception: 'Exception'Message: 'No route matchedStack trace:#0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('favicon.ico')
+#1 {main}Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 90

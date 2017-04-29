@@ -33,4 +33,7 @@ class Config
      * @var string
      */
     const DB_PASSWORD = '';
+
+    /*errors dispalying only for users with authorised access to it */
+    const SHOW_ERRORS = false;
 }

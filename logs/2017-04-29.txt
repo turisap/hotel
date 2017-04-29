@@ -1,0 +1,35 @@
+[29-Apr-2017 09:23:29 Europe/Berlin] Uncaught exception: 'Exception' with message 'Method actioAction in controller App\Controllers\Home'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\Core\Router.php(78): Core\Controller->__call('actio', Array)
+#1 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('home/actio')
+#2 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Controller.php' on line 28
+[29-Apr-2017 09:23:29 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('favicon.ico')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 90
+[29-Apr-2017 09:23:32 Europe/Berlin] Uncaught exception: 'Exception' with message 'Method actionAction in controller App\Controllers\Home'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\Core\Router.php(78): Core\Controller->__call('action', Array)
+#1 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('home/action')
+#2 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Controller.php' on line 28
+[29-Apr-2017 09:23:32 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('favicon.ico')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 90
+[29-Apr-2017 09:25:21 Europe/Berlin] Uncaught exception: 'Exception' with message 'Method actionAction in controller App\Controllers\Home'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\Core\Router.php(78): Core\Controller->__call('action', Array)
+#1 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('home/action')
+#2 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Controller.php' on line 28
+[29-Apr-2017 09:25:21 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('favicon.ico')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 90
+[29-Apr-2017 09:25:38 Europe/Berlin] Uncaught exception: 'Exception' with message 'Controller class App\Controllers\Hoer not found'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('hoer/action')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 86
+[29-Apr-2017 09:25:38 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('favicon.ico')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 90
