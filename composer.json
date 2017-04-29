@@ -1,0 +1,8 @@
+{
+
+  "require" : {
+    "phpmailer/phpmailer" : "~5.2",
+    "twig/twig": "~2.0"
+  }
+
+}
