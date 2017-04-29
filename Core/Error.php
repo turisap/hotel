@@ -62,13 +62,16 @@ class Error
             $message .= "\nThrown in '" . $exception->getFile() . "' on line " . $exception->getLine();
 
             error_log($message);
-            if($code == 404){
+           /* if($code == 404){
                 echo "<h1>Page not found</h1>";
                 echo $code;
             } else {
                 echo "<h1>An error occurred</h1>";
                 echo $code;
-            }
+            }*/
+            //echo "<h1>" . $code . ".html</h1>";
+            View::renderTemplate("$code.html");
+
         }
 
     }

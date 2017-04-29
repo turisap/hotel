@@ -138,3 +138,229 @@ Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 90
 Stack trace: #0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('test')
 #1 {main}
 Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 90
+[29-Apr-2017 15:28:09 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('4/kdjf')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 90
+[29-Apr-2017 15:28:09 Europe/Berlin] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "$code.html" (looked into: C:\xampp\htdocs\MVC_fw/App/Views). in C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Loader\Filesystem.php:226
+Stack trace:
+#0 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Loader\Filesystem.php(143): Twig_Loader_Filesystem->findTemplate('$code.html')
+#1 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Environment.php(269): Twig_Loader_Filesystem->getCacheKey('$code.html')
+#2 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Environment.php(345): Twig_Environment->getTemplateClass('$code.html')
+#3 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Environment.php(288): Twig_Environment->loadTemplate('$code.html')
+#4 C:\xampp\htdocs\MVC_fw\Core\View.php(39): Twig_Environment->render('$code.html', Array)
+#5 C:\xampp\htdocs\MVC_fw\Core\Error.php(72): Core\View::renderTemplate('$code.html')
+#6 [internal function]: Core\Error::exceptionHandler(Object(Exception))
+#7 {main}
+  thrown in C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Loader\Filesystem.php on line 226
+[29-Apr-2017 15:28:50 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('4/kdjf')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 90
+[29-Apr-2017 15:28:50 Europe/Berlin] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "$code.html" (looked into: C:\xampp\htdocs\MVC_fw/App/Views). in C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Loader\Filesystem.php:226
+Stack trace:
+#0 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Loader\Filesystem.php(143): Twig_Loader_Filesystem->findTemplate('$code.html')
+#1 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Environment.php(269): Twig_Loader_Filesystem->getCacheKey('$code.html')
+#2 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Environment.php(345): Twig_Environment->getTemplateClass('$code.html')
+#3 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Environment.php(288): Twig_Environment->loadTemplate('$code.html')
+#4 C:\xampp\htdocs\MVC_fw\Core\View.php(39): Twig_Environment->render('$code.html', Array)
+#5 C:\xampp\htdocs\MVC_fw\Core\Error.php(73): Core\View::renderTemplate('$code.html')
+#6 [internal function]: Core\Error::exceptionHandler(Object(Exception))
+#7 {main}
+  thrown in C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Loader\Filesystem.php on line 226
+[29-Apr-2017 15:31:21 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('4/kdjf')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 90
+[29-Apr-2017 15:31:21 Europe/Berlin] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "$code.html" (looked into: C:\xampp\htdocs\MVC_fw/App/Views). in C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Loader\Filesystem.php:226
+Stack trace:
+#0 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Loader\Filesystem.php(143): Twig_Loader_Filesystem->findTemplate('$code.html')
+#1 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Environment.php(269): Twig_Loader_Filesystem->getCacheKey('$code.html')
+#2 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Environment.php(345): Twig_Environment->getTemplateClass('$code.html')
+#3 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Environment.php(288): Twig_Environment->loadTemplate('$code.html')
+#4 C:\xampp\htdocs\MVC_fw\Core\View.php(39): Twig_Environment->render('$code.html', Array)
+#5 C:\xampp\htdocs\MVC_fw\Core\Error.php(73): Core\View::renderTemplate('$code.html')
+#6 [internal function]: Core\Error::exceptionHandler(Object(Exception))
+#7 {main}
+  thrown in C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Loader\Filesystem.php on line 226
+[29-Apr-2017 15:32:46 Europe/Berlin] Uncaught exception: 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mvclogin.posts' doesn't exist'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\App\Models\Post.php(32): PDO->query('SELECT id, titl...')
+#1 C:\xampp\htdocs\MVC_fw\App\Controllers\Posts.php(18): App\Models\Post::getAll()
+#2 [internal function]: App\Controllers\Posts->indexAction()
+#3 C:\xampp\htdocs\MVC_fw\Core\Controller.php(24): call_user_func_array(Array, Array)
+#4 C:\xampp\htdocs\MVC_fw\Core\Router.php(78): Core\Controller->__call('index', Array)
+#5 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('posts/index')
+#6 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\App\Models\Post.php' on line 32
+[29-Apr-2017 15:32:46 Europe/Berlin] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "$code.html" (looked into: C:\xampp\htdocs\MVC_fw/App/Views). in C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Loader\Filesystem.php:226
+Stack trace:
+#0 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Loader\Filesystem.php(143): Twig_Loader_Filesystem->findTemplate('$code.html')
+#1 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Environment.php(269): Twig_Loader_Filesystem->getCacheKey('$code.html')
+#2 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Environment.php(345): Twig_Environment->getTemplateClass('$code.html')
+#3 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Environment.php(288): Twig_Environment->loadTemplate('$code.html')
+#4 C:\xampp\htdocs\MVC_fw\Core\View.php(39): Twig_Environment->render('$code.html', Array)
+#5 C:\xampp\htdocs\MVC_fw\Core\Error.php(73): Core\View::renderTemplate('$code.html')
+#6 [internal function]: Core\Error::exceptionHandler(Object(PDOException))
+#7 {main}
+  thrown in C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Loader\Filesystem.php on line 226
+[29-Apr-2017 15:32:55 Europe/Berlin] Uncaught exception: 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mvclogin.posts' doesn't exist'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\App\Models\Post.php(32): PDO->query('SELECT id, titl...')
+#1 C:\xampp\htdocs\MVC_fw\App\Controllers\Posts.php(18): App\Models\Post::getAll()
+#2 [internal function]: App\Controllers\Posts->indexAction()
+#3 C:\xampp\htdocs\MVC_fw\Core\Controller.php(24): call_user_func_array(Array, Array)
+#4 C:\xampp\htdocs\MVC_fw\Core\Router.php(78): Core\Controller->__call('index', Array)
+#5 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('posts/index')
+#6 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\App\Models\Post.php' on line 32
+[29-Apr-2017 15:32:55 Europe/Berlin] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "$code.html" (looked into: C:\xampp\htdocs\MVC_fw/App/Views). in C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Loader\Filesystem.php:226
+Stack trace:
+#0 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Loader\Filesystem.php(143): Twig_Loader_Filesystem->findTemplate('$code.html')
+#1 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Environment.php(269): Twig_Loader_Filesystem->getCacheKey('$code.html')
+#2 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Environment.php(345): Twig_Environment->getTemplateClass('$code.html')
+#3 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Environment.php(288): Twig_Environment->loadTemplate('$code.html')
+#4 C:\xampp\htdocs\MVC_fw\Core\View.php(39): Twig_Environment->render('$code.html', Array)
+#5 C:\xampp\htdocs\MVC_fw\Core\Error.php(73): Core\View::renderTemplate('$code.html')
+#6 [internal function]: Core\Error::exceptionHandler(Object(PDOException))
+#7 {main}
+  thrown in C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Loader\Filesystem.php on line 226
+[29-Apr-2017 15:33:49 Europe/Berlin] Uncaught exception: 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mvclogin.posts' doesn't exist'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\App\Models\Post.php(32): PDO->query('SELECT id, titl...')
+#1 C:\xampp\htdocs\MVC_fw\App\Controllers\Posts.php(18): App\Models\Post::getAll()
+#2 [internal function]: App\Controllers\Posts->indexAction()
+#3 C:\xampp\htdocs\MVC_fw\Core\Controller.php(24): call_user_func_array(Array, Array)
+#4 C:\xampp\htdocs\MVC_fw\Core\Router.php(78): Core\Controller->__call('index', Array)
+#5 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('posts/index')
+#6 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\App\Models\Post.php' on line 32
+[29-Apr-2017 15:33:49 Europe/Berlin] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "$code.html" (looked into: C:\xampp\htdocs\MVC_fw/App/Views). in C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Loader\Filesystem.php:226
+Stack trace:
+#0 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Loader\Filesystem.php(143): Twig_Loader_Filesystem->findTemplate('$code.html')
+#1 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Environment.php(269): Twig_Loader_Filesystem->getCacheKey('$code.html')
+#2 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Environment.php(345): Twig_Environment->getTemplateClass('$code.html')
+#3 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Environment.php(288): Twig_Environment->loadTemplate('$code.html')
+#4 C:\xampp\htdocs\MVC_fw\Core\View.php(39): Twig_Environment->render('$code.html', Array)
+#5 C:\xampp\htdocs\MVC_fw\Core\Error.php(73): Core\View::renderTemplate('$code.html')
+#6 [internal function]: Core\Error::exceptionHandler(Object(PDOException))
+#7 {main}
+  thrown in C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Loader\Filesystem.php on line 226
+[29-Apr-2017 15:33:56 Europe/Berlin] Uncaught exception: 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mvclogin.posts' doesn't exist'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\App\Models\Post.php(32): PDO->query('SELECT id, titl...')
+#1 C:\xampp\htdocs\MVC_fw\App\Controllers\Posts.php(18): App\Models\Post::getAll()
+#2 [internal function]: App\Controllers\Posts->indexAction()
+#3 C:\xampp\htdocs\MVC_fw\Core\Controller.php(24): call_user_func_array(Array, Array)
+#4 C:\xampp\htdocs\MVC_fw\Core\Router.php(78): Core\Controller->__call('index', Array)
+#5 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('posts/index')
+#6 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\App\Models\Post.php' on line 32
+[29-Apr-2017 15:33:56 Europe/Berlin] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "$code.html" (looked into: C:\xampp\htdocs\MVC_fw/App/Views). in C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Loader\Filesystem.php:226
+Stack trace:
+#0 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Loader\Filesystem.php(143): Twig_Loader_Filesystem->findTemplate('$code.html')
+#1 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Environment.php(269): Twig_Loader_Filesystem->getCacheKey('$code.html')
+#2 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Environment.php(345): Twig_Environment->getTemplateClass('$code.html')
+#3 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Environment.php(288): Twig_Environment->loadTemplate('$code.html')
+#4 C:\xampp\htdocs\MVC_fw\Core\View.php(39): Twig_Environment->render('$code.html', Array)
+#5 C:\xampp\htdocs\MVC_fw\Core\Error.php(73): Core\View::renderTemplate('$code.html')
+#6 [internal function]: Core\Error::exceptionHandler(Object(PDOException))
+#7 {main}
+  thrown in C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Loader\Filesystem.php on line 226
+[29-Apr-2017 15:34:41 Europe/Berlin] Uncaught exception: 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mvclogin.posts' doesn't exist'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\App\Models\Post.php(32): PDO->query('SELECT id, titl...')
+#1 C:\xampp\htdocs\MVC_fw\App\Controllers\Posts.php(18): App\Models\Post::getAll()
+#2 [internal function]: App\Controllers\Posts->indexAction()
+#3 C:\xampp\htdocs\MVC_fw\Core\Controller.php(24): call_user_func_array(Array, Array)
+#4 C:\xampp\htdocs\MVC_fw\Core\Router.php(78): Core\Controller->__call('index', Array)
+#5 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('posts/index')
+#6 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\App\Models\Post.php' on line 32
+[29-Apr-2017 15:34:50 Europe/Berlin] Uncaught exception: 'Exception' with message 'Controller class App\Controllers\Post not found'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('post/index')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 86
+[29-Apr-2017 15:34:55 Europe/Berlin] Uncaught exception: 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mvclogin.posts' doesn't exist'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\App\Models\Post.php(32): PDO->query('SELECT id, titl...')
+#1 C:\xampp\htdocs\MVC_fw\App\Controllers\Posts.php(18): App\Models\Post::getAll()
+#2 [internal function]: App\Controllers\Posts->indexAction()
+#3 C:\xampp\htdocs\MVC_fw\Core\Controller.php(24): call_user_func_array(Array, Array)
+#4 C:\xampp\htdocs\MVC_fw\Core\Router.php(78): Core\Controller->__call('index', Array)
+#5 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('posts/index')
+#6 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\App\Models\Post.php' on line 32
+[29-Apr-2017 15:36:37 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('posts/index/df3')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 90
+[29-Apr-2017 15:36:37 Europe/Berlin] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "$code.html" (looked into: C:\xampp\htdocs\MVC_fw/App/Views). in C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Loader\Filesystem.php:226
+Stack trace:
+#0 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Loader\Filesystem.php(143): Twig_Loader_Filesystem->findTemplate('$code.html')
+#1 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Environment.php(269): Twig_Loader_Filesystem->getCacheKey('$code.html')
+#2 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Environment.php(345): Twig_Environment->getTemplateClass('$code.html')
+#3 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Environment.php(288): Twig_Environment->loadTemplate('$code.html')
+#4 C:\xampp\htdocs\MVC_fw\Core\View.php(39): Twig_Environment->render('$code.html', Array)
+#5 C:\xampp\htdocs\MVC_fw\Core\Error.php(73): Core\View::renderTemplate('$code.html')
+#6 [internal function]: Core\Error::exceptionHandler(Object(Exception))
+#7 {main}
+  thrown in C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Loader\Filesystem.php on line 226
+[29-Apr-2017 15:36:59 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('posts/index/df3')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 90
+[29-Apr-2017 15:36:59 Europe/Berlin] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "$code.html" (looked into: C:\xampp\htdocs\MVC_fw/App/Views). in C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Loader\Filesystem.php:226
+Stack trace:
+#0 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Loader\Filesystem.php(143): Twig_Loader_Filesystem->findTemplate('$code.html')
+#1 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Environment.php(269): Twig_Loader_Filesystem->getCacheKey('$code.html')
+#2 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Environment.php(345): Twig_Environment->getTemplateClass('$code.html')
+#3 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Environment.php(288): Twig_Environment->loadTemplate('$code.html')
+#4 C:\xampp\htdocs\MVC_fw\Core\View.php(39): Twig_Environment->render('$code.html', Array)
+#5 C:\xampp\htdocs\MVC_fw\Core\Error.php(73): Core\View::renderTemplate('$code.html')
+#6 [internal function]: Core\Error::exceptionHandler(Object(Exception))
+#7 {main}
+  thrown in C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Loader\Filesystem.php on line 226
+[29-Apr-2017 15:36:59 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('posts/index/df3')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 90
+[29-Apr-2017 15:36:59 Europe/Berlin] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "$code.html" (looked into: C:\xampp\htdocs\MVC_fw/App/Views). in C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Loader\Filesystem.php:226
+Stack trace:
+#0 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Loader\Filesystem.php(143): Twig_Loader_Filesystem->findTemplate('$code.html')
+#1 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Environment.php(269): Twig_Loader_Filesystem->getCacheKey('$code.html')
+#2 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Environment.php(345): Twig_Environment->getTemplateClass('$code.html')
+#3 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Environment.php(288): Twig_Environment->loadTemplate('$code.html')
+#4 C:\xampp\htdocs\MVC_fw\Core\View.php(39): Twig_Environment->render('$code.html', Array)
+#5 C:\xampp\htdocs\MVC_fw\Core\Error.php(73): Core\View::renderTemplate('$code.html')
+#6 [internal function]: Core\Error::exceptionHandler(Object(Exception))
+#7 {main}
+  thrown in C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Loader\Filesystem.php on line 226
+[29-Apr-2017 15:36:59 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('posts/index/df3')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 90
+[29-Apr-2017 15:36:59 Europe/Berlin] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "$code.html" (looked into: C:\xampp\htdocs\MVC_fw/App/Views). in C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Loader\Filesystem.php:226
+Stack trace:
+#0 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Loader\Filesystem.php(143): Twig_Loader_Filesystem->findTemplate('$code.html')
+#1 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Environment.php(269): Twig_Loader_Filesystem->getCacheKey('$code.html')
+#2 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Environment.php(345): Twig_Environment->getTemplateClass('$code.html')
+#3 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Environment.php(288): Twig_Environment->loadTemplate('$code.html')
+#4 C:\xampp\htdocs\MVC_fw\Core\View.php(39): Twig_Environment->render('$code.html', Array)
+#5 C:\xampp\htdocs\MVC_fw\Core\Error.php(73): Core\View::renderTemplate('$code.html')
+#6 [internal function]: Core\Error::exceptionHandler(Object(Exception))
+#7 {main}
+  thrown in C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Loader\Filesystem.php on line 226
+[29-Apr-2017 15:37:07 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('posts/776index/...')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 90
+[29-Apr-2017 15:37:07 Europe/Berlin] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "$code.html" (looked into: C:\xampp\htdocs\MVC_fw/App/Views). in C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Loader\Filesystem.php:226
+Stack trace:
+#0 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Loader\Filesystem.php(143): Twig_Loader_Filesystem->findTemplate('$code.html')
+#1 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Environment.php(269): Twig_Loader_Filesystem->getCacheKey('$code.html')
+#2 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Environment.php(345): Twig_Environment->getTemplateClass('$code.html')
+#3 C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Environment.php(288): Twig_Environment->loadTemplate('$code.html')
+#4 C:\xampp\htdocs\MVC_fw\Core\View.php(39): Twig_Environment->render('$code.html', Array)
+#5 C:\xampp\htdocs\MVC_fw\Core\Error.php(73): Core\View::renderTemplate('$code.html')
+#6 [internal function]: Core\Error::exceptionHandler(Object(Exception))
+#7 {main}
+  thrown in C:\xampp\htdocs\MVC_fw\vendor\Twig\twig\lib\Twig\Loader\Filesystem.php on line 226
+[29-Apr-2017 15:37:40 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('posts/776index/...')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 90
