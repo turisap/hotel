@@ -21,7 +21,7 @@ class View
         if(is_readable($file)){
             require $file;
         } else {
-            echo "$file Not fount";
+            throw new \Exception("$file Not fount");
         }
     }
 

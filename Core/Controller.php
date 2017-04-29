@@ -24,6 +24,8 @@ abstract class Controller {
                 call_user_func_array([$this, $method], $arguments);
                 $this->after();
             }
+        } else {
+            throw new \Exception("Method $method in controller " . get_class($this));
         }
     }
 
