@@ -364,3 +364,33 @@ Stack trace:
 Stack trace: #0 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('posts/776index/...')
 #1 {main}
 Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Router.php' on line 90
+[29-Apr-2017 15:53:32 Europe/Berlin] Uncaught exception: 'Exception' with message 'Method newAction in controller App\Controllers\SignUP'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\Core\Router.php(78): Core\Controller->__call('new', Array)
+#1 C:\xampp\htdocs\MVC_fw\public\index.php(62): Core\Router->dispatch('signup/new')
+#2 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Controller.php' on line 28
+[29-Apr-2017 15:55:03 Europe/Berlin] Uncaught exception: 'Exception' with message 'Method newAction in controller App\Controllers\SignUP'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\Core\Router.php(78): Core\Controller->__call('new', Array)
+#1 C:\xampp\htdocs\MVC_fw\public\index.php(63): Core\Router->dispatch('signup/new')
+#2 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Controller.php' on line 28
+[29-Apr-2017 15:55:05 Europe/Berlin] Uncaught exception: 'Exception' with message 'Method newAction in controller App\Controllers\SignUP'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\Core\Router.php(78): Core\Controller->__call('new', Array)
+#1 C:\xampp\htdocs\MVC_fw\public\index.php(63): Core\Router->dispatch('signup/new')
+#2 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Controller.php' on line 28
+[29-Apr-2017 15:55:05 Europe/Berlin] Uncaught exception: 'Exception' with message 'Method newAction in controller App\Controllers\SignUP'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\Core\Router.php(78): Core\Controller->__call('new', Array)
+#1 C:\xampp\htdocs\MVC_fw\public\index.php(63): Core\Router->dispatch('signup/new')
+#2 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Controller.php' on line 28
+[29-Apr-2017 15:55:05 Europe/Berlin] Uncaught exception: 'Exception' with message 'Method newAction in controller App\Controllers\SignUP'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\Core\Router.php(78): Core\Controller->__call('new', Array)
+#1 C:\xampp\htdocs\MVC_fw\public\index.php(63): Core\Router->dispatch('signup/new')
+#2 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Controller.php' on line 28
+[29-Apr-2017 15:56:08 Europe/Berlin] Uncaught exception: 'Exception' with message 'Method newAction in controller App\Controllers\SignUP'
+Stack trace: #0 C:\xampp\htdocs\MVC_fw\Core\Router.php(78): Core\Controller->__call('new', Array)
+#1 C:\xampp\htdocs\MVC_fw\public\index.php(63): Core\Router->dispatch('signup/new')
+#2 {main}
+Thrown in 'C:\xampp\htdocs\MVC_fw\Core\Controller.php' on line 28

@@ -20,7 +20,7 @@ class Config
      * Database name
      * @var string
      */
-    const DB_NAME = 'mvc';
+    const DB_NAME = 'mvclogin';
 
     /**
      * Database user
@@ -35,5 +35,5 @@ class Config
     const DB_PASSWORD = '';
 
     /*errors dispalying only for users with authorised access to it */
-    const SHOW_ERRORS = false;
+    const SHOW_ERRORS = true;
 }

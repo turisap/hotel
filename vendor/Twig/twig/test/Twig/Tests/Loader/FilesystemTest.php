@@ -15,8 +15,8 @@ class Twig_Tests_Loader_FilesystemTest extends PHPUnit_Framework_TestCase
     {
         $path = dirname(__FILE__).'/../Fixtures';
         $loader = new Twig_Loader_Filesystem(array($path));
-        $this->assertEquals('errors/index.html', $loader->getSourceContext('errors/index.html')->getName());
-        $this->assertEquals(realpath($path.'/errors/index.html'), realpath($loader->getSourceContext('errors/index.html')->getPath()));
+        $this->assertEquals('errors/new.html', $loader->getSourceContext('errors/new.html')->getName());
+        $this->assertEquals(realpath($path.'/errors/new.html'), realpath($loader->getSourceContext('errors/new.html')->getPath()));
     }
 
     /**
@@ -88,9 +88,9 @@ class Twig_Tests_Loader_FilesystemTest extends PHPUnit_Framework_TestCase
 
         // do not use realpath here as it would make the test unuseful
         $this->assertEquals($cacheKey, str_replace('\\', '/', $loader->getCacheKey('@named/named_absolute.html')));
-        $this->assertEquals("path (final)\n", $loader->getSourceContext('index.html')->getCode());
-        $this->assertEquals("path (final)\n", $loader->getSourceContext('@__main__/index.html')->getCode());
-        $this->assertEquals("named path (final)\n", $loader->getSourceContext('@named/index.html')->getCode());
+        $this->assertEquals("path (final)\n", $loader->getSourceContext('new.html')->getCode());
+        $this->assertEquals("path (final)\n", $loader->getSourceContext('@__main__/new.html')->getCode());
+        $this->assertEquals("named path (final)\n", $loader->getSourceContext('@named/new.html')->getCode());
     }
 
     public function getBasePaths()
@@ -161,12 +161,12 @@ class Twig_Tests_Loader_FilesystemTest extends PHPUnit_Framework_TestCase
         $loader = new Twig_Loader_Filesystem(array($basePath.'/normal'));
         $loader->addPath($basePath.'/named', 'named');
 
-        // prime the cache for index.html in the named namespace
-        $namedSource = $loader->getSourceContext('@named/index.html')->getCode();
+        // prime the cache for new.html in the named namespace
+        $namedSource = $loader->getSourceContext('@named/new.html')->getCode();
         $this->assertEquals("named path\n", $namedSource);
 
-        // get index.html from the main namespace
-        $this->assertEquals("path\n", $loader->getSourceContext('index.html')->getCode());
+        // get new.html from the main namespace
+        $this->assertEquals("path\n", $loader->getSourceContext('new.html')->getCode());
     }
 
     public function testLoadTemplateAndRenderBlockWithCache()

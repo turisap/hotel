@@ -41,6 +41,7 @@ $router->add('{controller}/{action}');
 $router->add('admin/{controller}/{action}');
 $router->add('{controller}/{id:\d+}/{action}');
 $router->add('admin/{controller}/{action}', ['namespace' => 'Admin']);
+$router->add('{controller}/{action}'); // this one for signup page (localhost/signup/index)
 
 /*
 // display the routing table

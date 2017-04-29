@@ -14,9 +14,9 @@ class Posts extends \Core\Controller {
 
     public function indexAction(){
         //echo "Hello from Post controller index() method";
-        //View::renderTemplate('Posts/index.html');
+        //View::renderTemplate('Posts/new.html');
         $posts = Post::getAll();
-        View::renderTemplate('Posts/index.html', ['posts' => $posts]);
+        View::renderTemplate('Posts/new.html', ['posts' => $posts]);
     }
 
     public function addNewAction(){
