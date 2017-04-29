@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 use \Core\View;
+use App\Models\Post;
 
 /**
  * Created by PhpStorm.
@@ -9,11 +10,13 @@ use \Core\View;
  * Date: 4/28/2017
  * Time: 9:44 AM
  */
-class Post extends \Core\Controller {
+class Posts extends \Core\Controller {
 
     public function indexAction(){
         //echo "Hello from Post controller index() method";
-        View::renderTemplate('Posts/index.html');
+        //View::renderTemplate('Posts/index.html');
+        $posts = Post::getAll();
+        View::renderTemplate('Posts/index.html', ['posts' => $posts]);
     }
 
     public function addNewAction(){

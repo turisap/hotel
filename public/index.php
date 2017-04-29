@@ -6,7 +6,7 @@
 
 /***************** Routing *************/
 //require("../Core/Router.php");
-//require("../App/Controllers/Post.php");
+//require("../App/Controllers/Posts.php");
 //$router = new Router();
 //echo get_class($router);
 
