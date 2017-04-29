@@ -11,18 +11,20 @@
 //echo get_class($router);
 
 /* Twig */
-require_once dirname(__DIR__) . '/vendor/Twig/lib/Twig/autoloader.php';
-Twig_Autoloader::register();
+// we changed Twig's autoloader to composer's one  because it includes all autoloaders from installed packages through composer
+require_once dirname(__DIR__) . '/vendor/autoload.php';
+
 
 
 /* Autoload */
+/* WE DON'T NEED TO INCLUDE ALL OUR OWN CLASSES BECAUSE WE HAVE ALREADY INCLUDED THEM IN
 spl_autoload_register(function($class){
     $root = dirname(__DIR__); // get the parent directory
     $file = $root . '/' .  str_replace('\\', '/', $class) . '.php';
     if(is_readable($file)){
         require $root . '/' .  str_replace('\\', '/', $class) . '.php';
     }
-});
+});*/
 
 $router = new Core\Router();
 
