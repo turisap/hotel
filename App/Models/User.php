@@ -30,7 +30,9 @@ class User extends \Core\Model {
         if(empty($this->errors)){
             $password_hash = password_hash($this->password, PASSWORD_DEFAULT);
 
-            $sql = 'INSERT INTO users (username, email, password_hash) VALUES (:name, :email, :password_hash)';
+            $sql = 'INSERT INTO users (username, email, password_hash)
+                     VALUES (:name, :email, :password_hash)';
+
             $db = static::getDB();
             $statement = $db->prepare($sql);
 
@@ -49,11 +51,11 @@ class User extends \Core\Model {
         if($this->name == ''){
             $this->errors[] = "Please fill the name field";
         }
-/*
+
         if($this->emailExists($this->email)){
             $this->errors[] = "This email is already taken";
         }
-*/
+
         if(filter_var($this->email, FILTER_VALIDATE_EMAIL) === false){
             $this->errors[] = "Please enter a valid email";
         }
@@ -73,14 +75,17 @@ class User extends \Core\Model {
 
     }
 
-   /* //check whether an email is already in the database
-    public function emailExists($email){
+   //check whether an email is already in the database
+    protected function emailExists($email){
+
         $sql = 'SELECT * FROM users WHERE email = :email';
         $db = static::getDB();
 
         $statement = $db->prepare($sql);
-        $statement->bindValue(':email', $email, PDO::PARAM_STR);
+        $statement->bindParam(':email', $email, PDO::PARAM_STR);
+
+        $statement->execute();
 
         return $statement->fetch() !== false;
-    }*/
+    }
 }
