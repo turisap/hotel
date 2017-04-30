@@ -28,6 +28,6 @@ class Users extends \Core\Controller
      */
     public function indexAction()
     {
-        echo 'User admin index';
+       // echo 'User admin index';
     }
 }
