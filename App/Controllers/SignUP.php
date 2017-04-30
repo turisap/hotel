@@ -8,6 +8,7 @@
 
 namespace App\Controllers;
 use \Core\View;
+use App\Models\User;
 
 
 class SignUP extends \Core\Controller
@@ -18,7 +19,15 @@ class SignUP extends \Core\Controller
     }
 
     public function createAction(){
-        var_dump($_POST);
+        // we create a new user and passing data from POST to the USER model constructor
+        $data = new User($_POST);
+
+        // after User model constructor created an instance and assigned values to it's properties, save the user
+        $data->save();
+
+        // render the success page
+        View::renderTemplate("SignUP/success.html");
     }
+
 
 }
