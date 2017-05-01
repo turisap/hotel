@@ -28,8 +28,8 @@ class SignUP extends \Core\Controller
             // render the success page
             View::renderTemplate("SignUP/success.html");
         } else {
-            // if there were errors, display them
-            var_dump($user->errors);
+            // render template with user object passed in as a parameter (with errors array)
+            View::renderTemplate("SignUP/new.html", ['user' => $user]);
         }
 
 

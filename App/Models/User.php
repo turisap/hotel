@@ -52,9 +52,9 @@ class User extends \Core\Model {
             $this->errors[] = "Please fill the name field";
         }
 
-        if($this->emailExists($this->email)){
+        /*if($this->emailExists($this->email)){
             $this->errors[] = "This email is already taken";
-        }
+        }*/
 
         if(filter_var($this->email, FILTER_VALIDATE_EMAIL) === false){
             $this->errors[] = "Please enter a valid email";
@@ -76,16 +76,16 @@ class User extends \Core\Model {
     }
 
    //check whether an email is already in the database
-    protected function emailExists($email){
+    /*protected function emailExists($email){
 
         $sql = 'SELECT * FROM users WHERE email = :email';
-        $db = static::getDB();
 
+        $db = static::getDB();
         $statement = $db->prepare($sql);
         $statement->bindParam(':email', $email, PDO::PARAM_STR);
 
         $statement->execute();
 
         return $statement->fetch() !== false;
-    }
+    }*/
 }
