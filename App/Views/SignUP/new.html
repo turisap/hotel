@@ -3,6 +3,8 @@
 {% block title %}SignUP{% endblock %}
 
 {% block footer %}
+<!--hide and show password button script -->
+<script src="/js/hideShowPassword.js"></script>
 
     <script>
         // custom method to validate password using regex
@@ -38,16 +40,24 @@
                         required: true,
                         minlength: 6,
                         validPassword: true //here we call our custom method to validate password
-                    },
-                    password_confirmation: {
-                        equalTo: '#inputPassword'
                     }
+                    /*password_confirmation: {
+                        equalTo: '#inputPassword'
+                    }*/
                 },
                 messages: {
                     email: {
                         remote: 'This email is already taken'
                     }
                 }
+            });
+
+            /**
+             * Show password toggle button
+             */
+            $('#inputPassword').hideShowPassword({
+                show: false,
+                innerToggle: 'focus'
             });
         });
 
@@ -82,11 +92,7 @@
         <label for="inputPassword">Password</label>
         <input type="password" id="inputPassword" name="password" placeholder="Password"/>
     </div>
-    <div>
-        <label for="inputPasswordConfirmation">Repeat password</label>
-        <input type="password" id="inputPasswordConfirmation" name="password_confirmation"
-               placeholder="Repeat password" />
-    </div>
+
 
     <button type="submit">Sign up</button>
 

@@ -59,9 +59,11 @@ class User extends \Core\Model {
         if(filter_var($this->email, FILTER_VALIDATE_EMAIL) === false){
             $this->errors[] = "Please enter a valid email";
         }
-        if($this->password != $this->password_confirmation){
+
+        /*if($this->password != $this->password_confirmation){
             $this->errors[] = "Passwords should be the same";
-        }
+        }*/
+
         if(strlen($this->password) < 6){
             $this->errors[] = "Password should be at least 6 characters long";
         }
