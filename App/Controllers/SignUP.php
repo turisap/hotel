@@ -25,14 +25,20 @@ class SignUP extends \Core\Controller
         // after User model constructor created an instance and assigned values to it's properties, save the user
         // check whether a user has been saved successfully
         if($user->save()){
-            // render the success page
-            View::renderTemplate("SignUP/success.html");
+            //these lines redirect to another method (other address in the browser) in order to prevent form resubmittion
+            // this is redirect which is made in terms of MVC
+            header('Location: http://' . $_SERVER['HTTP_HOST'] . '/signup/success');
         } else {
             // render template with user object passed in as a parameter (with errors array)
             View::renderTemplate("SignUP/new.html", ['user' => $user]);
         }
 
 
+    }
+
+    public function successAction(){
+        // render the success page
+        View::renderTemplate("SignUP/success.html");
     }
 
 
