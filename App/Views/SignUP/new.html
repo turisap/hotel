@@ -23,11 +23,11 @@
     </div>
     <div>
         <label for="inputEmail">Email address</label>
-        <input id="inputEmail" name="email" placeholder="email address" value="{{ user.email}}"/>
+        <input id="inputEmail" type="email" name="email" placeholder="email address" value="{{ user.email}}" required title="Please enter a valid email"/>
     </div>
     <div>
         <label for="inputPassword">Password</label>
-        <input type="password" id="inputPassword" name="password" placeholder="Password" />
+        <input type="password" id="inputPassword" name="password" placeholder="Password" required title="Please enter a valid password" />
     </div>
     <div>
         <label for="inputPasswordConfirmation">Repeat password</label>
