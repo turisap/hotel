@@ -52,7 +52,7 @@ class User extends \Core\Model {
             $this->errors[] = "Please fill the name field";
         }
 
-        /*if($this->emailExists($this->email)){
+        /*if(static::emailExists($this->email)){
             $this->errors[] = "This email is already taken";
         }*/
 
@@ -76,7 +76,7 @@ class User extends \Core\Model {
     }
 
    //check whether an email is already in the database
-    /*protected function emailExists($email){
+    public static function emailExists($email){
 
         $sql = 'SELECT * FROM users WHERE email = :email';
 
@@ -87,5 +87,5 @@ class User extends \Core\Model {
         $statement->execute();
 
         return $statement->fetch() !== false;
-    }*/
+    }
 }

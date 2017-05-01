@@ -29,7 +29,10 @@
                     name: 'required',
                     email: {
                         required: true,
-                        email: true
+                        email: true,
+                        // this line for ajax request from the database to validate the an email wasn't already taken
+                        //this is a path to the controller and a method inside
+                        remote: '/account/validate-email'
                     },
                     password: {
                         required: true,
@@ -38,6 +41,11 @@
                     },
                     password_confirmation: {
                         equalTo: '#inputPassword'
+                    }
+                },
+                messages: {
+                    email: {
+                        remote: 'This email is already taken'
                     }
                 }
             });
