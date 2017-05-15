@@ -30,13 +30,14 @@ class User extends \Core\Model {
         if(empty($this->errors)){
             $password_hash = password_hash($this->password, PASSWORD_DEFAULT);
 
-            $sql = 'INSERT INTO users (username, email, password_hash)
-                     VALUES (:name, :email, :password_hash)';
+            $sql = 'INSERT INTO users (first_name, last_name, email, password_hash)
+                     VALUES (:first_name, :last_name, :email, :password_hash)';
 
             $db = static::getDB();
             $statement = $db->prepare($sql);
 
-            $statement->bindValue(':name', $this->name, PDO::PARAM_STR);
+            $statement->bindValue(':first_name', $this->first_name, PDO::PARAM_STR);
+            $statement->bindValue(':last_name', $this->last_name, PDO::PARAM_STR);
             $statement->bindValue(':email', $this->email, PDO::PARAM_STR);
             $statement->bindValue(':password_hash', $password_hash, PDO::PARAM_STR);
 
@@ -48,21 +49,21 @@ class User extends \Core\Model {
     // this method validates form data
     public function validate(){
 
-        if($this->name == ''){
-            $this->errors[] = "Please fill the name field";
+        if($this->first_name == ''){
+            $this->errors[] = "Please fill the first name field";
         }
 
-        /*if(static::emailExists($this->email)){
+        if($this->last_name == ''){
+            $this->errors[] = "Please fill the last name field";
+        }
+
+        if(static::emailExists($this->email)){
             $this->errors[] = "This email is already taken";
-        }*/
+        }
 
         if(filter_var($this->email, FILTER_VALIDATE_EMAIL) === false){
             $this->errors[] = "Please enter a valid email";
         }
-
-        /*if($this->password != $this->password_confirmation){
-            $this->errors[] = "Passwords should be the same";
-        }*/
 
         if(strlen($this->password) < 6){
             $this->errors[] = "Password should be at least 6 characters long";
@@ -73,7 +74,6 @@ class User extends \Core\Model {
         if(preg_match('/.*\d+./i', $this->password) == 0){
             $this->errors[] = "Password should have at least one number";
         }
-
 
     }
 
@@ -89,5 +89,10 @@ class User extends \Core\Model {
         $statement->execute();
 
         return $statement->fetch() !== false;
+    }
+
+    public static function test(){
+        $t = static::getDB();
+        print_r($t);
     }
 }

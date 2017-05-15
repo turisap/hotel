@@ -28,7 +28,14 @@
 
             $('#signUpForm').validate({
                 rules: {
-                    name: 'required',
+                    first_name: {
+                        required: true,
+                        minlength: 2
+                    },
+                    last_name: {
+                        required: true,
+                        minlength: 2
+                    },
                     email: {
                         required: true,
                         email: true,
@@ -41,13 +48,20 @@
                         minlength: 6,
                         validPassword: true //here we call our custom method to validate password
                     }
-                    /*password_confirmation: {
-                        equalTo: '#inputPassword'
-                    }*/
+
                 },
                 messages: {
                     email: {
+                        required: 'Hey, we do need your email!',
                         remote: 'This email is already taken'
+                    },
+                    first_name: {
+                        required: 'Please tell me your name',
+                        minlength: 'Name should be at least 2 characters'
+                    },
+                    last_name: {
+                        required: 'Please tell me your last name',
+                        minlength: 'Last name should be at least 2 characters'
                     }
                 }
             });
@@ -67,6 +81,8 @@
 
 {% block body %}
 
+<div class="row">
+    <div class="col-lg-6 offset-3">
     <h1>Welcome</h1>
    <!------------------------------------------ displaying of error messages ----------------------------------------------->
     {% if user.errors is not empty %}
@@ -80,22 +96,30 @@
 
 <form method="post" action="/signup/create" id="signUpForm">
 
-    <div>
-        <label for="inputName">Name</label>
-        <input id="inputName" name="name" placeholder="Name" autofocus value="{{ user.name }}" />
+    <div class="form-group">
+        <label for="inputFirstName">First Name</label>
+        <input class="form-control" id="inputFirstName" name="first_name" placeholder="First name" autofocus value="{{ user.first_name }}" />
     </div>
-    <div>
+    <div class="form-group">
+        <label for="inputLastName">First Name</label>
+        <input class="form-control" id="inputLastName" name="last_name" placeholder="Last name" autofocus value="{{ user.last }}" />
+    </div>
+    <div class="form-group">
         <label for="inputEmail">Email address</label>
-        <input id="inputEmail" type="email" name="email" placeholder="email address" value="{{ user.email}}"/>
+        <input class="form-control" id="inputEmail" type="email" name="email" placeholder="email address" value="{{ user.email}}"/>
     </div>
-    <div>
+    <div class="form-group">
         <label for="inputPassword">Password</label>
-        <input type="password" id="inputPassword" name="password" placeholder="Password"/>
+        <input class="form-control"  type="password" id="inputPassword" name="password" placeholder="Password"/>
     </div>
 
 
-    <button type="submit">Sign up</button>
+    <button class="btn btn-default" type="submit">Sign up</button>
+
 
 </form>
+    </div>
+</div>
+
 
 {% endblock %}

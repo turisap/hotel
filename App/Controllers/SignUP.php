@@ -41,5 +41,9 @@ class SignUP extends \Core\Controller
         View::renderTemplate("SignUP/success.html");
     }
 
+    public function testAction(){
+        User::test();
+    }
+
 
 }
