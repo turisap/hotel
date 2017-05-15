@@ -25,8 +25,7 @@ error_reporting(E_ALL); // set up report about all types of errors (instead of m
 set_error_handler('Core\Error::errorHandler');
 set_exception_handler('Core\Error::exceptionHandler');
 
-// regenerate session for safety purposes
-session_regenerate_id(true);
+
 
 $router = new Core\Router();
 

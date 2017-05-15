@@ -10,7 +10,7 @@ use App\Models\Post;
  * Date: 4/28/2017
  * Time: 9:44 AM
  */
-class Posts extends \Core\Controller {
+class Posts extends \App\Authentifiacation {
 
     public function indexAction(){
         //echo "Hello from Post controller index() method";

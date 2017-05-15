@@ -7,8 +7,11 @@
  */
 
 namespace App\Controllers;
+
+
 use \Core\View;
 use \App\Models\User;
+use App\Authentifiacation;
 
 
 class Login extends \Core\Controller {
@@ -21,13 +24,9 @@ class Login extends \Core\Controller {
 
     // this method logs user in and redirects on success
     public function createAction(){
-       // echo $_REQUEST['email'] . '  ' . $_REQUEST['password'];
-       $user = User::authenticate($_POST['password'], $_POST['email']);
-       if($user){
-           //set some session vars and redirect
-           $_SESSION['user_id'] = $user->id;
-           $_SESSION['first_name'] = $user->first_name;
-           static::redirect('/');
+       if(Authentifiacation::login()){
+           // redirect user to the page which he originally requested
+           static::redirect(Authentifiacation::getRequestedPage());
        } else {
            View::renderTemplate('Login/new.html',['email' => $_POST['email']]);
        }
@@ -35,22 +34,7 @@ class Login extends \Core\Controller {
     }
 
     public static function logOut(){
-        // Unset all of the session variables.
-        $_SESSION = array();
-
-        // If it's desired to kill the session, also delete the session cookie.
-        // Note: This will destroy the session, and not just the session data!
-        if (ini_get("session.use_cookies")) {
-            $params = session_get_cookie_params();
-            setcookie(session_name(), '', time() - 42000,
-                $params["path"], $params["domain"],
-                $params["secure"], $params["httponly"]
-            );
-        }
-
-        // Finally, destroy the session.
-        session_destroy();
-        static::redirect('/');
+        Authentifiacation::logOut();
     }
 
 

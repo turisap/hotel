@@ -30,7 +30,7 @@ abstract class Controller {
     }
 
     protected function before(){
-        //echo "Before function";
+
     }
 
     protected function after(){
