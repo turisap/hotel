@@ -17,7 +17,9 @@ class Authentifiacation extends \Core\Controller {
 
     // this method requieres authorisation to access a page and remembers originally requested page if a user . THIS IS AN ACTION FILTER
     public function before(){
+        // remeber requested page before redirect to login
         self::rememberRequestedPage();
+        // if user isn't logged in, redirect to login
         if( ! self::isLoggedIn()){
             self::redirect('/login/new');
         }

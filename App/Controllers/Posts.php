@@ -24,7 +24,8 @@ class Posts extends \App\Authentifiacation {
         echo "<p>Test of query string: it should be here: <pre>" . htmlspecialchars(print_r($_GET, true)) ."</pre></p>";
     }
 
-    public function editAction(){
+    public function edit(){
+        static::requireLogin();
         echo "Hello from the Post class edit() method";
         echo "<p>Route parameters <pre>" . htmlspecialchars(print_r($this->route_parametrs, true)) . "</pre></p>";
     }

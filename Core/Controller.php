@@ -9,6 +9,8 @@
 namespace Core;
 
 
+use App\Authentifiacation;
+
 abstract class Controller {
 
     protected $route_parametrs = [];
@@ -41,4 +43,13 @@ abstract class Controller {
         header('Location: http://' . $_SERVER['HTTP_HOST'] . $url, true, 303);
         exit;
     }
+
+    // this method can be used for requiring authorisation before accesssing a page (or extend Authentification class with action filter)
+    public function requireLogin(){
+        if( ! Authentifiacation::isLoggedIn()){
+            Authentifiacation::rememberRequestedPage();
+            self::redirect('/login/new');
+        }
+    }
+
 }
