@@ -18,12 +18,11 @@ class Home extends \Core\Controller {
     }
 
     protected function before(){
-        //echo "Before function   ";
-        //return false;
+
     }
 
     protected function after(){
-        //echo "  After function";
+
     }
 
 

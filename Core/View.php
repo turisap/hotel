@@ -37,6 +37,7 @@ class View
             $twig->addGlobal('session', $_SESSION);// add session array to twig global to use it across all templates
             $twig->addGlobal('is_logged_in', \App\Authentifiacation::isLoggedIn()); // add current user for global twig usage
             $twig->addGlobal('current_user', \App\Authentifiacation::getCurrentUser());// add current user for global twig usage
+            $twig->addGlobal('flash_messages', \App\Flash::getFlashMessage()); // add flash messages for twig global usage
         }
 
         echo $twig->render($template, $args);

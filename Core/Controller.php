@@ -8,7 +8,7 @@
 
 namespace Core;
 
-
+use \App\Flash;
 use App\Authentifiacation;
 
 abstract class Controller {
@@ -48,6 +48,7 @@ abstract class Controller {
     public function requireLogin(){
         if( ! Authentifiacation::isLoggedIn()){
             Authentifiacation::rememberRequestedPage();
+            Flash::addMessage('You need to login to view this page', Flash::INFO);
             self::redirect('/login/new');
         }
     }

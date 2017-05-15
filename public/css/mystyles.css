@@ -1,3 +1,9 @@
 .container{
     margin: 50px 0;
 }
+
+.flash_message {
+    position: fixed !important;
+    top: 10% !important;
+    width: 95%;
+}

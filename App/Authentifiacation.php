@@ -34,7 +34,6 @@ class Authentifiacation extends \Core\Controller {
 
         // Finally, destroy the session.
         session_destroy();
-        static::redirect('/');
     }
 
 
