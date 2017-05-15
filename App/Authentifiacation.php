@@ -14,15 +14,8 @@ use \App\Models\User;
 // THIS CLASS ONLY FOR AUTHENTIFACATION METHODS
 class Authentifiacation extends \Core\Controller {
 
-
-    // this method requieres authorisation to access a page and remembers originally requested page if a user . THIS IS AN ACTION FILTER
     public function before(){
-        // remeber requested page before redirect to login
-        self::rememberRequestedPage();
-        // if user isn't logged in, redirect to login
-        if( ! self::isLoggedIn()){
-            self::redirect('/login/new');
-        }
+
     }
 
     public static function logOut(){
@@ -72,6 +65,13 @@ class Authentifiacation extends \Core\Controller {
     // get requested page from the previous method or if there is no one, just home page
     public static function getRequestedPage(){
         return $_SESSION['return_to'] ?? '/';
+    }
+
+    // returns currently logged in user
+    public static function getCurrentUser(){
+       if(isset($_SESSION['user_id'])){
+           return User::findByID($_SESSION['user_id']);
+       }
     }
 
 

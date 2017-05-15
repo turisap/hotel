@@ -11,7 +11,9 @@ use PDO;
 
 
 class User extends \Core\Model {
+
     public $errors = array(); // an array for collecting errors messages
+    protected static $db_table = 'users';
 
     public function __construct($data=[]) {
         // here we make object's properties and their values out of POST array
@@ -97,7 +99,8 @@ class User extends \Core\Model {
 
     // finds a user by email
     public static function findByEmail($email){
-        $sql = 'SELECT * FROM users WHERE email = :email';
+
+        $sql = 'SELECT * FROM ' . self::$db_table . ' WHERE email = :email';
 
         $db = static::getDB();
         $statement = $db->prepare($sql);

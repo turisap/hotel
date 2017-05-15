@@ -10,7 +10,13 @@ use App\Models\Post;
  * Date: 4/28/2017
  * Time: 9:44 AM
  */
-class Posts extends \App\Authentifiacation {
+class Posts extends \Core\Controller {
+
+    // before action filter which requires authorisation ONLY FOR THIS CONTROLLER
+    public function before(){
+        static::requireLogin();
+    }
+
 
     public function indexAction(){
         //echo "Hello from Post controller index() method";
@@ -25,7 +31,6 @@ class Posts extends \App\Authentifiacation {
     }
 
     public function edit(){
-        static::requireLogin();
         echo "Hello from the Post class edit() method";
         echo "<p>Route parameters <pre>" . htmlspecialchars(print_r($this->route_parametrs, true)) . "</pre></p>";
     }
