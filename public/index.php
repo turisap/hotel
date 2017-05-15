@@ -1,14 +1,8 @@
 <?php
-
-//echo "Hello from the public ";
-
-//echo 'Requested URL = "' . $_SERVER['QUERY_STRING'] . '"';
+session_start();
 
 /***************** Routing *************/
-//require("../Core/Router.php");
-//require("../App/Controllers/Posts.php");
-//$router = new Router();
-//echo get_class($router);
+
 
 /* Twig */
 // we changed Twig's autoloader to composer's one  because it includes all autoloaders from installed packages through composer
@@ -30,6 +24,9 @@ spl_autoload_register(function($class){
 error_reporting(E_ALL); // set up report about all types of errors (instead of making it in the php.ini for all scr
 set_error_handler('Core\Error::errorHandler');
 set_exception_handler('Core\Error::exceptionHandler');
+
+// regenerate session for safety purposes
+session_regenerate_id(true);
 
 $router = new Core\Router();
 

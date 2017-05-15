@@ -36,4 +36,9 @@ abstract class Controller {
     protected function after(){
         //echo "After function";
     }
+
+    public static function redirect($url){
+        header('Location: http://' . $_SERVER['HTTP_HOST'] . $url, true, 303);
+        exit;
+    }
 }

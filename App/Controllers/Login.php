@@ -24,11 +24,33 @@ class Login extends \Core\Controller {
        // echo $_REQUEST['email'] . '  ' . $_REQUEST['password'];
        $user = User::authenticate($_POST['password'], $_POST['email']);
        if($user){
-           echo '<h1>Success</h1>';
+           //set some session vars and redirect
+           $_SESSION['user_id'] = $user->id;
+           $_SESSION['first_name'] = $user->first_name;
+           static::redirect('/');
        } else {
-           View::renderTemplate('Login/new.html');
+           View::renderTemplate('Login/new.html',['email' => $_POST['email']]);
        }
 
+    }
+
+    public static function logOut(){
+        // Unset all of the session variables.
+        $_SESSION = array();
+
+        // If it's desired to kill the session, also delete the session cookie.
+        // Note: This will destroy the session, and not just the session data!
+        if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(session_name(), '', time() - 42000,
+                $params["path"], $params["domain"],
+                $params["secure"], $params["httponly"]
+            );
+        }
+
+        // Finally, destroy the session.
+        session_destroy();
+        static::redirect('/');
     }
 
 

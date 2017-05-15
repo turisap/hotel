@@ -3,8 +3,11 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
-
-    <h1>Welcome</h1>
+{% if session is not empty %}
+    <h1>Welcome,  {{ session.first_name }}</h1>
+{% else %}
+    <h1>Welcome, dear guest!</h1>
+{% endif %}
 
 
 
