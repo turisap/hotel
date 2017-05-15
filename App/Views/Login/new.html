@@ -1,24 +1,103 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
-{% block title %}Log in{% endblock %}
+{% block title %}Login{% endblock %}
+
+{% block footer %}
+<!--hide and show password button script -->
+<script src="/js/hideShowPassword.js"></script>
+
+    <script>
+        // custom method to validate password using regex
+        $.validator.addMethod('validPassword',
+            function (value, element, param) {
+               if(value != ''){
+                   if(value.match(/.*[a-z]+.*/i) == null){
+                       return false;
+                   }
+                   if(value.match(/.*\d+.*/) == null){
+                       return false;
+                   }
+               }
+                return true;
+            },
+            'Must contain at least one letter and one number'
+        );
+
+        //form validation using jQuery Validate plagin
+        $(document).ready(function() {
+
+            $('#loginForm').validate({
+                rules: {
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    password: {
+                        required: true,
+                        minlength: 6,
+                        validPassword: true //here we call our custom method to validate password
+                    }
+
+                },
+                messages: {
+                    email: {
+                        required: 'Hey, we do need your email!'
+                    },
+                    password: {
+                        reqiured: 'We need you password to log you in',
+                        minlength: 'Enter at least 6 characters',
+                        validPassword: 'Password should contain at least one letter and a number'
+                    }
+                }
+            });
+
+            /**
+             * Show password toggle button
+             */
+            $('#inputPassword').hideShowPassword({
+                show: false,
+                innerToggle: 'focus'
+            });
+        });
+
+    </script>
+
+{% endblock %}
 
 {% block body %}
 
-    <h1>Log in</h1>
+<div class="row">
+    <div class="col-lg-6 offset-3">
+    <h1>Welcome</h1>
+   <!------------------------------------------ displaying of error messages ----------------------------------------------->
+    {% if user.errors is not empty %}
+    <p>Errors</p>
+    <ul>
+        {% for error in user.errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
 
-    <form>
+<form method="post" action="/login/create" id="loginForm">
 
-        <div>
-            <label for="inputEmail">Email address</label>
-            <input type="email" id="inputEmail" name="email" placeholder="Email address" autofocus />
-        </div>
-        <div>
-            <label for="inputPassword">Password</label>
-            <input type="password" id="inputPassword" name="password" placeholder="Password" />
-        </div>
 
-        <button type="submit">Log in</button>
+    <div class="form-group">
+        <label for="inputEmail">Email address</label>
+        <input class="form-control" id="inputEmail" type="email" name="email" placeholder="email address" value="{{ user.email}}"/>
+    </div>
+    <div class="form-group">
+        <label for="inputPassword">Password</label>
+        <input class="form-control"  type="password" id="inputPassword" name="password" placeholder="Password"/>
+    </div>
 
-    </form>
-    
+
+    <button class="btn btn-default" type="submit">Login</button>
+
+
+</form>
+    </div>
+</div>
+
+
 {% endblock %}

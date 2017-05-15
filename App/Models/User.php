@@ -13,7 +13,7 @@ use PDO;
 class User extends \Core\Model {
     public $errors = array(); // an array for collecting errors messages
 
-    public function __construct($data) {
+    public function __construct($data=[]) {
         // here we make object's properties and their values out of POST array
         foreach($data as $key => $value){
             $this->$key = $value;
@@ -77,22 +77,35 @@ class User extends \Core\Model {
 
     }
 
+    // authentifacates a user using POST array
+    public static function authenticate($password, $email){
+        // find a record in the database via email
+        $user = static::findByEmail($email);
+        // if there is one, check password and return user object
+        if($user){
+           if(password_verify($password, $user->password_hash)){
+               return $user;
+           }
+        }
+        return false;
+    }
+
    //check whether an email is already in the database
     public static function emailExists($email){
+        return static::findByEmail($email) !== false;
+    }
 
+    // finds a user by email
+    public static function findByEmail($email){
         $sql = 'SELECT * FROM users WHERE email = :email';
 
         $db = static::getDB();
         $statement = $db->prepare($sql);
         $statement->bindParam(':email', $email, PDO::PARAM_STR);
+        $statement->setFetchMode(PDO::FETCH_CLASS, get_called_class());
 
         $statement->execute();
 
-        return $statement->fetch() !== false;
-    }
-
-    public static function test(){
-        $t = static::getDB();
-        print_r($t);
+        return $statement->fetch();
     }
 }
