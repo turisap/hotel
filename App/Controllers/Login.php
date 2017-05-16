@@ -26,7 +26,7 @@ class Login extends \Core\Controller {
     // this method logs user in and redirects on success
     public function createAction(){
         // create a new user object
-        $user = User::authenticate($_POST['password'], $_POST['email']);
+        $user = User::authenticate($_POST['Password'], $_POST['email']);
 
         // remember me checkbox, assign its value to a var only if it was set
         $remember_me = $_POST['remember_me'] = isset($_POST['remember_me']);

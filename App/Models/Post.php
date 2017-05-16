@@ -23,7 +23,7 @@ class Post extends \Core\Model
         //$host = 'localhost';
         //$dbname = 'mvc';
         //$username = 'root';
-        //$password = '';
+        //$Password = '';
     
         try {
             $db = static::getDB();

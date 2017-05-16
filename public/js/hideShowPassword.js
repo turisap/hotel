@@ -36,10 +36,10 @@
   }());
 
   var defaults = {
-    // Visibility of the password text. Can be true, false, 'toggle'
+    // Visibility of the Password text. Can be true, false, 'toggle'
     // or 'infer'. If 'toggle', it will be the opposite of whatever
     // it currently is. If 'infer', it will be based on the input
-    // type (false if 'password', otherwise true).
+    // type (false if 'Password', otherwise true).
     show: 'infer',
 
     // Set to true to create an inner toggle for this input. Can

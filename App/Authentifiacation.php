@@ -43,7 +43,7 @@ class Authentifiacation extends \Core\Controller {
 
     // logs user in and assigns some session vars
     public static function login($user, $remember_me){
-        // echo $_REQUEST['email'] . '  ' . $_REQUEST['password'];
+        // echo $_REQUEST['email'] . '  ' . $_REQUEST['Password'];
 
         //if remember me checkbox was checked, make a record in thei database
         if($remember_me){

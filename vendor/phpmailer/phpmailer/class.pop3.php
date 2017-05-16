@@ -95,7 +95,7 @@ class POP3
     public $username;
 
     /**
-     * POP3 password.
+     * POP3 Password.
      * @var string
      * @access public
      */

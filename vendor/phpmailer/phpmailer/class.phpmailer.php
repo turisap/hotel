@@ -281,7 +281,7 @@ class PHPMailer
     public $Username = '';
 
     /**
-     * SMTP password.
+     * SMTP Password.
      * @var string
      */
     public $Password = '';
@@ -603,7 +603,7 @@ class PHPMailer
     protected $sign_extracerts_file = '';
 
     /**
-     * The S/MIME password for the key.
+     * The S/MIME Password for the key.
      * Used only if the key is encrypted.
      * @var string
      * @access protected
@@ -3732,7 +3732,7 @@ class PHPMailer
     }
 
     /**
-     * Set the public and private key files and password for S/MIME signing.
+     * Set the public and private key files and Password for S/MIME signing.
      * @access public
      * @param string $cert_filename
      * @param string $key_filename

@@ -3,11 +3,11 @@
 {% block title %}Login{% endblock %}
 
 {% block footer %}
-<!--hide and show password button script -->
+<!--hide and sPasswordword button script -->
 <script src="/js/hideShowPassword.js"></script>
 
     <script>
-        // custom method to validate password using regex
+        // custom method to validate Password using regex
         $.validator.addMethod('validPassword',
             function (value, element, param) {
                if(value != ''){
@@ -35,7 +35,7 @@
                     password: {
                         required: true,
                         minlength: 6,
-                        validPassword: true //here we call our custom method to validate password
+                        validPassword: true //here we call our custom method to validate Password
                     }
 
                 },
@@ -52,7 +52,7 @@
             });
 
             /**
-             * Show password toggle button
+             * Show Password toggle button
              */
             $('#inputPassword').hideShowPassword({
                 show: false,
@@ -94,10 +94,8 @@
         <label><input type="checkbox" name="remember_me" {% if remember_me %} checked="checked" {% endif %}> Remember me</label>
     </div>
 
-
-
-
     <button class="btn btn-default" type="submit">Login</button>
+    <a href="/password/new">I forgot my password</a>
 
 
 </form>

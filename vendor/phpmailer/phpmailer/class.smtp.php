@@ -377,7 +377,7 @@ class SMTP
      * Must be run after hello().
      * @see hello()
      * @param string $username The user name
-     * @param string $password The password
+     * @param string $password The Password
      * @param string $authtype The auth type (PLAIN, LOGIN, NTLM, CRAM-MD5, XOAUTH2)
      * @param string $realm The auth realm for NTLM
      * @param string $workstation The auth workstation for NTLM
@@ -439,7 +439,7 @@ class SMTP
                 if (!$this->sendCommand('AUTH', 'AUTH PLAIN', 334)) {
                     return false;
                 }
-                // Send encoded username and password
+                // Send encoded username and Password
                 if (!$this->sendCommand(
                     'User & Password',
                     base64_encode("\0" . $username . "\0" . $password),

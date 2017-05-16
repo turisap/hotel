@@ -84,7 +84,7 @@ class User extends \Core\Model {
     public static function authenticate($password, $email){
         // find a record in the database via email
         $user = static::findByEmail($email);
-        // if there is one, check password and return user object
+        // if there is one, check Password and return user object
         if($user){
            if(password_verify($password, $user->password_hash)){
                return $user;

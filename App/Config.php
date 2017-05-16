@@ -29,7 +29,7 @@ class Config
     const DB_USER = 'root';
 
     /**
-     * Database password
+     * Database Password
      * @var string
      */
     const DB_PASSWORD = '';
