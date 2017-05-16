@@ -51,12 +51,15 @@
 
 
 
-<form method="post" action="/signup/create" id="ResetPasswordForm">
+<form method="post" action="/password/reset-password" id="ResetPasswordForm">
 
     <div class="form-group">
         <label for="inputPassword">Your new password</label>
         <input class="form-control"  type="password" id="inputPassword" name="password" placeholder="Password"/>
     </div>
+
+    <!-- this is hidden input for transfering token value from url back to the controller through POST -->
+    <input  name="token" value="{{ token }}" type="hidden"/>
 
 
     <button class="btn btn-default" type="submit">Reset</button>
