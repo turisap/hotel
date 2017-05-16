@@ -9,6 +9,7 @@
 namespace App\Controllers;
 
 use \App\Authentifiacation;
+use App\Mail;
 use \App\Token;
 use App\Models\RememberedLogin;
 
@@ -18,7 +19,7 @@ class Test
 
 
     public static function test(){
-      print_r(Authentifiacation::getCurrentUser());
+      Mail::send('kirill-shakirov@mail.ru', 'Hotel', 'Test email',  'Hi');
     }
 
 
