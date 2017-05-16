@@ -36,4 +36,7 @@ class Config
 
     /*errors dispalying only for users with authorised access to it */
     const SHOW_ERRORS = true;
+
+    // secret key for token hashing
+    const SECRET_KEW_HASHING = 'r7OOn90q3swhv64AbLE80N9ufEsHL63W';
 }

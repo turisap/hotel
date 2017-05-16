@@ -9,6 +9,7 @@
 namespace App\Controllers;
 
 use \App\Authentifiacation;
+use \App\Token;
 
 
 class Test
@@ -16,7 +17,9 @@ class Test
 
 
     public static function test(){
-        print_r(Authentifiacation::getCurrentUser());
+        $token = new Token('dlkfj');
+        print_r($token->getTokenHash());
     }
+
 
 }
