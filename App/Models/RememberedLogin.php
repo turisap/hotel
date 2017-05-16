@@ -40,4 +40,33 @@ class RememberedLogin extends \Core\Model {
     public function hasExpired(){
         return strtotime($this->expires_at) > time();
     }
+
+    public function deleteRememberedLogin(){
+
+        $sql = 'DELETE FROM remembered_login WHERE token_hash = :token_hash';
+
+        $db = static::getDB();
+        $statament = $db->prepare($sql);
+
+        $statament->bindValue(':token_hash', $this->token_hash, PDO::PARAM_STR);
+        $statament->execute();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

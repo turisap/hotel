@@ -35,6 +35,9 @@ class Authentifiacation extends \Core\Controller {
 
         // Finally, destroy the session.
         session_destroy();
+
+        // forget remembered login
+        self::forgetLogin();
     }
 
 
@@ -62,7 +65,13 @@ class Authentifiacation extends \Core\Controller {
 
     // check whether user is logged in
     public static function isLoggedIn(){
-        return isset($_SESSION['user_id']);
+        if(isset($_SESSION['user_id'])){
+           return true;
+        } elseif(isset($_COOKIE['remember_me'])) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     // save requested page in a session var (used only if user requests a restricted page and redirects to a login page)
@@ -99,6 +108,21 @@ class Authentifiacation extends \Core\Controller {
                 static::login($user, false);
                 return $user;
             }
+        }
+    }
+
+    protected static function forgetLogin(){
+
+        $cookie = $_COOKIE['remember_me'] ?? false;
+
+        if ($cookie){
+
+            $remember_login = RememberedLogin::findByToken($cookie);
+            if($remember_login){
+                $remember_login->deleteRememberedLogin();
+            }
+
+            setcookie('remember_me', '', time() - 3600);
         }
     }
 
