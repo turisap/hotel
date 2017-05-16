@@ -25,20 +25,25 @@ class Login extends \Core\Controller {
 
     // this method logs user in and redirects on success
     public function createAction(){
-        //$user = new User($_POST);
-        //var_dump($user);
+        // create a new user object
+        $user = User::authenticate($_POST['password'], $_POST['email']);
 
-        // remember me checkbox
+        // remember me checkbox, assign its value to a var only if it was set
         $remember_me = $_POST['remember_me'] = isset($_POST['remember_me']);
 
-       if(Authentifiacation::login()){
-           // redirect user to the page which he originally requested
+       if($user){
+
+           Authentifiacation::login($user, $remember_me);
            Flash::addMessage('Successfully logged in', Flash::SUCCESS);
+           // redirect user to the page which he originally requested
            static::redirect(Authentifiacation::getRequestedPage());
+
        } else {
+
            Flash::addMessage('You are not logged in', Flash::DANGER);
            // pass state of the checkbox on unsuccessful login
            View::renderTemplate('Login/new.html',['email' => $_POST['email'], 'remember_me' => $remember_me]);
+
        }
 
     }

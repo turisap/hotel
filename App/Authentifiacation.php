@@ -37,9 +37,17 @@ class Authentifiacation extends \Core\Controller {
     }
 
 
-    public static function login(){
+    // logs user in and assigns some session vars
+    public static function login($user, $remember_me){
         // echo $_REQUEST['email'] . '  ' . $_REQUEST['password'];
-        $user = User::authenticate($_POST['password'], $_POST['email']);
+
+        //if remember me checkbox was checked, make a record in thei database
+        if($remember_me){
+            if($user->rememberLogin()){
+                setcookie('remember_me', $user->remember_token, $user->expire_timestamp, '/');
+            }
+        }
+
         if($user) {
             // regenerate session for safety purposes
             session_regenerate_id(true);
