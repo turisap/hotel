@@ -193,7 +193,7 @@ class User extends \Core\Model {
     // this method finds a user and returns its model based on a token from link from resetting email (as well check expiry of that token)
     public static function findByPasswordResetToken($token){
 
-        $token = new Token($token); // create a token object based on existitg token value
+        $token = new Token($token); // create a token object based on existing token value
         $token_hash = $token->getTokenHash(); // and get its hash
 
         $sql = 'SELECT * FROM ' . static::$db_table . ' WHERE password_reset_hash = :token_hash';
@@ -209,7 +209,7 @@ class User extends \Core\Model {
 
         // here we check whether token expired or not
         if($user){
-            if(strtotime($user->password_reset_expiry) < time()){
+            if(strtotime($user->password_reset_expiry) > time()){
                 return $user; // return user model only if token hasn't expired
             } else {
                 Flash::addMessage('Sorry, but your link has expired', Flash::DANGER);
