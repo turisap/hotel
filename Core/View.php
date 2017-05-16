@@ -25,8 +25,14 @@ class View
         }
     }
 
-    // method for rendering twig
+    // method for rendering twig (actually it was the next method, we made it to get template for email)
     public static function renderTemplate($template, $args = [])
+    {
+      echo static::getTemplate($template, $args);
+    }
+
+    // method for rendering twig
+    public static function getTemplate($template, $args = [])
     {
         static $twig = null;
 
@@ -40,7 +46,7 @@ class View
             $twig->addGlobal('flash_messages', \App\Flash::getFlashMessage()); // add flash messages for twig global usage
         }
 
-        echo $twig->render($template, $args);
+        return $twig->render($template, $args);
     }
 
 }

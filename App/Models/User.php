@@ -7,8 +7,10 @@
  */
 
 namespace App\Models;
+use App\Config;
 use App\Mail;
 use App\Token;
+use Core\View;
 use PDO;
 
 
@@ -150,9 +152,19 @@ class User extends \Core\Model {
 
     // this method prepares a link and sends email
     protected function passwordResetLink(){
-        $url = 'http://' . $_SERVER['HTTP_HOST'] . '/password/password-reset/' . $this->password_reset_token;
-        $text = 'Please follow <a href=' . $url . '>this</a> link to reset your password';
-        Mail::send($this->email, 'Password reset', 'Reseting password', $text);
+
+        // find user model to pass it to the template for email
+        $user = static::findByEmail($this->email);
+        if($user){
+            $url = 'http://' . $_SERVER['HTTP_HOST'] . '/password/password-reset/' . $this->password_reset_token;
+            $body = View::getTemplate('Password/reset_email.html', [
+                'user' => $user,
+                'site_name' => Config::SITE_NAME,
+                'url'       => $url
+                ]);
+            Mail::send($this->email, 'Password reset', 'Reseting password', $body);
+        }
+
     }
 
     // creates a record in the database with reset token hash and its expiry
@@ -160,7 +172,7 @@ class User extends \Core\Model {
 
         $token = new Token();  // generete a new token
         $this->password_reset_token = $token->getValue(); // assign value of a token to the object's property
-        $token_hash = $token->getTokenHash(); 
+        $token_hash = $token->getTokenHash();
 
         $expire_stamp = time() + 60 * 60 * 2;
 

@@ -39,4 +39,7 @@ class Config
 
     // secret key for token hashing
     const SECRET_KEW_HASHING = 'r7OOn90q3swhv64AbLE80N9ufEsHL63W';
+
+    // website name
+    const SITE_NAME = 'MyhotelSystem';
 }
