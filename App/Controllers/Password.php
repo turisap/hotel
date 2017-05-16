@@ -33,4 +33,22 @@ class Password extends \Core\Controller {
             View::renderTemplate('password/new.html', ['email' => $_POST['email']]);
         }
     }
+
+    // this action processes link from reset mail
+    public function passwordResetAction(){
+
+        $token = $this->route_parametrs['token']; // first get the token from url
+        $user = User::findByPasswordResetToken($token);
+        var_dump($user);
+    }
+
+
+
+
+
+
+
+
+
+
 }

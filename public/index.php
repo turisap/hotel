@@ -39,6 +39,7 @@ $router->add('{controller}/{id:\d+}/{action}');
 $router->add('admin/{controller}/{action}', ['namespace' => 'Admin']);
 $router->add('{controller}/{action}'); // this one for signup page (localhost/signup/index)
 $router->add('login', ['controller' => 'Login', 'action' => 'new']); // this route for the login page
+$router->add('{controller}/{action}/{token:[\da-f]+}', ['controller' => 'Password', 'action' => 'reset']); // this route for taking token from email link
 
 /*
 // display the routing table

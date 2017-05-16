@@ -8,6 +8,7 @@
 
 namespace App\Models;
 use App\Config;
+use App\Flash;
 use App\Mail;
 use App\Token;
 use Core\View;
@@ -186,6 +187,34 @@ class User extends \Core\Model {
         $statement->bindValue(':id', $this->id, PDO::PARAM_INT);
 
         return $statement->execute();
+
+    }
+
+    // this method finds a user and returns its model based on a token from link from resetting email (as well check expiry of that token)
+    public static function findByPasswordResetToken($token){
+
+        $token = new Token($token); // create a token object based on existitg token value
+        $token_hash = $token->getTokenHash(); // and get its hash
+
+        $sql = 'SELECT * FROM ' . static::$db_table . ' WHERE password_reset_hash = :token_hash';
+        $db  = static::getDB();
+
+        $statement = $db->prepare($sql);
+        $statement->bindValue(':token_hash', $token_hash, PDO::PARAM_STR);
+        $statement->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $statement->execute();
+
+        $user = $statement->fetch(); // only this fetch() function returns object, not execute()
+
+        // here we check whether token expired or not
+        if($user){
+            if(strtotime($user->password_reset_expiry) < time()){
+                return $user; // return user model only if token hasn't expired
+            } else {
+                Flash::addMessage('Sorry, but your link has expired', Flash::DANGER);
+            }
+        }
     }
 
 
