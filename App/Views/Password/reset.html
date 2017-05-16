@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}Reset Password{% endblock %}
+
+{% block footer %}
+<!--hide and sPasswordword button script -->
+<script src="/js/hideShowPassword.js"></script>
+
+    <script>
+
+        // custom method to validate Password using regex
+        $.validator.addMethod('validPassword',
+            function (value, element, param) {
+                if(value != ''){
+                    if(value.match(/.*[a-z]+.*/i) == null){
+                        return false;
+                    }
+                    if(value.match(/.*\d+.*/) == null){
+                        return false;
+                    }
+                }
+                return true;
+            },
+            'Must contain at least one letter and one number'
+        );
+        //form validation using jQuery Validate plagin
+        $(document).ready(function() {
+
+            $('#ResetPasswordForm').validate({
+                rules: {
+                    password: {
+                        required: true,
+                        minlength: 6,
+                        validPassword: true //here we call our custom method to validate Password
+                    }
+
+                },
+                messages: {
+                    email: {
+                        required: 'Hey, we do need your password!',
+                        minlength: 'Password should be at least 6 characters long'
+                    }
+                }
+            });
+
+            /**
+             * Show Password toggle button
+             */
+            $('#inputPassword').hideShowPassword({
+                show: false,
+                innerToggle: 'focus'
+            });
+        });
+
+    </script>
+
+{% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+    <h1></h1>
+
+
+
+<form method="post" action="/signup/create" id="ResetPasswordForm">
+
+    <div class="form-group">
+        <label for="inputPassword">Your new password</label>
+        <input class="form-control"  type="password" id="inputPassword" name="password" placeholder="Password"/>
+    </div>
+
+
+    <button class="btn btn-default" type="submit">Reset</button>
+
+
+</form>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -39,7 +39,13 @@ class Password extends \Core\Controller {
 
         $token = $this->route_parametrs['token']; // first get the token from url
         $user = User::findByPasswordResetToken($token);
-        var_dump($user);
+        if($user){
+            View::renderTemplate('Password/reset.html');
+        } else {
+            Flash::addMessage('Your link is invalid', Flash::DANGER);
+            self::redirect('/password/new');
+        }
+
     }
 
 
