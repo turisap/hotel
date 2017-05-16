@@ -119,7 +119,7 @@ class Authentifiacation extends \Core\Controller {
 
             $remember_login = RememberedLogin::findByToken($cookie);
             if($remember_login){
-                $remember_login->deleteRememberedLogin();
+                $remember_login->deleteLogin();
             }
 
             setcookie('remember_me', '', time() - 3600);

@@ -14,6 +14,9 @@ use \App\Token;
 
 class RememberedLogin extends \Core\Model {
 
+    protected static $db_table = 'remembered_login'; // these properties are used for using abstracted methods from core model
+    protected static $column   = 'user_id';
+
     // finds a record in remembered_login table using token from cookie
     public static function findByToken($token_from_cookie){
 
@@ -41,15 +44,8 @@ class RememberedLogin extends \Core\Model {
         return strtotime($this->expires_at) > time();
     }
 
-    public function deleteRememberedLogin(){
-
-        $sql = 'DELETE FROM remembered_login WHERE token_hash = :token_hash';
-
-        $db = static::getDB();
-        $statament = $db->prepare($sql);
-
-        $statament->bindValue(':token_hash', $this->token_hash, PDO::PARAM_STR);
-        $statament->execute();
+    public function deleteLogin(){
+        static::delete($this->user_id);
     }
 
 

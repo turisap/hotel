@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d0786124-98cb-4517-810f-6bc1a5eb252c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/Authentifiacation.php" afterPath="$PROJECT_DIR$/App/Authentifiacation.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/Models/RememberedLogin.php" afterPath="$PROJECT_DIR$/App/Models/RememberedLogin.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/Views/base.html" afterPath="$PROJECT_DIR$/App/Views/base.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Core/Model.php" afterPath="$PROJECT_DIR$/Core/Model.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -47,25 +46,42 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Authentifiacation.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Authentifiacation.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/App/Authentifiacation.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="72" column="25" lean-forward="false" selection-start-line="72" selection-start-column="25" selection-end-line="72" selection-end-column="25" />
+            <state relative-caret-position="384">
+              <caret line="122" column="13" lean-forward="true" selection-start-line="122" selection-start-column="13" selection-end-line="122" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RememberedLogin.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="RememberedLogin.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/App/Models/RememberedLogin.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="54" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+            <state relative-caret-position="57">
+              <caret line="16" column="126" lean-forward="false" selection-start-line="16" selection-start-column="126" selection-end-line="16" selection-end-column="126" />
               <folding>
                 <element signature="e#111#119#0#PHP" expanded="true" />
-                <marker date="1494917533816" expanded="true" signature="521:582" ph="SELECT * FRO... remembered_login" />
-                <marker date="1494917533816" expanded="true" signature="1285:1344" ph="DELETE FROM " />
+                <marker date="1494920460515" expanded="true" signature="693:754" ph="SELECT * FRO... remembered_login" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Model.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Core/Model.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="422">
+              <caret line="55" column="30" lean-forward="true" selection-start-line="55" selection-start-column="30" selection-end-line="55" selection-end-column="30" />
+              <folding>
+                <marker date="1494920408858" expanded="true" signature="769:782" ph="SELECT * FRO... " />
+                <marker date="1494920408858" expanded="true" signature="769:821" ph="SELECT * FRO... users" />
+                <marker date="1494920408858" expanded="true" signature="769:823" ph="SELECT * FRO... ${static::$db_table}" />
+                <marker date="1494920408858" expanded="true" signature="1189:1201" ph="DELETE FROM " />
+                <marker date="1494920408858" expanded="true" signature="1189:1232" ph="DELETE FROM " />
+                <marker date="1494920408858" expanded="true" signature="1189:1260" ph="DELETE FROM " />
+                <marker date="1494920408858" expanded="true" signature="1189:1262" ph="DELETE FROM " />
               </folding>
             </state>
           </provider>
@@ -115,7 +131,6 @@
         <option value="$PROJECT_DIR$/App/Views/SignUP/new.html" />
         <option value="$PROJECT_DIR$/public/index.php" />
         <option value="$PROJECT_DIR$/App/Controllers/Posts.php" />
-        <option value="$PROJECT_DIR$/Core/Model.php" />
         <option value="$PROJECT_DIR$/App/Controllers/Home.php" />
         <option value="$PROJECT_DIR$/App/Flash.php" />
         <option value="$PROJECT_DIR$/Core/Controller.php" />
@@ -129,9 +144,10 @@
         <option value="$PROJECT_DIR$/App/Controllers/Test.php" />
         <option value="$PROJECT_DIR$/Core/View.php" />
         <option value="$PROJECT_DIR$/App/Views/Home/index.html" />
-        <option value="$PROJECT_DIR$/App/Models/RememberedLogin.php" />
         <option value="$PROJECT_DIR$/App/Views/base.html" />
         <option value="$PROJECT_DIR$/App/Authentifiacation.php" />
+        <option value="$PROJECT_DIR$/Core/Model.php" />
+        <option value="$PROJECT_DIR$/App/Models/RememberedLogin.php" />
       </list>
     </option>
   </component>
@@ -407,7 +423,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="121618000" />
+    <option name="totallyTimeSpent" value="123444000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1370" height="735" extended-state="0" />
@@ -541,6 +557,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
           <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -671,6 +688,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="513">
           <caret line="40" column="66" lean-forward="false" selection-start-line="40" selection-start-column="66" selection-end-line="40" selection-end-column="66" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -678,6 +696,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
           <caret line="24" column="5" lean-forward="true" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -717,30 +736,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Core/Model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="50" column="0" lean-forward="true" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-          <folding>
-            <marker date="1494916920371" expanded="true" signature="769:782" ph="SELECT * FRO... " />
-            <marker date="1494916920371" expanded="true" signature="769:821" ph="SELECT * FRO... users" />
-            <marker date="1494916920371" expanded="true" signature="769:823" ph="SELECT * FRO... ${static::$db_table}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/App/Models/RememberedLogin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="54" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
-          <folding>
-            <element signature="e#111#119#0#PHP" expanded="true" />
-            <marker date="1494917533816" expanded="true" signature="521:582" ph="SELECT * FRO... remembered_login" />
-            <marker date="1494917533816" expanded="true" signature="1285:1344" ph="DELETE FROM " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/App/Views/Home/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="437">
@@ -767,9 +762,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/App/Authentifiacation.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="72" column="25" lean-forward="false" selection-start-line="72" selection-start-column="25" selection-end-line="72" selection-end-column="25" />
+        <state relative-caret-position="384">
+          <caret line="122" column="13" lean-forward="true" selection-start-line="122" selection-start-column="13" selection-end-line="122" selection-end-column="13" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Core/Model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="55" column="30" lean-forward="true" selection-start-line="55" selection-start-column="30" selection-end-line="55" selection-end-column="30" />
+          <folding>
+            <marker date="1494920408858" expanded="true" signature="769:782" ph="SELECT * FRO... " />
+            <marker date="1494920408858" expanded="true" signature="769:821" ph="SELECT * FRO... users" />
+            <marker date="1494920408858" expanded="true" signature="769:823" ph="SELECT * FRO... ${static::$db_table}" />
+            <marker date="1494920408858" expanded="true" signature="1189:1201" ph="DELETE FROM " />
+            <marker date="1494920408858" expanded="true" signature="1189:1232" ph="DELETE FROM " />
+            <marker date="1494920408858" expanded="true" signature="1189:1260" ph="DELETE FROM " />
+            <marker date="1494920408858" expanded="true" signature="1189:1262" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/Models/RememberedLogin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="16" column="126" lean-forward="false" selection-start-line="16" selection-start-column="126" selection-end-line="16" selection-end-column="126" />
+          <folding>
+            <element signature="e#111#119#0#PHP" expanded="true" />
+            <marker date="1494920460515" expanded="true" signature="693:754" ph="SELECT * FRO... remembered_login" />
+          </folding>
         </state>
       </provider>
     </entry>
