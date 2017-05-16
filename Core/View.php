@@ -35,7 +35,7 @@ class View
             $loader = new \Twig_Loader_Filesystem(dirname(__DIR__) . '/App/Views');
             $twig = new \Twig_Environment($loader);
             $twig->addGlobal('session', $_SESSION);// add session array to twig global to use it across all templates
-            $twig->addGlobal('is_logged_in', \App\Authentifiacation::isLoggedIn()); // add current user for global twig usage
+            $twig->addGlobal('is_logged_in', \App\Authentifiacation::isLoggedIn()); // add logged in status for global twig usage
             $twig->addGlobal('current_user', \App\Authentifiacation::getCurrentUser());// add current user for global twig usage
             $twig->addGlobal('flash_messages', \App\Flash::getFlashMessage()); // add flash messages for twig global usage
         }

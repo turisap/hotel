@@ -9,6 +9,7 @@
 namespace App;
 
 use \App\Models\User;
+use \App\Models\RememberedLogin;
 
 
 // THIS CLASS ONLY FOR AUTHENTIFACATION METHODS
@@ -74,11 +75,30 @@ class Authentifiacation extends \Core\Controller {
         return $_SESSION['return_to'] ?? '/';
     }
 
-    // returns currently logged in user
+    // returns currently logged in user from session or cookie
     public static function getCurrentUser(){
+
        if(isset($_SESSION['user_id'])){
-           return User::findByID($_SESSION['user_id']);
+           return User::findByID($_SESSION['user_id']); // find user using session
+       } else {
+           return static::loginFromCookie(); // find user using cookie
        }
+    }
+
+    // logins user from a cookie
+    public static function loginFromCookie(){
+
+        $cookie = $_COOKIE['remember_me'] ?? false; // first chech whether the cookie was set
+
+        if($cookie){
+             $remembered_login = RememberedLogin::findByToken($cookie); // get a record from remembered_login table as an object
+
+            if($remembered_login){ // if a record was found
+                $user = $remembered_login->getUser(); // get user object
+                static::login($user, false);
+                return $user;
+            }
+        }
     }
 
 

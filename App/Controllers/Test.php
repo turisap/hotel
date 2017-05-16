@@ -10,6 +10,7 @@ namespace App\Controllers;
 
 use \App\Authentifiacation;
 use \App\Token;
+use App\Models\RememberedLogin;
 
 
 class Test
@@ -17,8 +18,7 @@ class Test
 
 
     public static function test(){
-        $token = new Token('dlkfj');
-        print_r($token->getTokenHash());
+      print_r(Authentifiacation::getCurrentUser());
     }
 
 
