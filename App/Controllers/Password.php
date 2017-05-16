@@ -9,6 +9,7 @@
 namespace App\Controllers;
 
 
+use App\Flash;
 use App\Models\User;
 use Core\View;
 
@@ -25,8 +26,11 @@ class Password extends \Core\Controller {
         $user = User::findByEmail($_POST['email']); // find a user via email
 
         if($user){ // if user found reset password
-            $user->writePasswordResetTokenHash();
+            $user->sendPasswordResetLink($_POST['email']);
             View::renderTemplate('Password/success.html');
+        } else {
+            Flash::addMessage('Sorry, but there is no user with this email', Flash::INFO);
+            View::renderTemplate('password/new.html', ['email' => $_POST['email']]);
         }
     }
 }

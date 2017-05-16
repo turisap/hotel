@@ -7,6 +7,7 @@
  */
 
 namespace App\Models;
+use App\Mail;
 use App\Token;
 use PDO;
 
@@ -134,10 +135,32 @@ class User extends \Core\Model {
         return $stm->execute();
     }
 
-    public function writePasswordResetTokenHash(){
 
-        $token = new Token();
-        $token_hash = $token->getTokenHash();
+    // sends a password reset link
+    public function sendPasswordResetLink($email){
+
+        $user = static::findByEmail($email);
+
+        if($user){
+            $user->writePasswordResetTokenHash(); // write record with token and expiry to the database
+            $user->passwordResetLink(); // and send email
+
+        }
+    }
+
+    // this method prepares a link and sends email
+    protected function passwordResetLink(){
+        $url = 'http://' . $_SERVER['HTTP_HOST'] . '/password/password-reset/' . $this->password_reset_token;
+        $text = 'Please follow <a href=' . $url . '>this</a> link to reset your password';
+        Mail::send($this->email, 'Password reset', 'Reseting password', $text);
+    }
+
+    // creates a record in the database with reset token hash and its expiry
+    protected function writePasswordResetTokenHash(){
+
+        $token = new Token();  // generete a new token
+        $this->password_reset_token = $token->getValue(); // assign value of a token to the object's property
+        $token_hash = $token->getTokenHash(); 
 
         $expire_stamp = time() + 60 * 60 * 2;
 
