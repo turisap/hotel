@@ -38,28 +38,27 @@ class Password extends \Core\Controller {
     public function passwordResetAction(){
 
         $token = $this->route_parametrs['token']; // first get the token from url
-        $user = User::findByPasswordResetToken($token);
-        if($user){
-            // pass token to the form in order to use it via a hidden input
-            View::renderTemplate('Password/reset.html', ['token' => $token]);
-        } else {
-            Flash::addMessage('Your link is invalid', Flash::DANGER);
-            self::redirect('/password/new');
-        }
+        $user = static::getUserOrExit($token); // get user model
+        View::renderTemplate('Password/reset.html', ['token' => $token]); // pass token to the form in order to use it via a hidden input
 
     }
 
     // this method resets password
     public function resetPassword(){
-
         $token = $_POST['token']; // first get the token from the form from hidden input which was passed there in previous method
+        $user = static::getUserOrExit($token);
+    }
+
+    // this method get a user model or exit script
+    protected function getUserOrExit($token){
         $user = User::findByPasswordResetToken($token);
         if($user){
-           echo 'Code to reset password';
+            return $user;
         } else {
-           echo 'invalid token';
+            Flash::addMessage('Your link is invalid', Flash::DANGER);
+            self::redirect('/password/new');
+            exit;
         }
-
     }
 
 
