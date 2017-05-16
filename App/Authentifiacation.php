@@ -83,6 +83,7 @@ class Authentifiacation extends \Core\Controller {
        } else {
            return static::loginFromCookie(); // find user using cookie
        }
+
     }
 
     // logins user from a cookie
@@ -93,7 +94,7 @@ class Authentifiacation extends \Core\Controller {
         if($cookie){
              $remembered_login = RememberedLogin::findByToken($cookie); // get a record from remembered_login table as an object
 
-            if($remembered_login){ // if a record was found
+            if($remembered_login && $remembered_login->hasExpired()){ // if a record was found
                 $user = $remembered_login->getUser(); // get user object
                 static::login($user, false);
                 return $user;

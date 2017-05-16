@@ -31,7 +31,13 @@ class RememberedLogin extends \Core\Model {
         return $statement->fetch(); // returns an object of RememberedLogin class
     }
 
+    // finds and returns a user object using user_id from remembered_id table
     public function getUser(){
         return User::findById($this->user_id);
+    }
+
+    //
+    public function hasExpired(){
+        return strtotime($this->expires_at) > time();
     }
 }
