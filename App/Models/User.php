@@ -133,4 +133,43 @@ class User extends \Core\Model {
 
         return $stm->execute();
     }
+
+    public function writePasswordResetTokenHash(){
+
+        $token = new Token();
+        $token_hash = $token->getTokenHash();
+
+        $expire_stamp = time() + 60 * 60 * 2;
+
+        $sql = 'UPDATE ' . static::$db_table . ' SET password_reset_hash = :token_hash, password_reset_expiry = :expire_stamp
+         WHERE id = :id';
+
+        $db = static::getDB();
+        $statement = $db->prepare($sql);
+        $statement->bindValue(':token_hash', $token_hash, PDO::PARAM_STR);
+        $statement->bindValue(':expire_stamp', date('Y-m-d H-i-s',$expire_stamp), PDO::PARAM_STR);
+        $statement->bindValue(':id', $this->id, PDO::PARAM_INT);
+
+        return $statement->execute();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

@@ -21,12 +21,11 @@ class Password extends \Core\Controller {
 
     // this method resets user's password
     public function resetRequest(){
-        
+
         $user = User::findByEmail($_POST['email']); // find a user via email
 
         if($user){ // if user found reset password
-
-
+            $user->writePasswordResetTokenHash();
             View::renderTemplate('Password/success.html');
         }
     }
