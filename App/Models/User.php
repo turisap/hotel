@@ -334,7 +334,7 @@ class User extends \Core\Model {
 
         $sql = 'UPDATE ' . static::$db_table . ' SET active = 1, activation_hash = NULL, activation_hash_expiry = NULL 
                 WHERE activation_hash = :token_hash';
-        
+
         $db  = static::getDB();
 
         $stm = $db->prepare($sql);
@@ -361,6 +361,11 @@ class User extends \Core\Model {
 
         return $stm->fetch();
 
+    }
+
+    // this method deletes a user record from users table if there was an attempt to activate account via expired link
+    public function deleteExpiredUser(){
+        static::delete($this->id);
     }
 
 

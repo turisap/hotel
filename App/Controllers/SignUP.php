@@ -52,12 +52,15 @@ class SignUP extends \Core\Controller
 
         if($user){
 
-            if($user->activationLinkHasExpired()){          // check whether activation link has expired
+            if($user->activationLinkHasExpired()){           // check whether activation link has expired
 
-                User::accountActivation($token);                  // activated account
-                self::redirect('/SignUP/activated');
+                User::accountActivation($token);             // activated account
+                View::renderTemplate('SignUP/activated.html', ['user' => $user]);
 
             } else {
+
+                $user->deleteExpiredUser();                    // delete user if it's activation link has expired
+
                 Flash::addMessage('Your activation link has expired, please signup again', Flash::DANGER);
                 self::redirect('/signup/new');
             }
@@ -66,9 +69,7 @@ class SignUP extends \Core\Controller
 
     }
 
-    public function activatedAction(){
-        View::renderTemplate('SignUP/success.html');
-    }
+
 
 
 
