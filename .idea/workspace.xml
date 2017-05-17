@@ -4,8 +4,7 @@
     <list default="true" id="d0786124-98cb-4517-810f-6bc1a5eb252c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/Controllers/Login.php" afterPath="$PROJECT_DIR$/App/Controllers/Login.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/Controllers/Profile.php" afterPath="$PROJECT_DIR$/App/Controllers/Profile.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/Models/User.php" afterPath="$PROJECT_DIR$/App/Models/User.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/Views/Profile/edit.html" afterPath="$PROJECT_DIR$/App/Views/Profile/edit.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/Controllers/SignUP.php" afterPath="$PROJECT_DIR$/App/Controllers/SignUP.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,14 +26,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Profile.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Profile.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/App/Controllers/Profile.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="53" column="119" lean-forward="false" selection-start-line="53" selection-start-column="119" selection-end-line="53" selection-end-column="119" />
+            <state relative-caret-position="152">
+              <caret line="46" column="39" lean-forward="false" selection-start-line="46" selection-start-column="39" selection-end-line="46" selection-end-column="39" />
               <folding>
                 <element signature="e#116#142#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SignUP.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/App/Controllers/SignUP.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="18" column="40" lean-forward="false" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -52,18 +61,6 @@
                 <marker date="1495027003633" expanded="true" signature="8596:8675" ph="SELECT * FRO... ${static::$db_table}" />
                 <marker date="1495027003633" expanded="true" signature="9698:9764" ph="SELECT passw... ${static::$db_table}" />
                 <marker date="1495027003633" expanded="true" signature="13432:13507" ph="SELECT * FRO... ${static::$db_table}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Login.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/App/Controllers/Login.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="21" column="39" lean-forward="false" selection-start-line="21" selection-start-column="39" selection-end-line="21" selection-end-column="39" />
-              <folding>
-                <element signature="e#116#131#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -143,7 +140,6 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/public/index.php" />
         <option value="$PROJECT_DIR$/App/Views/SignUP/activated.html" />
-        <option value="$PROJECT_DIR$/App/Controllers/SignUP.php" />
         <option value="$PROJECT_DIR$/App/Authentifiacation.php" />
         <option value="$PROJECT_DIR$/Core/Model.php" />
         <option value="$PROJECT_DIR$/App/Views/Profile/show.html" />
@@ -151,9 +147,10 @@
         <option value="$PROJECT_DIR$/App/Views/Profile/new.html" />
         <option value="$PROJECT_DIR$/App/Controllers/Account.php" />
         <option value="$PROJECT_DIR$/App/Views/Profile/edit.html" />
-        <option value="$PROJECT_DIR$/App/Controllers/Profile.php" />
         <option value="$PROJECT_DIR$/App/Models/User.php" />
         <option value="$PROJECT_DIR$/App/Controllers/Login.php" />
+        <option value="$PROJECT_DIR$/App/Controllers/SignUP.php" />
+        <option value="$PROJECT_DIR$/App/Controllers/Profile.php" />
       </list>
     </option>
   </component>
@@ -242,6 +239,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hotel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hotel" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="App" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SignUP" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -453,10 +472,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="174238000" />
+    <option name="totallyTimeSpent" value="175585000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="1370" height="735" extended-state="0" />
+    <frame x="-7" y="0" width="1370" height="735" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24741507" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -753,14 +772,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Core/Controller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="48" column="13" lean-forward="false" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Core/View.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
@@ -795,16 +806,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/App/Controllers/SignUP.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="61" column="25" lean-forward="false" selection-start-line="61" selection-start-column="23" selection-end-line="61" selection-end-column="25" />
-          <folding>
-            <element signature="e#114#128#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/App/Models/RememberedLogin.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="380">
@@ -812,14 +813,6 @@
           <folding>
             <marker date="1494920460515" expanded="true" signature="693:754" ph="SELECT * FRO... remembered_login" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/App/Views/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="31" column="38" lean-forward="false" selection-start-line="31" selection-start-column="38" selection-end-line="31" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -847,12 +840,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/App/Controllers/Profile.php">
+    <entry file="file://$PROJECT_DIR$/Core/Controller.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="53" column="119" lean-forward="false" selection-start-line="53" selection-start-column="119" selection-end-line="53" selection-end-column="119" />
+        <state relative-caret-position="719">
+          <caret line="48" column="13" lean-forward="false" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/Controllers/Login.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="20" column="3" lean-forward="false" selection-start-line="20" selection-start-column="3" selection-end-line="20" selection-end-column="3" />
           <folding>
-            <element signature="e#116#142#0#PHP" expanded="true" />
+            <element signature="e#116#131#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -873,12 +874,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/App/Controllers/Login.php">
+    <entry file="file://$PROJECT_DIR$/App/Views/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="21" column="39" lean-forward="false" selection-start-line="21" selection-start-column="39" selection-end-line="21" selection-end-column="39" />
+        <state relative-caret-position="294">
+          <caret line="31" column="38" lean-forward="false" selection-start-line="31" selection-start-column="38" selection-end-line="31" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/Controllers/SignUP.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="18" column="40" lean-forward="false" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/Controllers/Profile.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="46" column="39" lean-forward="false" selection-start-line="46" selection-start-column="39" selection-end-line="46" selection-end-column="39" />
           <folding>
-            <element signature="e#116#131#0#PHP" expanded="true" />
+            <element signature="e#116#142#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

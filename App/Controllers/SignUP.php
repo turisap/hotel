@@ -16,7 +16,7 @@ class SignUP extends \Core\Controller
 {
 
     public function newAction(){
-        View::renderTemplate('SignUP/edit.html');
+        View::renderTemplate('SignUP/new.html');
     }
 
     public function createAction(){

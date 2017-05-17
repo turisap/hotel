@@ -17,7 +17,8 @@ use App\Flash;
 
 class Login extends \Core\Controller {
 
-    // this method just shows the login pagenew.html
+
+       // this method just shows the login pagenew.html
     public function newAction(){
         View::renderTemplate('Login/new.html');
     }
