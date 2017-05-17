@@ -7,6 +7,7 @@
  */
 
 namespace App\Controllers;
+use App\Flash;
 use \Core\View;
 use App\Models\User;
 
@@ -44,8 +45,25 @@ class SignUP extends \Core\Controller
 
     // this method activates user's account via email link
     public function accountActivationAction(){
-        User::accountActivation($this->route_parametrs['token']);
-        self::redirect('/SignUP/activated');
+
+        $token = $this->route_parametrs['token'];            // get token value from activation account url
+
+        $user = User::findUserByToken($token);               // get a user model based on that token
+
+        if($user){
+
+            if($user->activationLinkHasExpired()){          // check whether activation link has expired
+
+                User::accountActivation($token);                  // activated account
+                self::redirect('/SignUP/activated');
+
+            } else {
+                Flash::addMessage('Your activation link has expired, please signup again', Flash::DANGER);
+                self::redirect('/signup/new');
+            }
+
+        }
+
     }
 
     public function activatedAction(){

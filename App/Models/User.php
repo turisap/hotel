@@ -318,13 +318,23 @@ class User extends \Core\Model {
 
     }
 
+    // checks whether activation link expired
+    public function activationLinkHasExpired(){
+        if(strtotime($this->activation_hash_expiry) > time()){
+            return true;
+        }
+        return false;
+    }
+
     // this method activates account via token from email link
     public static function accountActivation($token){
 
         $token = new Token($token);                                   // first generate a new token object using existing token value from url
         $token_hash = $token->getTokenHash();
 
-        $sql = 'UPDATE ' . static::$db_table . ' SET active = 1, activation_hash = NULL WHERE activation_hash = :token_hash';
+        $sql = 'UPDATE ' . static::$db_table . ' SET active = 1, activation_hash = NULL, activation_hash_expiry = NULL 
+                WHERE activation_hash = :token_hash';
+        
         $db  = static::getDB();
 
         $stm = $db->prepare($sql);
@@ -333,6 +343,37 @@ class User extends \Core\Model {
         return $stm->execute();
 
     }
+
+    // finds and returns a user model based on token from account activation url
+    public static function findUserByToken($token){
+
+        $token = new Token($token);                                   // first generate a new token object using existing token value from url
+        $token_hash = $token->getTokenHash();
+
+        $sql = 'SELECT * FROM ' . static::$db_table . ' WHERE activation_hash = :token_hash';
+        $db  = static::getDB();
+
+        $stm = $db->prepare($sql);
+        $stm->bindValue(':token_hash', $token_hash, PDO::PARAM_STR);
+        $stm->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stm->execute();
+
+        return $stm->fetch();
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
