@@ -64,8 +64,8 @@ class User extends \Core\Model {
             $this->errors[] = "Please fill the last name field";
         }
 
-        if(static::emailExists($this->email)){
-            $this->errors[] = "This email is already taken";
+        if(static::emailExists($this->email, $this->id ?? null)){ // pass this-id in order to check whether it an existing user (see emailExists() method)
+            $this->errors[] = "This email is already taken";               // and make the user id optional, only if isset, because no id on sign up
         }
 
         if(filter_var($this->email, FILTER_VALIDATE_EMAIL) === false){
@@ -97,9 +97,18 @@ class User extends \Core\Model {
         return false;
     }
 
-   //check whether an email is already in the database
-    public static function emailExists($email){
-        return static::findByEmail($email) !== false;
+   //check whether an email is already in the database and checks whether this email belongs to an existing user
+    public static function emailExists($email, $id_ignore = []){
+
+        $user = self::findByEmail($email); // find a user based on email
+
+        if($user){
+
+            if($user->id != $id_ignore){ // check whether user's id isn't equal to ignore id (not existing user resetting password)
+                return true;
+            }
+        }
+        return false;
     }
 
     // finds a user by email
@@ -216,6 +225,14 @@ class User extends \Core\Model {
                 Flash::addMessage('Sorry, but your link has expired', Flash::DANGER);
             }
         }
+    }
+
+    // this method resets password in the database
+    public function resetPassword($new_password){
+
+        $this->password = $new_password; // assign password from the form to the object's property
+        $this->validate(); // validate password
+        return (empty($this->errors));
     }
 
 

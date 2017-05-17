@@ -45,9 +45,20 @@
 
 {% block body %}
 
+
+
+
 <div class="row">
     <div class="col-lg-6 col-lg-offset-3">
-    <h1></h1>
+        <!------------------------------------------ displaying of error messages ----------------------------------------------->
+        {% if user.errors is not empty %}
+        <p class="lead">Please fix following error(s):</p>
+        <ul>
+            {% for error in user.errors %}
+            <li class="error-validation-messsage">{{ error }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
 
 
 
