@@ -30,8 +30,9 @@ class User extends \Core\Model {
 
     public function save(){
 
-        $token = new Token();                                // generate a new activation token
-        $token_hash = $token->getTokenHash();                // and it's hash
+        $this->activation_token = new Token();                                // generate a new activation token
+        $token_hash = $this->activation_token->getTokenHash();                // and it's hash
+        $this->activation_token_expiry = time() + 60 * 60 * 24;
 
         // validate data first
         $this->validate();
@@ -40,8 +41,8 @@ class User extends \Core\Model {
         if(empty($this->errors)){
             $password_hash = password_hash($this->password, PASSWORD_DEFAULT);
 
-            $sql = 'INSERT INTO users (first_name, last_name, email, password_hash, activation_hash)
-                     VALUES (:first_name, :last_name, :email, :password_hash, :activation_hash)';
+            $sql = 'INSERT INTO users (first_name, last_name, email, password_hash, activation_hash, activation_hash_expiry)
+                     VALUES (:first_name, :last_name, :email, :password_hash, :activation_hash, :activation_hash_expiry)';
 
             $db = static::getDB();
             $statement = $db->prepare($sql);
@@ -51,6 +52,7 @@ class User extends \Core\Model {
             $statement->bindValue(':email', $this->email, PDO::PARAM_STR);
             $statement->bindValue(':password_hash', $password_hash, PDO::PARAM_STR);
             $statement->bindValue(':activation_hash', $token_hash, PDO::PARAM_STR);
+            $statement->bindValue(':activation_hash_expiry', date('Y-m-d H-i-s', $this->activation_token_expiry), PDO::PARAM_STR);
 
             return $statement->execute(); // because execute() returns true of false
         }
@@ -93,7 +95,7 @@ class User extends \Core\Model {
         // find a record in the database via email
         $user = static::findByEmail($email);
         // if there is one, check Password and return user object
-        if($user){
+        if($user){                                  // checks if user activated its account
            if(password_verify($password, $user->password_hash)){
                return $user;
            }
@@ -171,7 +173,7 @@ class User extends \Core\Model {
         $user = static::findByEmail($this->email);
         if($user){
             $url = 'http://' . $_SERVER['HTTP_HOST'] . '/password/password-reset/' . $this->password_reset_token;
-            $body = View::getTemplate('Password/reset_email.html', [
+            $body = View::getTemplate('Password/activation_email.html', [
                 'user' => $user,
                 'site_name' => Config::SITE_NAME,
                 'url'       => $url
@@ -292,6 +294,19 @@ class User extends \Core\Model {
         return false;                                // return false on update failure
     }
 
+
+    // this method prepares a link for account activation and sends email
+    public function sendActivationEmail(){
+
+            $url = 'http://' . $_SERVER['HTTP_HOST'] . '/signup/account-activation/' . $this->activation_token->getValue();
+            $body = View::getTemplate('SignUP/activation_email.html', [
+                'first_name' => $this->first_name,
+                'site_name' => Config::SITE_NAME,
+                'url'       => $url
+            ]);
+            Mail::send($this->email, 'Account activation', 'Account activation', $body);
+
+    }
 
 
 

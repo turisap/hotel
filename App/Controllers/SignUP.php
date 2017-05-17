@@ -27,6 +27,7 @@ class SignUP extends \Core\Controller
         if($user->save()){
             //these lines redirect to another method (other address in the browser) in order to prevent form resubmittion
             // this is redirect which is made in terms of MVC
+            $user->sendActivationEmail();                                              // send an activation email
             header('Location: http://' . $_SERVER['HTTP_HOST'] . '/signup/success');
         } else {
             // render template with user object passed in as a parameter (with errors array)
@@ -41,9 +42,7 @@ class SignUP extends \Core\Controller
         View::renderTemplate("SignUP/success.html");
     }
 
-    public function testAction(){
-        User::test();
-    }
+
 
 
 }
