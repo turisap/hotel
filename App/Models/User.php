@@ -188,7 +188,7 @@ class User extends \Core\Model {
         $user = static::findByEmail($this->email);
         if($user){
             $url = 'http://' . $_SERVER['HTTP_HOST'] . '/password/password-reset/' . $this->password_reset_token;
-            $body = View::getTemplate('Password/activation_email.html', [
+            $body = View::getTemplate('Password/reset_email.html', [
                 'user' => $user,
                 'site_name' => Config::SITE_NAME,
                 'url'       => $url
@@ -253,28 +253,10 @@ class User extends \Core\Model {
 
         if( ! Config::SAME_PASSWORD){                                                    // check if we set prohibition for using the same password on reset
 
-            $sql = 'SELECT password_hash FROM ' . static::$db_table . ' WHERE id = :id'; // fid user's password
-            $db  = static::getDB();
-
-            $statement = $db->prepare($sql);
-            $statement->bindValue(':id', $this->id, PDO::PARAM_INT);
-
-            $statement->execute();
-
-            $old_password_hash = $statement->fetchColumn();                              // to get just a single value, not array
-
-            if(password_verify($new_password, $old_password_hash)){                      // check whether passwords are the same
-
-                return false;
-
-            } else {
-
-                return true;
-
-            }
+            $old_password_hash = $this->findOldPasswordHash();                              // to get just a single value, not array
+            return ! $this->confirmPasswords($new_password);
 
         }
-
         return true;
 
     }

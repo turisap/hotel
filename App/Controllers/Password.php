@@ -17,7 +17,7 @@ class Password extends \Core\Controller {
 
     // renders page with reset form
     public function newAction(){
-        View::renderTemplate('Password/edit.html');
+        View::renderTemplate('Password/new.html');
     }
 
     // this method resets user's password
@@ -30,7 +30,7 @@ class Password extends \Core\Controller {
             View::renderTemplate('Password/success.html');
         } else {
             Flash::addMessage('Sorry, but there is no user with this email', Flash::INFO);
-            View::renderTemplate('password/edit.html', ['email' => $_POST['email']]);
+            View::renderTemplate('password/new.html', ['email' => $_POST['email']]);
         }
     }
 
