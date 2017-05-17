@@ -230,9 +230,27 @@ class User extends \Core\Model {
     // this method resets password in the database
     public function resetPassword($new_password){
 
-        $this->password = $new_password; // assign password from the form to the object's property
-        $this->validate(); // validate password
-        return (empty($this->errors));
+        $this->password = $new_password;        // assign password from the form to the object's property
+        $this->validate();                      // validate password
+
+        $password_hash = password_hash($this->password, PASSWORD_DEFAULT);
+
+        if(empty($this->errors)){               // begin process of password resetin only in array with errors is empty (no errors)
+
+            $sql = 'UPDATE ' . static::$db_table . ' SET 
+                       password_hash = :password_hash,
+                       password_reset_hash = NULL,
+                       password_reset_expiry = NULL
+                       WHERE id = :id';
+
+            $db = static::getDB();
+            $stm = $db->prepare($sql);
+            $stm->bindValue(':password_hash', $password_hash, PDO::PARAM_STR);
+            $stm->bindValue(':id', $this->id, PDO::PARAM_INT);
+
+            return $stm->execute();
+        }
+        return false;                            // return false on update failure
     }
 
 

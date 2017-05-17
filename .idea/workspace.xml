@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d0786124-98cb-4517-810f-6bc1a5eb252c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/Controllers/Password.php" afterPath="$PROJECT_DIR$/App/Controllers/Password.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/Models/User.php" afterPath="$PROJECT_DIR$/App/Models/User.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/Views/Password/reset.html" afterPath="$PROJECT_DIR$/App/Views/Password/reset.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,11 +25,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Password.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Password.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/App/Controllers/Password.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="503">
-              <caret line="59" column="43" lean-forward="false" selection-start-line="59" selection-start-column="43" selection-end-line="59" selection-end-column="43" />
+            <state relative-caret-position="313">
+              <caret line="53" column="49" lean-forward="false" selection-start-line="53" selection-start-column="49" selection-end-line="53" selection-end-column="49" />
               <folding>
                 <element signature="e#116#130#0#PHP" expanded="true" />
               </folding>
@@ -39,17 +37,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="User.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/App/Models/User.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="67" column="148" lean-forward="false" selection-start-line="67" selection-start-column="148" selection-end-line="67" selection-end-column="148" />
+            <state relative-caret-position="456">
+              <caret line="252" column="82" lean-forward="false" selection-start-line="252" selection-start-column="82" selection-end-line="252" selection-end-column="82" />
               <folding>
                 <element signature="e#110#125#0#PHP" expanded="true" />
-                <marker date="1494986381050" expanded="true" signature="890:1031" ph="INSERT INTO users... " />
-                <marker date="1494986381050" expanded="true" signature="3790:3848" ph="SELECT * FRO... ${self::$db_table}" />
-                <marker date="1494986381050" expanded="true" signature="4581:4704" ph="INSERT INTO remembered_login... " />
-                <marker date="1494986381050" expanded="true" signature="7329:7408" ph="SELECT * FRO... ${static::$db_table}" />
+                <marker date="1494987570705" expanded="true" signature="890:1031" ph="INSERT INTO users... " />
+                <marker date="1494987570705" expanded="true" signature="3790:3848" ph="SELECT * FRO... ${self::$db_table}" />
+                <marker date="1494987570705" expanded="true" signature="4581:4704" ph="INSERT INTO remembered_login... " />
+                <marker date="1494987570705" expanded="true" signature="7329:7408" ph="SELECT * FRO... ${static::$db_table}" />
               </folding>
             </state>
           </provider>
@@ -121,9 +119,9 @@
         <option value="$PROJECT_DIR$/public/js/app.js" />
         <option value="$PROJECT_DIR$/App/Views/SignUP/new.html" />
         <option value="$PROJECT_DIR$/App/Views/Login/new.html" />
-        <option value="$PROJECT_DIR$/App/Controllers/Password.php" />
         <option value="$PROJECT_DIR$/App/Views/Password/reset.html" />
         <option value="$PROJECT_DIR$/App/Models/User.php" />
+        <option value="$PROJECT_DIR$/App/Controllers/Password.php" />
       </list>
     </option>
   </component>
@@ -418,12 +416,12 @@
       <workItem from="1494841063389" duration="388000" />
       <workItem from="1494850593044" duration="6457000" />
       <workItem from="1494895473851" duration="14603000" />
-      <workItem from="1494982128154" duration="3014000" />
+      <workItem from="1494982128154" duration="4499000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="143552000" />
+    <option name="totallyTimeSpent" value="145037000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1370" height="735" extended-state="0" />
@@ -793,26 +791,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/App/Controllers/Password.php">
+    <entry file="file://$PROJECT_DIR$/App/Models/User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="503">
-          <caret line="59" column="43" lean-forward="false" selection-start-line="59" selection-start-column="43" selection-end-line="59" selection-end-column="43" />
+        <state relative-caret-position="456">
+          <caret line="252" column="82" lean-forward="false" selection-start-line="252" selection-start-column="82" selection-end-line="252" selection-end-column="82" />
           <folding>
-            <element signature="e#116#130#0#PHP" expanded="true" />
+            <element signature="e#110#125#0#PHP" expanded="true" />
+            <marker date="1494987570705" expanded="true" signature="890:1031" ph="INSERT INTO users... " />
+            <marker date="1494987570705" expanded="true" signature="3790:3848" ph="SELECT * FRO... ${self::$db_table}" />
+            <marker date="1494987570705" expanded="true" signature="4581:4704" ph="INSERT INTO remembered_login... " />
+            <marker date="1494987570705" expanded="true" signature="7329:7408" ph="SELECT * FRO... ${static::$db_table}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/App/Models/User.php">
+    <entry file="file://$PROJECT_DIR$/App/Controllers/Password.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="67" column="148" lean-forward="false" selection-start-line="67" selection-start-column="148" selection-end-line="67" selection-end-column="148" />
+        <state relative-caret-position="313">
+          <caret line="53" column="49" lean-forward="false" selection-start-line="53" selection-start-column="49" selection-end-line="53" selection-end-column="49" />
           <folding>
-            <element signature="e#110#125#0#PHP" expanded="true" />
-            <marker date="1494986381050" expanded="true" signature="890:1031" ph="INSERT INTO users... " />
-            <marker date="1494986381050" expanded="true" signature="3790:3848" ph="SELECT * FRO... ${self::$db_table}" />
-            <marker date="1494986381050" expanded="true" signature="4581:4704" ph="INSERT INTO remembered_login... " />
-            <marker date="1494986381050" expanded="true" signature="7329:7408" ph="SELECT * FRO... ${static::$db_table}" />
+            <element signature="e#116#130#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

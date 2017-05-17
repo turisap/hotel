@@ -49,9 +49,12 @@ class Password extends \Core\Controller {
         $token = $_POST['token'];                       // first get the token from the form from hidden input which was passed there in previous method
         $user = static::getUserOrExit($token);          // find user by token form url
 
-        if($user->resetPassword($_POST['password'])){   // call resetting password method in controller
-            var_dump($user->errors);
+        if($user->resetPassword($_POST['password'])){   // call resetting password method in the user model
+
+            View::renderTemplate('password/reset_success.html');
+
         } else {                                        // redisplay form on failure and pass token with user model
+
             View::renderTemplate('password/reset.html', ['user' => $user, 'token' => $token]);
         }
     }
