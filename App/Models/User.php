@@ -19,6 +19,7 @@ class User extends \Core\Model {
 
     public $errors = array(); // an array for collecting errors messages
     protected static $db_table = 'users';
+    protected static $column   = 'id';
 
     public function __construct($data=[]) {
         // here we make object's properties and their values out of POST array
