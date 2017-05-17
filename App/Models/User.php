@@ -95,12 +95,22 @@ class User extends \Core\Model {
         // find a record in the database via email
         $user = static::findByEmail($email);
         // if there is one, check Password and return user object
-        if($user){                                  // checks if user activated its account
+        if($user && $user->isActivatedAccount()){                                  // checks if user activated its account
            if(password_verify($password, $user->password_hash)){
                return $user;
            }
         }
         return false;
+    }
+
+    // checks  if account was activated
+    public function isActivatedAccount(){
+        if($this->active){                                                         // if this column set to 0 its inactive
+            return true;
+        } else {
+            Flash::addMessage('You should activate your account first', Flash::DANGER);
+            return false;
+        }
     }
 
    //check whether an email is already in the database and checks whether this email belongs to an existing user

@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d0786124-98cb-4517-810f-6bc1a5eb252c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/App/Views/SignUP/activation_email.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/Controllers/SignUP.php" afterPath="$PROJECT_DIR$/App/Controllers/SignUP.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/Models/User.php" afterPath="$PROJECT_DIR$/App/Models/User.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/Views/SignUP/success.html" afterPath="$PROJECT_DIR$/App/Views/SignUP/success.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,15 +17,15 @@
       <file leaf-file-name="User.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/App/Models/User.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="277">
-              <caret line="97" column="16" lean-forward="false" selection-start-line="97" selection-start-column="16" selection-end-line="97" selection-end-column="16" />
+            <state relative-caret-position="391">
+              <caret line="110" column="85" lean-forward="false" selection-start-line="110" selection-start-column="85" selection-end-line="110" selection-end-column="85" />
               <folding>
                 <element signature="e#110#125#0#PHP" expanded="true" />
-                <marker date="1495002729100" expanded="true" signature="1163:1388" ph="INSERT INTO users... " />
-                <marker date="1495002729100" expanded="true" signature="4435:4493" ph="SELECT * FRO... ${self::$db_table}" />
-                <marker date="1495002729100" expanded="true" signature="5226:5349" ph="INSERT INTO remembered_login... " />
-                <marker date="1495002729100" expanded="true" signature="7979:8058" ph="SELECT * FRO... ${static::$db_table}" />
-                <marker date="1495002729100" expanded="true" signature="9081:9147" ph="SELECT passw... ${static::$db_table}" />
+                <marker date="1495003990957" expanded="true" signature="1163:1388" ph="INSERT INTO users... " />
+                <marker date="1495003990957" expanded="true" signature="4844:4902" ph="SELECT * FRO... ${self::$db_table}" />
+                <marker date="1495003990957" expanded="true" signature="5635:5758" ph="INSERT INTO remembered_login... " />
+                <marker date="1495003990957" expanded="true" signature="8388:8467" ph="SELECT * FRO... ${static::$db_table}" />
+                <marker date="1495003990957" expanded="true" signature="9490:9556" ph="SELECT passw... ${static::$db_table}" />
               </folding>
             </state>
           </provider>
@@ -444,12 +440,12 @@
       <workItem from="1494841063389" duration="388000" />
       <workItem from="1494850593044" duration="6457000" />
       <workItem from="1494895473851" duration="14603000" />
-      <workItem from="1494982128154" duration="15618000" />
+      <workItem from="1494982128154" duration="16508000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="156156000" />
+    <option name="totallyTimeSpent" value="157046000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1370" height="735" extended-state="0" />
@@ -839,15 +835,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/App/Models/User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="97" column="16" lean-forward="false" selection-start-line="97" selection-start-column="16" selection-end-line="97" selection-end-column="16" />
+        <state relative-caret-position="391">
+          <caret line="110" column="85" lean-forward="false" selection-start-line="110" selection-start-column="85" selection-end-line="110" selection-end-column="85" />
           <folding>
             <element signature="e#110#125#0#PHP" expanded="true" />
-            <marker date="1495002729100" expanded="true" signature="1163:1388" ph="INSERT INTO users... " />
-            <marker date="1495002729100" expanded="true" signature="4435:4493" ph="SELECT * FRO... ${self::$db_table}" />
-            <marker date="1495002729100" expanded="true" signature="5226:5349" ph="INSERT INTO remembered_login... " />
-            <marker date="1495002729100" expanded="true" signature="7979:8058" ph="SELECT * FRO... ${static::$db_table}" />
-            <marker date="1495002729100" expanded="true" signature="9081:9147" ph="SELECT passw... ${static::$db_table}" />
+            <marker date="1495003990957" expanded="true" signature="1163:1388" ph="INSERT INTO users... " />
+            <marker date="1495003990957" expanded="true" signature="4844:4902" ph="SELECT * FRO... ${self::$db_table}" />
+            <marker date="1495003990957" expanded="true" signature="5635:5758" ph="INSERT INTO remembered_login... " />
+            <marker date="1495003990957" expanded="true" signature="8388:8467" ph="SELECT * FRO... ${static::$db_table}" />
+            <marker date="1495003990957" expanded="true" signature="9490:9556" ph="SELECT passw... ${static::$db_table}" />
           </folding>
         </state>
       </provider>
