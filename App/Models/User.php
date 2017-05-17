@@ -318,6 +318,22 @@ class User extends \Core\Model {
 
     }
 
+    // this method activates account via token from email link
+    public static function accountActivation($token){
+
+        $token = new Token($token);                                   // first generate a new token object using existing token value from url
+        $token_hash = $token->getTokenHash();
+
+        $sql = 'UPDATE ' . static::$db_table . ' SET active = 1, activation_hash = NULL WHERE activation_hash = :token_hash';
+        $db  = static::getDB();
+
+        $stm = $db->prepare($sql);
+        $stm->bindValue(':token_hash', $token_hash, PDO::PARAM_STR);
+
+        return $stm->execute();
+
+    }
+
 
 
 

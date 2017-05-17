@@ -42,6 +42,16 @@ class SignUP extends \Core\Controller
         View::renderTemplate("SignUP/success.html");
     }
 
+    // this method activates user's account via email link
+    public function accountActivationAction(){
+        User::accountActivation($this->route_parametrs['token']);
+        self::redirect('/SignUP/activated');
+    }
+
+    public function activatedAction(){
+        View::renderTemplate('SignUP/success.html');
+    }
+
 
 
 
