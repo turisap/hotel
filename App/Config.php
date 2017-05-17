@@ -42,4 +42,7 @@ class Config
 
     // website name
     const SITE_NAME = 'MyhotelSystem';
+
+    // if this set to true then users can use the same password on reset
+    const SAME_PASSWORD = false;
 }

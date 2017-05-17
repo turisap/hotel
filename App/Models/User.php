@@ -227,30 +227,65 @@ class User extends \Core\Model {
         }
     }
 
+    // this method checks whether user uses the same password while resetting
+    public function isSamePassword($new_password){
+
+        if( ! Config::SAME_PASSWORD){                        // if we set prohibition for using the same password on reset
+
+            $sql = 'SELECT password_hash FROM ' . static::$db_table . ' WHERE id = :id';
+            $db  = static::getDB();
+
+            $statement = $db->prepare($sql);
+            $statement->bindValue(':id', $this->id, PDO::PARAM_INT);
+
+            $statement->execute();
+
+            $old_password_hash = $statement->fetchColumn();                 // to get just a single value, not array
+
+            if(password_verify($new_password, $old_password_hash)){         // check whether passwords are the same
+
+                return false;
+
+            } else {
+
+                return true;
+
+            }
+
+        }
+
+        return true;
+
+    }
+
     // this method resets password in the database
     public function resetPassword($new_password){
 
-        $this->password = $new_password;        // assign password from the form to the object's property
-        $this->validate();                      // validate password
+        if(self::isSamePassword($new_password)){    // check if  passwords were the same and if it was allowed
 
-        $password_hash = password_hash($this->password, PASSWORD_DEFAULT);
+            $this->password = $new_password;        // assign password from the form to the object's property
+            $this->validate();                      // validate password
 
-        if(empty($this->errors)){               // begin process of password resetin only in array with errors is empty (no errors)
+            $password_hash = password_hash($this->password, PASSWORD_DEFAULT);
 
-            $sql = 'UPDATE ' . static::$db_table . ' SET 
+            if(empty($this->errors)){               // begin process of password resetin only in array with errors is empty (no errors)
+
+                $sql = 'UPDATE ' . static::$db_table . ' SET 
                        password_hash = :password_hash,
                        password_reset_hash = NULL,
                        password_reset_expiry = NULL
                        WHERE id = :id';
 
-            $db = static::getDB();
-            $stm = $db->prepare($sql);
-            $stm->bindValue(':password_hash', $password_hash, PDO::PARAM_STR);
-            $stm->bindValue(':id', $this->id, PDO::PARAM_INT);
+                $db = static::getDB();
+                $stm = $db->prepare($sql);
+                $stm->bindValue(':password_hash', $password_hash, PDO::PARAM_STR);
+                $stm->bindValue(':id', $this->id, PDO::PARAM_INT);
 
-            return $stm->execute();
+                return $stm->execute();
+            }
+
         }
-        return false;                            // return false on update failure
+        return false;                                // return false on update failure
     }
 
 
