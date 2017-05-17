@@ -48,18 +48,34 @@ class Profile extends \Core\Controller {
 
         // $user = Authentifiacation::getCurrentUser();                       // this line went to the before() action filter
 
-        if($this->user->updateUser($_POST)){
+        // check if old password confirms in form
+        if($this->user->confirmPasswords($_POST['old_password'])){
 
-            Flash::addMessage('Your profile has been updated successfully', Flash::SUCCESS);
-            self::redirect('/profile/show');
+            if($this->user->updateUser($_POST)){
 
-        } else {
+                Flash::addMessage('Your profile has been updated successfully', Flash::SUCCESS);
+                self::redirect('/profile/show');
 
-            Flash::addMessage('Unsuccessful update');
+            } else {
+
+                Flash::addMessage('Unsuccessful update');
+                View::renderTemplate('profile/edit.html', ['user'=> $this->user]); // user object with all errors in errors array
+
+            }
+
+        } else {      // unsuccessful because old password form form doesn't match that in the database
+
+            Flash::addMessage('Please enter your valid old password', Flash::DANGER);
             View::renderTemplate('profile/edit.html', ['user'=> $this->user]); // user object with all errors in errors array
 
         }
+
+
     }
 
+
+    public function testAction(){
+        print_r($this->user);
+    }
 
 }

@@ -416,6 +416,31 @@ class User extends \Core\Model {
     }
 
 
+    // returns hash of current password of the current user (is used in couple of methods here)
+    public function findOldPasswordHash(){
+
+        // find hash of old password first
+        $sql = 'SELECT password_hash FROM ' . static::$db_table . ' WHERE id = :id';
+        $db = static::getDB();
+
+        $stm = $db->prepare($sql);
+        $stm->bindValue(':id', $this->id, PDO::PARAM_INT);
+
+        $stm->execute();
+
+        return $stm->fetchColumn();
+    }
+
+    // this method checks whether old password and it's confirmation from edit profile page are equal
+    public function confirmPasswords($old_password){
+
+        $old_password_hash = $this->findOldPasswordHash();
+        return password_verify($old_password, $old_password_hash);
+
+    }
+
+
+
 
 
 
