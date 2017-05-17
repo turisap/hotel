@@ -30,6 +30,9 @@ class User extends \Core\Model {
 
     public function save(){
 
+        $token = new Token();                                // generate a new activation token
+        $token_hash = $token->getTokenHash();                // and it's hash
+
         // validate data first
         $this->validate();
 
@@ -37,8 +40,8 @@ class User extends \Core\Model {
         if(empty($this->errors)){
             $password_hash = password_hash($this->password, PASSWORD_DEFAULT);
 
-            $sql = 'INSERT INTO users (first_name, last_name, email, password_hash)
-                     VALUES (:first_name, :last_name, :email, :password_hash)';
+            $sql = 'INSERT INTO users (first_name, last_name, email, password_hash, activation_hash)
+                     VALUES (:first_name, :last_name, :email, :password_hash, :activation_hash)';
 
             $db = static::getDB();
             $statement = $db->prepare($sql);
@@ -47,6 +50,7 @@ class User extends \Core\Model {
             $statement->bindValue(':last_name', $this->last_name, PDO::PARAM_STR);
             $statement->bindValue(':email', $this->email, PDO::PARAM_STR);
             $statement->bindValue(':password_hash', $password_hash, PDO::PARAM_STR);
+            $statement->bindValue(':activation_hash', $token_hash, PDO::PARAM_STR);
 
             return $statement->execute(); // because execute() returns true of false
         }
@@ -230,9 +234,9 @@ class User extends \Core\Model {
     // this method checks whether user uses the same password while resetting
     public function isSamePassword($new_password){
 
-        if( ! Config::SAME_PASSWORD){                        // if we set prohibition for using the same password on reset
+        if( ! Config::SAME_PASSWORD){                                                    // check if we set prohibition for using the same password on reset
 
-            $sql = 'SELECT password_hash FROM ' . static::$db_table . ' WHERE id = :id';
+            $sql = 'SELECT password_hash FROM ' . static::$db_table . ' WHERE id = :id'; // fid user's password
             $db  = static::getDB();
 
             $statement = $db->prepare($sql);
@@ -240,9 +244,9 @@ class User extends \Core\Model {
 
             $statement->execute();
 
-            $old_password_hash = $statement->fetchColumn();                 // to get just a single value, not array
+            $old_password_hash = $statement->fetchColumn();                              // to get just a single value, not array
 
-            if(password_verify($new_password, $old_password_hash)){         // check whether passwords are the same
+            if(password_verify($new_password, $old_password_hash)){                      // check whether passwords are the same
 
                 return false;
 
