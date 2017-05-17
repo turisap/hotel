@@ -81,9 +81,9 @@ class Twig_Tests_Loader_FilesystemTest extends PHPUnit_Framework_TestCase
             realpath($basePath.'/named_quater/named_absolute.html'),
             realpath($loader->getCacheKey('@named/named_absolute.html'))
         );
-        $this->assertEquals("path (final)\n", $loader->getSource('new.html'));
-        $this->assertEquals("path (final)\n", $loader->getSource('@__main__/new.html'));
-        $this->assertEquals("named path (final)\n", $loader->getSource('@named/new.html'));
+        $this->assertEquals("path (final)\n", $loader->getSource('edit.html'));
+        $this->assertEquals("path (final)\n", $loader->getSource('@__main__/edit.html'));
+        $this->assertEquals("named path (final)\n", $loader->getSource('@named/edit.html'));
     }
 
     public function testEmptyConstructor()
@@ -123,12 +123,12 @@ class Twig_Tests_Loader_FilesystemTest extends PHPUnit_Framework_TestCase
         $loader = new Twig_Loader_Filesystem(array($basePath.'/normal'));
         $loader->addPath($basePath.'/named', 'named');
 
-        // prime the cache for new.html in the named namespace
-        $namedSource = $loader->getSource('@named/new.html');
+        // prime the cache for edit.html in the named namespace
+        $namedSource = $loader->getSource('@named/edit.html');
         $this->assertEquals("named path\n", $namedSource);
 
-        // get new.html from the main namespace
-        $this->assertEquals("path\n", $loader->getSource('new.html'));
+        // get edit.html from the main namespace
+        $this->assertEquals("path\n", $loader->getSource('edit.html'));
     }
 
     public function testLoadTemplateAndRenderBlockWithCache()

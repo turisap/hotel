@@ -10,35 +10,27 @@ namespace App\Controllers;
 
 
 use App\Authentifiacation;
+use Core\View;
 
 class Profile extends \Core\Controller {
 
 
+    // this is an action filter which requires login before accessing pages from this controller
     public function before()
     {
+        $this->requireLogin();                         // require to be logged in
 
     }
 
     public function showAction(){
-        $this->requireLogin();
-
-        print_r($_SESSION);
-
-        echo '<hr/>';
-
-        if(Authentifiacation::isLoggedIn()){
-            echo "<h2>is logged in</h2>";
-        }
 
         $user = Authentifiacation::getCurrentUser();
-        if($user){
-            echo '<h2>' . $user->first_name . '</h2>';
-        }
+        View::renderTemplate('Profile/show.html', ['user' => $user]);
+    }
 
-        echo '<hr/>';
+    public function editAction(){
 
-         print_r($_COOKIE);
-
-
+        $user = Authentifiacation::getCurrentUser();
+        View::renderTemplate('profile/edit.html', ['user' => $user]);
     }
 }

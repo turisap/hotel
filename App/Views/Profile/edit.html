@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block title %}Edit profile{% endblock %}
+
+{% block footer %}
+<!--hide and sPasswordword button script -->
+<script src="/js/hideShowPassword.js"></script>
+<!--custom password validation script -->
+<script src="/js/app.js"></script>
+
+    <script>
+
+        var userID = '{{ user.id }}'; // this is user id for id_ignore while validating email
+
+
+        //form validation using jQuery Validate plagin
+        $(document).ready(function() {
+
+            $('#EditForm').validate({
+                rules: {
+                    first_name: {
+                        required: true,
+                        minlength: 2
+                    },
+                    last_name: {
+                        required: true,
+                        minlength: 2
+                    },
+                    email: {
+                        required: true,
+                        email: true,
+                        // this line for ajax request from the database to validate the an email wasn't already taken
+                        //this is a path to the controller and a method inside
+                        remote: {
+                            url: '/account/validate-email',
+                            data: {
+                                ignore_id: function () {
+                                    return userID;           // this is for remote request in account/validate-email
+                                }
+                            }
+                        }
+                    },
+                    password: {
+                        required: true,
+                        minlength: 6,
+                        validPassword: true //here we call our custom method to validate Password
+                    }
+
+                },
+                messages: {
+                    email: {
+                        required: 'Hey, we do need your email!',
+                        remote: 'This email is already taken'
+                    },
+                    first_name: {
+                        required: 'Please tell me your name',
+                        minlength: 'Name should be at least 2 characters'
+                    },
+                    last_name: {
+                        required: 'Please tell me your last name',
+                        minlength: 'Last name should be at least 2 characters'
+                    }
+                }
+            });
+
+            /**
+             * Show Password toggle button
+             */
+            $('#inputPassword').hideShowPassword({
+                show: false,
+                innerToggle: 'focus'
+            });
+        });
+
+    </script>
+
+{% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-lg-6 offset-3">
+    <h1>{{ user.first_name }}'s profile</h1>
+   <!------------------------------------------ displaying of error messages ----------------------------------------------->
+    {% if user.errors is not empty %}
+    <p>Errors</p>
+    <ul>
+        {% for error in user.errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+<form method="post" action="/profile/edit" id="EditForm">
+
+    <div class="form-group">
+        <label for="inputFirstName">First Name</label>
+        <input class="form-control" id="inputFirstName" name="first_name" placeholder="First name" autofocus value="{{ user.first_name }}" />
+    </div>
+    <div class="form-group">
+        <label for="inputLastName">First Name</label>
+        <input class="form-control" id="inputLastName" name="last_name" placeholder="Last name" autofocus value="{{ user.last_name }}" />
+    </div>
+    <div class="form-group">
+        <label for="inputEmail">Email address</label>
+        <input class="form-control" id="inputEmail" type="email" name="email" placeholder="email address" value="{{ user.email}}"/>
+    </div>
+    <div class="form-group">
+        <label for="inputPassword">Password</label>
+        <input class="form-control"  type="password" id="inputPassword" name="password" placeholder="Password"/>
+    </div>
+
+
+    <button class="btn btn-default" type="submit">Edit</button>
+
+
+</form>
+    </div>
+</div>
+
+
+{% endblock %}

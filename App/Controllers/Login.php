@@ -19,7 +19,7 @@ class Login extends \Core\Controller {
 
     // this method just shows the login pagenew.html
     public function newAction(){
-        View::renderTemplate('Login/new.html');
+        View::renderTemplate('Login/edit.html');
     }
 
 
@@ -42,7 +42,7 @@ class Login extends \Core\Controller {
 
            Flash::addMessage('You are not logged in', Flash::DANGER);
            // pass state of the checkbox on unsuccessful login
-           View::renderTemplate('Login/new.html',['email' => $_POST['email'], 'remember_me' => $remember_me]);
+           View::renderTemplate('Login/edit.html',['email' => $_POST['email'], 'remember_me' => $remember_me]);
 
        }
 

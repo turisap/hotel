@@ -16,7 +16,7 @@ class SignUP extends \Core\Controller
 {
 
     public function newAction(){
-        View::renderTemplate('SignUP/new.html');
+        View::renderTemplate('SignUP/edit.html');
     }
 
     public function createAction(){
@@ -32,7 +32,7 @@ class SignUP extends \Core\Controller
             header('Location: http://' . $_SERVER['HTTP_HOST'] . '/signup/success');
         } else {
             // render template with user object passed in as a parameter (with errors array)
-            View::renderTemplate("SignUP/new.html", ['user' => $user]);
+            View::renderTemplate("SignUP/edit.html", ['user' => $user]);
         }
 
 

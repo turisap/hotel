@@ -15,7 +15,8 @@ class Account extends \Core\Controller {
     // this method validates uniqueness of an email entered to the registration form
     public function validateEmailAction(){
 
-        $is_valid = ! User::emailExists($_GET['email']); // check the email in the database
+        $is_valid = ! User::emailExists($_GET['email'], $_GET['ignore_id'] ?? null); // check the email in the database,
+                                                                                              // get request from profile/edit
         header('Content-type: application/json'); //
         echo json_encode($is_valid); //echo out true or false for ajax
 

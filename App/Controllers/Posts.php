@@ -20,9 +20,9 @@ class Posts extends \Core\Controller {
 
     public function indexAction(){
         //echo "Hello from Post controller index() method";
-        //View::renderTemplate('Posts/new.html');
+        //View::renderTemplate('Posts/edit.html');
         $posts = Post::getAll();
-        View::renderTemplate('Posts/new.html', ['posts' => $posts]);
+        View::renderTemplate('Posts/edit.html', ['posts' => $posts]);
     }
 
     public function addNewAction(){
