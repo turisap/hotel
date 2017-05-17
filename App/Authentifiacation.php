@@ -122,8 +122,9 @@ class Authentifiacation extends \Core\Controller {
                 $remember_login->deleteLogin();
             }
 
-            setcookie('remember_me', '', time() - 3600);
+
         }
+        setcookie('remember_me', '', time() - 3600, '/');
     }
 
 
