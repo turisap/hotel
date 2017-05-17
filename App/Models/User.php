@@ -79,15 +79,19 @@ class User extends \Core\Model {
             $this->errors[] = "Please enter a valid email";
         }
 
-        if(strlen($this->password) < 6){
-            $this->errors[] = "Password should be at least 6 characters long";
+        if(isset($this->password)){                                              // validate password only if it was set
+
+            if(strlen($this->password) < 6){
+                $this->errors[] = "Password should be at least 6 characters long";
+            }
+            if(preg_match('/.*[a-z]+.*/i', $this->password) == 0){
+                $this->errors[] = "Password should have at least one letter";
+            }
+            if(preg_match('/.*\d+./i', $this->password) == 0){
+                $this->errors[] = "Password should have at least one number";
+            }
         }
-        if(preg_match('/.*[a-z]+.*/i', $this->password) == 0){
-            $this->errors[] = "Password should have at least one letter";
-        }
-        if(preg_match('/.*\d+./i', $this->password) == 0){
-            $this->errors[] = "Password should have at least one number";
-        }
+
 
     }
 
@@ -367,6 +371,48 @@ class User extends \Core\Model {
     // this method deletes a user record from users table if there was an attempt to activate account via expired link
     public function deleteExpiredUser(){
         static::delete($this->id);
+    }
+
+    // this method updates user's profile on the edit page
+    public function updateUser($data){
+
+
+        if(empty($this->errors)) {  // update user only if there are no errors on submission
+
+            // assing data from the POST array to object's properties
+            $this->first_name   = $data['first_name'];
+            $this->last_name    = $data['last_name'];
+            $this->email        = $data['email'];
+            isset($data['new_password']) ? $this->password = $data['new_password'] : null;  // because changing password is optional
+
+            $sql = 'UPDATE ' . static::$db_table . ' SET first_name = :first_name, last_name = :last_name, email = :email, ';
+
+              if(isset($this->password)){
+                  $sql .= ' password_hash = :password_hash ';  // because changing password is optional
+              }
+
+            $sql .= ' WHERE id = :id';
+            $db  = static::getDB();
+
+            $stm = $db->prepare($sql);
+            $stm->bindValue(':first_name', $this->first_name, PDO::PARAM_STR);
+            $stm->bindValue(':last_name', $this->last_name, PDO::PARAM_STR);
+            $stm->bindValue(':email', $this->email, PDO::PARAM_STR);
+
+            if(isset($this->password)){
+                $password_hash = password_hash($this->password, PASSWORD_DEFAULT); // because changing password is optional
+                $stm->bindValue(':password_hash', $password_hash, PDO::PARAM_STR); // because changing password is optional
+            }
+
+            $stm->bindValue(':id', $this->id, PDO::PARAM_INT);
+
+            return $stm->execute();
+
+        }
+
+        return false;
+
+
     }
 
 

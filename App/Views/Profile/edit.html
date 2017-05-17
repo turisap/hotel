@@ -40,8 +40,11 @@
                             }
                         }
                     },
-                    password: {
-                        required: true,
+                    old_password: {
+                        minlength: 6,
+                        validPassword: true //here we call our custom method to validate Password
+                    },
+                    new_password: {
                         minlength: 6,
                         validPassword: true //here we call our custom method to validate Password
                     }
@@ -91,7 +94,7 @@
     </ul>
     {% endif %}
 
-<form method="post" action="/profile/edit" id="EditForm">
+<form method="post" action="/profile/update-profile" id="EditForm">
 
     <div class="form-group">
         <label for="inputFirstName">First Name</label>
@@ -106,8 +109,13 @@
         <input class="form-control" id="inputEmail" type="email" name="email" placeholder="email address" value="{{ user.email}}"/>
     </div>
     <div class="form-group">
-        <label for="inputPassword">Password</label>
-        <input class="form-control"  type="password" id="inputPassword" name="password" placeholder="Password"/>
+        <label for="inputOldPassword">Old password</label>
+        <input class="form-control"  type="password" id="inputOldPassword" name="old_password" placeholder="Password"/>
+        <span>Leave blunk to keep old password</span>
+    </div>
+    <div class="form-group">
+        <label for="inputNewPassword">New password</label>
+        <input class="form-control"  type="password" id="inputNewPassword" name="new_password" placeholder="Password"/>
     </div>
 
 
