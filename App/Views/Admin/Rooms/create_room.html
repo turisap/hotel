@@ -4,8 +4,9 @@
 {% block page_heading %} Room {% endblock %}
 {% block page_subheading %} create {% endblock %}
 
-{% block body %}
 
+
+{% block footer %}
 
 <script>
 
@@ -13,17 +14,41 @@
     //form validation using jQuery Validate plagin
     $(document).ready(function() {
 
-        $('#createRoomForm').validate({
+        /*$('.row').click(function () {
+         alert('dkfh');
+         });*/
+
+        $("#createRoomForm").validate({
             rules: {
-                room_number: {
+                local_name:{
+                    required: true,
+                    minlength: 5
+                },
+                room_number:{
                     required: true,
                     minlength: 1
+                },
+                area:{
+                    required: true,
+                    minlength: 1,
+                    number: true
                 }
             },
             messages: {
-                room_number: {
-                    required: 'This field is requered',
-                    minlength: 'Please enter at least 2 characters!'
+                local_name:{
+                    required: "Please enter name of the room",
+                    minlength: "Please enter at least 5 characters"
+                },
+                room_number:{
+                    required: "Please enter number of the room",
+                    minlength: "Please enter at least 1 character"
+                },
+                area:{
+                    required: "Please inter area of the room",
+                    minlength: "Please enter at least one digit",
+                    number: "Please enter numbers only"
+                }
+
             }
         });
 
@@ -33,6 +58,15 @@
 </script>
 
 
+{% endblock %}
+
+
+
+
+
+
+
+{% block body %}
 
 
 <form class="form-horizontal" id="createRoomForm" method="post" enctype="multipart/form-data" action="">
@@ -44,7 +78,7 @@
                 <div class="form-group">
                     <label class="control-label col-lg-2 required-field" for="localName" id="local">Local name</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" id="localName" name="room_number" placeholder="Short name">
+                        <input type="text" class="form-control" id="localName" name="local_name" placeholder="Short name">
                     </div>
                 </div>
 
@@ -57,9 +91,9 @@
         <div class="col-lg-6">
 
             <div class="form-group">
-                <label class="control-label col-lg-3  required-field" for="roomNumber">Room number</label>
+                <label class="control-label col-lg-3  required-field" for="roomNumber">Room #</label>
                 <div class="col-lg-9">
-                    <input type="text" class="form-control" id="roomNumber" name="roomNumber" placeholder="local hotel's room number">
+                    <input type="text" class="form-control" id="roomNumber" name="room_number" placeholder="local hotel's room number">
                 </div>
             </div>
 
@@ -185,7 +219,7 @@
 
 
 
-<div class="row">
+<div class="row button">
     <div class="form-group">
         <div class="col-sm-10">
             <button type="submit" class="btn btn-primary">Create</button>

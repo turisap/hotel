@@ -8,6 +8,11 @@ div.row.form {
     padding: 50px 10px;
 }
 
+div.row.button {
+    margin-top: 50px;
+    padding-left: 2%;
+}
+
 #checkboxes {
     justify-content: space-around !important;
     display: flex;
@@ -21,4 +26,8 @@ div.row.form {
 .required-field::after {
     content: " *";
     color: red;
+}
+
+#localName-error, #roomNumber-error, #area-error {
+    color: #92474f;
 }
