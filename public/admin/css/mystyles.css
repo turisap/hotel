@@ -1,13 +1,16 @@
-div.col-lg-4 {
-    margin: 5px;
+div.col-lg-6 {
+
 }
 
-.checkbox {
-    margin-top: 25px !important;
+div.row.form {
+    border: solid #f3f3f3 1px;
+    margin: 10px 0;
+    padding: 50px 10px;
 }
 
 #checkboxes {
-    margin-left: 20%;
+    justify-content: space-around !important;
+    display: flex;
 }
 
 #local {
@@ -16,6 +19,6 @@ div.col-lg-4 {
 }
 
 .required-field::after {
-    content: "*";
+    content: " *";
     color: red;
 }
