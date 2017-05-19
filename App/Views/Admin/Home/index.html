@@ -1,0 +1,32 @@
+{% extends "admin_base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+{% if current_user is not empty %}
+    <h1>Welcome,  {{ current_user.first_name }}</h1>
+{% else %}
+    <h1>Welcome, dear guest!</h1>
+{% endif %}
+{% if current_user %}
+<h2>You can see this line using current user twig global</h2>
+<p>Last Name of current user: {{ current_user.last_name }}</p>
+
+{% endif %}
+<hr/>
+<p>Is user logged in? {% if is_logged_in %} Yeah {% else %} No, unfortunately {% endif %}</p>
+{% if is_logged_in %}
+<h4>you can see this line using is_logged_in twig global </h4>
+{% endif %}
+
+{% if session is not empty %}
+<p class="lead">You can see this only if session array isn't empty</p>
+{% endif %}
+
+
+</body>
+
+</div>
+
+{% endblock %}
+
