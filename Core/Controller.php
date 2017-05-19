@@ -53,4 +53,12 @@ abstract class Controller {
         }
     }
 
+    // this method requires to be admin to access all admin pages and redirects the user if not
+    public function requireAdmin(){
+       if( ! Authentifiacation::isAdmin()){
+           Flash::addMessage('You need to have admin status to access this page', Flash::INFO);
+           self::redirect('/home/index-action');
+       }
+    }
+
 }

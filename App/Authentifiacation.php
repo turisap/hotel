@@ -58,6 +58,7 @@ class Authentifiacation extends \Core\Controller {
             //set some session vars and redirect
             $_SESSION['user_id'] = $user->id;
             $_SESSION['first_name'] = $user->first_name;
+            $_SESSION['admin']      = $user->admin;
             return true;
         }
         return false;
@@ -125,6 +126,11 @@ class Authentifiacation extends \Core\Controller {
 
         }
         setcookie('remember_me', '', time() - 3600, '/');
+    }
+
+    // checks whether current user has an admin status
+    public static function isAdmin(){
+        return($_SESSION['admin'] == 1) ? true : false;
     }
 
 
