@@ -26,7 +26,8 @@
                 },
                 room_number:{
                     required: true,
-                    minlength: 1
+                    minlength: 1,
+                    remote: '/admin/rooms/validate-room'
                 },
                 area:{
                     required: true,
@@ -41,7 +42,8 @@
                 },
                 room_number:{
                     required: "Please enter number of the room",
-                    minlength: "Please enter at least 1 character"
+                    minlength: "Please enter at least 1 character",
+                    remote: "This number is already taken"
                 },
                 area:{
                     required: "Please inter area of the room",
@@ -69,7 +71,7 @@
 {% block body %}
 
 
-<form class="form-horizontal" id="createRoomForm" method="post" enctype="multipart/form-data" action="/room/create">
+<form class="form-horizontal" id="createRoomForm" method="post" enctype="multipart/form-data" action="/admin/rooms/create">
 
     <div class="row form">
 
@@ -121,7 +123,7 @@
         <div class="col-lg-12">
         <div class="form-group">
             <label for="comment">Description</label>
-            <textarea class="form-control" rows="5" id="comment" name="decsription"></textarea>
+            <textarea class="form-control" rows="5" id="comment" name="description"></textarea>
         </div>
         </div>
 
@@ -172,7 +174,7 @@
             </div>
             <div class="form-group col-lg-10">
                 <label for="cancelDays"  class=" required-field">Cancel days</label>
-                <select class="form-control" id="cancelDays" name="cancelDays">
+                <select class="form-control" id="cancelDays" name="cancel_days">
                     <option value="7">7</option>
                     <option value="14">14</option>
                     <option value="21">21</option>
@@ -198,16 +200,16 @@
             <div id="checkboxes">
 
                 <label class="checkbox-inline">
-                    <input type="checkbox"  name="pets" value="">Pets allowed
+                    <input type="checkbox"  name="pets" value="1">Pets allowed
                 </label>
                 <label class="checkbox-inline">
-                    <input name="aircon" type="checkbox" value="">Aircon
+                    <input name="aircon" type="checkbox" value="1">Aircon
                 </label>
                 <label class="checkbox-inline">
-                    <input name="smoking" type="checkbox" value="">Smoking alowed
+                    <input name="smoking" type="checkbox" value="1">Smoking alowed
                 </label>
                 <label class="checkbox-inline">
-                    <input name="children" type="checkbox" value="">Children allowed
+                    <input name="children" type="checkbox" value="1">Children allowed
                 </label>
 
             </div>
@@ -221,7 +223,7 @@
 
         <div class="form-group" id="mainPicture">
             <label class="btn btn-default btn-file">
-                Main Picture <input type="file" style="display: none;">
+                Main Picture <input type="file" name="main_picture" style="display: none;">
             </label>
         </div>
 
@@ -242,9 +244,7 @@
 
 </form>
 
-<form action="upload" class="dropzone" id="dropzone">
-
-</form>
+<form action="/admin/rooms/create" class="dropzone" id="dropzone"></form>
 
 
 
