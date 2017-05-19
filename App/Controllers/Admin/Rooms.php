@@ -26,6 +26,10 @@ class Rooms extends \Core\Controller {
         View::renderTemplate('Admin/Rooms/create_room.html');
     }
 
+    public function create(){
+
+    }
+
 
 
 

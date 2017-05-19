@@ -69,7 +69,7 @@
 {% block body %}
 
 
-<form class="form-horizontal" id="createRoomForm" method="post" enctype="multipart/form-data" action="">
+<form class="form-horizontal" id="createRoomForm" method="post" enctype="multipart/form-data" action="/room/create">
 
     <div class="row form">
 
@@ -217,6 +217,17 @@
 
 
 
+    <div class="row form">
+
+        <div class="form-group" id="mainPicture">
+            <label class="btn btn-default btn-file">
+                Main Picture <input type="file" style="display: none;">
+            </label>
+        </div>
+
+    </div>
+
+
 
 
 <div class="row button">
@@ -227,7 +238,15 @@
     </div>
 </div>
 
+
+
 </form>
+
+<form action="upload" class="dropzone" id="dropzone">
+
+</form>
+
+
 
 
 {% endblock %}

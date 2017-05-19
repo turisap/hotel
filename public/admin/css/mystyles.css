@@ -1,5 +1,22 @@
-div.col-lg-6 {
+body {
+    overflow-x: hidden;
+}
 
+
+
+/* ======================== CREATE ROOM FORM STYLES ========================================== */
+
+
+#createRoomForm {
+    padding: 0 0 10px 0 !important;
+}
+
+#dropzone {
+    border: solid #4a4a4a 1px;
+}
+
+#mainPicture {
+    margin-left: 2%;
 }
 
 div.row.form {
