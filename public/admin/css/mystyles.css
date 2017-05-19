@@ -1,3 +1,21 @@
-.home-test {
+div.col-lg-4 {
+    margin: 5px;
+}
 
+.checkbox {
+    margin-top: 25px !important;
+}
+
+#checkboxes {
+    margin-left: 20%;
+}
+
+#local {
+    text-align: left !important;
+    padding-left: 2.5%;
+}
+
+.required-field::after {
+    content: "*";
+    color: red;
 }

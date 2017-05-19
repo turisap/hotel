@@ -1,0 +1,171 @@
+{% extends "admin_base.html" %}
+
+{% block title %}Create a room{% endblock %}
+{% block page_heading %} Room {% endblock %}
+{% block page_subheading %} create {% endblock %}
+
+{% block body %}
+
+
+
+
+<form class="form-horizontal">
+
+    <div class="row">
+
+        <div class="col-lg-12">
+
+                <div class="form-group">
+                    <label class="control-label col-lg-2 required-field" for="localName" id="local">Local name</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="localName" name="roomNumber" placeholder="Short name">
+                    </div>
+                </div>
+
+        </div>
+
+    </div> <!-- the first row -->
+
+    <div class="row">
+
+        <div class="col-lg-6">
+
+            <div class="form-group">
+                <label class="control-label col-lg-3  required-field" for="roomNumber">Room number</label>
+                <div class="col-lg-9">
+                    <input type="text" class="form-control" id="roomNumber" name="roomNumber" placeholder="local hotel's room number">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-lg-6">
+
+            <div class="form-group">
+                <label class="control-label col-lg-3  required-field" for="area">Area</label>
+                <div class="col-lg-9">
+                    <input type="text" class="form-control" id="area" name="area" placeholder="area in m2">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+    <div class="row">
+
+        <div class="col-lg-12">
+        <div class="form-group">
+            <label for="comment">Description</label>
+            <textarea class="form-control" rows="5" id="comment" name="decsription"></textarea>
+        </div>
+        </div>
+
+    </div> <!-- the second row -->
+
+    <div class="row">
+
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label for="beds"  class=" required-field">Number of beds</label>
+                <select class="form-control" id="beds" name="beds">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="rooms" class=" required-field">Number of rooms</label>
+                <select class="form-control" id="rooms" name="rooms">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="guests"  class=" required-field">Number of guests</label>
+                <select class="form-control" id="guests" name="guests">
+                    <option value="2">2</option>
+                    <option value="4">4</option>
+                    <option value="6">6</option>
+                </select>
+            </div>
+
+        </div>
+
+
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label for="beds"  class=" required-field">Class</label>
+                <select class="form-control" id="class" name="class">
+                    <option value="Budget">Budget</option>
+                    <option value="Premium">Premium</option>
+                    <option value="Delux">Delux</option>
+                    <option value="Lux">Lux</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="cancelDays"  class=" required-field">Cancel days</label>
+                <select class="form-control" id="cancelDays" name="cancelDays">
+                    <option value="7">7</option>
+                    <option value="14">14</option>
+                    <option value="21">21</option>
+                    <option value="28">28</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="view"  class=" required-field">View</label>
+                <select class="form-control" id="view" name="view">
+                    <option value="Cityscape">Cityscape</option>
+                    <option value="Garden">Garden</option>
+                    <option value="Seaview">Seaview</option>
+                </select>
+            </div>
+        </div>
+
+
+
+        <div class="col-lg-3">
+
+            <div id="checkboxes">
+
+                <div class="checkbox">
+                    <label><input name="pets" type="checkbox" value="">Pets allowed</label>
+                </div>
+                <div class="checkbox">
+                    <label><input name="aircon" type="checkbox" value="">Aircon</label>
+                </div>
+                <div class="checkbox">
+                    <label><input name="smoking" type="checkbox" value="">Smoking allowed</label>
+                </div>
+                <div class="checkbox">
+                    <label><input name="children" type="checkbox" value="">Children</label>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div> <!-- the third row -->
+
+
+
+<div class="row">
+    <div class="form-group">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+    </div>
+</div>
+
+</form>
+
+
+{% endblock %}
+
