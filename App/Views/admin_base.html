@@ -162,7 +162,7 @@
                         <a href="#">Available</a>
                     </li>
                     <li>
-                        <a href="#">Create</a>
+                        <a href="/admin/home/create-room">Create</a>
                     </li>
                 </ul>
             </li>
@@ -200,7 +200,7 @@
                     <li>
                         <a href="#">Breakfast</a>
                     </li>
-                  
+
                 </ul>
             </li>
         </ul>
@@ -234,10 +234,37 @@
 
 <div id="wrapper">
 
-    {% block body %}
-    {% endblock %}
+    <div id="page-wrapper">
 
+        <div class="container-fluid">
 
+            <!-- Page Heading -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">
+                        Blank Page
+                        <small>Subheading</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li>
+                            <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
+                        </li>
+                        <li class="active">
+                            <i class="fa fa-file"></i> Blank Page
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <!-- /.row -->
+
+            {% block body %}
+            {% endblock %}
+
+        </div>
+        <!-- /.container-fluid -->
+
+    </div>
+    <!-- /#page-wrapper -->
 
 </div>
 </body>
