@@ -10,6 +10,7 @@ namespace App\Controllers;
 
 use \App\Authentifiacation;
 use App\Mail;
+use App\Models\Admin\Photo;
 use \App\Token;
 use App\Models\RememberedLogin;
 
@@ -20,7 +21,7 @@ class Test
 
     public static function test(){
 
-        print_r(self::reArrayFiles($_FILES['photos']));
+        print_r(Photo::test());
 
         //print_r($_FILES);
 

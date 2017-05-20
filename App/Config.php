@@ -48,4 +48,7 @@ class Config
 
     // max file size to upload
     const MAX_FILE_SIZE = 10000000;
+
+    // directory separotor
+    const DS = DIRECTORY_SEPARATOR;
 }

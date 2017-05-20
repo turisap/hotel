@@ -16,7 +16,7 @@ class Photo extends \Core\Model {
 
     public $errors_on_upload = [];                          // array for saving error messages
     public static $db_table = 'photos';                     // database table
-    protected static $upload_derictory = 'public/uploads/pictures/rooms'; // path to uploaded pictures
+    protected static $upload_derictory = 'public\uploads\pictures\rooms'; // path to uploaded pictures
                         //protected static $path = 'Pictures';
     public $upload_errors_array = array(
 
@@ -69,21 +69,38 @@ class Photo extends \Core\Model {
 
         if(empty($this->errors_on_upload)){ // insert data only if array with errors is empty
 
+            $name = time() . $this->name;
+
             $sql = 'INSERT INTO ' . static::$db_table . ' (room_id, name, type, size) VALUES (:room_id, :name, :type, :size)';
             $db  = static::getDB();
 
             $stm = $db->prepare($sql);
 
             $stm->bindValue(':room_id', $room_id, PDO::PARAM_INT);
-            $stm->bindValue(':name', time() . $this->name, PDO::PARAM_STR);
+            $stm->bindValue(':name', $name, PDO::PARAM_STR);
             $stm->bindValue(':type', $this->type, PDO::PARAM_STR);
             $stm->bindValue(':size', $this->size, PDO::PARAM_INT);
 
-            return $stm->execute();
+            $stm->execute();
+
+            $target_path = dirname(__DIR__, 3) . Config::DS . static::$upload_derictory . Config::DS . $name;
+            if(file_exists($target_path)){
+                $this->errors_on_upload[] = 'This file already exists in this derictory';
+                return false;
+            }
+            if( ! move_uploaded_file($this->tmp_name, $target_path)){
+                $this->errors_on_upload[] = 'The folder probaly doesnt have permissions';
+            } else {
+                return true;
+            }
 
         }
         return false; // on failure
     }
+
+    /*public static function test(){
+        return $target_path = dirname(__DIR__, 3) . Config::DS . static::$upload_derictory;
+    }*/
 
     // this method validates pictures on upload
     protected function validatePhoto(){
