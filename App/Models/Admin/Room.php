@@ -80,11 +80,25 @@ class Room extends \Core\Model {
     // this method validates data from inputs (not files)
     public function validateData(){
 
-        //if($this->);
+        if($this->room_number == ''){
+            $this->errors[] = 'Please enter a room number';
+        }
+
+        if($this->local_name == ''){
+            $this->errors[] = 'Please enter a local name for this room';
+        }
+
+        if(strlen($this->local_name) < 5){
+            $this->errors[] = 'Local name should be at least 5 characters long';
+        }
+
+        if( ! is_int($this->area)){
+            $this->errors[] = 'Area should be a number';
+        }
 
     }
 
-    // checks whether there is a room with such a number in the database
+    // checks whether there is a room with such a number in the database through ajax from create room form
     public static function numberExists($number){
 
         $sql = 'SELECT * FROM ' . static::$db_table . ' WHERE room_number = :room_number';

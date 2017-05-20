@@ -9,6 +9,7 @@
 namespace App\Controllers\Admin;
 
 
+use App\Flash;
 use Core\View;
 use App\Models\Admin\Room;
 
@@ -32,10 +33,16 @@ class Rooms extends \Core\Controller {
 
         $room = new Room($_POST, $_FILES); // create a room object using form data
 
-        if($room->save()){
-            echo 'success';
-        } else {
-            echo 'false';
+        if($room->save()){ // redirect back to the create room page with a message on success
+
+            Flash::addMessage('Room has been created');
+            self::redirect('/admin/rooms/create-room');
+
+        } else {        // render template with errors array on failure
+
+            Flash::addMessage('Please fix all mistakes');
+            View::renderTemplate('Admin/rooms/create_room.html', ['room' => $room]);
+
         }
 
     }

@@ -48,3 +48,7 @@ div.row.button {
 #localName-error, #roomNumber-error, #area-error {
     color: #92474f;
 }
+
+.validation-errors {
+    color: #92474f;
+}
