@@ -90,3 +90,26 @@ div.row.button {
 #info {
     margin-bottom: 5px;
 }
+
+
+/*========================================= STYLES FOR ROOM PAGE ===========================================*/
+
+.img-room-all {
+    width: 50%;
+    height: 50%;
+}
+
+.room.modal-header, .room.modal-body, .room.modal-footer {
+    padding: 5px!important;
+}
+
+.room.modal-body img {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.modal-admin{
+    width: 500px;
+    height: 500px;
+}

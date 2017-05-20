@@ -72,6 +72,16 @@ class Rooms extends \Core\Controller {
 
     }
 
+    // renders page for a particular room
+    public function roomAction(){
+
+        // find room by it's id via get request
+        $room = Room::findById($_GET['id']);
+        // render template and pass the room object
+        View::renderTemplate('Admin/rooms/room.html', ['room' => $room]);
+
+    }
+
 
 
 
