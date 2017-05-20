@@ -24,10 +24,6 @@ class Room extends \Core\Model {
             $this->$key = $value;
             //echo $key;
         }
-        foreach($files as $key => $value){
-            $this->$key = $value;
-            //echo $key;
-        }
     }
 
     // saves room in the database
