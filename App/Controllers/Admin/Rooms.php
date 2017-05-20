@@ -40,7 +40,7 @@ class Rooms extends \Core\Controller {
 
         } else {        // render template with errors array on failure
 
-            Flash::addMessage('Please fix all mistakes');
+            Flash::addMessage('Please fix all mistakes', Flash::DANGER);
             View::renderTemplate('Admin/rooms/create_room.html', ['room' => $room]);
 
         }

@@ -33,6 +33,11 @@
     <script src="/admin/js/dropzone.js"></script>
     <link href="/admin/css/dropzone.css" rel="stylesheet">
 
+    <!-- My custom animations -->
+    <script src="/admin/js/animation.js"></script>
+
+
+
 
 
 
@@ -47,6 +52,11 @@
 </head>
 
 <body>
+
+<!-- FLASH MESSAGES -->
+{% for message in flash_messages %}
+<div class="flash_message alert alert-{{ message.type }}">{{ message.body }}</div>
+{% endfor %}
 
 <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -247,11 +257,10 @@
     <!-- /#page-wrapper -->
 
 
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-
     <!-- jQuery plagin "Validate" for form validation -->
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
+
+
 
     {% block footer %}
     {% endblock %}

@@ -84,6 +84,10 @@ class Room extends \Core\Model {
             $this->errors[] = 'Please enter a room number';
         }
 
+        if(static::numberExists($this->room_number)){
+            $this->errors[] = 'This room number is already taken';
+        }
+
         if($this->local_name == ''){
             $this->errors[] = 'Please enter a local name for this room';
         }
@@ -92,7 +96,7 @@ class Room extends \Core\Model {
             $this->errors[] = 'Local name should be at least 5 characters long';
         }
 
-        if( ! is_int($this->area)){
+        if( ! preg_match('/\d+/', $this->area)){
             $this->errors[] = 'Area should be a number';
         }
 

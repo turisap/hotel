@@ -52,3 +52,11 @@ div.row.button {
 .validation-errors {
     color: #92474f;
 }
+
+.flash_message {
+    position: fixed !important;
+    top: 9% !important;
+    left: 19%;
+    width: 80%;
+    z-index: 500 !important;
+}

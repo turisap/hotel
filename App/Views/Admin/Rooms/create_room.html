@@ -14,9 +14,6 @@
     //form validation using jQuery Validate plagin
     $(document).ready(function() {
 
-        /*$('.row').click(function () {
-         alert('dkfh');
-         });*/
 
         $("#createRoomForm").validate({
             rules: {
@@ -146,8 +143,8 @@
                 <label for="beds"  class=" required-field">Number of beds</label>
                 <select class="form-control" id="beds" name="beds">
                     <option value="1" {% if room.beds == 1 %} selected {% endif %}>1</option>
-                    <option value="3" {% if room.beds == 3 %} selected {% endif %}>3</option>
-                    <option value="4" {% if room.beds == 4 %} selected {% endif %}>4</option>
+                    <option value="2" {% if room.beds == 2 %} selected {% endif %}>2</option>
+                    <option value="3" {% if room.beds == 4 %} selected {% endif %}>3</option>
                 </select>
             </div>
             <div class="form-group col-lg-10">
