@@ -48,6 +48,7 @@ class Rooms extends \Core\Controller {
     }
 
 
+
     // this method validates uniqueness of an room number entered to the create room form
     public static function validateRoom(){
 
@@ -59,6 +60,30 @@ class Rooms extends \Core\Controller {
 
 
     }
+
+
+    // renders template for the all rooms page
+    public static function allRoomsAction(){
+
+        // first get all rooms from the database
+        $rooms = Room::findAll();
+        // pass them to the view
+        View::renderTemplate('admin/rooms/all_rooms.html', ['rooms' => $rooms]);
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public function test(){
         print_r(Room::numberExists('001'));

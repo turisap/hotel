@@ -60,6 +60,20 @@ abstract class Model
         $statament->execute();
     }
 
+    // returns everything from selected database table
+    public static function findAll(){
+
+        $sql = 'SELECT * FROM ' . static::$db_table;
+
+        $db  = static::getDB();
+        $stm = $db->prepare($sql);
+        $stm->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stm->execute();
+
+        return $stm->fetchAll();
+    }
+
 
 
 }

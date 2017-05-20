@@ -60,3 +60,33 @@ div.row.button {
     width: 80%;
     z-index: 500 !important;
 }
+
+
+/*================================= STYLES FOR THE ALL ROOMS PAGE ================================ */
+
+.img-rooms-all {
+    height: auto;
+}
+
+.room-name {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.bookings {
+    margin-top: 5%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.booking{
+    display: inline-block;
+    height: 100px;
+    width: 100px;
+    border: solid #a4a4a4 1px;
+    margin: 5px;
+}
+
+#info {
+    margin-bottom: 5px;
+}
