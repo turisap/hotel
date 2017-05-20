@@ -29,7 +29,7 @@ class Rooms extends \Core\Controller {
         View::renderTemplate('Admin/Rooms/create_room.html');
     }
 
-    // processing create room form
+    // this method creates a room, saving records in photos and rooms tables
     public function create(){
 
         $room = new Room($_POST); // create a room object using form data
@@ -37,7 +37,8 @@ class Rooms extends \Core\Controller {
 
         $room_id = $room->save();  // save() returns id of last inserted element on success and false on failure
 
-        $photo_errors = array();
+        $photo_errors = array();   // errors array
+        $photos_objects = array();        // array for photos objects
 
         // save all photos which were attached while creating room
         foreach ($photos as $photo) {
@@ -50,9 +51,11 @@ class Rooms extends \Core\Controller {
                 $photo_errors[] = false;
             }
 
+            $photos_objects[] = $photo;
+
         }
 
-
+        // check if everything is ok or not and make corresponding redirects and flash messages
 
         if($room_id != false && !in_array(0, $photo_errors, false)){ // redirect back to the create room page with a message on success
 
@@ -66,8 +69,8 @@ class Rooms extends \Core\Controller {
 
         } elseif(in_array(0, $photo_errors, false)) {   // render template with errors array on failure
 
-            Flash::addMessage('There were problems uploading images. Please check on rooms page', Flash::DANGER);
-            self::redirect('/admin/rooms/all-rooms');
+            Flash::addMessage('There were problems uploading images.', Flash::DANGER);
+            View::renderTemplate('Admin/rooms/create_room.html', ['room' => $room, 'photos' => $photos_objects]);
 
         }
 

@@ -45,4 +45,7 @@ class Config
 
     // if this set to true then users can use the same password on reset
     const SAME_PASSWORD = false;
+
+    // max file size to upload
+    const MAX_FILE_SIZE = 10000000;
 }

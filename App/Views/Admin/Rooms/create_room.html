@@ -87,6 +87,23 @@
 </ul>
 {% endif %}
 
+{% if photos is not empty %}
+<p class="lead validation-errors">Errors</p>
+<ul>
+
+    {% for photo in photos %}
+
+    {% for error in photo.errors_on_upload %}
+    <li class="validation-errors">{{ error }}</li>
+    {% endfor %}
+
+    {% endfor %}
+
+
+
+</ul>
+{% endif %}
+
 
 
 <form class="form-horizontal" id="createRoomForm" method="post" enctype="multipart/form-data" action="/admin/rooms/create">
