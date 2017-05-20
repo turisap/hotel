@@ -8,11 +8,22 @@
 
 {% block footer %}
 
+
+<script>
+
+    // bootstrap upload files plugin
+    $("#input-id").fileinput({
+        'multiple':true
+    });
+
+</script>
+
 <script>
 
 
     //form validation using jQuery Validate plagin
     $(document).ready(function() {
+
 
 
         $("#createRoomForm").validate({
@@ -78,7 +89,7 @@
 
 
 
-<form class="form-horizontal" id="createRoomForm" method="post" enctype="multipart/form-data" action="/admin/rooms/create">
+<form class="form-horizontal" id="createRoomForm" method="post" enctype="multipart/form-data" action="/test/test">
 
     <div class="row form">
 
@@ -235,6 +246,8 @@
 
     </div>
 
+    <label class="control-label">Select File</label>
+    <input id="input-id" name="photos[]" multiple type="file" class="file file-loading" data-allowed-file-extensions='["jpeg", "jpg", "png"]'>
 
 
 
@@ -250,7 +263,7 @@
 
 </form>
 
-<form action="/admin/rooms/create" class="dropzone" id="dropzone"></form>
+
 
 
 

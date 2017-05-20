@@ -19,7 +19,23 @@ class Test
 
 
     public static function test(){
-      Mail::send('kirill-shakirov@mail.ru', 'Hotel', 'Test email',  'Hi');
+      print_r($_FILES);
+
+    }
+
+    protected  static function reArrayFiles($file_post) {
+
+        $file_ary = array();
+        $file_count = count($file_post['photos']);
+        $file_keys = array_keys($file_post);
+
+        for ($i=0; $i<$file_count; $i++) {
+            foreach ($file_keys as $key) {
+                $file_ary[$i][$key] = $file_post[$key][$i];
+            }
+        }
+
+        return $file_ary;
     }
 
 
