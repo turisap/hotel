@@ -65,7 +65,7 @@ class Room extends \Core\Model {
             $stm->bindValue(':aircon', $aircon, PDO::PARAM_INT);
             $stm->bindValue(':smoking', $smoking, PDO::PARAM_INT);
 
-            return $stm->execute();
+            return $stm->execute() ? $db->lastInsertId() : false;    // return the last inserted id on success and false on failure
 
         }
 
@@ -112,6 +112,7 @@ class Room extends \Core\Model {
         return $stm->fetch();
 
     }
+
 
 
 

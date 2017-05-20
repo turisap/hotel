@@ -8,17 +8,22 @@
 
 namespace App\Models\Admin;
 
+use PDO;
+
 
 class Photo extends \Core\Model {
+
+    public static $db_table = 'photos';
 
 
     // supplied with $_FILES and input name of multiply input file
     public function __construct($picture) {
 
-        foreach($picture as $key => $value){
-            $this->$key = $value;
-            //echo $key;
-        }
+            // here we creates properties and their values out of keys and values
+            foreach($picture as $key => $value){
+                $this->$key = $value;
+                //echo $key;
+            }
 
     }
 
@@ -36,9 +41,27 @@ class Photo extends \Core\Model {
             }
         }
 
-
         return $file_ary;
     }
+
+    // this function saves photos to the database
+    public function save($room_id){
+
+        $sql = 'INSERT INTO ' . static::$db_table . ' (room_id, name, type, size) VALUES (:room_id, :name, :type, :size)';
+        $db  = static::getDB();
+
+        $stm = $db->prepare($sql);
+
+        $stm->bindValue(':room_id', $room_id, PDO::PARAM_INT);
+        $stm->bindValue(':name', time() . $this->name, PDO::PARAM_STR);
+        $stm->bindValue(':type', $this->type, PDO::PARAM_STR);
+        $stm->bindValue(':size', $this->size, PDO::PARAM_INT);
+
+       return $stm->execute();
+
+    }
+
+
 
 
 }

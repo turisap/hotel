@@ -130,7 +130,10 @@ class Authentifiacation extends \Core\Controller {
 
     // checks whether current user has an admin status
     public static function isAdmin(){
-        return($_SESSION['admin'] == 1) ? true : false;
+        if(isset($_SESSION['admin'])){
+            return($_SESSION['admin'] == 1) ? true : false;
+        }
+        return false;
     }
 
 
