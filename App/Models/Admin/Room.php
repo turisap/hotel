@@ -15,6 +15,7 @@ class Room extends \Core\Model {
 
     public $errors = []; // array for validation errors
     protected static $db_table = 'rooms';
+    public static $column = 'id';
 
 
     // create a room object using form data

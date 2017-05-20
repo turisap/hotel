@@ -69,6 +69,7 @@ class Rooms extends \Core\Controller {
 
         } elseif(in_array(0, $photo_errors, false)) {   // render template with errors array on failure
 
+            Room::delete($room_id);                                           // delete newly create room due to errors uploading files
             Flash::addMessage('There were problems uploading images.', Flash::DANGER);
             View::renderTemplate('Admin/rooms/create_room.html', ['room' => $room, 'photos' => $photos_objects]);
 

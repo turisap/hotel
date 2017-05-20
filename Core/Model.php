@@ -49,7 +49,7 @@ abstract class Model
     }
 
     // this method deletes via id
-    public function delete($id){
+    public static function delete($id){
 
         $sql = 'DELETE FROM ' . static::$db_table . ' WHERE ' . static::$column .  ' = :id';
 
