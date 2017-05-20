@@ -2,9 +2,10 @@
 
   "require" : {
     "phpmailer/phpmailer" : "~5.2",
-    "twig/twig": "~2.0"
+    "twig/twig": "~2.0",
+    "kartik-v/bootstrap-fileinput": "@dev"
   },
-  "autoload" : { /* this section is for autoloading my own classes */
+  "autoload" : { 
     "psr-4" : {
       "Core\\" : "Core/",
       "App\\" : "App/"
