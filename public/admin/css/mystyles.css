@@ -108,22 +108,19 @@ div.row.button {
 
 /*========================================= STYLES FOR ROOM PAGE ===========================================*/
 
-.img-room-all {
-    width: 50%;
-    height: 50%;
+
+
+.room-edit {
+    width: 200px !important;
+    height: 120px !important;
+    margin-top: 10px;
 }
 
-.room.modal-header, .room.modal-body, .room.modal-footer {
-    padding: 5px!important;
+.wrap {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 100%;
 }
 
-.room.modal-body img {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-}
 
-.modal-admin{
-    width: 500px;
-    height: 500px;
-}

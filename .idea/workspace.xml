@@ -5,6 +5,8 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/Controllers/Admin/Rooms.php" afterPath="$PROJECT_DIR$/App/Controllers/Admin/Rooms.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/Models/Admin/Photo.php" afterPath="$PROJECT_DIR$/App/Models/Admin/Photo.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/Models/Admin/Room.php" afterPath="$PROJECT_DIR$/App/Models/Admin/Room.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/Views/Admin/Rooms/edit_room.html" afterPath="$PROJECT_DIR$/App/Views/Admin/Rooms/edit_room.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/admin/css/mystyles.css" afterPath="$PROJECT_DIR$/public/admin/css/mystyles.css" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,51 +18,22 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="mystyles.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/admin/css/mystyles.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="498">
+              <caret line="122" column="17" lean-forward="false" selection-start-line="122" selection-start-column="17" selection-end-line="122" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="edit_room.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/App/Views/Admin/Rooms/edit_room.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Rooms.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/App/Controllers/Admin/Rooms.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="117" column="21" lean-forward="false" selection-start-line="117" selection-start-column="21" selection-end-line="117" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Room.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/App/Models/Admin/Room.php">
-          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="190">
-              <caret line="133" column="106" lean-forward="false" selection-start-line="133" selection-start-column="106" selection-end-line="133" selection-end-column="106" />
-              <folding>
-                <marker date="1495366611169" expanded="true" signature="1317:1699" ph="INSERT INTO ${static::$db_table}... " />
-                <marker date="1495366611169" expanded="true" signature="3921:3934" ph="SELECT * FRO... " />
-                <marker date="1495366611169" expanded="true" signature="3921:3935" ph="SELECT * FRO... ${static::$db_table}" />
-                <marker date="1495366611169" expanded="true" signature="3921:3993" ph="SELECT * FRO... ${static::$db_table}" />
-                <marker date="1495366611169" expanded="true" signature="3921:3994" ph="SELECT * FRO... ${static::$db_table}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Photo.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/App/Models/Admin/Photo.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="389">
-              <caret line="153" column="21" lean-forward="false" selection-start-line="153" selection-start-column="21" selection-end-line="153" selection-end-column="21" />
-              <folding>
-                <marker date="1495366611325" expanded="true" signature="2368:2498" ph="INSERT INTO ${static::$db_table}... " />
-                <marker date="1495366611325" expanded="true" signature="4729:4782" ph="SELECT * FRO... photos" />
-              </folding>
+              <caret line="11" column="5" lean-forward="false" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -100,6 +73,7 @@
       <find>emaile</find>
       <find>dec</find>
       <find>no files</find>
+      <find>.img-t</find>
     </findStrings>
     <replaceStrings>
       <replace>EditForm</replace>
@@ -154,14 +128,14 @@
         <option value="$PROJECT_DIR$/App/Config.php" />
         <option value="$PROJECT_DIR$/Core/View.php" />
         <option value="$PROJECT_DIR$/App/Controllers/Test.php" />
-        <option value="$PROJECT_DIR$/public/admin/css/mystyles.css" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/App/Views/Admin/Rooms/all_rooms.html" />
-        <option value="$PROJECT_DIR$/App/Views/Admin/Rooms/edit_room.html" />
         <option value="$PROJECT_DIR$/App/Views/Admin/Rooms/create_room.html" />
-        <option value="$PROJECT_DIR$/App/Models/Admin/Photo.php" />
         <option value="$PROJECT_DIR$/App/Models/Admin/Room.php" />
+        <option value="$PROJECT_DIR$/App/Models/Admin/Photo.php" />
         <option value="$PROJECT_DIR$/App/Controllers/Admin/Rooms.php" />
+        <option value="$PROJECT_DIR$/App/Views/Admin/Rooms/edit_room.html" />
+        <option value="$PROJECT_DIR$/public/admin/css/mystyles.css" />
       </list>
     </option>
   </component>
@@ -569,7 +543,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="276239000" />
+    <option name="totallyTimeSpent" value="281265000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1370" height="735" extended-state="0" />
@@ -634,14 +608,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Core/Router.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-528">
-          <caret line="89" column="56" lean-forward="false" selection-start-line="89" selection-start-column="56" selection-end-line="89" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/App/Views/Admin/includes/header.php" />
     <entry file="file://$PROJECT_DIR$/App/Views/Admin/includes/footer.php" />
     <entry file="file://$PROJECT_DIR$/App/Views/Admin/Home/index.html">
@@ -772,6 +738,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
           <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -951,16 +918,8 @@
         <state relative-caret-position="479">
           <caret line="42" column="0" lean-forward="true" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
           <folding>
-            <element signature="e#115#142#0#PHP" expanded="true" />
+            <element signature="e#115#142#0#PHP" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/admin/css/mystyles.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="86" column="14" lean-forward="false" selection-start-line="86" selection-start-column="14" selection-end-line="86" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -988,21 +947,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/App/Views/Admin/Rooms/edit_room.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/App/Models/Admin/Photo.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="153" column="21" lean-forward="false" selection-start-line="153" selection-start-column="21" selection-end-line="153" selection-end-column="21" />
+        <state relative-caret-position="104">
+          <caret line="139" column="89" lean-forward="false" selection-start-line="139" selection-start-column="89" selection-end-line="139" selection-end-column="89" />
           <folding>
-            <marker date="1495366611325" expanded="true" signature="2368:2498" ph="INSERT INTO ${static::$db_table}... " />
-            <marker date="1495366611325" expanded="true" signature="4729:4782" ph="SELECT * FRO... photos" />
+            <marker date="1495367304472" expanded="true" signature="2368:2498" ph="INSERT INTO ${static::$db_table}... " />
+            <marker date="1495367304472" expanded="true" signature="4748:4788" ph="SELECT * FRO... photos" />
           </folding>
         </state>
       </provider>
@@ -1010,21 +961,45 @@
     <entry file="file://$PROJECT_DIR$/App/Models/Admin/Room.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
-          <caret line="133" column="106" lean-forward="false" selection-start-line="133" selection-start-column="106" selection-end-line="133" selection-end-column="106" />
+          <caret line="133" column="64" lean-forward="false" selection-start-line="133" selection-start-column="64" selection-end-line="133" selection-end-column="64" />
           <folding>
-            <marker date="1495366611169" expanded="true" signature="1317:1699" ph="INSERT INTO ${static::$db_table}... " />
-            <marker date="1495366611169" expanded="true" signature="3921:3934" ph="SELECT * FRO... " />
-            <marker date="1495366611169" expanded="true" signature="3921:3935" ph="SELECT * FRO... ${static::$db_table}" />
-            <marker date="1495366611169" expanded="true" signature="3921:3993" ph="SELECT * FRO... ${static::$db_table}" />
-            <marker date="1495366611169" expanded="true" signature="3921:3994" ph="SELECT * FRO... ${static::$db_table}" />
+            <marker date="1495367283123" expanded="true" signature="1317:1699" ph="INSERT INTO ${static::$db_table}... " />
+            <marker date="1495367283123" expanded="true" signature="3921:3934" ph="SELECT * FRO... " />
+            <marker date="1495367283123" expanded="true" signature="3921:3935" ph="SELECT * FRO... ${static::$db_table}" />
+            <marker date="1495367283123" expanded="true" signature="3921:3993" ph="SELECT * FRO... ${static::$db_table}" />
+            <marker date="1495367283123" expanded="true" signature="3921:3994" ph="SELECT * FRO... ${static::$db_table}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/App/Controllers/Admin/Rooms.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="117" column="21" lean-forward="false" selection-start-line="117" selection-start-column="21" selection-end-line="117" selection-end-column="21" />
+        <state relative-caret-position="612">
+          <caret line="122" column="51" lean-forward="true" selection-start-line="122" selection-start-column="51" selection-end-line="122" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/admin/css/bootstrap.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="1122" column="6" lean-forward="false" selection-start-line="1122" selection-start-column="0" selection-end-line="1122" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/Views/Admin/Rooms/edit_room.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="11" column="5" lean-forward="false" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/admin/css/mystyles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="498">
+          <caret line="122" column="17" lean-forward="false" selection-start-line="122" selection-start-column="17" selection-end-line="122" selection-end-column="17" />
           <folding />
         </state>
       </provider>

@@ -8,9 +8,17 @@
 
 
 
+<h3>Room's photos</h3>
+<hr/>
+<div class="row wrap" >
 
-<div class="row">
 
+
+    {% for picture in pictures %}
+
+        <img src="{{ picture.path }}" class="img-thumbnail room-edit flex-column">
+
+    {% endfor %}
 
 </div>
 

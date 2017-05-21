@@ -115,7 +115,7 @@ class Rooms extends \Core\Controller {
 
         // find room by it's id via get request
         $room = Room::findById($_GET['id']);
-        $pictures = '';
+        $pictures = Photo::findAllPhotosToONeRoom($room->id, false);
 
         // find all pictures for this room
         //$pictures = Photo::

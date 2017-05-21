@@ -131,7 +131,7 @@ class Room extends \Core\Model {
 
            $set = array(); // array for each set of a room and respective pictures
 
-           $pictures = Photo::findAllPhotosToONeRoom($room->id); // find all pictures to a particular room
+           $pictures = Photo::findAllPhotosToONeRoom($room->id,  true ); // find all pictures to a particular room
 
            $set = [
                 'room'     => $room,

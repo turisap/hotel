@@ -134,9 +134,11 @@ class Photo extends \Core\Model {
         return static::$path . Config::DS . $this->filename;
     }
 
-    public static function findAllPhotosToONeRoom($room_id){
+    public static function findAllPhotosToONeRoom($room_id, $main_photo_only){
 
-        $sql = 'SELECT * FROM photos WHERE room_id = :id AND main = 1'; // we need to pass only the main picture to all_rooms template
+        $sql  = 'SELECT * FROM photos WHERE room_id = :id'; // we need to pass only the main picture to all_rooms template
+        $sql .= $main_photo_only ? ' AND main = 1' : '';    // get only main photo or all
+
         $db  = static::getDB();
 
         $stm = $db->prepare($sql);
