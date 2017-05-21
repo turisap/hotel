@@ -115,12 +115,13 @@ class Rooms extends \Core\Controller {
 
         // find room by it's id via get request
         $room = Room::findById($_GET['id']);
+        $pictures = '';
 
         // find all pictures for this room
         //$pictures = Photo::
 
         // render template and pass the room object
-        View::renderTemplate('Admin/rooms/edit_room.html', ['room' => $room]);
+        View::renderTemplate('Admin/rooms/edit_room.html', ['room' => $room, 'pictures' => $pictures]);
 
     }
 

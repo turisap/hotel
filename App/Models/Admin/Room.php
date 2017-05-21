@@ -129,20 +129,9 @@ class Room extends \Core\Model {
 
         foreach ($rooms as $room){
 
-            $set = array(); // array for each set of a room and respective pictures
+           $set = array(); // array for each set of a room and respective pictures
 
-            $sql = 'SELECT * FROM photos WHERE room_id = :id AND main = 1'; // we need to pass only the main picture to all_rooms template
-            $db  = static::getDB();
-
-            $stm = $db->prepare($sql);
-
-            $stm->bindValue(':id', $room->id, PDO::PARAM_INT);
-
-            $stm->execute();
-
-            $pictures = $stm->fetchAll();
-
-
+           $pictures = Photo::findAllPhotosToONeRoom($room->id); // find all pictures to a particular room
 
            $set = [
                 'room'     => $room,
