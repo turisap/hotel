@@ -43,6 +43,7 @@ class Test
 
 
 
+
     // creates a easy-readable array of properties and their values out of multiply-files array from form
     protected static function reArrayFiles($file_post) {
 

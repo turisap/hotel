@@ -96,9 +96,9 @@ class Rooms extends \Core\Controller {
     public static function allRoomsAction(){
 
         // first get all rooms from the database
-        $rooms = Room::findAll();
+        $sets = Room::findAllRoomsWithPhotos();
         // pass them to the view
-        View::renderTemplate('admin/rooms/all_rooms.html', ['rooms' => $rooms]);
+        View::renderTemplate('admin/rooms/all_rooms.html', ['sets' => $sets]);
 
     }
 

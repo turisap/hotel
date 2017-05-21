@@ -7,19 +7,21 @@
 {% block body %}
 
 
-{% for room in rooms %}
+{% for set in sets %}
 
 <div class="row">
-
+{% for picture in set.pictures %}
 
 
     <div class="col-lg-3 col-md-3 col-sm-12">
 
         <a href="/admin/rooms/room?id={{ room.id }}">
-            <img src="/uploads/pictures/rooms/download.jpg" class="img-responsive img-rooms-all">
+            <img src="{{ picture.path }}" class="img-responsive img-rooms-all">
         </a>
 
     </div>
+
+ {% endfor %}
     <div class="col-lg-6 col-md-6 col-sm-12 room-name">
 
         <div class="row room-name">
@@ -46,6 +48,24 @@
 </div>
 
 {% endfor %}
+
+
+{% for set in sets %}
+
+{{ set.room.id }}
+
+{% for picture in set.pictures %}
+
+{{ picture.name }}
+
+{% endfor %}
+
+
+{% endfor %}
+
+
+
+
 
 {% endblock %}
 

@@ -17,7 +17,7 @@ class Photo extends \Core\Model {
     public $errors_on_upload = [];                          // array for saving error messages
     public static $db_table = 'photos';                     // database table
     protected static $upload_derictory = 'public\uploads\pictures\rooms'; // path to uploaded pictures
-                        //protected static $path = 'Pictures';
+    protected static $path = '/uploads/pictures/rooms';
     public $upload_errors_array = array(
 
 
@@ -71,7 +71,7 @@ class Photo extends \Core\Model {
 
             $this->filename = time() . $this->name;
 
-            $sql = 'INSERT INTO ' . static::$db_table . ' (room_id, main, name, type, size) VALUES (:room_id, :main, :name, :type, :size)';
+            $sql = 'INSERT INTO ' . static::$db_table . ' (room_id, main, name, type, size, path) VALUES (:room_id, :main, :name, :type, :size, :path)';
             $db  = static::getDB();
 
             $stm = $db->prepare($sql);
@@ -83,6 +83,7 @@ class Photo extends \Core\Model {
             $stm->bindValue(':name', $this->filename, PDO::PARAM_STR);
             $stm->bindValue(':type', $this->type, PDO::PARAM_STR);
             $stm->bindValue(':size', $this->size, PDO::PARAM_INT);
+            $stm->bindValue(':path', $this->pathToPicture(), PDO::PARAM_STR);
 
             $stm->execute();
 
@@ -101,9 +102,7 @@ class Photo extends \Core\Model {
         return false; // on failure
     }
 
-    /*public static function test(){
-        return $target_path = dirname(__DIR__, 3) . Config::DS . static::$upload_derictory;
-    }*/
+
 
     // this method validates pictures on upload
     protected function validatePhoto(){
@@ -126,8 +125,8 @@ class Photo extends \Core\Model {
 
     }
 
-    public function pathToPicture(){
-        return static::$upload_derictory . Config::DS . $this->filename;
+    protected function pathToPicture(){
+        return static::$path . Config::DS . $this->filename;
     }
 
 

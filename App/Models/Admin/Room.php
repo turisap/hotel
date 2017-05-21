@@ -129,7 +129,7 @@ class Room extends \Core\Model {
 
             $set = array(); // array for each set of a room and respective pictures
 
-            $sql = 'SELECT * FROM photos WHERE room_id = :id';
+            $sql = 'SELECT * FROM photos WHERE room_id = :id AND main = 1';
             $db  = static::getDB();
 
             $stm = $db->prepare($sql);
