@@ -89,13 +89,18 @@ class Photo extends \Core\Model {
 
             $target_path = dirname(__DIR__, 3) . Config::DS . static::$upload_derictory . Config::DS . $this->filename;
             if(file_exists($target_path)){
-                $this->errors_on_upload[] = 'This file already exists in this derictory';
+                $this->errors_on_upload[] = 'This file already exists in this directory';
                 return false;
             }
-            if( ! move_uploaded_file($this->tmp_name, $target_path)){
-                $this->errors_on_upload[] = 'The folder probaly doesnt have permissions';
-            } else {
-                return true;
+
+            if( !empty($this->tmp_name)){ // if tmp_name is empty, we just don't upload files
+
+                if( ! move_uploaded_file($this->tmp_name, $target_path)){
+                    $this->errors_on_upload[] = 'The folder probably doesnt have permissions';
+                } else {
+                    return true;
+                }
+
             }
 
         }
@@ -109,17 +114,17 @@ class Photo extends \Core\Model {
 
         $extension = $this->type;
 
-        if($extension != 'image/jpeg' && $extension != 'image/png' && $extension != 'image/jpg'){
-            $this->errors_on_upload[] = "Your file should be .jpeg, .jpg or .png";
+        if( !empty($extension)){
+            if($extension != 'image/jpeg' && $extension != 'image/png' && $extension != 'image/jpg'){
+                $this->errors_on_upload[] = "Your file should be .jpeg, .jpg or .png";
+            }
         }
-        if(empty($this->name)){
-            $this->errors_on_upload[] = "There is no file to download";
-        }
+
         if($this->size > Config::MAX_FILE_SIZE){
             $this->errors_on_upload[] = "Your picture shouldn't be more than 10 Mb";
         }
 
-        if($this->error != 0) { //0 means no error, so if otherwise, display a respective message
+        if($this->error != 0 && $this->error != 4) { //0 means no error, so if otherwise, display a respective message, 4 no files to upload, we allow that
             $this->errors_on_upload[] = $this->upload_errors_array[$this->error];
         }
 

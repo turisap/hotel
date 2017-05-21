@@ -42,11 +42,12 @@ class Room extends \Core\Model {
             $pets = isset($this->pets) ? $this->pets : 0;
             $aircon = isset($this->aircon) ? $this->aircon : 0;
             $smoking = isset($this->smoking) ? $this->smoking : 0;
+            $tv = isset($this->tv) ? $this->tv : 0;
 
             $sql = 'INSERT INTO ' . static::$db_table . ' (room_number, local_name, num_beds, num_rooms, num_guests, view,
-             description, area, class, cancel_days, children, pets, aircon, smoking) VALUES (:room_number, :local_name,
+             description, area, class, cancel_days, children, pets, aircon, smoking, tv) VALUES (:room_number, :local_name,
               :num_beds, :num_rooms, :num_guests, :view, :description, :area, :class, :cancel_days, :children, :pets,
-              :aircon, :smoking)';
+              :aircon, :smoking, :tv)';
 
             $db = static::getDB();
             $stm = $db->prepare($sql);
@@ -65,6 +66,7 @@ class Room extends \Core\Model {
             $stm->bindValue(':pets', $pets, PDO::PARAM_INT);
             $stm->bindValue(':aircon', $aircon, PDO::PARAM_INT);
             $stm->bindValue(':smoking', $smoking, PDO::PARAM_INT);
+            $stm->bindValue(':tv', $tv, PDO::PARAM_INT);
 
             return $stm->execute() ? $db->lastInsertId() : false;    // return the last inserted id on success and false on failure
 
@@ -129,13 +131,12 @@ class Room extends \Core\Model {
 
             $set = array(); // array for each set of a room and respective pictures
 
-            $sql = 'SELECT * FROM photos WHERE room_id = :id AND main = 1';
+            $sql = 'SELECT * FROM photos WHERE room_id = :id AND main = 1'; // we need to pass only the main picture to all_rooms template
             $db  = static::getDB();
 
             $stm = $db->prepare($sql);
 
             $stm->bindValue(':id', $room->id, PDO::PARAM_INT);
-            //$stm->setFetchMode(PDO::FETCH_CLASS, get_called_class());
 
             $stm->execute();
 

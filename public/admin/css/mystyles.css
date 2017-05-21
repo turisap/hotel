@@ -64,13 +64,27 @@ div.row.button {
 
 /*================================= STYLES FOR THE ALL ROOMS PAGE ================================ */
 
-.img-rooms-all {
-    height: auto;
+.crop {
+    width: 250px;
+    height: 170px;
+    overflow: hidden;
+    padding: 0;
+    margin-top: 1%;
 }
 
-.room-name {
-    padding: 0 !important;
-    margin: 0 !important;
+.img-rooms-all {
+    height: auto;
+    margin: 0;
+}
+
+
+
+.wrap {
+    border: solid 1px #cacaca;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+    height: 250px;
 }
 
 .bookings {
