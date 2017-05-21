@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d0786124-98cb-4517-810f-6bc1a5eb252c" name="Default" comment="">
+      <change type="MOVED" beforePath="$PROJECT_DIR$/App/Views/Admin/Rooms/edit_room.html" afterPath="$PROJECT_DIR$/App/Views/Admin/Rooms/check_room.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/Controllers/Admin/Rooms.php" afterPath="$PROJECT_DIR$/App/Controllers/Admin/Rooms.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/Models/Admin/Photo.php" afterPath="$PROJECT_DIR$/App/Models/Admin/Photo.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/Models/Admin/Room.php" afterPath="$PROJECT_DIR$/App/Models/Admin/Room.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/Views/Admin/Rooms/edit_room.html" afterPath="$PROJECT_DIR$/App/Views/Admin/Rooms/edit_room.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/Views/admin_base.html" afterPath="$PROJECT_DIR$/App/Views/admin_base.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/admin/css/mystyles.css" afterPath="$PROJECT_DIR$/public/admin/css/mystyles.css" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,21 +18,21 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="mystyles.css" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public/admin/css/mystyles.css">
+      <file leaf-file-name="check_room.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/App/Views/Admin/Rooms/check_room.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="498">
-              <caret line="122" column="17" lean-forward="false" selection-start-line="122" selection-start-column="17" selection-end-line="122" selection-end-column="17" />
+            <state relative-caret-position="190">
+              <caret line="17" column="7" lean-forward="false" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="edit_room.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/App/Views/Admin/Rooms/edit_room.html">
+      <file leaf-file-name="mystyles.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/admin/css/mystyles.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="11" column="5" lean-forward="false" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+            <state relative-caret-position="437">
+              <caret line="125" column="8" lean-forward="false" selection-start-line="125" selection-start-column="8" selection-end-line="125" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -85,7 +85,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/App/Views/Password/new.html" />
         <option value="$PROJECT_DIR$/App/Views/Password/reset_email.html" />
         <option value="$PROJECT_DIR$/App/Mail.php" />
         <option value="$PROJECT_DIR$/public/js/app.js" />
@@ -121,7 +120,6 @@
         <option value="$PROJECT_DIR$/public/admin/js/animations.js" />
         <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/App/Models/Admin/Photos.php" />
-        <option value="$PROJECT_DIR$/App/Views/admin_base.html" />
         <option value="$PROJECT_DIR$/App/Views/Admin/Rooms/room.html" />
         <option value="$PROJECT_DIR$/App/Authentifiacation.php" />
         <option value="$PROJECT_DIR$/Core/Model.php" />
@@ -135,7 +133,9 @@
         <option value="$PROJECT_DIR$/App/Models/Admin/Photo.php" />
         <option value="$PROJECT_DIR$/App/Controllers/Admin/Rooms.php" />
         <option value="$PROJECT_DIR$/App/Views/Admin/Rooms/edit_room.html" />
+        <option value="$PROJECT_DIR$/App/Views/admin_base.html" />
         <option value="$PROJECT_DIR$/public/admin/css/mystyles.css" />
+        <option value="$PROJECT_DIR$/App/Views/Admin/Rooms/check_room.html" />
       </list>
     </option>
   </component>
@@ -543,7 +543,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="281265000" />
+    <option name="totallyTimeSpent" value="284607000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1370" height="735" extended-state="0" />
@@ -800,14 +800,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/App/Views/admin_base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="188" column="40" lean-forward="false" selection-start-line="188" selection-start-column="40" selection-end-line="188" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/App/Views/SignUP/new.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
@@ -972,14 +964,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/App/Controllers/Admin/Rooms.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="122" column="51" lean-forward="true" selection-start-line="122" selection-start-column="51" selection-end-line="122" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/admin/css/bootstrap.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -988,18 +972,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/App/Views/Admin/Rooms/edit_room.html">
+    <entry file="file://$PROJECT_DIR$/App/Controllers/Admin/Rooms.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="11" column="5" lean-forward="false" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+        <state relative-caret-position="315">
+          <caret line="122" column="51" lean-forward="true" selection-start-line="122" selection-start-column="51" selection-end-line="122" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/Views/admin_base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/admin/css/mystyles.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="498">
-          <caret line="122" column="17" lean-forward="false" selection-start-line="122" selection-start-column="17" selection-end-line="122" selection-end-column="17" />
+        <state relative-caret-position="437">
+          <caret line="125" column="8" lean-forward="false" selection-start-line="125" selection-start-column="8" selection-end-line="125" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/Views/Admin/Rooms/check_room.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="17" column="7" lean-forward="false" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
           <folding />
         </state>
       </provider>

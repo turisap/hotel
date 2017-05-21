@@ -123,4 +123,7 @@ div.row.button {
     height: 100%;
 }
 
+.hidden {
+    visibility: hidden;
+}
 

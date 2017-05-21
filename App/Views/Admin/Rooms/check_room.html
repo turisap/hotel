@@ -1,0 +1,47 @@
+{% extends "admin_base.html" %}
+
+{% block title %} {{room.local_name}} {% endblock %}
+{% block page_heading %} {{room.local_name}} {% endblock %}
+{% block page_subheading %} edit {% endblock %}
+
+
+{% block body %}
+
+<script>
+
+    {% for picture in pictures %}
+    // When the user clicks on <div>, open the popup
+    $(document).ready(function () {
+        $('#cont-{{ picture.id }}').click(function () {
+            $('#{{ picture.id }}').toggleClass('hidden')
+        })
+    });
+    {% endfor %}
+</script>
+
+
+<h3>Room's photos</h3>
+<hr/>
+<div class="row wrap" >
+
+
+
+    {% for picture in pictures %}
+
+    <div id="cont-{{ picture.id }}">
+        <img src="{{ picture.path }}" class="img-thumbnail room-edit">
+        <div class="popup-text hidden" id="{{ picture.id }}">Text</div>
+    </div>
+
+    {% endfor %}
+
+</div>
+
+<div class="row wrap">
+    <h1>BOOKINGS</h1>
+</div>
+
+
+
+{% endblock %}
+

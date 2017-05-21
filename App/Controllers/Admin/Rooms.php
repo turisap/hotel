@@ -121,7 +121,7 @@ class Rooms extends \Core\Controller {
         //$pictures = Photo::
 
         // render template and pass the room object
-        View::renderTemplate('Admin/rooms/edit_room.html', ['room' => $room, 'pictures' => $pictures]);
+        View::renderTemplate('Admin/rooms/check_room.html', ['room' => $room, 'pictures' => $pictures]);
 
     }
 
