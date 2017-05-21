@@ -41,11 +41,11 @@ class Rooms extends \Core\Controller {
         $photos_objects = array();        // array for photos objects
 
         // save all photos which were attached while creating room
-        foreach ($photos as $photo) {
+        foreach ($photos as $key => $value) { // we use $key to assign 'main' property of each photo (virtually main is the first saved one)
 
-            $photo = new Photo($photo); // new instance on photo object for each photo with set of properties from FILES array
+            $photo = new Photo($value); // new instance on photo object for each photo with set of properties from FILES array
 
-            if ($photo->save($room_id)) {  // save using room_id as a foreigner key
+            if ($photo->save($room_id, $key)) {  // save using room_id as a foreigner key
                 $photo_errors[] = true;   // push false or true in errors array
             } else {
                 $photo_errors[] = false;
@@ -111,30 +111,6 @@ class Rooms extends \Core\Controller {
         View::renderTemplate('Admin/rooms/room.html', ['room' => $room]);
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public function test(){
-        print_r(Room::numberExists('001'));
-}
-
-
-
-
-
-
-
 
 
 

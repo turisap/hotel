@@ -62,7 +62,7 @@ class Photo extends \Core\Model {
     }
 
     // this function saves photos to the database
-    public function save($room_id){
+    public function save($room_id, $i){
 
         // first validate uploaded file
         $this->validatePhoto();
@@ -71,12 +71,15 @@ class Photo extends \Core\Model {
 
             $this->filename = time() . $this->name;
 
-            $sql = 'INSERT INTO ' . static::$db_table . ' (room_id, name, type, size) VALUES (:room_id, :name, :type, :size)';
+            $sql = 'INSERT INTO ' . static::$db_table . ' (room_id, main, name, type, size) VALUES (:room_id, :main, :name, :type, :size)';
             $db  = static::getDB();
 
             $stm = $db->prepare($sql);
 
+            $i = ($i === 0) ? true : false;
+
             $stm->bindValue(':room_id', $room_id, PDO::PARAM_INT);
+            $stm->bindValue(':main', $i, PDO::PARAM_INT);
             $stm->bindValue(':name', $this->filename, PDO::PARAM_STR);
             $stm->bindValue(':type', $this->type, PDO::PARAM_STR);
             $stm->bindValue(':size', $this->size, PDO::PARAM_INT);
