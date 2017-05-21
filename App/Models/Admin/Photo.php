@@ -69,7 +69,7 @@ class Photo extends \Core\Model {
 
         if(empty($this->errors_on_upload)){ // insert data only if array with errors is empty
 
-            $name = time() . $this->name;
+            $this->filename = time() . $this->name;
 
             $sql = 'INSERT INTO ' . static::$db_table . ' (room_id, name, type, size) VALUES (:room_id, :name, :type, :size)';
             $db  = static::getDB();
@@ -77,13 +77,13 @@ class Photo extends \Core\Model {
             $stm = $db->prepare($sql);
 
             $stm->bindValue(':room_id', $room_id, PDO::PARAM_INT);
-            $stm->bindValue(':name', $name, PDO::PARAM_STR);
+            $stm->bindValue(':name', $this->filename, PDO::PARAM_STR);
             $stm->bindValue(':type', $this->type, PDO::PARAM_STR);
             $stm->bindValue(':size', $this->size, PDO::PARAM_INT);
 
             $stm->execute();
 
-            $target_path = dirname(__DIR__, 3) . Config::DS . static::$upload_derictory . Config::DS . $name;
+            $target_path = dirname(__DIR__, 3) . Config::DS . static::$upload_derictory . Config::DS . $this->filename;
             if(file_exists($target_path)){
                 $this->errors_on_upload[] = 'This file already exists in this derictory';
                 return false;
@@ -121,6 +121,10 @@ class Photo extends \Core\Model {
             $this->errors_on_upload[] = $this->upload_errors_array[$this->error];
         }
 
+    }
+
+    public function pathToPicture(){
+        return static::$upload_derictory . Config::DS . $this->filename;
     }
 
 

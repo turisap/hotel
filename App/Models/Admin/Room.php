@@ -115,6 +115,49 @@ class Room extends \Core\Model {
     }
 
 
+    // returns array with all pictures and rooms objects
+    public static function findAllRoomsWithPhotos(){
+
+        // get all rooms
+        $rooms = static::findAll();
+
+
+
+        $rooms_with_photos = array(); // array for keeping pictures and photos objects together
+
+        foreach ($rooms as $room){
+
+            $set = array(); // array for each set of a room and respective pictures
+
+            $sql = 'SELECT * FROM photos WHERE room_id = :id';
+            $db  = static::getDB();
+
+            $stm = $db->prepare($sql);
+
+            $stm->bindValue(':id', $room->id, PDO::PARAM_INT);
+            //$stm->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+            $stm->execute();
+
+            $pictures = $stm->fetchAll();
+
+
+
+           $set = [
+                'room'     => $room,
+                'pictures' => $pictures
+            ];
+
+            $rooms_with_photos[] = $set;
+
+        }
+
+        return $rooms_with_photos;
+        //return (empty($rooms_with_photos[0])) ? false : $rooms_with_photos;
+
+
+
+    }
 
 
 

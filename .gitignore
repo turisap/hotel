@@ -1,1 +1,4 @@
-.idea/**
+dir_to_ignore/.idea/**
+dir_to_ignore/public/uploads/**
+dir_to_ignore/public/uploads/**/**
+dir_to_ignore/public/uploads/**/**/**

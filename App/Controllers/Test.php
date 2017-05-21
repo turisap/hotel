@@ -13,13 +13,14 @@ use App\Mail;
 use App\Models\Admin\Photo;
 use \App\Token;
 use App\Models\RememberedLogin;
+use App\Models\Admin\Room;
 
 
 class Test
 {
 
 
-    public static function test(){
+    /*public static function test(){
 
         print_r(Photo::test());
 
@@ -30,8 +31,13 @@ class Test
         $file_keys = array_keys($_FILES['photos']);
         print_r($file_count);
         echo '<br>';
-        print_r($file_keys);*/
+        print_r($file_keys);
 
+    }*/
+
+    public function test(){
+
+        print_r(Room::findAllRoomsWithPhotos());
     }
 
 

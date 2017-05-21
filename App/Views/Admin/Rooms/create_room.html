@@ -13,7 +13,8 @@
 
     // bootstrap upload files plugin
     $("#input-id").fileinput({
-        'multiple':true
+        multiple: true,
+        maxFileCount: 10
     });
 
 </script>
@@ -79,7 +80,6 @@
 {% block body %}
 
 {% if room.errors is not empty %}
-<p class="lead validation-errors">Errors</p>
 <ul>
     {% for error in room.errors %}
     <li class="validation-errors">{{ error }}</li>
@@ -88,7 +88,6 @@
 {% endif %}
 
 {% if photos is not empty %}
-<p class="lead validation-errors">Errors</p>
 <ul>
 
     {% for photo in photos %}
