@@ -208,6 +208,7 @@
             <div class="form-group col-lg-10">
                 <label for="cancelDays"  class=" required-field">Cancel days</label>
                 <select class="form-control" id="cancelDays" name="cancel_days">
+                    <option value="0" {% if room.cancel_days == 0 %} selected {% endif %}>No specified</option>
                     <option value="7" {% if room.cancel_days == 7 %} selected {% endif %}>7</option>
                     <option value="14" {% if room.cancel_days == 14 %} selected {% endif %}>14</option>
                     <option value="21" {% if room.cancel_days == 21 %} selected {% endif %}>21</option>
@@ -217,6 +218,7 @@
             <div class="form-group col-lg-10">
                 <label for="view"  class=" required-field">View</label>
                 <select class="form-control" id="view" name="view">
+                    <option value="0" {% if room.view == "0" %} selected {% endif %}>No specified</option>
                     <option value="Cityscape" {% if room.view == "Cityscape" %} selected {% endif %}>Cityscape</option>
                     <option value="Garden" {% if room.view == "Garden" %} selected {% endif %}>Garden</option>
                     <option value="Seaview" {% if room.view == "Seaview" %} selected {% endif %}>Seaview</option>
