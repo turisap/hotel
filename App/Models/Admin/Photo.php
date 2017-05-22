@@ -152,19 +152,28 @@ class Photo extends \Core\Model {
         $stm->bindValue(':id', $room_id, PDO::PARAM_INT);
 
 
-        if(($stm->execute()) === true){
+        if(($stm->execute())){
 
-            $pictures = $stm->fetch();
 
-            return $pictures;
+            if($main_photo_only){        // fetch all or only one row (for all_rooms page or for a particular room page)
+
+                $pictures = $stm->fetch();
+
+                return $pictures;
+
+            } else {
+                $pictures = $stm->fetchAll();
+
+                return $pictures;
+            }
+
+
 
         } else {
             // return a sample array with placeholder on failure instead of false to avoid further use 'false' as an array
             return false;
         }
-
-
-        return false;
+        
 
     }
 
