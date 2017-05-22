@@ -6,7 +6,7 @@
 
 
 {% block body %}
-
+<!--
 <script>
 
     {% for picture in pictures %}
@@ -22,12 +22,68 @@
 
     });
     {% endfor %}
+</script>               -->
+
+
+
+<script>
+
+
+
+    $(function() {
+
+        {% for picture in pictures %}
+
+        //----- OPEN
+        $('[data-popup-open]').on('click', function(e)  {
+            var targeted_popup_class = jQuery(this).attr('data-popup-open');
+            $('[data-popup="' + targeted_popup_class + '"]').fadeIn(350);
+
+            e.preventDefault();
+        });
+
+        //----- CLOSE
+        $('[data-popup-close]').on('click', function(e)  {
+            var targeted_popup_class = jQuery(this).attr('data-popup-close');
+            $('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
+
+            e.preventDefault();
+        });
+
+        {% endfor %}
+
+    });
+
+
+
 </script>
 
 
 <h3>Room's photos</h3>
 <hr/>
 <div class="row wrap" >
+
+    {% for picture in pictures %}
+
+    <a class="btn" data-popup-open="popup-{{ picture.id }}" href="#">Open Popup #1</a>
+
+    <div class="popup" data-popup="popup-{{ picture.id }}">
+        <div class="popup-inner">
+            <h2>Wow! This is Awesome! (Popup #{{ picture.id }})</h2>
+            <p>Donec in volutpat nisi. In quam lectus, aliquet rhoncus cursus a, congue et arcu. Vestibulum tincidunt neque id nisi pulvinar aliquam. Nulla luctus luctus ipsum at ultricies. Nullam nec velit dui. Nullam sem eros, pulvinar sed pellentesque ac, feugiat et turpis. Donec gravida ipsum cursus massa malesuada tincidunt. Nullam finibus nunc mauris, quis semper neque ultrices in. Ut ac risus eget eros imperdiet posuere nec eu lectus.</p>
+            <p><a data-popup-close="popup-1" href="#">Close</a></p>
+            <a class="popup-close" data-popup-close="popup-{{ picture.id }}" href="#">x</a>
+        </div>
+    </div>
+
+
+    {% endfor %}
+
+
+
+
+
+
 
 
 
@@ -39,6 +95,13 @@
     </div>
 
     {% endfor %}
+
+
+
+
+
+
+
 
 </div>
 
