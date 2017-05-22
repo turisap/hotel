@@ -11,24 +11,12 @@
 
 <script>
 
-    var photosNumber;
-
-    $(document).ready(function () {
-        // count the number of photos which is allowed to upload (10 altogether)
-        photosNumber = parseInt(10 - {{ pictures|length }});
-        //alert(photosNumber);
-
-
-
-
-    });
-
-    // bootstrap upload files plugin
+       // bootstrap upload files plugin MUST BE OUTSIDE OF document.ready
     $("#input-id").fileinput({
         multiple: true,
         maxFileCount: 10 - {{ pictures|length }},
         allowedFileExtensions: ["jpeg", "jpg", "png"]
-    });
+    })
 
 
 </script>
@@ -48,6 +36,10 @@
         $('[data-toggle=confirmation]').confirmation({
             rootSelector: '[data-toggle=confirmation]'
         });
+
+        // add a current room id to the query string of form action property
+        var roomId = getParameterByName('id');
+        $('#addPhotosForm').attr('action', '/admin/rooms/add-photos?id=' + roomId);
 
 
 
@@ -173,7 +165,7 @@
 
 <h3 class="head">Add photos</h3>
 <div class="row wrap">
-    <form  class="form-horizontal" id="addPhotosForm" method="post" enctype="multipart/form-data" action="/admin/photos/add-photos">
+    <form  class="form-horizontal" id="addPhotosForm" method="post" enctype="multipart/form-data">
         <label class="control-label">Select Files</label>
         <input id="input-id" name="photos[]" multiple type="file" class="file file-loading">
         <button type="submit" class="btn btn-primary" id="btn-add">Add photos</button>

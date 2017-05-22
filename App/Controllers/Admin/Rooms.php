@@ -136,6 +136,31 @@ class Rooms extends \Core\Controller {
 
     }
 
+    // this method adds photos to a room's  profile on edit page
+
+    public static function addPhotos(){
+
+        // first get room id from query string from form action property
+        $room_id = $_GET['id'] ?? false;
+
+
+        // get pictures data via POST array
+        $pictures = Photo::reArrayFiles($_FILES['photos']);
+
+        // and create picture objects out of them and push them into an array
+        $pictures_objects = array();
+        foreach($pictures as $picture){
+            $photo = new Photo($picture);
+            $pictures_objects[] = $photo;
+        }
+
+
+        if(Photo::addPhotos($room_id, $pictures_objects)){
+            View::renderTemplate('Admin/rooms/check_room.html');
+        }
+
+    }
+
 
 
 }

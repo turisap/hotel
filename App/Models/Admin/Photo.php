@@ -130,9 +130,14 @@ class Photo extends \Core\Model {
 
     }
 
+
+
     protected function pathToPicture(){
         return static::$path . Config::DS . $this->filename;
     }
+
+
+
 
     public static function findAllPhotosToONeRoom($room_id, $main_photo_only){
 
@@ -195,6 +200,24 @@ class Photo extends \Core\Model {
         return $stm->execute();
     }
 
+
+    // this method adds photos to an existing room
+    public static function addPhotos($room_id, $pictures){
+
+        // array for errors
+        $errors_on_update = array();
+
+        foreach ($pictures as $picture){
+
+           if($picture->save($room_id, true)){
+
+               $errors_on_update[] = true;
+
+           }
+
+        }
+
+    }
 
 
 
