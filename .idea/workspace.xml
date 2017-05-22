@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d0786124-98cb-4517-810f-6bc1a5eb252c" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/Controllers/Admin/Rooms.php" afterPath="$PROJECT_DIR$/App/Controllers/Admin/Rooms.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/Models/Admin/Photo.php" afterPath="$PROJECT_DIR$/App/Models/Admin/Photo.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/Views/Admin/Rooms/check_room.html" afterPath="$PROJECT_DIR$/App/Views/Admin/Rooms/check_room.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,8 +19,8 @@
       <file leaf-file-name="Rooms.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/App/Controllers/Admin/Rooms.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="503">
-              <caret line="162" column="9" lean-forward="false" selection-start-line="162" selection-start-column="9" selection-end-line="162" selection-end-column="9" />
+            <state relative-caret-position="351">
+              <caret line="146" column="46" lean-forward="false" selection-start-line="146" selection-start-column="46" selection-end-line="146" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -28,7 +29,7 @@
       <file leaf-file-name="Photo.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/App/Models/Admin/Photo.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
+            <state relative-caret-position="3515">
               <caret line="219" column="68" lean-forward="false" selection-start-line="219" selection-start-column="68" selection-end-line="219" selection-end-column="68" />
               <folding>
                 <marker date="1495441686881" expanded="true" signature="2368:2498" ph="INSERT INTO ${static::$db_table}... " />
@@ -41,8 +42,8 @@
       <file leaf-file-name="check_room.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/App/Views/Admin/Rooms/check_room.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="41" column="25" lean-forward="false" selection-start-line="41" selection-start-column="25" selection-end-line="41" selection-end-column="25" />
+            <state relative-caret-position="190">
+              <caret line="10" column="16" lean-forward="false" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -143,9 +144,9 @@
         <option value="$PROJECT_DIR$/App/Views/admin_base.html" />
         <option value="$PROJECT_DIR$/App/Views/Admin/Rooms/create_room.html" />
         <option value="$PROJECT_DIR$/public/admin/css/mystyles.css" />
+        <option value="$PROJECT_DIR$/App/Models/Admin/Photo.php" />
         <option value="$PROJECT_DIR$/App/Views/Admin/Rooms/check_room.html" />
         <option value="$PROJECT_DIR$/App/Controllers/Admin/Rooms.php" />
-        <option value="$PROJECT_DIR$/App/Models/Admin/Photo.php" />
       </list>
     </option>
   </component>
@@ -604,12 +605,12 @@
       <workItem from="1495155643685" duration="25628000" />
       <workItem from="1495194138443" duration="9661000" />
       <workItem from="1495240260643" duration="8487000" />
-      <workItem from="1495413023570" duration="25169000" />
+      <workItem from="1495413023570" duration="27800000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="311007000" />
+    <option name="totallyTimeSpent" value="313638000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1370" height="735" extended-state="0" />
@@ -1036,15 +1037,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/App/Views/Admin/Rooms/check_room.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="41" column="25" lean-forward="false" selection-start-line="41" selection-start-column="25" selection-end-line="41" selection-end-column="25" />
+        <state relative-caret-position="190">
+          <caret line="10" column="16" lean-forward="false" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/App/Models/Admin/Photo.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
+        <state relative-caret-position="3515">
           <caret line="219" column="68" lean-forward="false" selection-start-line="219" selection-start-column="68" selection-end-line="219" selection-end-column="68" />
           <folding>
             <marker date="1495441686881" expanded="true" signature="2368:2498" ph="INSERT INTO ${static::$db_table}... " />
@@ -1055,8 +1056,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/App/Controllers/Admin/Rooms.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="503">
-          <caret line="162" column="9" lean-forward="false" selection-start-line="162" selection-start-column="9" selection-end-line="162" selection-end-column="9" />
+        <state relative-caret-position="351">
+          <caret line="146" column="46" lean-forward="false" selection-start-line="146" selection-start-column="46" selection-end-line="146" selection-end-column="46" />
           <folding />
         </state>
       </provider>

@@ -143,6 +143,11 @@ class Rooms extends \Core\Controller {
         // first get room id from query string from form action property
         $room_id = $_GET['id'] ?? false;
 
+        // if FILES array is emply, redirect back
+        if($_FILES['photos']['name'][0] == ''){
+            self::redirect('/admin/rooms/room?id=' . $room_id);
+        }
+
 
         // get pictures data via POST array
         $pictures = Photo::reArrayFiles($_FILES['photos']);
