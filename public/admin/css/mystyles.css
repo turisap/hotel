@@ -177,8 +177,16 @@ div.row.button {
 }
 
 .popup-image {
-    width: 600px;
-    height: 330px;
+    width: 550px;
+    display:block;
+    margin:auto;
+    /*height: 330px;*/
+}
+
+.buttons{
+    width: 550px;
+    display: block;
+    margin: auto;
 }
 
 .btn-popup, #btn-add {
@@ -187,7 +195,6 @@ div.row.button {
 
 .btn-popup-right{
     float: right;
-    margin-right: 3%;
 }
 
 .head {
@@ -207,5 +214,5 @@ div.row.button {
 }
 
 .popup {
-    z-index: 10000 !important;
+    z-index: 1000 !important;
 }

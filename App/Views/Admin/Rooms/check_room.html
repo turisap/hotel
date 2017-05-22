@@ -152,16 +152,18 @@
             <h2>This is a secondary picture</h2>
             {% endif %}
 
-            <div >
+            <div>
                 <img class="popup-image" src="{{ picture.path }}" >
             </div>
 
+            <div class="buttons">
             <a class="btn btn-md btn-danger btn-popup btn-popup-left" data-toggle="confirmation" data-title="Delete this picture?" data-popout="true" data-placement="bottom"
                href="/admin/rooms/delete-photo?id={{ picture.id }}" >Delete</a>
 
             {% if picture.main == 0 %}
             <a class="btn btn-primary btn-md btn-popup btn-popup-right " id="{{ picture.id }}" >Set as main photo</a>
             {% endif %}
+            </div>
 
             <a class="popup-close" data-popup-close="popup-{{ picture.id }}" href="#">x</a>
         </div>
@@ -177,7 +179,7 @@
 <h3 class="head">Add photos</h3>
 <div class="row wrap">
     <form  class="form-horizontal" id="addPhotosForm" method="post" enctype="multipart/form-data">
-        <label class="control-label">Select Files</label>
+        <label class="control-label">Select Files <small style="color:darkred"><i>There shouldn't be more than 10 photos altogether</i></i></small></label>
         <input id="input-id" name="photos[]" multiple type="file" class="file file-loading">
         <button type="submit"  class="btn btn-primary" id="btn-add">Add photos</button>
     </form>
