@@ -217,6 +217,8 @@ class Photo extends \Core\Model {
 
         }
 
+        return in_array(1, $errors_on_update, false) ? true : false;
+
     }
 
 

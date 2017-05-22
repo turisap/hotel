@@ -154,9 +154,12 @@ class Rooms extends \Core\Controller {
             $pictures_objects[] = $photo;
         }
 
+        //print_r(Photo::addPhotos($room_id, $pictures_objects));
 
-        if(Photo::addPhotos($room_id, $pictures_objects)){
-            View::renderTemplate('Admin/rooms/check_room.html');
+
+       if(Photo::addPhotos($room_id, $pictures_objects)){
+            // redirect back to the original page on success
+            self::redirect('/admin/rooms/room?id=' . $room_id);
         }
 
     }
