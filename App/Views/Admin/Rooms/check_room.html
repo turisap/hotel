@@ -8,14 +8,70 @@
 {% block body %}
 
 
-<!-- ENABLE BOOTSTRAP BUTTON CONFIRMATION -->
+<!-- ENABLE BOOTSTRAP BUTTON CONFIRMATION AND AJAX -->
 <script>
 
     $(document).ready(function () {
+
         $('[data-toggle=confirmation]').confirmation({
             rootSelector: '[data-toggle=confirmation]'
         });
+
+
+
+        // get id from a clicked button to process it through ajax
+         $('.btn-popup-right').click(function () {
+
+            var pictureId = ($(this).attr('id'));
+            var roomId = getParameterByName('id');
+
+            // set picture as the main one
+            $.ajax({
+                url: '/admin/rooms/set-main-picture',
+                data: {
+                    picture_id: pictureId,
+                    room_id: roomId
+                },
+                type: 'POST',
+                success: function(data){
+
+                    if(!data.error){
+                        alert(pictureId);
+                        alert(roomId);
+                    }
+
+                }
+            });
+
+             alert(pictureId);
+             alert(roomId);
+
+        });
+
+
+
     });
+
+    // this function gets url parameter by name (we need id only)
+    function getParameterByName( name ){
+        var regexS = "[\\?&]"+name+"=([^&#]*)",
+            regex = new RegExp( regexS ),
+            results = regex.exec( window.location.search );
+        if( results == null ){
+            return "";
+        } else{
+            return decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+    }
+
+
+
+
+
+
+
+
+
 
 </script>
 
@@ -47,7 +103,7 @@
 </script>
 
 
-<h3>Room's photos</h3>
+<h3 class="head">Room's photos</h3>
 <hr/>
 <div class="row wrap" >
 
@@ -68,11 +124,11 @@
                 <img class="popup-image" src="{{ picture.path }}" >
             </div>
 
-            <a class="btn btn-md btn-danger btn-popup" data-toggle="confirmation" data-title="Delete this picture?" data-popout="true" data-placement="bottom"
+            <a class="btn btn-md btn-danger btn-popup btn-popup-left" data-toggle="confirmation" data-title="Delete this picture?" data-popout="true" data-placement="bottom"
                href="/admin/rooms/delete-photo?id={{ picture.id }}" >Delete</a>
 
             {% if picture.main == 0 %}
-            <a class="btn btn-primary btn-md btn-popup btn-popup-right " href="/admin/rooms/set-main-photo?id={{ picture.id }}">Make it main</a>
+            <a class="btn btn-primary btn-md btn-popup btn-popup-right " id="{{ picture.id }}" >Set as main photo</a>
             {% endif %}
 
             <a class="popup-close" data-popup-close="popup-{{ picture.id }}" href="#">x</a>

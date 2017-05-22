@@ -125,6 +125,15 @@ class Rooms extends \Core\Controller {
 
     }
 
+    // sets picture as a main one via ajax request from the room page
+    public static function setMainPicture(){
+
+        $picture_id = $_POST['picture_id'];
+        $room_id = $_POST['room_id'];
+        Photo::setPictureAsMain($picture_id, $room_id);
+
+    }
+
 
 
 }

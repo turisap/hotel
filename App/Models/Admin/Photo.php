@@ -157,6 +157,44 @@ class Photo extends \Core\Model {
 
     }
 
+    // sets photo as a main by id and unsets prev main one
+    public static function setPictureAsMain($picture_id, $room_id){
+
+        // check whether id's were supplied by AJAX request
+        if($picture_id !== null && $room_id !== null){
+
+            // first set old main photo main column to 0
+            if(static::unsetMainPhoto($room_id)){
+
+                // set chosen photo as main
+                $sql = 'UPDATE ' . static::$db_table . ' SET main = 1 WHERE id = :picture_id';
+                $db  = static::getDB();
+
+                $stm = $db->prepare($sql);
+                $stm->bindValue(':picture_id', $picture_id, PDO::PARAM_INT);
+
+                return $stm->execute();
+
+            }
+
+        }
+
+         return false;
+
+    }
+
+    // unsets main photo of a room
+    public static function unsetMainPhoto($room_id){
+
+        $sql = 'UPDATE ' . static::$db_table . ' SET main = 0 WHERE room_id = :room_id AND main = 1';
+        $db  = static::getDB();
+
+        $stm = $db->prepare($sql);
+        $stm->bindValue(':room_id', $room_id, PDO::PARAM_INT);
+
+        return $stm->execute();
+    }
+
 
 
 
