@@ -175,3 +175,16 @@ div.row.button {
     background:rgba(0,0,0,1);
     text-decoration:none;
 }
+
+.popup-image {
+    width: 600px;
+    height: 330px;
+}
+
+.btn-popup {
+    margin-top: 10px;
+}
+
+.btn-popup-right{
+    float: right;
+}
