@@ -57,7 +57,7 @@ abstract class Model
         $statament = $db->prepare($sql);
 
         $statament->bindValue(':id', $id, PDO::PARAM_STR);
-        $statament->execute();
+        return $statament->execute();
     }
 
     // returns everything from selected database table

@@ -16,6 +16,7 @@ class Photo extends \Core\Model {
 
     public $errors_on_upload = [];                          // array for saving error messages
     public static $db_table = 'photos';                     // database table
+    public static $column = 'id';
     protected static $upload_derictory = 'public\uploads\pictures\rooms'; // path to uploaded pictures
     protected static $path = '/uploads/pictures/rooms';
     public $upload_errors_array = array(

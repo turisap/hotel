@@ -178,6 +178,21 @@ class Rooms extends \Core\Controller {
 
     }
 
+    // deletes a photo from view room page
+    public static function deletePhoto(){
+
+        // first get id from the query string
+        $id = $_POST['picture_id'] ?? false;
+
+        // and delete  a photo based on that id
+        if($id){
+            if(Photo::delete($id)){
+                Flash::addMessage('Photo has been deleted');
+            }
+        }
+
+    }
+
 
 
 }

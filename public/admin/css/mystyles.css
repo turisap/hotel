@@ -177,8 +177,8 @@ div.row.button {
 }
 
 .popup-image {
-    width: 550px;
-    display:block;
+    width: 550px;     /* set only width in order to avoid distortion*/
+    display:block;   /* for aligning to center*/
     margin:auto;
     /*height: 330px;*/
 }
@@ -186,7 +186,7 @@ div.row.button {
 .buttons{
     width: 550px;
     display: block;
-    margin: auto;
+    margin: auto;    /* aligns buttons and photo due to same width and margin*/
 }
 
 .btn-popup, #btn-add {
@@ -214,5 +214,5 @@ div.row.button {
 }
 
 .popup {
-    z-index: 1000 !important;
+    z-index: 100000 !important;
 }

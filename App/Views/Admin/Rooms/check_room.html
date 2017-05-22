@@ -87,6 +87,40 @@
         });
 
 
+        // ajax for photo deletion
+       $('.btn-popup-left').click(function () {
+
+            // current picture id
+            var buttonId = ($(this).attr('id'));
+            var array    = buttonId.split('-');
+            var pictureId = parseInt(array[1]);
+            
+            // ajax
+            $.ajax({
+                url: '/admin/rooms/delete-photo',
+                data: {
+                    picture_id: pictureId
+                },
+                type: 'POST',
+                success: function(data){
+
+                    if(!data.error){
+
+                        //alert(data);
+
+
+                        location.reload(true);
+                    }
+
+                }
+            });
+
+            //alert(pictureId);
+
+
+        });
+
+
 
     });
 
@@ -157,8 +191,8 @@
             </div>
 
             <div class="buttons">
-            <a class="btn btn-md btn-danger btn-popup btn-popup-left" data-toggle="confirmation" data-title="Delete this picture?" data-popout="true" data-placement="bottom"
-               href="/admin/rooms/delete-photo?id={{ picture.id }}" >Delete</a>
+            <a class="btn btn-md btn-danger btn-popup btn-popup-left" id="delete-{{ picture.id }}" data-toggle="confirmation" data-title="Delete this picture?" data-popout="true" data-placement="top"
+               >Delete</a>
 
             {% if picture.main == 0 %}
             <a class="btn btn-primary btn-md btn-popup btn-popup-right " id="{{ picture.id }}" >Set as main photo</a>
