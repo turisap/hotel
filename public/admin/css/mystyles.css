@@ -127,3 +127,15 @@ div.row.button {
     visibility: hidden;
 }
 
+
+
+.popup-text {
+    width: 400px;
+    height: 400px;
+    position: fixed;
+    z-index: 1000000;
+    top: 30%;
+    left: 40%;
+    background-color: black;
+}
+

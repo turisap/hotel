@@ -13,8 +13,13 @@
     // When the user clicks on <div>, open the popup
     $(document).ready(function () {
         $('#cont-{{ picture.id }}').click(function () {
-            $('#{{ picture.id }}').toggleClass('hidden')
-        })
+            $('#{{ picture.id }}').fadeIn(350);
+        });
+        $('#{{ picture.id }}').click(function () {
+            $('#{{ picture.id }}').fadeOut(350);
+        });
+
+
     });
     {% endfor %}
 </script>
