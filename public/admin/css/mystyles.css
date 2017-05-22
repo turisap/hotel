@@ -181,8 +181,8 @@ div.row.button {
     height: 330px;
 }
 
-.btn-popup {
-    margin-top: 10px;
+.btn-popup, #btn-add {
+    margin-top: 10px !important;
 }
 
 .btn-popup-right{
@@ -192,4 +192,20 @@ div.row.button {
 
 .head {
     margin-left: 1%;
+}
+
+#main {
+    background-color: #feabaa;
+}
+
+.thumbs:hover {
+    background-color: #9b9b9b !important;
+}
+
+#add-photos {
+    z-index: 0 !important;
+}
+
+.popup {
+    z-index: 10000 !important;
 }

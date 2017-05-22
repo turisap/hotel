@@ -7,6 +7,28 @@
 
 {% block body %}
 
+<script>
+/*
+    var photosNumber;
+
+    $(document).ready(function () {
+        // count the number of photos which is allowed to upload (10 altogether)
+       photosNumber = parseInt(10 - {{ pictures|length }});
+       alert(photosNumber);
+
+
+        // bootstrap upload files plugin
+        $("#input-id").fileinput({
+            multiple: true,
+            maxFileCount: 1
+        });
+
+    });
+
+*/
+
+</script>
+
 
 <!-- ENABLE BOOTSTRAP BUTTON CONFIRMATION AND AJAX -->
 <script>
@@ -36,15 +58,18 @@
                 success: function(data){
 
                     if(!data.error){
-                        alert(pictureId);
-                        alert(roomId);
+                        //alert(data);
+                       // alert(pictureId);
+                       // alert(roomId);
+
+                        location.reload(true);
                     }
 
                 }
             });
 
-             alert(pictureId);
-             alert(roomId);
+             //alert(pictureId);
+             //alert(roomId);
 
         });
 
@@ -63,14 +88,6 @@
             return decodeURIComponent(results[1].replace(/\+/g, " "));
         }
     }
-
-
-
-
-
-
-
-
 
 
 </script>
@@ -103,13 +120,15 @@
 </script>
 
 
-<h3 class="head">Room's photos</h3>
+
 <hr/>
+<h3 class="head">Room's photos</h3>
 <div class="row wrap" >
+
 
     {% for picture in pictures %}
 
-    <a data-popup-open="popup-{{ picture.id }}" href="#"><img src="{{ picture.path }}" class="img-thumbnail room-edit"></a>
+    <a data-popup-open="popup-{{ picture.id }}"  href="#"><img src="{{ picture.path }}" {% if picture.main == 1 %} id="main" {% endif %}  class="img-thumbnail room-edit thumbs"></a>
 
     <div class="popup" data-popup="popup-{{ picture.id }}">
         <div class="popup-inner">
@@ -141,9 +160,21 @@
 
 </div>
 
+
+<h3 class="head">Add photos</h3>
+<div class="row wrap">
+    <form  class="form-horizontal" id="addPhotosForm" method="post" enctype="multipart/form-data" action="/admin/photos/add-photos">
+        <label class="control-label">Select Files</label>
+        <input id="input-id" name="photos[]" multiple type="file" class="file file-loading" data-allowed-file-extensions='["jpeg", "jpg", "png"]'>
+        <button type="submit" class="btn btn-primary" id="btn-add">Add photos</button>
+    </form>
+</div>
+
+
 <div class="row wrap">
     <h1>BOOKINGS</h1>
 </div>
+
 
 
 
