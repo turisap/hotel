@@ -44,6 +44,15 @@
         $('#addPhotosForm').attr('action', '/admin/rooms/add-photos?id=' + roomId);
 
 
+        // prevent form from submission if there is no file to upload
+        $('#btn-add').click(function () {
+            if ($('#input-id').get(0).files.length === 0) {
+                return false;
+            }
+        });
+
+
+
 
         // get id from a clicked button to process it through ajax
          $('.btn-popup-right').click(function () {
@@ -170,13 +179,14 @@
     <form  class="form-horizontal" id="addPhotosForm" method="post" enctype="multipart/form-data">
         <label class="control-label">Select Files</label>
         <input id="input-id" name="photos[]" multiple type="file" class="file file-loading">
-        <button type="submit" class="btn btn-primary" id="btn-add">Add photos</button>
+        <button type="submit"  class="btn btn-primary" id="btn-add">Add photos</button>
     </form>
 </div>
 
 
 <div class="row wrap">
     <h1>BOOKINGS</h1>
+    <h1>{{ pictures|length }}</h1>
 </div>
 
 

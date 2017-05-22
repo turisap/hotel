@@ -163,9 +163,18 @@ class Rooms extends \Core\Controller {
 
 
        if(Photo::addPhotos($room_id, $pictures_objects)){
+
             // redirect back to the original page on success
-            self::redirect('/admin/rooms/room?id=' . $room_id);
-        }
+            Flash::addMessage('Photos were added successfully');
+            self::redirect('/admin/rooms/room?id=' . $room_id); // query string
+
+        } else {
+
+           // inform user there were problems on upload
+           Flash::addMessage('There were problems on upload, please check photos in a room page');
+           self::redirect('/admin/rooms/room?id=' . $room_id); // query string
+
+       }
 
     }
 
