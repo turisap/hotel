@@ -10,14 +10,16 @@
 {% for set in sets %}
 
 <div class="row wrap">
-    {% for picture in set.pictures %}
+
 
 
     <div class="col-lg-3 col-md-3 col-sm-12 crop">
-            <img src="{{ picture.path }}" class="img-responsive img-rooms-all">
+            <img src="{{ set.pictures.path }}" class="img-responsive img-rooms-all">
     </div>
 
-    {% endfor %}
+
+
+
 
 
 

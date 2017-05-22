@@ -38,6 +38,16 @@ class Test
     public function test(){
 
         print_r(Room::findAllRoomsWithPhotos());
+/*
+        $array = Room::findAllRoomsWithPhotos();
+        $array2 = $array[0];
+        $d = 2;
+
+        if (is_array($d)){
+            echo 'ok';
+        } else {
+            echo 'her tebe';
+        }*/
     }
 
 

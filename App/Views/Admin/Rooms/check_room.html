@@ -94,7 +94,7 @@
             var buttonId = ($(this).attr('id'));
             var array    = buttonId.split('-');
             var pictureId = parseInt(array[1]);
-            
+
             // ajax
             $.ajax({
                 url: '/admin/rooms/delete-photo',
