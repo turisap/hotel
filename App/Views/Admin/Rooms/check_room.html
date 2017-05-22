@@ -5,29 +5,39 @@
 {% block page_subheading %} edit {% endblock %}
 
 
-{% block body %}
+{% block footer %}
+
+
 
 <script>
-/*
+
     var photosNumber;
 
     $(document).ready(function () {
         // count the number of photos which is allowed to upload (10 altogether)
-       photosNumber = parseInt(10 - {{ pictures|length }});
-       alert(photosNumber);
+        photosNumber = parseInt(10 - {{ pictures|length }});
+        //alert(photosNumber);
 
 
-        // bootstrap upload files plugin
-        $("#input-id").fileinput({
-            multiple: true,
-            maxFileCount: 1
-        });
+
 
     });
 
-*/
+    // bootstrap upload files plugin
+    $("#input-id").fileinput({
+        multiple: true,
+        maxFileCount: 10 - {{ pictures|length }},
+        allowedFileExtensions: ["jpeg", "jpg", "png"]
+    });
+
 
 </script>
+
+{% endblock %}
+
+
+{% block body %}
+
 
 
 <!-- ENABLE BOOTSTRAP BUTTON CONFIRMATION AND AJAX -->
@@ -165,7 +175,7 @@
 <div class="row wrap">
     <form  class="form-horizontal" id="addPhotosForm" method="post" enctype="multipart/form-data" action="/admin/photos/add-photos">
         <label class="control-label">Select Files</label>
-        <input id="input-id" name="photos[]" multiple type="file" class="file file-loading" data-allowed-file-extensions='["jpeg", "jpg", "png"]'>
+        <input id="input-id" name="photos[]" multiple type="file" class="file file-loading">
         <button type="submit" class="btn btn-primary" id="btn-add">Add photos</button>
     </form>
 </div>
