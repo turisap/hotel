@@ -242,14 +242,43 @@ class Rooms extends \Core\Controller {
 
             }
 
-
-
         } else {
             Flash::addMessage('This room probably doesn\'t exist', Flash::INFO);
             self::redirect('/admin/rooms/all-rooms');
         }
     }
 
+
+    // this method renders edit room page
+    public function editRoomAction(){
+
+        // get room's id from get request first
+        $room_id = $_GET['id'] ?? false;
+
+        if($room_id){
+
+            // find a room based on that id
+            $room = Room::findById($room_id);
+            // and all pictures to that room
+            $pictures = Photo::findAllPhotosToONeRoom($room_id, false);
+
+            // render the page and pass room object to it
+            View::renderTemplate('admin/rooms/edit_room.html', ['room' => $room, 'pictures' => $pictures]);
+
+        } else { // if there is no room with such an id
+            Flash::addMessage('This room probably doesn\'t exist', Flash::INFO);
+            self::redirect('/admin/rooms/all-rooms');
+        }
+
+
+    }
+
+
+    public function updateRoom(){
+
+        $data = 0;
+
+    }
 
 
 }

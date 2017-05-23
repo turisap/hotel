@@ -223,3 +223,18 @@ div.row.button {
     position: absolute;
     right: 50px;
 }
+
+/*=============================== STYLES FOR EDIT ROOM PAGE ============================== */
+
+#wrap-update {
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px 0 0;
+    height: 250px;
+}
+
+#room-number {
+    text-align: left !important;
+    padding-left: 5%;
+}
+
