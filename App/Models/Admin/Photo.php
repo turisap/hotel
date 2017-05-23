@@ -239,6 +239,7 @@ class Photo extends \Core\Model {
     }
 
 
+    // this method deletes images from upload folder
     public static function unlinkImages($filename){
         return unlink(static::$path_to_unlink . $filename);
     }
