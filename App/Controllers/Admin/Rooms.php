@@ -222,20 +222,31 @@ class Rooms extends \Core\Controller {
             if($room){
 
                 $photos = Photo::findAllPhotosToONeRoom($room_id, false);
-                print_r($photos);
 
-               /* // if array isn't empty delete all photos
-                if(count($photos) > 0){
-                    foreach ($photos as $photo){
-                        Photo::delete($photo[])
+
+                // delete room (ALL RECORDS ABOUT PHOTOS ARE DELETED AUTOMATICALLY)
+                Room::delete($room_id);
+
+                // delete images from uploads folder (record from the database deleted automatically)
+                if(count($photos) > 0){ // if there are images
+
+                    foreach ($photos as $photo) {
+                        Photo::unlinkImages($photo['name']);
                     }
-                }*/
+
+                }
+
+                Flash::addMessage('Room has been deleted');
+                self::redirect('/admin/rooms/all-rooms');
+
+
             }
 
 
 
         } else {
-            echo '<h1>HUI</h1>' . $id;
+            Flash::addMessage('This room probably doesn\'t exist', Flash::INFO);
+            self::redirect('/admin/rooms/all-rooms');
         }
     }
 

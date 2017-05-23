@@ -19,6 +19,7 @@ class Photo extends \Core\Model {
     public static $column = 'id';
     protected static $upload_derictory = 'public\uploads\pictures\rooms'; // path to uploaded pictures
     protected static $path = '/uploads/pictures/rooms';
+    protected static $path_to_unlink = 'uploads/pictures/rooms/';
     public $upload_errors_array = array(
 
 
@@ -151,8 +152,6 @@ class Photo extends \Core\Model {
 
         $stm->bindValue(':id', $room_id, PDO::PARAM_INT);
 
-        // if, for example, we find photos for deletion purposes set fetch mode as class
-       
 
 
         if(($stm->execute())){
@@ -237,6 +236,11 @@ class Photo extends \Core\Model {
 
         return in_array(0, $errors_on_update, false) ? false : true;
 
+    }
+
+
+    public static function unlinkImages($filename){
+        return unlink(static::$path_to_unlink . $filename);
     }
 
 
