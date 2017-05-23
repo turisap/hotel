@@ -290,7 +290,7 @@ class Rooms extends \Core\Controller {
                 // redirect to check room page on successful redirect
                 if($room->save(true, $room_id)){
 
-                    View::renderTemplate('/admin/rooms/check_room.html?id='. $room_id);
+                    self::redirect('/admin/rooms/edit-room?id='.$room_id);
 
                 } else {
                     // if there is no room id (or wrong one) in query string

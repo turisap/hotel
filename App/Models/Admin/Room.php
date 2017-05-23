@@ -52,9 +52,9 @@ class Room extends \Core\Model {
 
             } else {
 
-                $sql = 'UPDATE ' . static::$db_table . 'SET (room_number = :room_number, local_name = :local_name, num_beds = :num_beds, num_rooms = :num_rooms,
+                $sql = 'UPDATE ' . static::$db_table . ' SET room_number = :room_number, local_name = :local_name, num_beds = :num_beds, num_rooms = :num_rooms,
                 num_guests = :num_guests, view = :view, description = :description, area = :area, class = :class, cancel_days = :cancel_days,
-                children = :children, pets = :pets, aircon = :aircon, smoking = :smoking, tv = :tv) WHERE id = :id';
+                children = :children, pets = :pets, aircon = :aircon, smoking = :smoking, tv = :tv WHERE id = :id';
 
             }
 
@@ -78,7 +78,7 @@ class Room extends \Core\Model {
             $stm->bindValue(':tv', $tv, PDO::PARAM_INT);
             if($update){$stm->bindValue(':id', $room_id, PDO::PARAM_INT);}
 
-            if( ! $update) {
+            if(!$update) {
                 return $stm->execute() ? $db->lastInsertId() : false;    // return the last inserted id on success and false on failure
             } else {
                 return $stm->execute();
