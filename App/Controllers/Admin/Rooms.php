@@ -280,16 +280,20 @@ class Rooms extends \Core\Controller {
         $data    = $_POST ?? false;
         $room_id = $_GET['id'] ?? false;
 
+        //print_r($data);
+
 
 
         if($data){
 
             if($room_id){
 
-                $room = new Room($data);
-                // redirect to check room page on successful redirect
-                if($room->save(true, $room_id)){
+                $room = new Room();
 
+                // redirect to check room page on successful redirect
+                if($room->updateRoom($data, $room_id)){
+
+                    Flash::addMessage('Changes were saved');
                     self::redirect('/admin/rooms/edit-room?id='.$room_id);
 
                 } else {
