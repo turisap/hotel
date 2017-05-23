@@ -151,6 +151,9 @@ class Photo extends \Core\Model {
 
         $stm->bindValue(':id', $room_id, PDO::PARAM_INT);
 
+        // if, for example, we find photos for deletion purposes set fetch mode as class
+       
+
 
         if(($stm->execute())){
 

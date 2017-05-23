@@ -211,13 +211,27 @@ class Rooms extends \Core\Controller {
 
     public static function deleteRoom(){
 
-        $id = $_GET['id'];
+        $room_id = $_GET['id'];
 
-        if($id){
+        if($room_id){
 
+            // get a room object
+            $room = Room::findById($room_id);
 
-            echo '<h1>there is an id</h1>' . $id;
-            //$room = Room::findById($id);
+            // get all photos to it
+            if($room){
+
+                $photos = Photo::findAllPhotosToONeRoom($room_id, false);
+                print_r($photos);
+
+               /* // if array isn't empty delete all photos
+                if(count($photos) > 0){
+                    foreach ($photos as $photo){
+                        Photo::delete($photo[])
+                    }
+                }*/
+            }
+
 
 
         } else {
