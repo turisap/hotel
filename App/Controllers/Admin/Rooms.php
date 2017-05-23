@@ -294,12 +294,12 @@ class Rooms extends \Core\Controller {
                 if($room->updateRoom($data, $room_id)){
 
                     Flash::addMessage('Changes were saved');
-                    self::redirect('/admin/rooms/edit-room?id='.$room_id);
+                    self::redirect('/admin/rooms/room?id='.$room_id);
 
                 } else {
                     // if there is no room id (or wrong one) in query string
                     Flash::addMessage('Unsuccessful saving', Flash::DANGER);
-                    self::redirect('/admin/rooms/edit-room?id='.$room_id);
+                    self::redirect('/admin/rooms/edroom?id='.$room_id);
                 }
 
             } else {
