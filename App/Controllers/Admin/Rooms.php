@@ -114,14 +114,31 @@ class Rooms extends \Core\Controller {
     public function roomAction(){
 
         // find room by it's id via get request
-        $room = Room::findById($_GET['id']);
-        $pictures = Photo::findAllPhotosToONeRoom($room->id, false);
+        $room_id = $_GET['id'] ?? false;
 
-        // find all pictures for this room
-        //$pictures = Photo::
+        if($room_id){
 
-        // render template and pass the room object
-        View::renderTemplate('Admin/rooms/check_room.html', ['room' => $room, 'pictures' => $pictures]);
+            // find a room
+            $room = Room::findById($room_id);
+
+            if($room){
+                // find all pictures for this room
+                $pictures = Photo::findAllPhotosToONeRoom($room->id, false);
+                // render template and pass the room object
+                View::renderTemplate('Admin/rooms/check_room.html', ['room' => $room, 'pictures' => $pictures, 'room_id' => $room_id]);
+
+            } else { // no room found
+
+                Flash::addMessage('such a room does\'t exist');
+                self::redirect('/admin/rooms/all-rooms');
+
+            }
+
+
+        } else {
+            Flash::addMessage('there was an error accessing the room');
+            self::redirect('/admin/rooms/all-rooms');
+        }
 
     }
 
@@ -137,7 +154,6 @@ class Rooms extends \Core\Controller {
     }
 
     // this method adds photos to a room's  profile on edit page
-
     public static function addPhotos(){
 
         // first get room id from query string from form action property
@@ -191,6 +207,22 @@ class Rooms extends \Core\Controller {
             }
         }
 
+    }
+
+    public static function deleteRoom(){
+
+        $id = $_GET['id'];
+
+        if($id){
+
+
+            echo '<h1>there is an id</h1>' . $id;
+            //$room = Room::findById($id);
+
+
+        } else {
+            echo '<h1>HUI</h1>' . $id;
+        }
     }
 
 

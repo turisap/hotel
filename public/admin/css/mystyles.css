@@ -219,7 +219,7 @@ div.row.button {
     z-index: 100000 !important;
 }
 
-#edit-button {
-    position:relative;
-    left: 78%;
+#edit-room-button {               /*get button to the rigth */
+    position: absolute;
+    right: 50px;
 }
