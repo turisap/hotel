@@ -22,10 +22,12 @@
 <script>
 
 
+
+
     //form validation using jQuery Validate plagin
     $(document).ready(function() {
 
-
+    var roomId = '{{ room.id }}';
 
         $("#createRoomForm").validate({
             rules: {
@@ -36,7 +38,16 @@
                 room_number:{
                     required: true,
                     minlength: 1,
-                    remote: '/admin/rooms/validate-room'
+                    remote: {
+                        url: '/admin/rooms/validate-room',
+                        data: {
+                            ignore_id: function () {
+                                return roomId;           // this is for remote request in account/validate-email
+                            }
+                        
+                    }
+
+                    }
                 },
                 area:{
                     required: true,
@@ -91,7 +102,7 @@
 
 
 
-<form class="form-horizontal" id="createRoomForm" method="post" enctype="multipart/form-data" action="/admin/rooms/update-room">
+<form class="form-horizontal" id="createRoomForm" method="post" enctype="multipart/form-data" action="/admin/rooms/update-room?id={{ room.id }}">
 
     <div class="row wrap">
 

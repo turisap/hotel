@@ -28,7 +28,7 @@ class Room extends \Core\Model {
     }
 
     // saves room in the database
-    public function save(){
+    public function save($update = false, $room_id = null){
 
         // validate data first
         $this->validateData();
@@ -44,10 +44,19 @@ class Room extends \Core\Model {
             $smoking = isset($this->smoking) ? $this->smoking : 0;
             $tv = isset($this->tv) ? $this->tv : 0;
 
-            $sql = 'INSERT INTO ' . static::$db_table . ' (room_number, local_name, num_beds, num_rooms, num_guests, view,
-             description, area, class, cancel_days, children, pets, aircon, smoking, tv) VALUES (:room_number, :local_name,
-              :num_beds, :num_rooms, :num_guests, :view, :description, :area, :class, :cancel_days, :children, :pets,
-              :aircon, :smoking, :tv)';
+            if( ! $update){
+                $sql = 'INSERT INTO ' . static::$db_table . ' (room_number, local_name, num_beds, num_rooms, num_guests, view,
+                description, area, class, cancel_days, children, pets, aircon, smoking, tv) VALUES (:room_number, :local_name,
+                :num_beds, :num_rooms, :num_guests, :view, :description, :area, :class, :cancel_days, :children, :pets,
+                :aircon, :smoking, :tv)';
+
+            } else {
+
+                $sql = 'UPDATE ' . static::$db_table . 'SET (room_number = :room_number, local_name = :local_name, num_beds = :num_beds, num_rooms = :num_rooms,
+                num_guests = :num_guests, view = :view, description = :description, area = :area, class = :class, cancel_days = :cancel_days,
+                children = :children, pets = :pets, aircon = :aircon, smoking = :smoking, tv = :tv) WHERE id = :id';
+
+            }
 
             $db = static::getDB();
             $stm = $db->prepare($sql);
@@ -67,8 +76,14 @@ class Room extends \Core\Model {
             $stm->bindValue(':aircon', $aircon, PDO::PARAM_INT);
             $stm->bindValue(':smoking', $smoking, PDO::PARAM_INT);
             $stm->bindValue(':tv', $tv, PDO::PARAM_INT);
+            if($update){$stm->bindValue(':id', $room_id, PDO::PARAM_INT);}
 
-            return $stm->execute() ? $db->lastInsertId() : false;    // return the last inserted id on success and false on failure
+            if( ! $update) {
+                return $stm->execute() ? $db->lastInsertId() : false;    // return the last inserted id on success and false on failure
+            } else {
+                return $stm->execute();
+            }
+
 
         }
 
@@ -102,17 +117,25 @@ class Room extends \Core\Model {
     }
 
     // checks whether there is a room with such a number in the database through ajax from create room form
-    public static function numberExists($number){
+    public static function numberExists($number, $id_ignore = null){
 
         $sql = 'SELECT * FROM ' . static::$db_table . ' WHERE room_number = :room_number';
         $db  = static::getDB();
 
         $stm = $db->prepare($sql);
-        $stm->bindValue(':room_number', $number, PDO::PARAM_STR);
+        $stm->bindValue(':room_number', $number, PDO::PARAM_INT);
+        $stm->setFetchMode(PDO::FETCH_CLASS, get_called_class());
 
         $stm->execute();
 
-        return $stm->fetch();
+        $room = $stm->fetch();
+
+
+        if($room && $room->id != $id_ignore){
+            return true;
+        }
+
+        return false;
 
     }
 
@@ -160,6 +183,51 @@ class Room extends \Core\Model {
 
 
     }
+
+
+    /*public function updateRoom($data, $room_id){
+
+        // first assign data from POST to the object's properties
+        $this->local_name  = $data['local_name'];
+        $this->room_number = $data['room_number'];
+        $this->area        = $data['area'];
+        $this->description = $data['description'];
+        $this->beds        = $data['beds'];
+        $this->rooms       = $data['rooms'];
+        $this->guests      = $data['guests'];
+        $data['class'] == 0 ? $this->class = 'No specified' : $this->class = $data['class'];
+        $data['cancel_days'] == 0 ? $this->cancel_days = 'No specified' : $this->cancel_days = $data['cancel_days'];
+        $data['view'] == 0 ? $this->view = 'No specified' : $this->view = $data['view'];
+        isset($data['pets']) ? $this->pets = 1 : $this->pets = 0;
+        isset($data['aircon']) ? $this->aircon = 1 : $this->aircon = 0;
+        isset($data['smoking']) ? $this->children = 1 : $this->children = 0;
+        isset($data['tv']) ? $this->tv = 1 : $this->tv = 0;
+
+        $sql = 'UPDATE INTO ' . static::$db_table . ' (room_number, local_name, num_beds, num_rooms, num_guests, view,
+             description, area, class, cancel_days, children, pets, aircon, smoking, tv) VALUES (:room_number, :local_name,
+              :num_beds, :num_rooms, :num_guests, :view, :description, :area, :class, :cancel_days, :children, :pets,
+              :aircon, :smoking, :tv) WHERE id = :id';
+
+        $db  = static::getDB();
+        $stm = $db->prepare($sql);
+
+        $stm->bindValue(':room_number', $this->room_number, PDO::PARAM_STR);
+        $stm->bindValue(':local_name', $this->local_name, PDO::PARAM_STR);
+        $stm->bindValue(':num_beds', $this->beds, PDO::PARAM_INT);
+        $stm->bindValue(':num_rooms', $this->rooms, PDO::PARAM_INT);
+        $stm->bindValue(':num_guests', $this->guests, PDO::PARAM_INT);
+        $stm->bindValue(':view', $this->view, PDO::PARAM_STR);
+        $stm->bindValue(':description', $this->description, PDO::PARAM_STR);
+        $stm->bindValue(':area', $this->area, PDO::PARAM_INT);
+        $stm->bindValue(':class', $this->class, PDO::PARAM_STR);
+        $stm->bindValue(':cancel_days', $this->cancel_days, PDO::PARAM_INT);
+        $stm->bindValue(':children', $children, PDO::PARAM_INT);
+        $stm->bindValue(':pets', $pets, PDO::PARAM_INT);
+        $stm->bindValue(':aircon', $aircon, PDO::PARAM_INT);
+        $stm->bindValue(':smoking', $smoking, PDO::PARAM_INT);
+        $stm->bindValue(':tv', $tv, PDO::PARAM_INT);
+
+    }*/
 
 
 

@@ -90,7 +90,7 @@ class Rooms extends \Core\Controller {
     // this method validates uniqueness of an room number entered to the create room form
     public static function validateRoom(){
 
-        $is_valid = ! Room::numberExists((string)$_GET['room_number']);
+        $is_valid = ! Room::numberExists((int)$_GET['room_number'], $_GET['ignore_id'] ?? null);
 
          // get request from profile/edit
         header('Content-type: application/json'); //
@@ -276,7 +276,43 @@ class Rooms extends \Core\Controller {
 
     public function updateRoom(){
 
-        $data = 0;
+        // first get data from the form
+        $data    = $_POST ?? false;
+        $room_id = $_GET['id'] ?? false;
+
+
+
+        if($data){
+
+            if($room_id){
+
+                $room = new Room($data);
+                // redirect to check room page on successful redirect
+                if($room->save(true, $room_id)){
+
+                    View::renderTemplate('/admin/rooms/check_room.html?id='. $room_id);
+
+                } else {
+                    // if there is no room id (or wrong one) in query string
+                    Flash::addMessage('Unsuccessful saving', Flash::DANGER);
+                    self::redirect('/admin/rooms/edit-room?id='.$room_id);
+                }
+
+            } else {
+
+                // if there is no room id in query string
+                Flash::addMessage('There was probably no such a room', Flash::INFO);
+                self::redirect('/admin/rooms/edit-room?id='.$room_id);
+
+            }
+
+        } else {
+
+            // if no data is given througn the POST array
+            Flash::addMessage('There were problems access entered data', Flash::INFO);
+            self::redirect('/admin/rooms/edit-room?id='.$room_id);
+
+        }
 
     }
 
