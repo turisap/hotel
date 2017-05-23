@@ -129,14 +129,14 @@ class Rooms extends \Core\Controller {
 
             } else { // no room found
 
-                Flash::addMessage('such a room does\'t exist');
+                Flash::addMessage('such a room does\'t exist', Flash::INFO);
                 self::redirect('/admin/rooms/all-rooms');
 
             }
 
 
         } else {
-            Flash::addMessage('there was an error accessing the room');
+            Flash::addMessage('there was an error accessing the room', Flash::DANGER);
             self::redirect('/admin/rooms/all-rooms');
         }
 

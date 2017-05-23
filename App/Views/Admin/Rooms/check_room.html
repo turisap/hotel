@@ -38,7 +38,7 @@
 <h3 class="head">Room's photos</h3>
 <div class="row wrap" >
 
-    <!-- SETTING href FOR BUTTONS AND FORM LOOK AT check_room.js -->
+
 
     {% for picture in pictures %}
 
@@ -79,7 +79,7 @@
 
 <h3 class="head">Add photos</h3>
 <div class="row wrap">
-    <form  class="form-horizontal" id="addPhotosForm" method="post" enctype="multipart/form-data">
+    <form  class="form-horizontal" id="addPhotosForm" method="post" enctype="multipart/form-data" action="/admin/rooms/add-photos?id={{ room_id }}">
         <label class="control-label">Select Files <small style="color:darkred"><i>There shouldn't be more than 10 photos altogether</i></i></small></label>
         <input id="input-id" name="photos[]" multiple type="file" class="file file-loading">
         <button type="submit"  class="btn btn-primary" id="btn-add">Add photos</button>
@@ -93,7 +93,7 @@
 </div>
 
 <div class="row wrap">
-        <a class="btn btn-danger"  id="delete-room-button" data-toggle="confirmation" data-title="Delete this room?" data-popout="true" data-placement="button">Delete this room</a>
+        <a href="/admin/rooms/delete-room?id={{ room_id }}" class="btn btn-danger"  id="delete-room-button" data-toggle="confirmation" data-title="Delete this room?" data-popout="true" data-placement="button">Delete this room</a>
         <a class="btn btn-primary" id="edit-room-button">Edit room</a>
 </div>
 

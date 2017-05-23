@@ -8,12 +8,12 @@ $(document).ready(function () {
         rootSelector: '[data-toggle=confirmation]'
     });
 
-    // add a current room id to the query string of form action property
+   /* // add a current room id to the query string of form action property
     var roomId = getParameterByName('id');
     $('#addPhotosForm').attr('action', '/admin/rooms/add-photos?id=' + roomId);
 
     // add a current room id to the query string of edit and delete room buttons
-    $('#delete-room-button').attr('href', '/admin/rooms/add-photos?id=' + roomId);
+    $('#delete-room-button').attr('href', '/admin/rooms/add-photos?id=' + roomId);*/
 
 
     // prevent form from submission if there is no file to upload
