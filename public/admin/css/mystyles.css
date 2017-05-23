@@ -117,6 +117,7 @@ div.row.button {
     margin-top: 10px;
 }
 
+
 .wrap {
     display: flex;
     flex-direction: row;
@@ -216,4 +217,9 @@ div.row.button {
 
 .popup {
     z-index: 100000 !important;
+}
+
+#edit-button {
+    position:relative;
+    left: 78%;
 }

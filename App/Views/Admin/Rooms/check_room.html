@@ -167,8 +167,6 @@
 </script>
 
 
-
-<hr/>
 <h3 class="head">Room's photos</h3>
 <div class="row wrap" >
 
@@ -223,6 +221,11 @@
 <div class="row wrap">
     <h1>BOOKINGS</h1>
     <h1>{{ pictures|length }}</h1>
+</div>
+
+<div class="row wrap">
+        <a href="/admin/rooms/delete-room?id={{ picture.room_id }}" class="btn btn-danger"  data-toggle="confirmation" data-title="Delete this room?" data-popout="true" data-placement="button">Delete this room</a>
+        <a href="/admin/rooms/edit?id={{ picture.room_id }}" class="btn btn-primary" id="edit-button">Edit room</a>
 </div>
 
 
