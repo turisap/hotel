@@ -103,22 +103,22 @@ abstract class Search extends \Core\Model {
         // subcategory is the first element of the post array (but it also may contain strings)
         if($category == 'class' || $category == 'view'){ // these categories contain only strings
 
-            $string = true;
+            $string = true; // set it to true in order to use further to decide whether to bind value (view or class search)
 
-            $subcategory = $data[$category];
+            $subcategory = $data[$category]; // like data['view']
 
             // add catigory and subcategory to sql statement
-            $where_list[] = $category . ' = :subcategory';
+            $where_list[] = $category . ' = :subcategory'; // combine array with for where clause
 
             // but these categories contains strings and numbers (which we need)
         } elseif($category == 'room_number' || $category == 'num_guests' || $category == 'num_beds' || $category == 'num_rooms'){
 
-            $string = false;
+            $string = false;  // set it to false if we obtain int from room number or other string( we don't need to bind values)
 
             preg_match('!\d+!', $data[$category], $matches);
             $subcategory = $matches[0];
             // add catigory and subcategory to sql statement
-            $where_list[] = $category . ' = ' . $subcategory;
+            $where_list[] = $category . ' = ' . $subcategory;    // combine array with for where clause
 
         }
 
@@ -134,14 +134,14 @@ abstract class Search extends \Core\Model {
 
         if( ! ($category == 'room_number') ){
 
-            !$pets ?: $where_list[] = ' pets = 1';
+            !$pets ?: $where_list[] = ' pets = 1';    // combine array with for where clause
             !$aircon ?: $where_list[] = ' aircon = 1';
             !$smoking ?: $where_list[] = ' smoking = 1';
             !$children ?: $where_list[] = ' children = 1';
             !$tv ?: $where_list[] .= ' tv = 1 ';
         }
 
-        $where_clause = implode(' AND ', $where_list);
+        $where_clause = implode(' AND ', $where_list); // implode collected array with AND clause
         $sql .= $where_clause;
 
 
@@ -149,7 +149,7 @@ abstract class Search extends \Core\Model {
         $db  = static::getDB();
         $stm = $db->prepare($sql);
 
-        $string = (isset($string) && $string) ? true : false;
+        $string = (isset($string) && $string) ? true : false; // if it was set and is true make it true and false otherwise
 
         if($string){
             $stm->bindValue(':subcategory', $subcategory, PDO::PARAM_STR);
@@ -163,6 +163,127 @@ abstract class Search extends \Core\Model {
         $stm->execute();
 
         return $stm->fetchAll();
+
+    }
+
+
+    // this method creates a search sentence_list based on
+    public static function assemblySearchsentence($data){
+
+        // first get a category from the POST array
+        $category = array_keys($data)[0];
+        // then get the subcategory
+        $subcategory = $data[$category];
+
+        // data from checkboxes
+        $pets = $data['pets'] ?? false;
+        $aircon = $data['aircon'] ?? false;
+        $smoking = $data['smoking'] ?? false;
+        $children = $data['children'] ?? false;
+        $tv = $data['tv'] ?? false;
+
+
+        // array for sentence_list elements
+        $sentence_list = array();
+
+
+        switch ($category) {
+            case "class":
+                $sentence_list[] = 'You are looking for accommodation with';
+                $sentence_list[] = 'class,';
+                break;
+            case "room_number":
+                $sentence_list[] = 'You are looking for accommodation by its number';
+                break;
+            case "view":
+                $sentence_list[] = 'You are looking for accommodation with';
+                $sentence_list[] = 'view,';
+                break;
+            case "num_guests":
+                $sentence_list[] = 'You are looking for accommodation with maximum number of';
+                break;
+            case "num_beds":
+                $sentence_list[] = 'You are looking for accommodation with';
+                break;
+            case "num_rooms":
+                $sentence_list[] = 'You are looking for accommodation with';
+                break;
+            default:
+                return false;
+        }
+
+                switch ($subcategory) {
+                    case "Budget":
+                        $sentence_list[] = 'budget';
+                        break;
+                    case "Premium":
+                        $sentence_list[] = 'premium';
+                        break;
+                    case "Lux":
+                        $sentence_list[] = 'lux';
+                        break;
+                    case "Delux":
+                        $sentence_list[] = 'delux';
+                        break;
+                    case "Cityscape":
+                        $sentence_list[] = 'a cityscape';
+                        break;
+                    case "Garden":
+                        $sentence_list[] = 'a garden';
+                        break;
+                    case "Seaview":
+                        $sentence_list[] = 'a sea';
+                        break;
+                    case "2 guests":
+                        $sentence_list[] = '2 guests,';
+                        break;
+                    case "4 guests":
+                        $sentence_list[] = '4 guests,';
+                        break;
+                    case "6 guests":
+                        $sentence_list[] = '6 guests,';
+                        break;
+                    case "1 bed":
+                        $sentence_list[] = '2 guests,';
+                        break;
+                    case "2 beds":
+                        $sentence_list[] = '2 beds,';
+                        break;
+                    case "6 beds":
+                        $sentence_list[] = '3 beds,';
+                        break;
+                    case "1 room":
+                        $sentence_list[] = '1 beds,';
+                        break;
+                    case "2 rooms":
+                        $sentence_list[] = '2 beds,';
+                        break;
+                    case "3 rooms":
+                        $sentence_list[] = '3 beds,';
+                        break;
+
+                    default:
+                        return false;
+                }
+
+       //
+        if(count($sentence_list) == 3){
+            $out = array_splice($sentence_list, 1, 1);
+            $sentence_list[] = $out[0];
+        }
+
+
+        !$pets ?: $sentence_list[] = 'with pets allowed,';
+        !$aircon ?: $sentence_list[] = 'with aircon,';
+        !$smoking ?: $sentence_list[] = 'with smoking allowed,';
+        !$children ?: $sentence_list[] = 'with facilities for children,';
+        !$tv ?: $sentence_list[] = 'and with TV set';
+
+        
+        // create a sentence_list out of the array
+        $sentence = implode(' ', $sentence_list);
+
+        return $sentence;
 
     }
 
