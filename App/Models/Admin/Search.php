@@ -108,7 +108,7 @@ abstract class Search extends \Core\Model {
             $subcategory = $data[$category];
 
             // add catigory and subcategory to sql statement
-            $sql .= $category . ' = :subcategory';
+            $where_list[] = $category . ' = :subcategory';
 
             // but these categories contains strings and numbers (which we need)
         } elseif($category == 'room_number' || $category == 'num_guests' || $category == 'num_beds' || $category == 'num_rooms'){
@@ -118,7 +118,7 @@ abstract class Search extends \Core\Model {
             preg_match('!\d+!', $data[$category], $matches);
             $subcategory = $matches[0];
             // add catigory and subcategory to sql statement
-            $sql .= $category . ' = ' . $subcategory;
+            $where_list[] = $category . ' = ' . $subcategory;
 
         }
 
@@ -133,22 +133,29 @@ abstract class Search extends \Core\Model {
         $tv       = $data['tv'] ?? false;
 
         if( ! ($category == 'room_number') ){
-            $sql .= ' AND ';
-            $pets ? $sql .= ' pets = 1 AND ' : $sql .= ' pets = 0 AND';
-            $aircon ? $sql .= ' aircon = 1 AND ' : $sql .= ' aircon = 0 AND';
-            $smoking ? $sql .= ' smoking = 1 AND' : $sql .= ' smoking = 0 AND';
-            $children ? $sql .= ' children = 1 AND' : $sql .= ' children = 0 AND';
-            $tv ? $sql .= ' tv = 1 ' : $sql .= ' tv = 0';
+
+            !$pets ?: $where_list[] = ' pets = 1';
+            !$aircon ?: $where_list[] = ' aircon = 1';
+            !$smoking ?: $where_list[] = ' smoking = 1';
+            !$children ?: $where_list[] = ' children = 1';
+            !$tv ?: $where_list[] .= ' tv = 1 ';
         }
+
+        $where_clause = implode(' AND ', $where_list);
+        $sql .= $where_clause;
 
 
 
         $db  = static::getDB();
         $stm = $db->prepare($sql);
 
+        $string = (isset($string) && $string) ? true : false;
+
         if($string){
             $stm->bindValue(':subcategory', $subcategory, PDO::PARAM_STR);
         }
+
+        //return $sql;
 
         //return $sql;
         $stm->setFetchMode(PDO::FETCH_CLASS, '\App\Models\Admin\Room');
