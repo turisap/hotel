@@ -14,7 +14,7 @@ use PDO;
 
 abstract class Search extends \Core\Model {
 
-    public static $view_types = ['Sityscape', 'Garden', 'Seaview'];
+    public static $view_types = ['Cityscape', 'Garden', 'Seaview'];
     public static $class_types = ['Budget', 'Premium', 'Delux', 'Lux'];
     public static $guests_number = ['2 guests', '4 guests', '6 guests'];
     public static $beds_number = ['1 bed', '2 beds', '3 beds'];
@@ -103,18 +103,28 @@ abstract class Search extends \Core\Model {
         // subcategory is the first element of the post array (but it also may contain strings)
         if($category == 'class' || $category == 'view'){ // these categories contain only strings
 
+            $string = true;
+
             $subcategory = $data[$category];
+
+            // add catigory and subcategory to sql statement
+            $sql .= $category . ' = :subcategory';
 
             // but these categories contains strings and numbers (which we need)
         } elseif($category == 'room_number' || $category == 'num_guests' || $category == 'num_beds' || $category == 'num_rooms'){
 
+            $string = false;
+
             preg_match('!\d+!', $data[$category], $matches);
             $subcategory = $matches[0];
+            // add catigory and subcategory to sql statement
+            $sql .= $category . ' = ' . $subcategory;
+
         }
 
 
-        // add catigory and subcategory to sql statement
-        $sql .= $category . ' = ' . $subcategory;
+
+
 
         $pets     = $data['pets'] ?? false;
         $aircon   = $data['aircon'] ?? false;
@@ -132,7 +142,20 @@ abstract class Search extends \Core\Model {
         }
 
 
-        return $sql;
+
+        $db  = static::getDB();
+        $stm = $db->prepare($sql);
+
+        if($string){
+            $stm->bindValue(':subcategory', $subcategory, PDO::PARAM_STR);
+        }
+
+        //return $sql;
+        $stm->setFetchMode(PDO::FETCH_CLASS, '\App\Models\Admin\Room');
+
+        $stm->execute();
+
+        return $stm->fetchAll();
 
     }
 

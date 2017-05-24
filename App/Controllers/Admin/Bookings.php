@@ -55,15 +55,13 @@ class Bookings extends \Core\Controller {
         // first get data from the POST array
         $data = $_POST ?? false;
 
-        //print_r($data);
+        // if there is data from form
+        if($data){
 
-        print_r(Search::findCustomSearch($data));
+                // if search was successful
+            print_r(Search::findCustomSearch($data));
 
-        /*if($data){
-
-            Search::findCustomSearch($data);
-
-         }*/
+        }
     }
 
 

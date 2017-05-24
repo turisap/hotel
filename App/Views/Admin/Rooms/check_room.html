@@ -82,7 +82,7 @@
         <ul class="list-group">
             <li class="list-group-item">Days for cancellation before check in: {{ room.cancel_days }} </li>
             <li class="list-group-item list-group-item-{% if room.children == 1 %}success{% else %}danger{% endif %}">Children: {% if room.children == 1 %} allowed {% else %} no allowed {% endif %}</li>
-            <li class="list-group-item list-group-item-{% if room.pets == 1 %}success{% else %}danger{% endif %}">Pets: {% if pets.pets == 1 %} allowed {% else %} no allowed {% endif %}</li>
+            <li class="list-group-item list-group-item-{% if room.pets == 1 %}success{% else %}danger{% endif %}">Pets: {% if room.pets == 1 %} allowed {% else %} no allowed {% endif %}</li>
             <li class="list-group-item list-group-item-{% if room.smoking == 1 %}success{% else %}danger{% endif %}">Smoking: {% if room.smoking == 1 %} allowed {% else %} no allowed {% endif %}</li>
             <li class="list-group-item list-group-item-{% if room.aircon == 1 %}success{% else %}danger{% endif %}">Air conditioning: {% if room.aircon == 1 %} present {% else %} no present {% endif %}</li>
             <li class="list-group-item list-group-item-{% if room.tv == 1 %}success{% else %}danger{% endif %}">TV set: {% if room.tv == 1 %} present {% else %} no present {% endif %}</li>
