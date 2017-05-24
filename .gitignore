@@ -14,6 +14,7 @@ dir_to_ignore/public/uploads/**/**/**
 *.jpeg
 *.jpg
 *.png
+*.xml
 
 # Packages #
 ############
