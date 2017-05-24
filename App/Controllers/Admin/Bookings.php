@@ -10,6 +10,7 @@ namespace App\Controllers\Admin;
 
 
 use App\Flash;
+use App\Models\Admin\Photo;
 use App\Models\Admin\Search;
 use Core\View;
 
@@ -55,18 +56,33 @@ class Bookings extends \Core\Controller {
         // first get data from the POST array
         $data = $_POST ?? false;
 
-        print_r(Search::assemblySearchsentence($data));
-
-        /*// if there is data from form
+        // if there is data from form
         if($data){
 
-            $custom_search_results = Search::findCustomSearch($data);
+            $results = Search::findCustomSearch($data);
             // if search was successful create a sentence about user's search (like 'Your search was rooms with city view and aircon)
-            if($custom_search_results){
-                $search_sentence = Search::assemblySearchSentence($data);
+            if($results){
+
+                $results_with_photos = array(); // array for found rooms with photos
+
+                // for each room found append data about main photo to display in search results
+                foreach ($results as $key => $value){
+                    $photo = Photo::findAllPhotosToONeRoom($value->id, true);
+                    $results_with_photos[] = array_merge((array)$value, $photo);
+                }
+
+               $search_sentence = Search::assemblySearchSentence($data);
+                View::renderTemplate('admin/bookings/find_room.html', [
+                    'rooms' => $results_with_photos,
+                    'sentence' => $search_sentence
+                ]);
+
             }
 
-        }*/
+        } else {
+            Flash::addMessage('There was a problem processing your request, please try again');
+            View::renderTemplate('admin/bookings/find_room.html');
+        }
     }
 
 

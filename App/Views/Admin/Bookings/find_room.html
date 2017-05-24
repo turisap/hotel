@@ -150,9 +150,60 @@
                     </div>
                 </div>
             </div>
-</form>
+    </form>
+</div>
+
+<br>
+<hr/>
+<br>
+
+<div class="row" >
+    <h3 id="sentence" class="lead">{% if sentence is not empty %} {{ sentence }} {% endif %}</h3>
+</div>
+
+{% for room in rooms %}
+<div class="row wrap">
 
 
+
+    <div class="col-lg-3 col-md-3 col-sm-12 crop">
+        <img src="{{ room.path }}" class="img-responsive img-rooms-all">
+    </div>
+
+
+
+
+
+
+
+    <div class="col-lg-3 col-md-3 col-sm-12 info">
+        <ul class="list-group">
+            <li class="list-group-item">Room number: {{ room.room_number }}</li>
+            <li class="list-group-item">Class: {{ room.class }}</li>
+            <li class="list-group-item">View: {{ room.view }}</li>
+            <li class="alert alert-danger list-group-item">Upcoming guest!</li>
+        </ul>
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-12 room-name">
+
+        <div class="row room-name">
+            <a href="/admin/rooms/room?id={{ set.room.id }}"><h3 class="room-name">{{ room.local_name }}</h3></a>
+        </div>
+        <div class="row bookings">
+            <div class="booking">Test</div>
+            <div class="booking">Test</div>
+            <div class="booking">Test</div>
+            <div class="booking">Test</div>
+        </div>
+
+    </div>
+
+
+
+
+</div>
+{% endfor %}
 
 
 
