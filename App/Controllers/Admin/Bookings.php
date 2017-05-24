@@ -30,7 +30,7 @@ class Bookings extends \Core\Controller {
 
     }
 
-    // get request from selectboxes in search room
+    // get request from selectboxes in search room page and renders template with subcategories in the second selectbox
     public function searchCategoriesAction(){
 
         // get data from post (category)
@@ -47,6 +47,23 @@ class Bookings extends \Core\Controller {
             View::renderTemplate('Admin/bookings/find_room.html', ['subcategories' => $subcategories, 'category' => $category]);
 
         }
+    }
+
+    // process search form on submission (apply button)
+    public static function searchRoomsAction(){
+
+        // first get data from the POST array
+        $data = $_POST ?? false;
+
+        //print_r($data);
+
+        print_r(Search::findCustomSearch($data));
+
+        /*if($data){
+
+            Search::findCustomSearch($data);
+
+         }*/
     }
 
 

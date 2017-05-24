@@ -80,24 +80,24 @@
             <div class="form-group">
                 <label for="searchOptions">Find a room by:</label>
                 <select class="form-control" name="categories" id="searchOptions">
-                    <option value="by_class" {% if category == 'by_class' %} selected {% endif %}>By class</option>
-                    <option value="by_num" {% if category == 'by_num' %} selected {% endif %}>By number</option>
-                    <option value="by_view" {% if category == 'by_view' %} selected {% endif %}>By view</option>
-                    <option value="by_guests_num" {% if category == 'by_guests_num' %} selected {% endif %}>By guests number</option>
-                    <option value="by_beds_num" {% if category == 'by_beds_num' %} selected {% endif %}>By beds number</option>
-                    <option value="by_rooms_num" {% if category == 'by_rooms_num' %} selected {% endif %}>By rooms number</option>
-                    <option value="all" {% if category == 'all' %} selected {% endif %}>All rooms</option>
+                    <option value="" {% if not category %} selected {% endif %}>Please choose a category</option>
+                    <option value="room_number" {% if category == 'room_number' %} selected {% endif %}>By room number</option>
+                    <option value="class" {% if category == 'class' %} selected {% endif %}>By class</option>
+                    <option value="view" {% if category == 'view' %} selected {% endif %}>By view</option>
+                    <option value="num_guests" {% if category == 'num_guests' %} selected {% endif %}>By guests number</option>
+                    <option value="num_beds" {% if category == 'num_beds' %} selected {% endif %}>By beds number</option>
+                    <option value="num_rooms" {% if category == 'num_rooms' %} selected {% endif %}>By the number of rooms</option>
                 </select>
             </div>
             </form>
         </div>
 
-
+        <form class="form-horizontal" method="post"  action="/admin/bookings/search-rooms">
         <div class="col-lg-5 col-md-5 col-sm-12 right-input">
 
             <div class="form-group">
-                <label for="searchOptions">Please select a subcategory now</label>
-                <select class="form-control" >
+                <label for="searchOptions">Please select a subcategory now and apply search terms</label>
+                <select name="{{ category }}" class="form-control" >
                     {% if subcategories is not empty %}
 
                         {% for subcategory in subcategories %}
@@ -113,8 +113,8 @@
 
     </div>
 
-    <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="row wrap checkboxes">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 checkboxes">
 
                 <div id="checkboxes">
 
@@ -143,13 +143,14 @@
 
 
 
-<div class="row button">
-    <div class="form-group">
-        <div class="col-sm-10">
-            <button type="submit" class="btn btn-primary">Apply</button>
-        </div>
-    </div>
-</div>
+            <div class="row button">
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <button type="submit" class="btn btn-primary">Apply</button>
+                    </div>
+                </div>
+            </div>
+</form>
 
 
 

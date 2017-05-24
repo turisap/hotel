@@ -37,7 +37,7 @@ class Test
     }*/
 
     public function test(){
-        print_r(Search::findSearchCategories('by_num'));
+        print_r(Search::findSearchSubcategories('all'));
     }
 
 
