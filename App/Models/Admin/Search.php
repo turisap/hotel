@@ -282,6 +282,7 @@ abstract class Search extends \Core\Model {
         
         // create a sentence_list out of the array
         $sentence = implode(' ', $sentence_list);
+        $sentence = substr($sentence, 0, -1);
 
         return $sentence;
 
