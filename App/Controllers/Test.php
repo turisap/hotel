@@ -11,6 +11,7 @@ namespace App\Controllers;
 use \App\Authentifiacation;
 use App\Mail;
 use App\Models\Admin\Photo;
+use App\Models\Admin\Search;
 use \App\Token;
 use App\Models\RememberedLogin;
 use App\Models\Admin\Room;
@@ -36,8 +37,7 @@ class Test
     }*/
 
     public function test(){
-
-        print_r(Room::numberExists(002, 19));
+        print_r(Search::findSearchCategories('by_num'));
     }
 
 

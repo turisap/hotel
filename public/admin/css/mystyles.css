@@ -238,3 +238,15 @@ div.row.button {
     padding-left: 5%;
 }
 
+
+/*================================ CREATE BOOKING PAGE =================================*/
+
+.search {
+    height: 100px !important;
+}
+
+.right-input {
+    position: absolute;
+    right: 3%;
+}
+

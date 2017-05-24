@@ -1,0 +1,164 @@
+{% extends "admin_base.html" %}
+
+{% block title %}Find a room {% endblock %}
+{% block page_heading %} Find a room {% endblock %}
+{% block page_subheading %} <a href="/admin/bookings/all">all bookings</a> {% endblock %}
+
+
+
+{% block footer %}
+<!-- AJAX TO GET CATEGORIES OF ROOMS ON CHOOSEN TYPE -->
+<script>
+
+    $('#searchOptions').change(function () {
+
+       $('#searchForm').submit();
+
+
+
+      /*  $.ajax({
+            url: '/admin/bookings/find-search-categories',
+            data: {
+                selectbox_value: selectedCategory
+            },
+            type: 'POST',
+            success: function(data){
+
+                if(!data.error) {
+                    alert(data);
+                }
+
+            }
+        });*/
+
+
+    })
+</script>
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+{% block body %}
+
+
+
+
+
+
+
+
+    <h3 class="head">You can find a room by name or it's number</h3>
+    <div class="row wrap search">
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xm-12 search">
+            <form class="form-horizontal" method="post"  action="#">
+            <div class="form-group">
+                <label for="roomNameBooking">Name of the room</label>
+                <input type="text" class="form-control" id="roomNameBooking">
+            </div>
+            </form>
+        </div>
+
+    </div>
+
+
+
+
+
+    <h3 class="head">Or you can find a room by specifying it's parametrs</h3>
+    <div class="row wrap search">
+
+        <div class="col-lg-5 col-md-5 col-sm-12 ">
+            <form class="form-horizontal" method="post"  id="searchForm"  action="/admin/bookings/search-categories">
+            <div class="form-group">
+                <label for="searchOptions">Find a room by:</label>
+                <select class="form-control" name="categories" id="searchOptions">
+                    <option value="by_class" {% if category == 'by_class' %} selected {% endif %}>By class</option>
+                    <option value="by_num" {% if category == 'by_num' %} selected {% endif %}>By number</option>
+                    <option value="by_view" {% if category == 'by_view' %} selected {% endif %}>By view</option>
+                    <option value="by_guests_num" {% if category == 'by_guests_num' %} selected {% endif %}>By guests number</option>
+                    <option value="by_beds_num" {% if category == 'by_beds_num' %} selected {% endif %}>By beds number</option>
+                    <option value="by_rooms_num" {% if category == 'by_rooms_num' %} selected {% endif %}>By rooms number</option>
+                    <option value="all" {% if category == 'all' %} selected {% endif %}>All rooms</option>
+                </select>
+            </div>
+            </form>
+        </div>
+
+
+        <div class="col-lg-5 col-md-5 col-sm-12 right-input">
+
+            <div class="form-group">
+                <label for="searchOptions">Please select a subcategory now</label>
+                <select class="form-control" >
+                    {% if subcategories is not empty %}
+
+                        {% for subcategory in subcategories %}
+                        <option value="{{ subcategory }}">{{ subcategory }}</option>
+                        {% endfor %}
+
+                    {% endif %}
+                </select>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                <div id="checkboxes">
+
+                    <label class="checkbox-inline">
+                        <input type="checkbox" {% if room.pets != 0 %}checked="checked" {% endif %}  name="pets" value="1">Pets allowed
+                    </label>
+                    <label class="checkbox-inline">
+                        <input name="aircon" type="checkbox" value="1" {% if room.aircon != 0 %}checked="checked" {% endif %}>Aircon
+                    </label>
+                    <label class="checkbox-inline">
+                        <input name="smoking" type="checkbox" value="1" {% if room.smoking != 0 %}checked="checked" {% endif %}>Smoking alowed
+                    </label>
+                    <label class="checkbox-inline">
+                        <input name="children" type="checkbox" value="1" {% if room.children != 0 %}checked="checked" {% endif %}>Children allowed
+                    </label>
+                    <label class="checkbox-inline">
+                        <input name="tv" type="checkbox" value="1" {% if room.tv != 0 %}checked="checked" {% endif %}>TV set
+                    </label>
+
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
+<div class="row button">
+    <div class="form-group">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Apply</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
