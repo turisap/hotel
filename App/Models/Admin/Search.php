@@ -266,7 +266,7 @@ abstract class Search extends \Core\Model {
                         return false;
                 }
 
-       //
+       // change places of category and subcategory
         if(count($sentence_list) == 3){
             $out = array_splice($sentence_list, 1, 1);
             $sentence_list[] = $out[0];
@@ -282,11 +282,86 @@ abstract class Search extends \Core\Model {
         
         // create a sentence_list out of the array
         $sentence = implode(' ', $sentence_list);
+        // delete last comma
         $sentence = substr($sentence, 0, -1);
 
         return $sentence;
 
     }
+
+
+    // this method finds rooms by an approximate room name entered by user
+    public static function findByRoomName($search_terms){
+
+         // search by whole sentence
+        $search_terms = $search_terms ?? false;
+
+        // if keyword checkbox was checked and input wasn't empty
+        if( ! empty($search_terms)){
+
+            // first get rid of possible commas (change them with spaces)
+            $search_terms = str_replace(',', ' ', $search_terms);
+            // explode to separate words
+            $search_list = explode(' ', $search_terms);
+
+            // array for clean search words
+            $search_words = array();
+
+            // get rid of possible white spaces and add sql commands
+            $count = 0;
+            foreach($search_list as $item){
+                if(!empty($item)){
+                    $search_words[] = " local_name LIKE :item" . $count . " ";
+                    $count++;
+                }
+            }
+
+            $where_clause = implode(' OR ', $search_words);
+
+
+            $sql = 'SELECT * FROM rooms WHERE ' . $where_clause;
+
+            $db = static::getDB();
+
+            $stm = $db->prepare($sql);
+
+            // bind values of all search words
+            foreach ($search_list as $key => $value){
+                $stm->bindValue(':item' . $key, '%' . $value . '%', PDO::PARAM_STR);
+            }
+
+            $stm->execute();
+
+            return $stm->fetchAll();
+
+
+        }
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

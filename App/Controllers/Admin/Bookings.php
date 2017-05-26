@@ -11,9 +11,9 @@ namespace App\Controllers\Admin;
 
 use App\Flash;
 use App\Models\Admin\Photo;
-use App\Models\Admin\Search;
 use Core\View;
 use App\Models\Admin\Room;
+use \App\Models\Admin\Search;
 
 class Bookings extends \Core\Controller {
 
@@ -86,10 +86,53 @@ class Bookings extends \Core\Controller {
         }
     }
 
-    /*
-    public static function checkAction(){
-        print_r(Room::findById(18));
-    }*/
+
+    // this method processes search request from find by name input
+    public function findByRoomName(){
+
+        // first get data from the POST array
+        $search_terms = $_POST['search_by_name'] ?? false;
+
+
+        if($search_terms){
+
+            $results = Search::findByRoomName($search_terms);
+
+            if($results && !empty($results)){
+                View::renderTemplate('admin/bookings/find_room.html', ['rooms' => $results]);
+
+            } else {
+                Flash::addMessage('Nothing was found', Flash::INFO);
+                self::redirect('/admin/bookings/findByRoomName');
+            }
+
+        } else {
+
+            // redirect back on failure with a message
+            Flash::addMessage('There was a problem processing your requests, please try again');
+            View::renderTemplate('admin/bookings/find_room.html', ['search' => $search_terms]);
+
+        }
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
