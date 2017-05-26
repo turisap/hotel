@@ -330,6 +330,8 @@ abstract class Search extends \Core\Model {
                 $stm->bindValue(':item' . $key, '%' . $value . '%', PDO::PARAM_STR);
             }
 
+            $stm->setFetchMode(PDO::FETCH_CLASS, 'App\Models\Admin\Room');
+
             $stm->execute();
 
             return $stm->fetchAll();

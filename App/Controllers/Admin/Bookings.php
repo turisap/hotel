@@ -99,7 +99,18 @@ class Bookings extends \Core\Controller {
             $results = Search::findByRoomName($search_terms);
 
             if($results && !empty($results)){
-                View::renderTemplate('admin/bookings/find_room.html', ['rooms' => $results]);
+
+
+                // array for keeping results (rooms and their main photos)
+                $results_with_photos = array();
+
+                // for each room found append data about main photo to display in search results
+                foreach ($results as $key => $value){
+                    $photo = Photo::findAllPhotosToONeRoom($value->id, true);
+                    $results_with_photos[] = array_merge((array)$value, $photo);
+                }
+
+                View::renderTemplate('admin/bookings/find_room.html', ['rooms' => $results_with_photos]);
 
             } else {
                 Flash::addMessage('Nothing was found', Flash::INFO);

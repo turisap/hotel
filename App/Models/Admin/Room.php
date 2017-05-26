@@ -90,7 +90,7 @@ class Room extends \Core\Model {
             $this->errors[] = 'Please enter a room number';
         }
 
-        if(static::numberExists($this->room_number, $this->id)){
+        if(static::numberExists($this->room_number, $this->id = null)){
             $this->errors[] = 'This room number is already taken';
         }
 
