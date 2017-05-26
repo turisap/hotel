@@ -21,7 +21,11 @@
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
+            {% if current_user.admin == 1 %}
+            <a class="navbar-brand" href="/admin/home/index">Admin</a>
+            {% else %}
             <a class="navbar-brand" href="/">MyHotel</a>
+            {% endif %}
         </div>
         <ul class="nav navbar-nav">
             <li><a href="#">Page 2</a></li>

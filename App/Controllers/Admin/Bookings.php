@@ -13,6 +13,7 @@ use App\Flash;
 use App\Models\Admin\Photo;
 use App\Models\Admin\Search;
 use Core\View;
+use App\Models\Admin\Room;
 
 class Bookings extends \Core\Controller {
 
@@ -84,6 +85,11 @@ class Bookings extends \Core\Controller {
             View::renderTemplate('admin/bookings/find_room.html');
         }
     }
+
+    /*
+    public static function checkAction(){
+        print_r(Room::findById(18));
+    }*/
 
 
 
