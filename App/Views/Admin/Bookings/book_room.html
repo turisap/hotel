@@ -33,7 +33,7 @@
             startDate: checkInDate,
             todayHighlight: true,
             autoclose: true,
-            format: 'dd/mm/yyyy'
+            format: 'yyyy/mm/dd'
         });
 
         // set checkout date from tomorrow
@@ -44,7 +44,7 @@
         $('#checkout').datepicker({
             startDate: checkOutDate,
             autoclose: true,
-            format: 'dd/mm/yyyy'
+            format: 'yyyy/mm/dd'
         });
 
 
@@ -146,14 +146,14 @@
                 </div>
                 <div class="form-group  bookings">
                     <label for="first_name">First Name</label>
-                    <input type="text" class="form-control" name="first_name" id="first_name">
+                    <input type="text" class="form-control" name="first_name" value="{{ current_user.first_name }}" id="first_name">
                 </div>
             </div>
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-sm-12">
                 <div class="form-group  bookings">
                     <label for="last_name">Last Name</label>
-                    <input type="text" class="form-control" name="last_name" id="last_name">
+                    <input type="text" class="form-control" value="{{ current_user.last_name }}" name="last_name" id="last_name">
                 </div>
                 <div class="form-group  bookings">
                     <label for="guests">Number of guests:</label>
@@ -283,6 +283,10 @@
             </div>
             </div>
         </div>
+
+        <!-- HIDDEN INPUTS FOR POSTING ROOM'S ID AND CURRENT USER'S ID  -->
+        <input type="hidden" name="user_id" value="{{ current_user.id }}">
+        <input type="hidden" name="room_id" value="{{ room.id }}">
 
 
 

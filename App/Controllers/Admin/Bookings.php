@@ -10,6 +10,7 @@ namespace App\Controllers\Admin;
 
 
 use App\Flash;
+use App\Models\Admin\Booking;
 use App\Models\Admin\Photo;
 use Core\View;
 use App\Models\Admin\Room;
@@ -142,7 +143,9 @@ class Bookings extends \Core\Controller {
 
             if($room){
                 // render template with room on success
-                View::renderTemplate('admin/bookings/book_room.html', ['room' => $room]);
+                View::renderTemplate('admin/bookings/book_room.html', [
+                    'room' => $room  // room object
+                ]);
 
             } else {
                 Flash::addMessage('There is no such a room', Flash::INFO);
@@ -154,13 +157,29 @@ class Bookings extends \Core\Controller {
             $this->redirect('/admin/bookings/create');
         }
 
+
     }
 
     // process book room form and crate a booking
     public function newBooking(){
 
         // get data from POST array
-        $data = $_POST;
+        $data = $_POST ?? false;
+        //print_r($data);
+
+        if($data){
+
+            // create a new Booking object based on POST data
+
+            $booking = new Booking($data);
+
+            // call Booking model's method to create a record in the database and proceed on success
+            if($booking->newBooking()){
+
+                echo '<h1>TROLOLO</h1>';
+
+            }
+        }
 
 
     }
