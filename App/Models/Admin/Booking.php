@@ -99,7 +99,7 @@ class Booking extends \Core\Model {
         }
 
         // validation of bookings overlapping
-        if( ! ($this->datesBooked($this->checkin, $this->checkout))){
+        if(($this->datesBooked($this->checkin, $this->checkout))){
             $this->errors[] = 'Sorry but these dates are already booked';
         }
 
@@ -137,7 +137,6 @@ class Booking extends \Core\Model {
     // check only checkin date in order not to proceed with checkout date if its in the range of an existing booking
     public static function isBookedCheckinDate($checkin, $room_id){
 
-        $checkin = strtotime($checkin);
 
         // first find all bookings to a particular room
         $bookings = self::findAllBookingsToONeRoom($room_id);
@@ -166,8 +165,6 @@ class Booking extends \Core\Model {
     // this method checks whether check out date hits other bookings ranges
     public static function isBookedCheckOutDate($checkout, $room_id){
 
-        $checkout = strtotime($checkout);
-
         // first find all bookings to a particular room
         $bookings = self::findAllBookingsToONeRoom($room_id);
 
@@ -178,7 +175,7 @@ class Booking extends \Core\Model {
             foreach($bookings as $booking){
 
                 // if checkout date later than a booking's checkin and earlier than it's checkout
-                if ($checkout >= strtotime($booking->checkin) && $checkout <= strtotime($booking->checkout) ){
+                if ($checkout > strtotime($booking->checkin) && $checkout <= strtotime($booking->checkout) ){
                     return true;
                 }
 

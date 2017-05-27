@@ -166,7 +166,11 @@ class Bookings extends \Core\Controller {
 
         // get data from POST array
         $data = $_POST ?? false;
-        //print_r($data);
+        // extract room id in order to pass it to the view in the case of error
+        $room_id = $_POST['room_id'] ?? false;
+
+
+
 
         if($data){
 
@@ -181,8 +185,18 @@ class Bookings extends \Core\Controller {
                 //Mail::send();
 
             } else {
-                Flash::addMessage('Please fix all errors', Flash::INFO);
-                View::renderTemplate('admin/bookings/book_room.html', ['booking' => $booking]);
+
+                if($room_id){
+                    $room = Room::findById($room_id);
+                    Flash::addMessage('Please fix all errors', Flash::INFO);
+                    View::renderTemplate('admin/bookings/book_room.html', [
+                        'booking' => $booking,
+                        'room'    => $room
+                    ]);
+                } else {
+                    $this->redirect('/admin/bookings/create');
+                }
+
             }
         }
 
