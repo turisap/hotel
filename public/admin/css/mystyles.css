@@ -284,3 +284,7 @@ div.row.button {
     margin: 10px 10px;
 }
 
+#checkin, #checkout {
+    margin: 30px 0 !important;
+}
+

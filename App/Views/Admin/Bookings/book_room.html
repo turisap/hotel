@@ -30,7 +30,10 @@
 
         // initialize checkin datepicker
         $('#checkin').datepicker({
-            startDate: checkInDate
+            startDate: checkInDate,
+            todayHighlight: true,
+            autoclose: true,
+            format: 'dd/mm/yyyy'
         });
 
         // set checkout date from tomorrow
@@ -39,7 +42,9 @@
 
         // initialize checkout datepicker
         $('#checkout').datepicker({
-            startDate: checkOutDate
+            startDate: checkOutDate,
+            autoclose: true,
+            format: 'dd/mm/yyyy'
         });
 
 
@@ -202,16 +207,22 @@
 
         <div class="row row-inside">
             <div class="col-lg-6 col-md-6 col-sm-12 col-sm-12">
-                <div class="input-group date">
-                    <input type="text" class="form-control datepicker" id="checkin" name="checkin" value="">
-                    <div class="input-group-addon">
-                        <span>Check In</span>
+                <div class="row">
+                    <div class="col-lg-6 col-sm-12">
+                        <div class="input-group date" id="checkin">
+                            <input type="text" class="form-control datepicker"  name="checkin" value="">
+                            <div class="input-group-addon">
+                                <span>Check In</span>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="input-group date datepicker-right">
-                    <input type="text" class="form-control datepicker" id="checkout" name="checkout" value="">
-                    <div class="input-group-addon">
-                        <span>Check Out</span>
+                    <div class="col-lg-6 col-sm-12">
+                        <div class="input-group date datepicker-right" id="checkout">
+                            <input type="text" class="form-control datepicker"  name="checkout" value="">
+                            <div class="input-group-addon">
+                                <span>Check Out</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -230,7 +241,7 @@
                 {% endif %}
 
                 <div class="form-group inline">
-                    <label for="num_children">Arrival time:</label>
+                    <label for="num_children">Approximate arrival time:</label>
                     <select class="form-control" id="arrival_time" name="arrival_time">
                         <option value="00:00 - 02:00">00:00 - 02:00</option>
                         <option value="02:00 - 04:00">02:00 - 04:00</option>
@@ -250,10 +261,25 @@
         </div>
 
         <div class="row row-inside">
-            <h4 class="head">Your wishes</h4>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="form-group">
+                <label for="wishes">Your wishes:</label>
                 <textarea class="form-control" rows="5" name="wishes" id="wishes"></textarea>
+                <span class="lead"><i>Please tell us if you need something special
+                    {% if room.class == "Budget" %}
+                    (as playstation for your children)
+                    {% endif %}
+                    {% if room.class == "Premium" %}
+                    (as particular wine for dinner )
+                    {% endif %}
+                    {% if room.class == "Lux" %}
+                    (as luxury taxi)
+                    {% endif %}
+                    {% if room.class == "Delux" %}
+                    (as luxury taxi)
+                    {% endif %}
+
+                </i></span>
             </div>
             </div>
         </div>
