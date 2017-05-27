@@ -159,6 +159,9 @@ class Bookings extends \Core\Controller {
     // process book room form and crate a booking
     public function newBooking(){
 
+        // get data from POST array
+        $data = $_POST;
+        print_r($data);
     }
 
 
