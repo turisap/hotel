@@ -93,6 +93,8 @@ class Bookings extends \Core\Controller {
         // first get data from the POST array
         $search_terms = $_POST['search_by_name'] ?? false;
 
+        //var_dump(Search::findByRoomName($search_terms));
+
 
         if($search_terms){
 

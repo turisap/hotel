@@ -301,34 +301,17 @@ abstract class Search extends \Core\Model {
 
             // first get rid of possible commas (change them with spaces)
             $search_terms = str_replace(',', ' ', $search_terms);
-            // explode to separate words
-            $search_list = explode(' ', $search_terms);
-
-            // array for clean search words
-            $search_words = array();
-
-            // get rid of possible white spaces and add sql commands
-            $count = 0;
-            foreach($search_list as $item){
-                if(!empty($item)){
-                    $search_words[] = " local_name LIKE :item" . $count . " ";
-                    $count++;
-                }
-            }
-
-            $where_clause = implode(' OR ', $search_words);
+            $search_terms = str_replace(')', ' ', $search_terms);
+            $search_terms = str_replace('(', ' ', $search_terms);
 
 
-            $sql = 'SELECT * FROM rooms WHERE ' . $where_clause;
+            $sql = "SELECT *, MATCH (local_name) AGAINST ('" . $search_terms . "') AS relevance
+             FROM rooms WHERE MATCH (local_name) AGAINST ('" . $search_terms . "' IN BOOLEAN MODE) ORDER BY relevance DESC";
+            //return $sql;
 
             $db = static::getDB();
 
             $stm = $db->prepare($sql);
-
-            // bind values of all search words
-            foreach ($search_list as $key => $value){
-                $stm->bindValue(':item' . $key, '%' . $value . '%', PDO::PARAM_STR);
-            }
 
             $stm->setFetchMode(PDO::FETCH_CLASS, 'App\Models\Admin\Room');
 
