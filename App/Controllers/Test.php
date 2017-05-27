@@ -9,6 +9,7 @@
 namespace App\Controllers;
 
 use \App\Authentifiacation;
+use App\Calendar;
 use App\Mail;
 use App\Models\Admin\Photo;
 use App\Models\Admin\Search;
@@ -37,7 +38,7 @@ class Test
     }*/
 
     public function test(){
-        print_r(Search::findSearchSubcategories('all'));
+        Calendar::sample();
     }
 
 
