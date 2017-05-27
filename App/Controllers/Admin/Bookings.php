@@ -130,6 +130,36 @@ class Bookings extends \Core\Controller {
 
     }
 
+    public function bookRoom(){
+
+        //get room's id from query string
+        $room_id = $_GET['id'] ?? false;
+
+        if($room_id){
+
+            // find a room based on that id
+            $room = Room::findById($room_id);
+
+            if($room){
+                // render template with room on success
+                View::renderTemplate('admin/bookings/book_room.html', ['room' => $room]);
+
+            } else {
+                Flash::addMessage('There is no such a room', Flash::INFO);
+                $this->redirect('/admin/bookings/create');
+            }
+
+        } else {
+            Flash::addMessage('There was a problem processing your request, try again', Flash::INFO);
+            $this->redirect('/admin/bookings/create');
+        }
+
+
+
+
+
+    }
+
 
 
 
