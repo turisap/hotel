@@ -161,7 +161,8 @@ class Bookings extends \Core\Controller {
 
         // get data from POST array
         $data = $_POST;
-        print_r($data);
+
+
     }
 
 

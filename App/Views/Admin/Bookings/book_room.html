@@ -24,10 +24,25 @@
 
         //datepicker
 
+        // set checkin date from todat=y
+        var checkInDate = new Date();
+        checkInDate.setDate(checkInDate.getDate());
 
-            $('.datepicker').datepicker();
+        // initialize checkin datepicker
+        $('#checkin').datepicker({
+            startDate: checkInDate
+        });
 
-/*
+        // set checkout date from tomorrow
+        var checkOutDate = new Date();
+        checkOutDate.setDate(checkOutDate.getDate() + 1);
+
+        // initialize checkout datepicker
+        $('#checkout').datepicker({
+            startDate: checkOutDate
+        });
+
+
 
 
         // validation
@@ -41,24 +56,32 @@
                     required: true,
                     minlength: 2
                 },
-                checkin:{
-                    required: true,
-                    minlength: 2
+                checkin: {
+                    required: true
                 },
                 checkout:{
-                    required: true,
-                    minlength: 2
+                    required: true
                 }
 
             },
             messages: {
-                local_name:{
-                    required: "Please enter name of the room",
-                    minlength: "Please enter at least 5 characters"
+                first_name:{
+                    required: "Please enter guest's first name",
+                    minlength: "Name should be at least two characters long"
+                },
+                last_name:{
+                    required: "Please enter guest's last name",
+                    minlength: "Name should be at least two characters long"
+                },
+                checkin: {
+                    required: "Please enter checkin date"
+                },
+                checkout: {
+                    required: "Please enter checkout date"
                 }
 
             }
-        });*/
+        });
     });
 
 </script>
@@ -104,54 +127,59 @@
 
 <div class="row wrap">
 
-    <form class="form-inline" id="createBookingForm" action="/admin/bookings/new-booking" method="post">
+    <form class="form-horizontal" id="createBookingForm" action="/admin/bookings/new-booking" method="post">
 
         <div class="row row-inside">
-            <div class="form-group inline">
-                <label for="title">Title:</label>
-                <select class="form-control" name="title" id="title">
-                    <option>Mr.</option>
-                    <option>Ms.</option>
-                    <option>Mrs.</option>
-                </select>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-sm-12">
+                <div class="form-group  bookings">
+                    <label for="title">Title:</label>
+                    <select class="form-control" name="title" id="title">
+                        <option>Mr.</option>
+                        <option>Ms.</option>
+                        <option>Mrs.</option>
+                    </select>
+                </div>
+                <div class="form-group  bookings">
+                    <label for="first_name">First Name</label>
+                    <input type="text" class="form-control" name="first_name" id="first_name">
+                </div>
             </div>
-            <div class="form-group inline">
-                <label for="first_name">First Name</label>
-                <input type="text" class="form-control" id="first_name">
-            </div>
-            <div class="form-group inline">
-                <label for="last_name">Last Name</label>
-                <input type="text" class="form-control" id="last_name">
-            </div>
-            <div class="form-group inline">
-                <label for="guests">Number of guests:</label>
-                <select class="form-control" name="num_guests" id="guests">
-                    {% if room.num_guests == 2 %}
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    {% endif %}
-                    {% if room.num_guests == 4 %}
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    {% endif %}
-                    {% if room.num_guests == 6 %}
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    {% endif %}
 
-                </select>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-sm-12">
+                <div class="form-group  bookings">
+                    <label for="last_name">Last Name</label>
+                    <input type="text" class="form-control" name="last_name" id="last_name">
+                </div>
+                <div class="form-group  bookings">
+                    <label for="guests">Number of guests:</label>
+                    <select class="form-control" name="num_guests" id="guests">
+                        {% if room.num_guests == 2 %}
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        {% endif %}
+                        {% if room.num_guests == 4 %}
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        {% endif %}
+                        {% if room.num_guests == 6 %}
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        {% endif %}
+
+                    </select>
+                </div>
             </div>
         </div>
 
         <div class="row row-inside">
             <div id="checkboxes">
                 <label class="checkbox-inline">
-                    <input name="breakfast" type="checkbox" value="1">I want breakfast
+                    <input name="breakfast"  type="checkbox" value="1">I want breakfast
                 </label>
                 {% if room.smoking == 1 %}
                 <label class="checkbox-inline">
@@ -173,47 +201,50 @@
         </div>
 
         <div class="row row-inside">
-            <div class="input-group date">
-                <input type="text" class="form-control datepicker" id="checkin" name="checkin" value="27/05/2017">
-                <div class="input-group-addon">
-                    <span>Check In</span>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-sm-12">
+                <div class="input-group date">
+                    <input type="text" class="form-control datepicker" id="checkin" name="checkin" value="">
+                    <div class="input-group-addon">
+                        <span>Check In</span>
+                    </div>
+                </div>
+                <div class="input-group date datepicker-right">
+                    <input type="text" class="form-control datepicker" id="checkout" name="checkout" value="">
+                    <div class="input-group-addon">
+                        <span>Check Out</span>
+                    </div>
                 </div>
             </div>
-            <div class="input-group date datepicker-right">
-                <input type="text" class="form-control datepicker" id="checkout" name="checkout" value="27/05/2017">
-                <div class="input-group-addon">
-                    <span>Check Out</span>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-sm-12">
+                {% if room.children == 1 %}
+                <div class="form-group inline">
+                    <label for="num_children">Number of children:</label>
+                    <select class="form-control" id="num_children" name="num_children">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
                 </div>
-            </div>
+                {% endif %}
 
-
-            {% if room.children == 1 %}
-            <div class="form-group inline">
-                <label for="num_children">Number of children:</label>
-                <select class="form-control" id="num_children" name="num_children">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                </select>
-            </div>
-            {% endif %}
-
-            <div class="form-group inline">
-                <label for="num_children">Arrival time:</label>
-                <select class="form-control" id="arrival_time" name="arrival_time">
-                    <option value="00:00 - 02:00">00:00 - 02:00</option>
-                    <option value="02:00 - 04:00">02:00 - 04:00</option>
-                    <option value="04:00 - 06:00">04:00 - 06:00</option>
-                    <option value="06:00 - 08:00">06:00 - 08:00</option>
-                    <option value="10:00 - 12:00">10:00 - 12:00</option>
-                    <option value="12:00 - 14:00">12:00 - 14:00</option>
-                    <option value="16:00 - 18:00">16:00 - 18:00</option>
-                    <option value="18:00 - 20:00">18:00 - 20:00</option>
-                    <option value="20:00 - 22:00">20:00 - 22:00</option>
-                    <option value="22:00 -240:00">22:00 - 24:00</option>
-                    <option value="0">I'm not sure</option>
-                </select>
+                <div class="form-group inline">
+                    <label for="num_children">Arrival time:</label>
+                    <select class="form-control" id="arrival_time" name="arrival_time">
+                        <option value="00:00 - 02:00">00:00 - 02:00</option>
+                        <option value="02:00 - 04:00">02:00 - 04:00</option>
+                        <option value="04:00 - 06:00">04:00 - 06:00</option>
+                        <option value="06:00 - 08:00">06:00 - 08:00</option>
+                        <option value="10:00 - 12:00">10:00 - 12:00</option>
+                        <option value="12:00 - 14:00">12:00 - 14:00</option>
+                        <option value="16:00 - 18:00">16:00 - 18:00</option>
+                        <option value="18:00 - 20:00">18:00 - 20:00</option>
+                        <option value="20:00 - 22:00">20:00 - 22:00</option>
+                        <option value="22:00 -240:00">22:00 - 24:00</option>
+                        <option value="0">I'm not sure</option>
+                    </select>
+                </div>
             </div>
 
         </div>
