@@ -130,7 +130,7 @@ class Bookings extends \Core\Controller {
 
     }
 
-    public function bookRoom(){
+    public function bookRoomAction(){
 
         //get room's id from query string
         $room_id = $_GET['id'] ?? false;
@@ -154,9 +154,10 @@ class Bookings extends \Core\Controller {
             $this->redirect('/admin/bookings/create');
         }
 
+    }
 
-
-
+    // process book room form and crate a booking
+    public function newBooking(){
 
     }
 
