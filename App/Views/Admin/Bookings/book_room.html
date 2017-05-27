@@ -129,6 +129,16 @@
     <h1>BOOKINGS</h1>
     <h1 id="test">{{ room.room_id }}</h1>
 </div>
+{% if booking.errors is not empty %}
+<div class="row wrap alert-danger">
+    <h3 class="alert-danger">Errors</h3>
+    <ul>
+        {% for error in booking.errors %}
+        <li class="alert-danger">{{ error }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
 
 <div class="row wrap">
 

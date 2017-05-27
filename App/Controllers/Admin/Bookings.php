@@ -10,6 +10,7 @@ namespace App\Controllers\Admin;
 
 
 use App\Flash;
+use App\Mail;
 use App\Models\Admin\Booking;
 use App\Models\Admin\Photo;
 use Core\View;
@@ -177,7 +178,11 @@ class Bookings extends \Core\Controller {
             if($booking->newBooking()){
 
                 echo '<h1>TROLOLO</h1>';
+                //Mail::send();
 
+            } else {
+                Flash::addMessage('Please fix all errors', Flash::INFO);
+                View::renderTemplate('admin/bookings/book_room.html', ['booking' => $booking]);
             }
         }
 

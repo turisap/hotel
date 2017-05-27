@@ -11,6 +11,7 @@ namespace App\Controllers;
 use \App\Authentifiacation;
 use App\Calendar;
 use App\Mail;
+use App\Models\Admin\Booking;
 use App\Models\Admin\Photo;
 use App\Models\Admin\Search;
 use \App\Token;
@@ -22,45 +23,16 @@ class Test
 {
 
 
-    /*public static function test(){
 
-        print_r(Photo::test());
-
-        //print_r($_FILES);
-
-
-        /*$file_count = count($_FILES['photos']);
-        $file_keys = array_keys($_FILES['photos']);
-        print_r($file_count);
-        echo '<br>';
-        print_r($file_keys);
-
-    }*/
 
     public function test(){
-        Calendar::sample();
+        print_r(Booking::findAllBookingsToOneRoom(21));
     }
 
 
 
 
 
-    // creates a easy-readable array of properties and their values out of multiply-files array from form
-    protected static function reArrayFiles($file_post) {
-
-        $file_ary = array();
-        $file_count = count($file_post['name']);
-        $file_keys = array_keys($file_post);
-
-        for ($i=0; $i < $file_count; $i++){
-            foreach ($file_keys as $key){
-                $file_ary[$i][$key] = $file_post[$key][$i];
-            }
-        }
-
-
-        return $file_ary;
-    }
 
 
 }

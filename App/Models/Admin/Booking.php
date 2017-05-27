@@ -19,7 +19,7 @@ class Booking extends \Core\Model {
 
 
     // constructor to create object's properties and assign values to them out of POST array
-    public function __construct($booking)
+    public function __construct($booking=[])
     {
         // here we creates properties and their values out of keys and values
         foreach($booking as $key => $value){
@@ -99,30 +99,108 @@ class Booking extends \Core\Model {
         }
 
         // validation of bookings overlapping
+        if( ! ($this->datesBooked($this->checkin, $this->checkout))){
+            $this->errors[] = 'Sorry but these dates are already booked';
+        }
 
+        // validation of empty datepickers
+        if(empty($this->checkin)){
+            $this->errors[] = 'Please enter the check in date';
+        }
+
+        if(empty($this->checkout)){
+            $this->errors[] = 'Please enter the check out date';
+        }
 
 
     }
 
 
     // this method check whether a particular room is booked on a particular date
-    public function dateBooked($begin, $finish){
+    public function datesBooked($begin, $finish){
+
+        // get time values out of strings from datepickers
+        $checkin  = strtotime($begin);
+        $checkout = strtotime($finish);
+
+        // there are no overlaps if both checkCheckInDate() and checkCheckOutDate() returns true
+        if($this->isBookedCheckinDate($checkin, $this->room_id) || $this->isBookedCheckOutDate($checkout, $this->room_id)){
+            return true;
+        }
+
+        return false; // on failure
+
+    }
+
+
+
+    // check only checkin date in order not to proceed with checkout date if its in the range of an existing booking
+    public static function isBookedCheckinDate($checkin, $room_id){
+
+        $checkin = strtotime($checkin);
 
         // first find all bookings to a particular room
-        $bookings = Booking::;
+        $bookings = self::findAllBookingsToONeRoom($room_id);
+
+        // if there are some bookings over here
+        if($bookings){
+
+            // loop through bookings to check if there are overlaps
+            foreach($bookings as $booking){
+
+                // if checkin date in the range of an existing booking
+                if ($checkin >= strtotime($booking->checkin) && $checkin < strtotime($booking->checkout)){
+                    return true;
+                }
+
+
+            }
+
+            return false; // return true if there are no overlaps
+        }
+        return false; // return true if there are no bookings
+
+    }
+
+
+    // this method checks whether check out date hits other bookings ranges
+    public static function isBookedCheckOutDate($checkout, $room_id){
+
+        $checkout = strtotime($checkout);
+
+        // first find all bookings to a particular room
+        $bookings = self::findAllBookingsToONeRoom($room_id);
+
+        // if there are some bookings over here
+        if($bookings){
+
+            // loop through bookings to check if there are overlaps
+            foreach($bookings as $booking){
+
+                // if checkout date later than a booking's checkin and earlier than it's checkout
+                if ($checkout >= strtotime($booking->checkin) && $checkout <= strtotime($booking->checkout) ){
+                    return true;
+                }
+
+            }
+
+            return false; // return true if there are no overlaps
+        }
+        return false; // return true if there are no bookings
+
     }
 
 
     // this method finds all bookings to a particular room
-    protected function findAllBookingsToONeRoom(){
+    public static function findAllBookingsToONeRoom($room_id){
 
-        $sql = 'SELECT checkin, checkout FROM ' . static::$db_table . ' WHERE room_id = :room_id';
+        $sql = 'SELECT * FROM ' . static::$db_table . ' WHERE room_id = :room_id';
 
         $db  = static::getDB();
         $stm = $db->prepare($sql);
 
-        $stm->bindValue(':room_id', $this->room_id, PDO::PARAM_INT);
-        $stm->setFetchMode(PDO::FETCH_CLASS, static::class);
+        $stm->bindValue(':room_id', $room_id, PDO::PARAM_INT);
+        $stm->setFetchMode(PDO::FETCH_CLASS, get_called_class());
 
         $stm->execute();
 
