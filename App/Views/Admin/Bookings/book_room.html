@@ -18,9 +18,13 @@
 <!-- ENABLE BOOTSTRAP BUTTON CONFIRMATION AND AJAX, POPOUTS -->
 <script src="/admin/js/check_room.js" type="text/javascript"></script>
 
+<!-- BOOTSTRAP DATEPICKER -->
+<script>
+    $(document).ready(function () {
+        $('.datepicker').datepicker();
+    });
 
-
-<h3 class="head">Room's booking</h3>
+</script>
 
 
 <h3 class="head">Room's info (Room #{{ room.room_number }})</h3>
@@ -65,8 +69,8 @@
 
     <form class="form-inline" action="/admin/bookings/new-booking" method="post">
 
-        <div class="row">
-            <div class="form-group">
+        <div class="row row-inside">
+            <div class="form-group inline">
                 <label for="title">Title:</label>
                 <select class="form-control" id="title">
                     <option>Mr.</option>
@@ -74,15 +78,15 @@
                     <option>Mrs.</option>
                 </select>
             </div>
-            <div class="form-group">
+            <div class="form-group inline">
                 <label for="first_name">First Name</label>
                 <input type="password" class="form-control" id="first_name">
             </div>
-            <div class="form-group">
+            <div class="form-group inline">
                 <label for="last_name">Last Name</label>
                 <input type="password" class="form-control" id="last_name">
             </div>
-            <div class="form-group">
+            <div class="form-group inline">
                 <label for="guests">Number of guests:</label>
                 <select class="form-control" id="guests">
                     {% if room.num_guests == 2 %}
@@ -107,29 +111,88 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row row-inside">
             <div id="checkboxes">
                 <label class="checkbox-inline">
-                    <input name="breakfast" type="checkbox" value="1">Breakfast
+                    <input name="breakfast" type="checkbox" value="1">I want breakfast
                 </label>
                 {% if room.smoking == 1 %}
                 <label class="checkbox-inline">
-                    <input name="smoking" type="checkbox" value="1">Smoking
+                    <input name="smoking" type="checkbox" value="1">Smoking guests
                 </label>
                 {% endif %}
                 {% if room.pets == 1 %}
                 <label class="checkbox-inline">
-                    <input name="pets" type="checkbox" value="1">Pets
+                    <input name="pets" type="checkbox" value="1">I have pets
                 </label>
                 {% endif %}
+                <label class="checkbox-inline">
+                    <input name="quite_room" type="checkbox" value="1">I prefer a quite room
+                </label>
+                <label class="checkbox-inline">
+                    <input name="bike_rent" type="checkbox" value="1">I'm interested in renting a bike
+                </label>
             </div>
         </div>
 
-        <div class="row">
-            
+        <div class="row row-inside">
+            <div class="input-group date">
+                <input type="text" class="form-control datepicker" id="checkin" name="checkin" value="12-02-2012">
+                <div class="input-group-addon">
+                    <span>Check In</span>
+                </div>
+            </div>
+            <div class="input-group date datepicker-right">
+                <input type="text" class="form-control datepicker" id="checkout" name="checkout" value="12-02-2012">
+                <div class="input-group-addon">
+                    <span>Check Out</span>
+                </div>
+            </div>
+
+
+            {% if room.children == 1 %}
+            <div class="form-group inline">
+                <label for="num_children">Number of children:</label>
+                <select class="form-control" id="num_children" name="num_children">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+            {% endif %}
+
+            <div class="form-group inline">
+                <label for="num_children">Arrival time:</label>
+                <select class="form-control" id="arrival_time" name="num_children">
+                    <option value="00:00 - 02:00">00:00 - 02:00</option>
+                    <option value="02:00 - 04:00">02:00 - 04:00</option>
+                    <option value="04:00 - 06:00">04:00 - 06:00</option>
+                    <option value="06:00 - 08:00">06:00 - 08:00</option>
+                    <option value="10:00 - 12:00">10:00 - 12:00</option>
+                    <option value="12:00 - 14:00">12:00 - 14:00</option>
+                    <option value="16:00 - 18:00">16:00 - 18:00</option>
+                    <option value="18:00 - 20:00">18:00 - 20:00</option>
+                    <option value="20:00 - 22:00">20:00 - 22:00</option>
+                    <option value="22:00 -240:00">22:00 - 24:00</option>
+                    <option value="0">I'm not sure</option>
+                </select>
+            </div>
+
         </div>
 
-        <button type="submit" class="btn btn-default">Create</button>
+        <div class="row row-inside">
+            <h4 class="head">Your wishes</h4>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <textarea class="form-control" rows="5" id="wishes"></textarea>
+            </div>
+            </div>
+        </div>
+
+
+
+        <button type="submit" id="bookit" class="btn btn-default">Book it</button>
     </form>
 
 </div>

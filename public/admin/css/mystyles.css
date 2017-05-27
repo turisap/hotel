@@ -239,7 +239,7 @@ div.row.button {
 }
 
 
-/*================================ CREATE BOOKING PAGE =================================*/
+/*================================ FIND ROOM PAGE =================================*/
 
 .search {
     height: 100px !important;
@@ -260,5 +260,28 @@ div.row.button {
 
 #keywords {
     margin:  10px;
+}
+
+/* ================================== STYLES FOR CREATE BOOKING PAGE =========================== */
+
+.row-inside {
+    margin: 10px !important;
+    padding: 30px 10px !important;
+}
+
+.inline {
+    margin: 5px 30px;
+}
+
+.datepicker-right{
+    margin-left: 20px !important;
+}
+
+#bookit {
+    margin-left: 10px;
+}
+
+#wishes{
+    width: 400px;
 }
 
