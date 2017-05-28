@@ -1,0 +1,48 @@
+{% extends "admin_base.html" %}
+
+{% block title %} {{ booking.room_name}} bookng{% endblock %}
+{% block page_heading %}{{ booking.room_name}} bookng{% endblock %}
+{% block page_subheading %}<a href="/admin/bookings/book-room?id={{ booking.room_id }}">back to room </a> {% endblock %}
+
+
+{% block footer %}
+
+
+{% endblock %}
+
+
+{% block body %}
+
+<div class="row wrap">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <ul class="list-group">
+            <li class="list-group-item">Booked for {{ booking.title }} {{ booking.first_name }} {{ booking.last_name }}</li>
+            <li class="list-group-item">Check in {{ booking.checkin }}/checkout {{ booking.checkout}}. {{ booking.nights }} nights stay</li>
+            <li class="list-group-item">Number of children: {{ booking.num_children }}</li>
+            <li class="list-group-item">Approximate arrival time: {{ booking.arrival_time }}</li>
+            <li class="list-group-item">Guests: {{ booking.num_guests }}</li>
+        </ul>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-{% if booking.bike_rent == 1 %}success{% else %}danger{% endif %}">Guest {% if booking.breakfast == 1 %} is {% else %} isn't  {% endif %} in bike rent</li>
+            <li class="list-group-item list-group-item-{% if booking.breakfast == 1 %}success{% else %}danger{% endif %}">Breakfast: {% if booking.breakfast == 1 %} ordered {% else %} isn't ordered {% endif %}</li>
+            <li class="list-group-item list-group-item-{% if booking.smoking == 1 %}success{% else %}danger{% endif %}">Smoking guests: {% if booking.smoking == 1 %} yes {% else %} no {% endif %}</li>
+            <li class="list-group-item list-group-item-{% if booking.pets == 1 %}success{% else %}danger{% endif %}">Pets: {% if booking.pets == 1 %} present {% else %} not present {% endif %}</li>
+            <li class="list-group-item list-group-item-{% if booking.quite_room == 1 %}success{% else %}danger{% endif %}">Quite room: {% if booking.quite_room == 1 %} required {% else %} not required {% endif %}</li>
+        </ul>
+    </div>
+
+</div>
+
+<h3 class="head">Guest's notes</h3>
+<div class="row wrap">
+    <p class="lead">{{ booking.wishes }}</p>
+</div>
+
+<a class="btn btn-primary" id="viewAllBookings" href="/admin/bookings/all-bookings?id={{ booking.room_id }}">View all bookings for this room</a>
+<a class="btn btn-danger" id="cancelBooking" href="/admin/bookings/cancel-booking?id={{ booking.room_id }}">Cancel this booking</a>
+
+
+{% endblock %}
+

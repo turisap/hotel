@@ -46,7 +46,7 @@
                 title  : '{{ booking.title }} {{booking.first_name }} {{ booking.last_name }}; {{ booking.num_guests }} guests',
                 start  : '{{ booking.checkin }}T10:00:00',
                 end    : '{{ booking.checkout }}T10:00:00',
-                url    :  '/admin/bookings/check?id={{ booking.booking_id }}',
+                url    :  '/admin/bookings/check-booking?id={{ booking.booking_id }}',
                 backgroundColor : '{% if booking.smoking == 1 %} #d8d343 {% else %} #40d3d6 {% endif %} ',
                 textColor:     'black',
                 allDay : false

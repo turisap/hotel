@@ -16,6 +16,7 @@ class Booking extends \Core\Model {
 
     protected static $db_table = 'bookings';  // corresponding table in the database
     public $errors = array();                 // array for errors validation
+    public static $column = 'booking_id';
 
 
     // constructor to create object's properties and assign values to them out of POST array

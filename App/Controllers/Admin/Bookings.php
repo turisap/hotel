@@ -134,6 +134,7 @@ class Bookings extends \Core\Controller {
 
     }
 
+    // renders page for a room page (with bookings)
     public function bookRoomAction(){
 
         //get room's id from query string
@@ -210,6 +211,43 @@ class Bookings extends \Core\Controller {
             }
         }
 
+
+    }
+
+
+    // this function renders page for a particular booking
+    public function checkBookingAction(){
+
+        // first get booking's id from the query string
+        $booking_id = $_GET['id'] ?? false;
+        $booking = Booking::findById($booking_id);
+
+        if($booking){
+            // render template
+            View::renderTemplate('admin/bookings/check_booking.html', ['booking' => $booking]);
+        } else {
+            self::redirect('/admin/bookings/book-room?id='. $booking->room_id);
+        }
+    }
+
+    // this method renders particular page
+    public function viewAllBookingsToOneRoom(){
+
+        $room_id = $_GET['id'] ?? false;
+
+        if($room_id){
+
+            $bookings = Booking::findAllBookingsToONeRoom($room_id);
+            if($bookings){
+                View::renderTemplate('admin/bookings/all_booking_to_room.html', ['bookings' => $bookings]);
+            }
+
+
+        } else {
+            Flash::addMessage('This room doesn\'t exist', Flash::INFO);
+            self::redirect('admin/bookings/create);
+        }
+        
 
     }
 

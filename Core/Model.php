@@ -37,7 +37,7 @@ abstract class Model
     // finds everything by ID (photo, user, booking)
     public static function findById($id){
 
-        $sql = 'SELECT * FROM ' . static::$db_table . ' WHERE id = :id';
+        $sql = 'SELECT * FROM ' . static::$db_table . ' WHERE ' . static::$column . ' = :id';
         $db = static::getDB();
         $statement = $db->prepare($sql);
         $statement->bindParam(':id', $id, PDO::PARAM_STR);
