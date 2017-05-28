@@ -22,15 +22,26 @@
 <script>
     $(document).ready(function () {
 
-        // CALENDAR PLUGIN
-        var unavailableDates = [
-        {% for booking in bookings %}
-        {start: '{{ booking.checkin }}', end: '{{ booking.checkout }}'},
-        {% endfor %}
-
-        ];
-
-        $('#calendar').availabilityCalendar(unavailableDates);
+        $('#calendar').fullCalendar({
+            events: [
+            {
+                title  : 'event1',
+                start  : '2017-05-30',
+                end    :  '2017-05-31',
+                url    :  '/admin/bookings/create'
+            },
+            {
+                title  : 'event2',
+                start  : '2017-05-28',
+                end    : '2017-05-30'
+            },
+            {
+                title  : 'event3',
+                start  : '2017-05-25',
+                allDay : true
+            }
+        ]
+        });
 
 
 
@@ -174,7 +185,7 @@
 
 
 <div class="row wrap">
-    <div id="calendar"></div>
+    <div id='calendar'></div>
 </div>
 {% if booking.errors is not empty %}
 <div class="row wrap alert-danger">
