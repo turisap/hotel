@@ -9,6 +9,8 @@
 namespace App\Controllers\Admin;
 
 
+use App\Authentifiacation;
+use App\Config;
 use App\Flash;
 use App\Mail;
 use App\Models\Admin\Booking;
@@ -172,20 +174,24 @@ class Bookings extends \Core\Controller {
         // extract room id in order to pass it to the view in the case of error
         $room_id = $_POST['room_id'] ?? false;
 
-
-
-
         if($data){
 
             // create a new Booking object based on POST data
-
             $booking = new Booking($data);
 
-            // call Booking model's method to create a record in the database and proceed on success
-            if($booking->newBooking()){
+            // and find respective room
+            $room = Room::findById($room_id);
 
-                echo '<h1>TROLOLO</h1>';
-                //Mail::send();
+            // call Booking model's method to create a record in the database and proceed on success
+            if($booking->newBooking($room->local_name)){
+
+                // get current user's object
+                $user = Authentifiacation::getCurrentUser();
+                Mail::send($user->email, 'MyHotelSystem', 'New booking', View::getTemplate('admin/bookings/booking_email.html', [
+                    'user' => $user,
+                    'booking' => $booking,
+                    'site_name' => Config::SITE_NAME
+                ]));
 
             } else {
 

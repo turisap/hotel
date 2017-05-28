@@ -30,7 +30,7 @@ class Booking extends \Core\Model {
 
 
     // this function insert record about a new booking into the database
-    public function newBooking(){
+    public function newBooking($room_name){
 
         // first validate inputs
         $this->validateFormData();
@@ -38,9 +38,9 @@ class Booking extends \Core\Model {
         // if there is no errors, proceed with inserting data into the database
         if(empty($this->errors)){
 
-            $sql = 'INSERT INTO ' . static::$db_table . ' (room_id, user_id, title, first_name, last_name, num_guests, breakfast,
+            $sql = 'INSERT INTO ' . static::$db_table . ' (room_id, user_id, room_name, title, first_name, last_name, num_guests, breakfast,
         smoking, pets, quite_room, bike_rent, checkin, checkout, num_children, arrival_time, wishes) VALUES 
-        (:room_id, :user_id, :title, :first_name, :last_name, :num_guests, :breakfast, :smoking, :pets, :quite_room, 
+        (:room_id, :user_id, :room_name, :title, :first_name, :last_name, :num_guests, :breakfast, :smoking, :pets, :quite_room, 
         :bike_rent, :checkin, :checkout, :num_children, :arrival_time, :wishes)';
 
             $db = static::getDB();
@@ -57,6 +57,7 @@ class Booking extends \Core\Model {
 
             $stm->bindValue(':room_id', $this->room_id, PDO::PARAM_INT);
             $stm->bindValue(':user_id', $this->user_id, PDO::PARAM_INT);
+            $stm->bindValue(':room_name', $room_name, PDO::PARAM_STR);
             $stm->bindValue(':title', $this->title, PDO::PARAM_STR);
             $stm->bindValue(':first_name', $this->first_name, PDO::PARAM_STR);
             $stm->bindValue(':last_name', $this->last_name, PDO::PARAM_STR);
