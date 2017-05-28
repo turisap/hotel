@@ -53,6 +53,7 @@ class Booking extends \Core\Model {
             $pets       = isset($this->pets) ?? 0;
             $quite_room = isset($this->quite_room) ?? 0;
             $bike_rent  = isset($this->bike_rent)  ?? 0;
+            $num_children = isset($this->num_children) ? $this->num_children : null;
 
             $stm->bindValue(':room_id', $this->room_id, PDO::PARAM_INT);
             $stm->bindValue(':user_id', $this->user_id, PDO::PARAM_INT);
@@ -67,7 +68,7 @@ class Booking extends \Core\Model {
             $stm->bindValue(':bike_rent', $bike_rent, PDO::PARAM_INT);
             $stm->bindValue(':checkin', $this->checkin, PDO::PARAM_STR);
             $stm->bindValue(':checkout', $this->checkout, PDO::PARAM_STR);
-            $stm->bindValue(':num_children', $this->num_children, PDO::PARAM_STR);
+            $stm->bindValue(':num_children', $num_children, PDO::PARAM_STR);
             $stm->bindValue(':arrival_time', $this->arrival_time, PDO::PARAM_STR);
             $stm->bindValue(':wishes', $this->wishes, PDO::PARAM_STR);
 

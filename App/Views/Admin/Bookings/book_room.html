@@ -20,27 +20,39 @@
 
 <!-- BOOTSTRAP DATEPICKER AND FORM VALIDATION -->
 <script>
+
+
     $(document).ready(function () {
 
+        // CALENDAR
         $('#calendar').fullCalendar({
-            events: [
-            {
-                title  : 'event1',
-                start  : '2017-05-30',
-                end    :  '2017-05-31',
-                url    :  '/admin/bookings/create'
+            contentHeight: 600,
+            //navLinks: true,
+            eventMouseover: function(calEvent, jsEvent, view) {
+                // change the border color just for fun
+                $(this).css('border-color', '#2c2c2d');
+
             },
-            {
-                title  : 'event2',
-                start  : '2017-05-28',
-                end    : '2017-05-30'
+            eventMouseout: function(calEvent, jsEvent, view) {
+
+                $(this).css('border-color', '#888b91');
+
             },
+            events:
+                [
+                {% for booking in bookings %}
             {
-                title  : 'event3',
-                start  : '2017-05-25',
-                allDay : true
-            }
-        ]
+                title  : 'Booking',
+                start  : '{{ booking.checkin }}',
+                end    : '{{ booking.checkout }}',
+                url    :  '/admin/bookings/create',
+                backgroundColor : 'red',
+                textColor:     'black',
+                allDay : false
+            },
+        {% endfor %}
+        ],
+            timeFormat: 'H(:mm)'
         });
 
 
