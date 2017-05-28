@@ -119,12 +119,9 @@ class Booking extends \Core\Model {
     // this method check whether a particular room is booked on a particular date
     public function datesBooked($begin, $finish){
 
-        // get time values out of strings from datepickers
-        $checkin  = strtotime($begin);
-        $checkout = strtotime($finish);
 
         // there are no overlaps if both checkCheckInDate() and checkCheckOutDate() returns true
-        if($this->isBookedCheckinDate($checkin, $this->room_id) || $this->isBookedCheckOutDate($checkout, $this->room_id)){
+        if($this->isBookedCheckinDate($begin, $this->room_id) || $this->isBookedCheckOutDate($finish, $this->room_id)){
             return true;
         }
 
@@ -137,6 +134,8 @@ class Booking extends \Core\Model {
     // check only checkin date in order not to proceed with checkout date if its in the range of an existing booking
     public static function isBookedCheckinDate($checkin, $room_id){
 
+        // get time values out of strings from datepickers
+        $checkin  = strtotime($checkin);
 
         // first find all bookings to a particular room
         $bookings = self::findAllBookingsToONeRoom($room_id);
@@ -164,6 +163,9 @@ class Booking extends \Core\Model {
 
     // this method checks whether check out date hits other bookings ranges
     public static function isBookedCheckOutDate($checkout, $room_id){
+
+        // get time values out of strings from datepickers
+        $checkout = strtotime($checkout);
 
         // first find all bookings to a particular room
         $bookings = self::findAllBookingsToONeRoom($room_id);

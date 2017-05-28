@@ -69,10 +69,6 @@
 
 
 
-
-
-
-
         // validation
         $("#createBookingForm").validate({
             rules: {
@@ -86,6 +82,7 @@
                 },
                 checkin: {
                     required: true
+
                 },
                 checkout:{
                     required: true,
@@ -103,7 +100,7 @@
                     minlength: "Name should be at least two characters long"
                 },
                 checkin: {
-                    required: "Please enter checkin date"
+                    required: "Please enter checkin date"git 
                 },
                 checkout: {
                     required: "Please enter checkout date"
@@ -245,7 +242,7 @@
                 <div class="row">
                     <div class="col-lg-6 col-sm-12">
                         <div class="input-group date" id="checkin">
-                            <input type="text" class="form-control datepicker" id="dateCheckin"  name="checkin" value="">
+                            <input type="text" class="form-control datepicker dateCheckin" id="dateCheckin"  name="checkin" value="">
                             <div class="input-group-addon">
                                 <span>Check In</span>
                             </div>
@@ -325,7 +322,7 @@
 
         <!-- HIDDEN INPUTS FOR POSTING ROOM'S ID AND CURRENT USER'S ID  -->
         <input type="hidden" name="user_id" value="{{ current_user.id }}">
-        <input type="hidden" name="room_id" value="{{ room.id }}">
+        <input type="hidden" name="room_id" id="room_id" value="{{ room.id }}">
 
 
 

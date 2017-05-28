@@ -203,6 +203,15 @@ class Bookings extends \Core\Controller {
 
     }
 
+    // this method for remote validation checkin date
+    public static function checkCheckin(){
+        $is_valid = ! Booking::isBookedCheckinDate($_GET['check_in'], $_GET['room_id']);
+        header('Content-type: application/json'); //
+        echo json_encode($is_valid); //echo out true or false for ajax
+    }
+
+
+
 
 
 
