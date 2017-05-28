@@ -57,6 +57,18 @@
 
 
 
+        // custom method to validate dates
+        $.validator.addMethod('validDates',
+            function (value, element, param) {
+                if(value != '') {
+                    return new Date($('#dateCheckout').val()) > new Date($('#dateCheckin').val());
+                }
+            },
+            'checkout date must be at least one day after check in'
+        );
+
+
+
 
 
 
@@ -76,7 +88,8 @@
                     required: true
                 },
                 checkout:{
-                    required: true
+                    required: true,
+                    validDates: true
                 }
 
             },
@@ -241,7 +254,7 @@
                         <div class="input-group date datepicker-right" id="checkout">
                             <input type="text" class="form-control datepicker"  id="dateCheckout" name="checkout" value="">
                             <div class="input-group-addon">
-                                <span>Check Out</span>
+                                <span >Check Out</span>
                             </div>
                         </div>
                     </div>
