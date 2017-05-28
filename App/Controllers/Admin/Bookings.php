@@ -185,6 +185,7 @@ class Bookings extends \Core\Controller {
             // call Booking model's method to create a record in the database and proceed on success
             if($booking->newBooking($room->local_name)){
 
+                View::renderTemplate('admin/bookings/book_room.html', ['booking' => $booking]);
                 // get current user's object
                 $user = Authentifiacation::getCurrentUser();
                 Mail::send($user->email, 'MyHotelSystem', 'New booking', View::getTemplate('admin/bookings/booking_email.html', [

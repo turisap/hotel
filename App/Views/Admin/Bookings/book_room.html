@@ -220,41 +220,41 @@
                 <div class="form-group  bookings">
                     <label for="title">Title:</label>
                     <select class="form-control" name="title" id="title">
-                        <option>Mr.</option>
-                        <option>Ms.</option>
-                        <option>Mrs.</option>
+                        <option value="Mr." {% if booking.title == "Mr." %} selected {% endif %}>Mr.</option>
+                        <option value="Ms." {% if booking.title == "Ms." %} selected {% endif %}>Ms.</option>
+                        <option value="Mrs." {% if booking.title == "Mrs." %} selected {% endif %}>Mrs.</option>
                     </select>
                 </div>
                 <div class="form-group  bookings">
                     <label for="first_name">First Name</label>
-                    <input type="text" class="form-control" name="first_name" value="{{ current_user.first_name }}" id="first_name">
+                    <input type="text" class="form-control" name="first_name" value="{{ booking.first_name }}" id="first_name">
                 </div>
             </div>
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-sm-12">
                 <div class="form-group  bookings">
                     <label for="last_name">Last Name</label>
-                    <input type="text" class="form-control" value="{{ current_user.last_name }}" name="last_name" id="last_name">
+                    <input type="text" class="form-control" value="{{ booking.last_name }}" name="last_name" id="last_name">
                 </div>
                 <div class="form-group  bookings">
                     <label for="guests">Number of guests:</label>
                     <select class="form-control" name="num_guests" id="guests">
                         {% if room.num_guests == 2 %}
-                        <option value="1">1</option>
-                        <option value="2">2</option>
+                        <option {% if booking.num_guests == 1 %} selected {% endif %} value="1">1</option>
+                        <option {% if booking.num_guests == 2 %} selected {% endif %} value="2">2</option>
                         {% endif %}
                         {% if room.num_guests == 4 %}
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
+                        <option value="1" {% if booking.num_guests == 1 %} selected {% endif %}>1</option>
+                        <option value="2" {% if booking.num_guests == 2 %} selected {% endif %}>2</option>
+                        <option value="3" {% if booking.num_guests == 3 %} selected {% endif %}>3</option>
+                        <option value="4" {% if booking.num_guests == 4 %} selected {% endif %}>4</option>
                         {% endif %}
                         {% if room.num_guests == 6 %}
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
+                        <option value="2" {% if booking.num_guests == 2 %} selected {% endif %}>2</option>
+                        <option value="3" {% if booking.num_guests == 3 %} selected {% endif %}>3</option>
+                        <option value="4" {% if booking.num_guests == 4 %} selected {% endif %}>4</option>
+                        <option value="5" {% if booking.num_guests == 5 %} selected {% endif %}>5</option>
+                        <option value="6" {% if booking.num_guests == 6 %} selected {% endif %}>6</option>
                         {% endif %}
 
                     </select>
@@ -265,23 +265,23 @@
         <div class="row row-inside">
             <div id="checkboxes">
                 <label class="checkbox-inline">
-                    <input name="breakfast"  type="checkbox" value="1">I want breakfast
+                    <input name="breakfast"  type="checkbox" value="1" {% if booking.breakfast == "1" %} checked {% endif %}>I want breakfast
                 </label>
                 {% if room.smoking == 1 %}
                 <label class="checkbox-inline">
-                    <input name="smoking" type="checkbox" value="1">Smoking guests
+                    <input name="smoking" type="checkbox" value="1" {% if booking.smoking == "1" %} checked {% endif %}>Smoking guests
                 </label>
                 {% endif %}
                 {% if room.pets == 1 %}
                 <label class="checkbox-inline">
-                    <input name="pets" type="checkbox" value="1">I have pets
+                    <input name="pets" type="checkbox" value="1" {% if booking.pets == "1" %} checked {% endif %}>I have pets
                 </label>
                 {% endif %}
                 <label class="checkbox-inline">
-                    <input name="quite_room" type="checkbox" value="1">I prefer a quite room
+                    <input name="quite_room" type="checkbox" value="1" {% if booking.quite_room == "1" %} checked {% endif %}>I prefer a quite room
                 </label>
                 <label class="checkbox-inline">
-                    <input name="bike_rent" type="checkbox" value="1">I'm interested in renting a bike
+                    <input name="bike_rent" type="checkbox" value="1" {% if booking.bike_rent == "1" %} checked {% endif %}>I'm interested in renting a bike
                 </label>
             </div>
         </div>
@@ -317,11 +317,11 @@
                 <div class="form-group inline">
                     <label for="num_children">Number of children:</label>
                     <select class="form-control" id="num_children" name="num_children">
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
+                        <option value="0" {% if booking.num_children == 0 %} selected {% endif %}>0</option>
+                        <option value="1" {% if booking.num_children == 1 %} selected {% endif %}>1</option>
+                        <option value="2" {% if booking.num_children == 2 %} selected {% endif %}>2</option>
+                        <option value="3" {% if booking.num_children == 3 %} selected {% endif %}>3</option>
+                        <option value="4" {% if booking.num_children == 4 %} selected {% endif %}>4</option>
                     </select>
                 </div>
                 {% endif %}
@@ -329,17 +329,17 @@
                 <div class="form-group inline">
                     <label for="num_children">Approximate arrival time:</label>
                     <select class="form-control" id="arrival_time" name="arrival_time">
-                        <option value="00:00 - 02:00">00:00 - 02:00</option>
-                        <option value="02:00 - 04:00">02:00 - 04:00</option>
-                        <option value="04:00 - 06:00">04:00 - 06:00</option>
-                        <option value="06:00 - 08:00">06:00 - 08:00</option>
-                        <option value="10:00 - 12:00">10:00 - 12:00</option>
-                        <option value="12:00 - 14:00">12:00 - 14:00</option>
-                        <option value="16:00 - 18:00">16:00 - 18:00</option>
-                        <option value="18:00 - 20:00">18:00 - 20:00</option>
-                        <option value="20:00 - 22:00">20:00 - 22:00</option>
-                        <option value="22:00 -240:00">22:00 - 24:00</option>
-                        <option value="0">I'm not sure</option>
+                        <option value="00:00 - 02:00" {% if booking.arrival_time == "00:00 - 02:00" %} selected {% endif %}>00:00 - 02:00</option>
+                        <option value="02:00 - 04:00" {% if booking.arrival_time == "02:00 - 04:00" %} selected {% endif %}>02:00 - 04:00</option>
+                        <option value="04:00 - 06:00" {% if booking.arrival_time == "04:00 - 06:00" %} selected {% endif %}>04:00 - 06:00</option>
+                        <option value="06:00 - 08:00" {% if booking.arrival_time == "06:00 - 08:00" %} selected {% endif %}>06:00 - 08:00</option>
+                        <option value="10:00 - 12:00" {% if booking.arrival_time == "10:00 - 12:00" %} selected {% endif %}>10:00 - 12:00</option>
+                        <option value="12:00 - 14:00" {% if booking.arrival_time == "12:00 - 14:00" %} selected {% endif %}>12:00 - 14:00</option>
+                        <option value="16:00 - 18:00" {% if booking.arrival_time == "16:00 - 18:00" %} selected {% endif %}>16:00 - 18:00</option>
+                        <option value="18:00 - 20:00" {% if booking.arrival_time == "18:00 - 20:00" %} selected {% endif %}>18:00 - 20:00</option>
+                        <option value="20:00 - 22:00" {% if booking.arrival_time == "20:00 - 22:00" %} selected {% endif %}>20:00 - 22:00</option>
+                        <option value="22:00 -240:00" {% if booking.arrival_time == "22:00 - 22:00" %} selected {% endif %}>22:00 - 24:00</option>
+                        <option value="0" {% if booking.arrival_time == "0" %} selected {% endif %}>I'm not sure</option>
                     </select>
                 </div>
             </div>
@@ -350,7 +350,7 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="form-group">
                 <label for="wishes">Your wishes:</label>
-                <textarea class="form-control" rows="5" name="wishes" id="wishes"></textarea>
+                <textarea class="form-control" rows="5" name="wishes" id="wishes">{{ booking.wishes }}</textarea>
                 <span class="lead"><i>Please tell us if you need something special
                     {% if room.class == "Budget" %}
                     (as playstation for your children)
