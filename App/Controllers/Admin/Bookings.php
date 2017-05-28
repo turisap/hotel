@@ -141,11 +141,14 @@ class Bookings extends \Core\Controller {
 
             // find a room based on that id
             $room = Room::findById($room_id);
+            // and all bookings to that room
+            $bookings = Booking::findAllBookingsToONeRoom($room_id);
 
             if($room){
                 // render template with room on success
                 View::renderTemplate('admin/bookings/book_room.html', [
-                    'room' => $room  // room object
+                    'room' => $room,        // room object
+                    'bookings' => $bookings // and all its bookings
                 ]);
 
             } else {

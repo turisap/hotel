@@ -23,16 +23,19 @@
     $(document).ready(function () {
 
         // CALENDAR PLUGIN
-
         var unavailableDates = [
-            {start: '2015-09-11', end: '2015-09-15'},
-            {start: '2015-09-15', end: '2015-09-23'},
-            {start: '2015-10-01', end: '2015-10-07'}
+        {% for booking in bookings %}
+        {start: '{{ booking.checkin }}', end: '{{ booking.checkout }}'},
+        {% endfor %}
+
         ];
 
         $('#calendar').availabilityCalendar(unavailableDates);
 
-        //datepicker
+
+
+
+
 
         // set checkin date from todat=y
         var checkInDate = new Date();
@@ -67,6 +70,9 @@
 
 
 
+
+
+
         // custom method to validate dates
         $.validator.addMethod('validDates',
             function (value, element, param) {
@@ -76,6 +82,8 @@
             },
             'checkout date must be at least one day after check in'
         );
+
+
 
 
 
@@ -121,10 +129,15 @@
     });
 
 
-
-
-
 </script>
+
+
+
+
+
+
+
+
 
 
 <h3 class="head">Room's info (Room #{{ room.room_number }})</h3>
