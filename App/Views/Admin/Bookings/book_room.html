@@ -42,16 +42,21 @@
                         element.addClass("past-event");
                         element.children().addClass("past-event");
                     }
+
+                    if(eventEnd >= ntoday){
+
+                        // qtip for upcoming bookings
+                        element.qtip({
+                            title  : event.guest_name,
+                            content: {
+                                title  : event.guest_name,
+                                text   : event.smoking + event.breakfast + event.pets + event.quite_room + event.bike_rent + event.children + event.arrival_time
+                            }
+                        });
+                    }
                 }
 
-                // qtip
-                element.qtip({
-                    title  : event.guest_name,
-                    content: {
-                        title  : event.guest_name,
-                        text   : event.smoking + '<br>' + event.children
-                    }
-                });
+
             },
             events:
                 [
@@ -67,7 +72,12 @@
             allDay          : false,
             guest_name      : '<p class="lead">For {{ booking.title }} {{ booking.first_name }} {{ booking.last_name }}</p>',
             smoking         : '{% if booking.smoking == 1 %}<li>Smoking guests {% else %}<li> No smoking guests</li>{% endif %}',
-            children        : "2"
+            breakfast       : '{% if booking.breakfast == 1 %}<li>Breakfast ordered</li>{% endif %}',
+            pets            : '{% if booking.pets == 1 %}<li>Pets are present</li>{% endif %}',
+            quite_room      : '{% if booking.quite_room == 1 %}<li>Quite room required</li>{% endif %}',
+            bike_rent       : '{% if booking.bike_rent == 1 %}<li>Interested in bike rent</li>{% endif %}',
+            children        : '{% if booking.num_children != 0 %}<li>Children: {{ booking.num_children }}</li>{% endif %}',
+            arrival_time    : '<li>Approximate arrival time: {{ booking.arrival_time }}</li>'
 
 
         },
