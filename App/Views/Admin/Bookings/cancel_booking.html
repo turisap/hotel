@@ -41,12 +41,13 @@
 
 <h3 class="head">Please write here a message for {{ booking.title }} {{ booking.first_name }} {{ booking.last_name }}</h3>
 <div class="row row-inside">
-    <form action="/admin/bookings/cancel"></form>
+    <form action="/admin/bookings/cancel" method="post">
     <div class="form-group">
         <textarea class="form-control" rows="5" name="cancel_booking"></textarea>
     </div>
     <input type="hidden" value="{{ booking.booking_id }}" name="booking_id">
     <button class="btn btn-danger" type="submit" data-toggle="confirmation" data-title="Cancel the booking?" data-popout="true" data-placement="top" >Cancel this booking</button>
+    </form>
 </div>
 
 

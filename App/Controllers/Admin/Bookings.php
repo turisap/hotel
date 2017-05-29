@@ -238,7 +238,7 @@ class Bookings extends \Core\Controller {
                 // render template
                 View::renderTemplate('admin/bookings/check_booking.html', ['booking' => $booking]);
             } else {
-                self::redirect('/admin/bookings/book-room?id='. $booking->room_id);
+                self::redirect('/admin/bookings/book-room?id='. $booking_id);
             }
 
         }
@@ -287,6 +287,10 @@ class Bookings extends \Core\Controller {
                     'room_id'   => $room_id
                 ]);
 
+            } else {
+                // redirect back to the room page on failure
+                Flash::addMessage('It looks like this page doesn\'t exist', Flash::INFO);
+                self::redirect('/admin/bookings/book-room?id=' . $room_id);
             }
 
 
@@ -298,23 +302,26 @@ class Bookings extends \Core\Controller {
     }
 
     // processes request of canceling booking
-    public static function cancel(){
+    public function cancel(){
 
         $booking_id = $_POST['booking_id'] ?? false;
+        $message = $_POST['cancel_booking'] ?? false;
         $booking = Booking::findById($booking_id);
+
+
 
         if($booking){
 
             // cancel booking
-            if(Booking::cancelBooking($booking_id)){
+            if(Booking::cancelBooking($booking_id, true)){
 
                 // send email to the user
                 $user = User::findById($booking->user_id);
-                Mail::send($user->email, 'MyhotelSystem', 'Booking cancelation', 'Template');
+                Mail::send($user->email, 'MyhotelSystem', 'Booking cancelation', $message);
 
                 // and redirect
                 Flash::addMessage('Booking was successfully canceled');
-                self::redirect('admin/bookings/book-room?id=' . $booking->booking_id);
+                self::redirect('/admin/bookings/book-room?id=' . $booking->room_id);
 
             }
 
@@ -322,7 +329,7 @@ class Bookings extends \Core\Controller {
         } else {
 
             Flash::addMessage('It looks like this booking doesn\'t exist');
-            self::redirect('admin/bookings/book-room?id=' . $booking->booking_id);
+            self::redirect('/admin/bookings/create');
         }
     }
 
