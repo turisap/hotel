@@ -13,21 +13,6 @@
 
     $(document).ready(function () {
 
-
-        // tiptools
-        {% for booking in bookings %}
-        $('#tip{{ booking.booking_id }}').qtip({ // Grab some elements to apply the tooltip to
-            prerender: true,
-            content: {
-                title: 'Hey',
-                text: 'test'
-            }
-        });
-        {% endfor %}
-
-
-
-
         // CALENDAR
         $('#calendar').fullCalendar({
             contentHeight: 600,
@@ -58,27 +43,62 @@
                         element.children().addClass("past-event");
                     }
                 }
+
+                // qtip
+                element.qtip({
+                    title  : event.guest_name,
+                    content: {
+                        title  : event.guest_name,
+                        text   : event.smoking + '<br>' + event.children
+                    }
+                });
             },
             events:
                 [
                 {% for booking in bookings %}
         {
-            id     : '{{booking.booking_id}}',
-            title  : '{{ booking.title }} {{booking.first_name }} {{ booking.last_name }}; {{ booking.num_guests }} guests',
-                start  : '{{ booking.checkin }}T10:00:00',
-            end    : '{{ booking.checkout }}T10:00:00',
-            url    :  '/admin/bookings/check-booking?id={{ booking.booking_id }}',
+            id              : '{{booking.booking_id}}',
+            title           : '{{ booking.title }} {{booking.first_name }} {{ booking.last_name }}; {{ booking.num_guests }} guests',
+            start           : '{{ booking.checkin }}T10:00:00',
+            end             : '{{ booking.checkout }}T10:00:00',
+            url             :  '/admin/bookings/check-booking?id={{ booking.booking_id }}',
             backgroundColor : '#40d3d6',
-            textColor:     'black',
-            allDay : false
+            textColor       : 'black',
+            allDay          : false,
+            guest_name      : '<p class="lead">For {{ booking.title }} {{ booking.first_name }} {{ booking.last_name }}</p>',
+            smoking         : '{% if booking.smoking == 1 %}<li>Smoking guests {% else %}<li> No smoking guests</li>{% endif %}',
+            children        : "2"
+
+
         },
         {% endfor %}
-        ],
-        eventAfterRender:function( event, element, view ) {
-            $(element).attr("id","tip"+event._id);
-        },
+
+        ]
 
     });
+
+        /*
+
+         <!--for information inside tooltips-->
+         <div class="hidden">
+         {% for booking in bookings %}
+         <div id="{{ booking.booking_id }}-tip">
+         <p class="lead">For {{ booking.title }} {{ booking.first_name }} {{ booking.last_name }}</p>
+         <ul>
+         <li>Guests: {{ booking.num_guests }}</li>
+         {% if booking.smoking == 1 %}<li>Smoking guests</li>{% endif %}
+         {% if booking.breakfast == 1 %}<li>Breakfast ordered</li>{% endif %}
+         {% if booking.pets == 1 %}<li>Pets are present</li>{% endif %}
+         {% if booking.quite_room == 1 %}<li>Quite room required</li>{% endif %}
+         {% if booking.bike_rent == 1 %}<li>Interested in bike rent</li>{% endif %}
+         {% if booking.num_children != 0 %}<li>Children: {{ booking.num_children }}</li>{% endif %}
+         <li>Approximate arrival time: {{ booking.arrival_time }}</li>
+         </ul>
+         </div>
+         {% endfor %}
+         </div>
+
+        * */
 
 
 
@@ -407,24 +427,7 @@
 
 </div>
 
-<!--for information inside tooltips-->
-<div class="hidden">
-    {% for booking in bookings %}
-    <div id="{{ booking.booking_id }}-tip">
-        <p class="lead">For {{ booking.title }} {{ booking.first_name }} {{ booking.last_name }}</p>
-        <ul>
-            <li>Guests: {{ booking.num_guests }}</li>
-            {% if booking.smoking == 1 %}<li>Smoking guests</li>{% endif %}
-            {% if booking.breakfast == 1 %}<li>Breakfast ordered</li>{% endif %}
-            {% if booking.pets == 1 %}<li>Pets are present</li>{% endif %}
-            {% if booking.quite_room == 1 %}<li>Quite room required</li>{% endif %}
-            {% if booking.bike_rent == 1 %}<li>Interested in bike rent</li>{% endif %}
-            {% if booking.num_children != 0 %}<li>Children: {{ booking.num_children }}</li>{% endif %}
-            <li>Approximate arrival time: {{ booking.arrival_time }}</li>
-        </ul>
-    </div>
-    {% endfor %}
-</div>
+
 
 
 
