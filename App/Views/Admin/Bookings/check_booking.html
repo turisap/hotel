@@ -1,6 +1,6 @@
 {% extends "admin_base.html" %}
 
-{% block title %} {{ booking.room_name}} bookng{% endblock %}
+{% block title %} {{ booking.room_name}} booking{% endblock %}
 {% block page_heading %}{{ booking.room_name}} bookng{% endblock %}
 {% block page_subheading %}<a href="/admin/bookings/book-room?id={{ booking.room_id }}">back to room </a> {% endblock %}
 
@@ -12,15 +12,18 @@
 
     $(document).ready(function () {
 
-        var checkin = '{{ booking.checkin }}';
-        var checkout = '{{ booking.checkout }}';
+        var checkin = new Date('{{ booking.checkin }}');
+        var checkout = new Date('{{ booking.checkout }}');
 
-        var checkinDate = checkin.split('-');
-        var checkoutDate = checkout.split('-');
+        var timeDiff = Math.abs(checkout.getTime() - checkin.getTime());
+        var dayDif   = Math.ceil(timeDiff/(1000 * 3600 *24));
 
-        var nights = parseInt(checkoutDate[2]) - parseInt(checkinDate[2]);
+        if(dayDif == 1){
+            $('#nights').html(dayDif + ' night stay');
+        } else {
+            $('#nights').html(dayDif + ' nights stay');
+        }
 
-        $('#nights').html(nights);
     })
 
 </script>
@@ -35,7 +38,7 @@
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <ul class="list-group">
             <li class="list-group-item">Booked for {{ booking.title }} {{ booking.first_name }} {{ booking.last_name }}</li>
-            <li class="list-group-item">Check in {{ booking.checkin }}/checkout {{ booking.checkout}}. {{ booking.nights }}<i id="nights"></i> nights stay</li>
+            <li class="list-group-item">Check in {{ booking.checkin }}/checkout {{ booking.checkout}}. {{ booking.nights }}<i id="nights"></i> </li>
             <li class="list-group-item">Number of children: {{ booking.num_children }}</li>
             <li class="list-group-item">Approximate arrival time: {{ booking.arrival_time }}</li>
             <li class="list-group-item">Guests: {{ booking.num_guests }}</li>
@@ -43,7 +46,7 @@
     </div>
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <ul class="list-group">
-            <li class="list-group-item list-group-item-{% if booking.bike_rent == 1 %}success{% else %}danger{% endif %}">Guest {% if booking.breakfast == 1 %} is {% else %} isn't  {% endif %} in bike rent</li>
+            <li class="list-group-item list-group-item-{% if booking.bike_rent == 1 %}success{% else %}danger{% endif %}">Guest {% if booking.breakfast == 1 %} is {% else %} isn't  {% endif %} interested in bike rent</li>
             <li class="list-group-item list-group-item-{% if booking.breakfast == 1 %}success{% else %}danger{% endif %}">Breakfast: {% if booking.breakfast == 1 %} ordered {% else %} isn't ordered {% endif %}</li>
             <li class="list-group-item list-group-item-{% if booking.smoking == 1 %}success{% else %}danger{% endif %}">Smoking guests: {% if booking.smoking == 1 %} yes {% else %} no {% endif %}</li>
             <li class="list-group-item list-group-item-{% if booking.pets == 1 %}success{% else %}danger{% endif %}">Pets: {% if booking.pets == 1 %} present {% else %} not present {% endif %}</li>
