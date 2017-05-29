@@ -209,23 +209,7 @@ class Booking extends \Core\Model {
         return $stm->fetchAll();
     }
 
-    // this method finds the number of nights to stay in a booking
-    public static function numberNightsStay($booking_id){
 
-        $sql = 'SELECT checkin, checkout FROM ' . static::$db_table . ' WHERE booking_id = :booking_id';
-
-        $db  = static::getDB();
-
-        $stm = $db->prepare($sql);
-        $stm->bindValue(':booking_id', $booking_id, PDO::PARAM_INT);
-        $stm->setFetchMode(PDO::FETCH_ASSOC);
-
-        $stm->execute();
-        $dates = $stm->fetch();
-
-        return $dates;
-
-    }
 
 
 

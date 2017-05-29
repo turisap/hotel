@@ -292,6 +292,10 @@ div.past-event {
     background-color: #cbcbcb !important;
 }
 
+.hidden {
+    visibility: hidden;
+}
+
 
 /*=========================== ONE BOOKING PAGE ======================================= */
 

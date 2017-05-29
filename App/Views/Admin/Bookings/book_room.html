@@ -7,22 +7,26 @@
 
 {% block footer %}
 
-
-{% endblock %}
-
-
-{% block body %}
-
-
-
-<!-- ENABLE BOOTSTRAP BUTTON CONFIRMATION AND AJAX, POPOUTS -->
-<script src="/admin/js/check_room.js" type="text/javascript"></script>
-
 <!-- BOOTSTRAP DATEPICKER AND FORM VALIDATION -->
 <script>
 
 
     $(document).ready(function () {
+
+
+        // tiptools
+        {% for booking in bookings %}
+        $('#tip{{ booking.booking_id }}').qtip({ // Grab some elements to apply the tooltip to
+            prerender: true,
+            content: {
+                title: 'Hey',
+                text: 'test'
+            }
+        });
+        {% endfor %}
+
+
+
 
         // CALENDAR
         $('#calendar').fullCalendar({
@@ -48,7 +52,7 @@
                         element.addClass("past-event");
                         element.children().addClass("past-event");
                     }
-                } else {
+                } else  {
                     if (eventEnd < ntoday){
                         element.addClass("past-event");
                         element.children().addClass("past-event");
@@ -58,19 +62,23 @@
             events:
                 [
                 {% for booking in bookings %}
-            {
-                title  : '{{ booking.title }} {{booking.first_name }} {{ booking.last_name }}; {{ booking.num_guests }} guests',
+        {
+            id     : '{{booking.booking_id}}',
+            title  : '{{ booking.title }} {{booking.first_name }} {{ booking.last_name }}; {{ booking.num_guests }} guests',
                 start  : '{{ booking.checkin }}T10:00:00',
-                end    : '{{ booking.checkout }}T10:00:00',
-                url    :  '/admin/bookings/check-booking?id={{ booking.booking_id }}',
-                backgroundColor : '{% if booking.smoking == 1 %} #d8d343 {% else %} #40d3d6 {% endif %} ',
-                textColor:     'black',
-                allDay : false
-            },
+            end    : '{{ booking.checkout }}T10:00:00',
+            url    :  '/admin/bookings/check-booking?id={{ booking.booking_id }}',
+            backgroundColor : '#40d3d6',
+            textColor:     'black',
+            allDay : false
+        },
         {% endfor %}
         ],
+        eventAfterRender:function( event, element, view ) {
+            $(element).attr("id","tip"+event._id);
+        },
 
-        });
+    });
 
 
 
@@ -174,8 +182,10 @@
 
 
 
+{% endblock %}
 
 
+{% block body %}
 
 
 
@@ -397,7 +407,24 @@
 
 </div>
 
-
+<!--for information inside tooltips-->
+<div class="hidden">
+    {% for booking in bookings %}
+    <div id="{{ booking.booking_id }}-tip">
+        <p class="lead">For {{ booking.title }} {{ booking.first_name }} {{ booking.last_name }}</p>
+        <ul>
+            <li>Guests: {{ booking.num_guests }}</li>
+            {% if booking.smoking == 1 %}<li>Smoking guests</li>{% endif %}
+            {% if booking.breakfast == 1 %}<li>Breakfast ordered</li>{% endif %}
+            {% if booking.pets == 1 %}<li>Pets are present</li>{% endif %}
+            {% if booking.quite_room == 1 %}<li>Quite room required</li>{% endif %}
+            {% if booking.bike_rent == 1 %}<li>Interested in bike rent</li>{% endif %}
+            {% if booking.num_children != 0 %}<li>Children: {{ booking.num_children }}</li>{% endif %}
+            <li>Approximate arrival time: {{ booking.arrival_time }}</li>
+        </ul>
+    </div>
+    {% endfor %}
+</div>
 
 
 
