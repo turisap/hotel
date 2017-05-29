@@ -6,6 +6,24 @@
 
 
 {% block footer %}
+<script>
+
+
+
+    $(document).ready(function () {
+
+        var checkin = '{{ booking.checkin }}';
+        var checkout = '{{ booking.checkout }}';
+
+        var checkinDate = checkin.split('-');
+        var checkoutDate = checkout.split('-');
+
+        var nights = parseInt(checkoutDate[2]) - parseInt(checkinDate[2]);
+
+        $('#nights').html(nights);
+    })
+
+</script>
 
 
 {% endblock %}
@@ -17,7 +35,7 @@
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <ul class="list-group">
             <li class="list-group-item">Booked for {{ booking.title }} {{ booking.first_name }} {{ booking.last_name }}</li>
-            <li class="list-group-item">Check in {{ booking.checkin }}/checkout {{ booking.checkout}}. {{ booking.nights }} nights stay</li>
+            <li class="list-group-item">Check in {{ booking.checkin }}/checkout {{ booking.checkout}}. {{ booking.nights }}<i id="nights"></i> nights stay</li>
             <li class="list-group-item">Number of children: {{ booking.num_children }}</li>
             <li class="list-group-item">Approximate arrival time: {{ booking.arrival_time }}</li>
             <li class="list-group-item">Guests: {{ booking.num_guests }}</li>

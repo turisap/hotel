@@ -245,7 +245,7 @@ class Bookings extends \Core\Controller {
 
         } else {
             Flash::addMessage('This room doesn\'t exist', Flash::INFO);
-            self::redirect('admin/bookings/create);
+            self::redirect('admin/bookings/create');
         }
         
 
