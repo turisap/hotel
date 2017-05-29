@@ -288,8 +288,15 @@ div.row.button {
     margin: 30px 0 !important;
 }
 
+div.past-event {
+    background-color: #cbcbcb !important;
+}
+
+
+/*=========================== ONE BOOKING PAGE ======================================= */
+
 #viewAllBookings, #cancelBooking {
     margin: 10px;
-
 }
+
 
