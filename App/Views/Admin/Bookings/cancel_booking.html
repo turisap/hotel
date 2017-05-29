@@ -1,0 +1,56 @@
+{% extends "admin_base.html" %}
+
+{% block title %}Cancel booking{% endblock %}
+{% block page_heading %}Cancel booking {% endblock %}
+{% block page_subheading %}<a href="/admin/bookings/book-room?id={{ room_id }}">back to room </a> {% endblock %}
+
+
+{% block footer %}
+<script>
+    $(document).ready(function () {
+
+
+        // bootstrap confirmation buttons initializing
+        $('[data-toggle=confirmation]').confirmation({
+            rootSelector: '[data-toggle=confirmation]'
+        });
+
+    })
+</script>
+
+{% endblock %}
+
+
+{% block body %}
+
+
+<div class="row inside">
+
+       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 lead">You are going to cancel booking of {{ booking.room_name }}
+        for {{ booking.title }} {{ booking.first_name }} {{ booking.last_name }}</div>
+
+</div>
+<div class="row row-inside">
+
+        <ul>
+            <li><p class="lead">Check in date: {{ booking.checkin }}</p></li>
+            <li><p class="lead">Check out data: {{ booking.checkout }}</p></li>
+        </ul>
+
+</div>
+
+<h3 class="head">Please write here a message for {{ booking.title }} {{ booking.first_name }} {{ booking.last_name }}</h3>
+<div class="row row-inside">
+    <form action="/admin/bookings/cancel"></form>
+    <div class="form-group">
+        <textarea class="form-control" rows="5" name="cancel_booking"></textarea>
+    </div>
+    <input type="hidden" value="{{ booking.booking_id }}" name="booking_id">
+    <a class="btn btn-danger" id="cancel_confirm" data-toggle="confirmation" data-title="Cancel the booking?" data-popout="true" data-placement="top" >Cancel this booking</a>
+</div>
+
+
+
+
+{% endblock %}
+

@@ -143,6 +143,9 @@ class Bookings extends \Core\Controller {
 
         if($room_id){
 
+            // check status of a booking (1 -upcoming, 0-past, 2 - canceled) and set status to past if check in date in the past
+            Booking::checkAndChangeAllBookingsStatus();
+
             // find a room based on that id
             $room = Room::findById($room_id);
             // and all bookings to that room
@@ -175,6 +178,7 @@ class Bookings extends \Core\Controller {
         $data = $_POST ?? false;
         // extract room id in order to pass it to the view in the case of error
         $room_id = $_POST['room_id'] ?? false;
+
 
         if($data){
 
@@ -260,6 +264,36 @@ class Bookings extends \Core\Controller {
         }
         
 
+    }
+
+
+    // this method processes the page with booking deletion
+    public static function cancelBookingAction(){
+
+        $booking_id = $_GET['booking_id'] ?? false;
+        $room_id    = $_GET['room_id'] ?? false;
+
+
+        if($booking_id){
+
+            // get that booking object
+            $booking = Booking::findById($booking_id);
+
+            if($booking){
+
+                View::renderTemplate('admin/bookings/cancel_booking.html', [
+                    'booking' => $booking,
+                    'room_id'   => $room_id
+                ]);
+
+            }
+
+
+        } else {
+            // redirect back to the room page on failure
+            Flash::addMessage('It looks like this page doesn\'t exist', Flash::INFO);
+            self::redirect('/admin/bookings/book-room?id=' . $room_id);
+        }
     }
 
 

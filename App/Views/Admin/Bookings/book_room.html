@@ -21,13 +21,13 @@
             eventMouseover: function(calEvent, jsEvent, view) {
                 // change the border color just for fun
                 $(this).css('border-color', '#822222');
-                $(this).css('background-color', '#660a0a')
+                $(this).css('background-color', '#383521')
 
             },
             eventMouseout: function(calEvent, jsEvent, view) {
 
                 $(this).css('border-color', '#888b91');
-                $(this).css('background-color', '#ba1b1b')
+                $(this).css('background-color', '#8e8754')
 
             },
             eventRender: function(event, element, view) {
@@ -110,7 +110,7 @@
             start           : '{{ booking.checkin }}',
             end             : '{{ booking.checkout }}',
             url             :  '/admin/bookings/check-booking?id={{ booking.booking_id }}',
-            backgroundColor : '#ba1b1b',
+            backgroundColor : '{% if booking.status == 2 %} #d68b60 {% else %} #8e8754 {% endif %}',
             textColor       : 'black',
             allDay          : false,
             guest_name      : '<p class="lead">For {{ booking.title }} {{ booking.first_name }} {{ booking.last_name }}</p>',
