@@ -44,58 +44,67 @@
                         element.addClass("past-event");
                         element.children().addClass("past-event");
 
-                        // qtip for past bookings
-                        element.qtip({
-                            title  : event.guest_name,
-                            content: {
-                                title  : event.guest_name,
-                                text   : event.review
-                            },
-                            position: {
-                                my  : 'top left',
-                                at  : 'bottom left',
-                                effect: function(api, pos, viewport) {
-                                    // "this" refers to the tooltip
-                                    $(this).animate(pos, {
-                                        duration: 600,
-                                        easing: 'linear',
-                                        queue: false // Set this to false so it doesn't interfere with the show/hide animations
-                                    });
-                                }
-                            },
-                            style : {
-                                classes: 'qtip-light'
-                            }
+                        // qtip for past bookings ( and don't show for canceled bookings)
+                        if(event.status != 2){
 
-                        });
+                            element.qtip({
+                                title  : event.guest_name,
+                                content: {
+                                    title  : event.guest_name,
+                                    text   : event.review
+                                },
+                                position: {
+                                    my  : 'top left',
+                                    at  : 'bottom left',
+                                    effect: function(api, pos, viewport) {
+                                        // "this" refers to the tooltip
+                                        $(this).animate(pos, {
+                                            duration: 600,
+                                            easing: 'linear',
+                                            queue: false // Set this to false so it doesn't interfere with the show/hide animations
+                                        });
+                                    }
+                                },
+                                style : {
+                                    classes: 'qtip-light'
+                                }
+
+                            });
+
+                        }
 
                     }
 
                     if(eventEnd >= ntoday){
 
-                        // qtip for upcoming bookings
-                        element.qtip({
-                            title  : event.guest_name,
-                            content: {
+                        // qtip for upcoming bookings (and don't show for canceled ones)
+                        if(event.status != 2){
+
+                            element.qtip({
                                 title  : event.guest_name,
-                                text   : event.num_guests + event.smoking + event.breakfast + event.pets + event.quite_room + event.bike_rent + event.children + event.arrival_time
-                            },
-                            position: {
-                                my  : 'top left',
-                                at  : 'bottom left',
-                                effect: function(api, pos, viewport) {
-                                    // "this" refers to the tooltip
-                                    $(this).animate(pos, {
-                                        duration: 600,
-                                        easing: 'linear',
-                                        queue: false // Set this to false so it doesn't interfere with the show/hide animations
-                                    });
+                                content: {
+                                    title  : event.guest_name,
+                                    text   : event.num_guests + event.smoking + event.breakfast + event.pets + event.quite_room + event.bike_rent + event.children + event.arrival_time
+                                },
+                                position: {
+                                    my  : 'top left',
+                                    at  : 'bottom left',
+                                    effect: function(api, pos, viewport) {
+                                        // "this" refers to the tooltip
+                                        $(this).animate(pos, {
+                                            duration: 600,
+                                            easing: 'linear',
+                                            queue: false // Set this to false so it doesn't interfere with the show/hide animations
+                                        });
+                                    }
+                                },
+                                style : {
+                                    classes: 'qtip-tipsy'
                                 }
-                            },
-                            style : {
-                                classes: 'qtip-tipsy'
-                            }
-                        });
+                            });
+
+                        }
+
                     }
                 }
 
@@ -107,8 +116,8 @@
         {
             id              : '{{booking.booking_id}}',
             title           : '{{ booking.title }} {{booking.first_name }} {{ booking.last_name }}',
-            start           : '{{ booking.checkin }}',
-            end             : '{{ booking.checkout }}',
+            start           : '{{ booking.checkin }}T12:00',
+            end             : '{{ booking.checkout }}T12:00',
             url             :  '/admin/bookings/check-booking?id={{ booking.booking_id }}',
             backgroundColor : '{% if booking.status == 2 %} #d68b60 {% else %} #8e8754 {% endif %}',
             textColor       : 'black',
@@ -122,7 +131,8 @@
             bike_rent       : '{% if booking.bike_rent == 1 %}<li>Interested in bike rent</li>{% endif %}',
             children        : '{% if booking.num_children != 0 %}<li>Children: {{ booking.num_children }}</li>{% endif %}',
             arrival_time    : '<li>Approximate arrival time: {{ booking.arrival_time }}</li>',
-            review          : 'review feature is under construction'
+            review          : 'review feature is under construction',
+            status          : '{{ booking.status }}'
 
 
         },
