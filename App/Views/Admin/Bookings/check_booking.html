@@ -62,7 +62,9 @@
 </div>
 
 <a class="btn btn-primary" id="viewAllBookings" href="/admin/bookings/all-bookings?id={{ booking.room_id }}">View all bookings for this room</a>
+{% if booking.status == 1 %}
 <a class="btn btn-danger" id="cancelBooking" href="/admin/bookings/cancel-booking?id={{ booking.room_id }}">Cancel this booking</a>
+{% endif %}
 
 
 {% endblock %}

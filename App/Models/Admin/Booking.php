@@ -210,6 +210,35 @@ class Booking extends \Core\Model {
     }
 
 
+    // checks status of all bookings and sets it to 0 (past) if it check in date in the past
+    public static function checkAndChangeAllBookingsStatus(){
+
+        // find all booking objects first
+        $bookings = self::findAll();
+
+        if($bookings){
+
+            // check statuses for all bookings
+            foreach ($bookings as $booking) {
+
+                // compare checkin date with the current time and check status whether it was canceled
+                if (strtotime($booking->checkin) < time() && $booking->status != 2){
+
+                    $sql = 'UPDATE ' . static::$db_table . ' SET status = 0 WHERE booking_id = :id';
+
+                    $db  = static::getDB();
+
+                    $stm = $db->prepare($sql);
+                    $stm->bindValue(':id', $booking->booking_id, PDO::PARAM_INT);
+
+                    $stm->execute();
+
+                }
+
+            }
+
+        }
+    }
 
 
 

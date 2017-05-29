@@ -26,6 +26,7 @@ class Bookings extends \Core\Controller {
     {
         //parent::before();
         $this->requireAdmin();
+
     }
 
 
@@ -220,14 +221,24 @@ class Bookings extends \Core\Controller {
 
         // first get booking's id from the query string
         $booking_id = $_GET['id'] ?? false;
-        $booking = Booking::findById($booking_id);
 
-        if($booking){
-            // render template
-            View::renderTemplate('admin/bookings/check_booking.html', ['booking' => $booking]);
-        } else {
-            self::redirect('/admin/bookings/book-room?id='. $booking->room_id);
+        if($booking_id){
+
+            // check status of a booking (1 -upcoming, 0-past, 2 - canceled) and set status to past if check in date in the past
+            Booking::checkAndChangeAllBookingsStatus();
+            // find booking object
+            $booking = Booking::findById($booking_id);
+
+            if($booking){
+                // render template
+                View::renderTemplate('admin/bookings/check_booking.html', ['booking' => $booking]);
+            } else {
+                self::redirect('/admin/bookings/book-room?id='. $booking->room_id);
+            }
+
         }
+
+
     }
 
     // this method renders particular page
