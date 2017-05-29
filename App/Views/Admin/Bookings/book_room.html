@@ -17,15 +17,16 @@
         $('#calendar').fullCalendar({
             contentHeight: 600,
             nextDayThreshold: '00:00:00',
-            //navLinks: true,
             eventMouseover: function(calEvent, jsEvent, view) {
                 // change the border color just for fun
                 $(this).css('border-color', '#822222');
+                $(this).css('background-color', '#660a0a')
 
             },
             eventMouseout: function(calEvent, jsEvent, view) {
 
                 $(this).css('border-color', '#888b91');
+                $(this).css('background-color', '#ba1b1b')
 
             },
             eventRender: function(event, element, view) {
@@ -41,6 +42,32 @@
                     if (eventEnd < ntoday){
                         element.addClass("past-event");
                         element.children().addClass("past-event");
+
+                        // qtip for past bookings
+                        element.qtip({
+                            title  : event.guest_name,
+                            content: {
+                                title  : event.guest_name,
+                                text   : event.review
+                            },
+                            position: {
+                                my  : 'top left',
+                                at  : 'bottom left',
+                                effect: function(api, pos, viewport) {
+                                    // "this" refers to the tooltip
+                                    $(this).animate(pos, {
+                                        duration: 600,
+                                        easing: 'linear',
+                                        queue: false // Set this to false so it doesn't interfere with the show/hide animations
+                                    });
+                                }
+                            },
+                            style : {
+                                classes: 'qtip-light'
+                            }
+
+                        });
+
                     }
 
                     if(eventEnd >= ntoday){
@@ -51,6 +78,21 @@
                             content: {
                                 title  : event.guest_name,
                                 text   : event.smoking + event.breakfast + event.pets + event.quite_room + event.bike_rent + event.children + event.arrival_time
+                            },
+                            position: {
+                                my  : 'top left',
+                                at  : 'bottom left',
+                                effect: function(api, pos, viewport) {
+                                    // "this" refers to the tooltip
+                                    $(this).animate(pos, {
+                                        duration: 600,
+                                        easing: 'linear',
+                                        queue: false // Set this to false so it doesn't interfere with the show/hide animations
+                                    });
+                                }
+                            },
+                            style : {
+                                classes: 'qtip-tipsy'
                             }
                         });
                     }
@@ -67,7 +109,7 @@
             start           : '{{ booking.checkin }}T10:00:00',
             end             : '{{ booking.checkout }}T10:00:00',
             url             :  '/admin/bookings/check-booking?id={{ booking.booking_id }}',
-            backgroundColor : '#40d3d6',
+            backgroundColor : '#ba1b1b',
             textColor       : 'black',
             allDay          : false,
             guest_name      : '<p class="lead">For {{ booking.title }} {{ booking.first_name }} {{ booking.last_name }}</p>',
@@ -77,7 +119,8 @@
             quite_room      : '{% if booking.quite_room == 1 %}<li>Quite room required</li>{% endif %}',
             bike_rent       : '{% if booking.bike_rent == 1 %}<li>Interested in bike rent</li>{% endif %}',
             children        : '{% if booking.num_children != 0 %}<li>Children: {{ booking.num_children }}</li>{% endif %}',
-            arrival_time    : '<li>Approximate arrival time: {{ booking.arrival_time }}</li>'
+            arrival_time    : '<li>Approximate arrival time: {{ booking.arrival_time }}</li>',
+            review          : 'review feature is under construction'
 
 
         },
