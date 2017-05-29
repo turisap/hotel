@@ -16,6 +16,7 @@
         // CALENDAR
         $('#calendar').fullCalendar({
             contentHeight: 600,
+            displayEventTime: false,
             nextDayThreshold: '00:00:00',
             eventMouseover: function(calEvent, jsEvent, view) {
                 // change the border color just for fun
@@ -77,7 +78,7 @@
                             title  : event.guest_name,
                             content: {
                                 title  : event.guest_name,
-                                text   : event.smoking + event.breakfast + event.pets + event.quite_room + event.bike_rent + event.children + event.arrival_time
+                                text   : event.num_guests + event.smoking + event.breakfast + event.pets + event.quite_room + event.bike_rent + event.children + event.arrival_time
                             },
                             position: {
                                 my  : 'top left',
@@ -105,14 +106,15 @@
                 {% for booking in bookings %}
         {
             id              : '{{booking.booking_id}}',
-            title           : '{{ booking.title }} {{booking.first_name }} {{ booking.last_name }}; {{ booking.num_guests }} guests',
-            start           : '{{ booking.checkin }}T10:00:00',
-            end             : '{{ booking.checkout }}T10:00:00',
+            title           : '{{ booking.title }} {{booking.first_name }} {{ booking.last_name }}',
+            start           : '{{ booking.checkin }}',
+            end             : '{{ booking.checkout }}',
             url             :  '/admin/bookings/check-booking?id={{ booking.booking_id }}',
             backgroundColor : '#ba1b1b',
             textColor       : 'black',
             allDay          : false,
             guest_name      : '<p class="lead">For {{ booking.title }} {{ booking.first_name }} {{ booking.last_name }}</p>',
+            num_guests      : ' <li>{{ booking.num_guests }} guests</li>',
             smoking         : '{% if booking.smoking == 1 %}<li>Smoking guests {% else %}<li> No smoking guests</li>{% endif %}',
             breakfast       : '{% if booking.breakfast == 1 %}<li>Breakfast ordered</li>{% endif %}',
             pets            : '{% if booking.pets == 1 %}<li>Pets are present</li>{% endif %}',
