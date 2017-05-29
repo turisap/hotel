@@ -18,16 +18,21 @@
             contentHeight: 600,
             displayEventTime: false,
             nextDayThreshold: '00:00:00',
-            eventMouseover: function(calEvent, jsEvent, view) {
+            eventMouseover: function(event, jsEvent, view) {
+
                 // change the border color just for fun
-                $(this).css('border-color', '#822222');
-                $(this).css('background-color', '#383521')
+                if(event.status != 2){
+                    $(this).css('border-color', '#822222');
+                    $(this).css('background-color', '#383521');
+                }
 
             },
-            eventMouseout: function(calEvent, jsEvent, view) {
+            eventMouseout: function(event, jsEvent, view) {
 
-                $(this).css('border-color', '#888b91');
-                $(this).css('background-color', '#8e8754')
+                if(event.status != 2){
+                    $(this).css('border-color', '#888b91');
+                    $(this).css('background-color', '#8e8754');
+                }
 
             },
             eventRender: function(event, element, view) {
@@ -115,7 +120,7 @@
                 {% for booking in bookings %}
         {
             id              : '{{booking.booking_id}}',
-            title           : '{{ booking.title }} {{booking.first_name }} {{ booking.last_name }}',
+            title           : '{{ booking.title }} {{booking.first_name }} {{ booking.last_name }} {% if booking.status == 2 %} CANCELED {% endif %}',
             start           : '{{ booking.checkin }}T12:00',
             end             : '{{ booking.checkout }}T12:00',
             url             :  '/admin/bookings/check-booking?id={{ booking.booking_id }}',
