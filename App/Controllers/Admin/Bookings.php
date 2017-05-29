@@ -15,6 +15,7 @@ use App\Flash;
 use App\Mail;
 use App\Models\Admin\Booking;
 use App\Models\Admin\Photo;
+use App\Models\User;
 use Core\View;
 use App\Models\Admin\Room;
 use \App\Models\Admin\Search;
@@ -293,6 +294,35 @@ class Bookings extends \Core\Controller {
             // redirect back to the room page on failure
             Flash::addMessage('It looks like this page doesn\'t exist', Flash::INFO);
             self::redirect('/admin/bookings/book-room?id=' . $room_id);
+        }
+    }
+
+    // processes request of canceling booking
+    public static function cancel(){
+
+        $booking_id = $_POST['booking_id'] ?? false;
+        $booking = Booking::findById($booking_id);
+
+        if($booking){
+
+            // cancel booking
+            if(Booking::cancelBooking($booking_id)){
+
+                // send email to the user
+                $user = User::findById($booking->user_id);
+                Mail::send($user->email, 'MyhotelSystem', 'Booking cancelation', 'Template');
+
+                // and redirect
+                Flash::addMessage('Booking was successfully canceled');
+                self::redirect('admin/bookings/book-room?id=' . $booking->booking_id);
+
+            }
+
+
+        } else {
+
+            Flash::addMessage('It looks like this booking doesn\'t exist');
+            self::redirect('admin/bookings/book-room?id=' . $booking->booking_id);
         }
     }
 

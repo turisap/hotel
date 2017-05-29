@@ -224,20 +224,30 @@ class Booking extends \Core\Model {
                 // compare checkin date with the current time and check status whether it was canceled
                 if (strtotime($booking->checkin) < time() && $booking->status != 2){
 
-                    $sql = 'UPDATE ' . static::$db_table . ' SET status = 0 WHERE booking_id = :id';
-
-                    $db  = static::getDB();
-
-                    $stm = $db->prepare($sql);
-                    $stm->bindValue(':id', $booking->booking_id, PDO::PARAM_INT);
-
-                    $stm->execute();
+                    self::cancelBooking($booking->booking_id);
 
                 }
 
             }
 
         }
+    }
+
+
+    // this method cancel bookings (sets status to 2 but doesn't delete it)
+    public static function cancelBooking($booking_id){
+
+        if($booking_id){
+            $sql = 'UPDATE ' . static::$db_table . ' SET status = 0 WHERE booking_id = :id';
+
+            $db  = static::getDB();
+
+            $stm = $db->prepare($sql);
+            $stm->bindValue(':id', $booking_id, PDO::PARAM_INT);
+
+            $stm->execute();
+        }
+
     }
 
 
