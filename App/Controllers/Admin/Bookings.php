@@ -370,7 +370,8 @@ class Bookings extends \Core\Controller {
 
             View::renderTemplate('admin/bookings/all_bookings_to_a_room.html', [
                 'bookings' => $results,
-                'room'  => $room
+                'room'  => $room,
+                'params' => $params
             ]);
 
         } else {

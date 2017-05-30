@@ -343,7 +343,7 @@ abstract class Search extends \Core\Model {
         $sql = 'SELECT * FROM bookings WHERE ';
 
         // check whether search terms were supplied with status or show all
-        $sql .= ($status == 0) ? ' ' : (($status == 3) ? ' status = 0 AND' : ' status = ' . $status . ' AND');
+        $sql .= ($status == 3) ? ' status = 0 AND' : ' status = ' . $status . ' AND';
 
         // add room id
         $sql .= ' room_id=' . $room_id . ' AND';
