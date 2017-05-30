@@ -326,10 +326,36 @@ abstract class Search extends \Core\Model {
     }
 
 
-    // sorts bookings by status or by checkin days
+    // sorts all bookings to one room by sort terms form all bookings to one room page
     public static function sortBookingSearch($param){
 
+        // get all sort params from POST array
+        $status    = $param['status']   ?? false;
+        $period  = $param['period'] ?? false;
+        $sort = $param['order']  ?? false;
 
+
+        // create corresponding AND parts
+        $checkin = date('Y-m-d', (time() + ($period * 24 * 60 * 60))); // how many days were specified since now
+        $sort_by = ($sort == 0) ? 'DESC' : 'ASC';
+
+        $sql = 'SELECT * FROM bookings WHERE ';
+
+        // check whether search terms were supplied with status or show all
+        $sql .= ($status == 0) ? ' ' : (($status == 3) ? ' status = 0 AND' : ' status = ' . $status . ' AND');
+
+        // add remaining parametres
+        $sql .= ' checkin < \'' . $checkin . '\' ORDER BY checkin ' . $sort_by;
+
+        //return $sql;
+
+        $db  = static::getDB();
+        $stm = $db->prepare($sql);
+        $stm->setFetchMode(PDO::FETCH_CLASS, 'App\Models\Admin\Booking');
+
+        $stm->execute();
+
+        return $stm->fetchAll();
     }
 
 

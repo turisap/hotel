@@ -326,7 +326,9 @@ div.past-event {
     padding: 10px;
 }
 
-#newFirst {
-    margin: 10px;
+.order, .order > input {
+    margin: 0 10px;
 }
+
+
 

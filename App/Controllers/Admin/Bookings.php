@@ -353,6 +353,18 @@ class Bookings extends \Core\Controller {
 
     }
 
+    // this method processes searching params from all bookings to one room page
+    public function sortAllBookings(){
+
+        // get sort params from the POST array
+        $params = $_POST;
+
+        print_r(Search::sortBookingSearch($params));
+
+
+
+    }
+
 
 
 
