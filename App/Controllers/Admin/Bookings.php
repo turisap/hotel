@@ -335,8 +335,13 @@ class Bookings extends \Core\Controller {
         if($room_id){
 
             $bookings = Booking::findAllBookingsToONeRoom($room_id);
+            $room = Room::findById($room_id);
+
             if($bookings){
-                View::renderTemplate('admin/bookings/all_booking_to_room.html', ['bookings' => $bookings]);
+                View::renderTemplate('admin/bookings/all_bookings_to_a_room.html', [
+                    'bookings' => $bookings,
+                    'room'  => $room
+                ]);
             }
 
 

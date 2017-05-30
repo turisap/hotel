@@ -305,6 +305,23 @@ div.past-event {
 
 /* ================================ DELETE BOOKING PAGE ======================== */
 
+/* ============================= ALL BOOKINGS TO ONE ROOM PAGE ================================= */
 
+.booking-past {
+    background-color: #c0c2bb;
+}
 
+.booking-canceled {
+    background-color: rgba(255, 23, 19, 0.13);
+}
+
+.booking-future {
+    background-color: rgba(180, 218, 180, 0.97);
+}
+
+.upcoming, .tomorrow {
+    margin-left: 5% !important;
+    width: auto !important;
+    text-align: center;
+}
 

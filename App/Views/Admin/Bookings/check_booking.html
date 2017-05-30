@@ -61,7 +61,7 @@
     {% if booking.status == 2 %}<h1 style="color:#771d13">THIS BOOKING WAS CANCELLED</h1>{% else %}<p class="lead"> {{ booking.wishes }}</p>{% endif %}
 </div>
 
-<a class="btn btn-primary" id="viewAllBookings" href="/admin/bookings/all-bookings?id={{ booking.room_id }}">View all bookings for this room</a>
+<a class="btn btn-primary" id="viewAllBookings" href="/admin/bookings/view-all-bookings-to-one-room?id={{ booking.room_id }}">View all bookings for this room</a>
 {% if booking.status == 1 %}
 <a class="btn btn-danger" id="cancelBooking" href="/admin/bookings/cancel-booking?booking_id={{ booking.booking_id }}&room_id={{ booking.room_id }}">Cancel this booking</a>
 {% endif %}

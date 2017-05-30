@@ -1,0 +1,125 @@
+{% extends "admin_base.html" %}
+
+{% block title %}all bookings{% endblock %}
+{% block page_heading %}{{ room.local_name}} all bookings{% endblock %}
+{% block page_subheading %}<a href="/admin/bookings/book-room?id={{ room.id }}">back to room </a> {% endblock %}
+
+
+{% block footer %}
+
+<script>
+
+    $(document).ready(function () {
+
+        var today = new Date();
+
+        // add upcoming label to for bookings in less than 3 days time
+        $('.checkin').each(function () {
+            var checkIn = $(this).text();
+            var checkInDate = new Date(checkIn);
+
+            var timeDiff = Math.ceil(checkInDate.getTime() - today.getTime());
+            var dayDiff  = Math.ceil(timeDiff/(1000 * 3600 * 24));
+
+            var parentRow = $(this).parents('.row');
+            var notificationsRow = parentRow.find('.notifications');
+            var upcomingHTML = '<div class="alert alert-info upcoming"><p class="lead">Upcoming</p></div>';
+            var tomorrowHTML = '<div class="alert alert-danger tomorrow"><p class="lead">Tomorrow</p></div>';
+
+
+            if(dayDiff < 3 && dayDiff > 1){
+
+               notificationsRow.append(upcomingHTML);
+               notificationsRow.width(parentRow.width()); // set width whole span of the parent
+
+            } else if(dayDiff == 1){
+
+                notificationsRow.append(tomorrowHTML);
+                notificationsRow.width(parentRow.width()); // set width whole span of the parent
+
+            }
+
+
+        })
+
+    });
+
+</script>
+
+
+
+{% endblock %}
+
+
+{% block body %}
+
+{% if bookings is not empty %}
+
+{% for booking in bookings %}
+
+
+<div class="row wrap {% if booking.status == 0 %} booking-past {% elseif booking.status == 2%} booking-canceled {% else %} booking-future {% endif %}">
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+        <div class="row row-inside">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <p class="lead info">Guest {{ booking.title }} {{ booking.first_name }} {{ booking.last_name }}</p>
+                    <p class="lead info">Check in date: {{ booking.checkin }}</p>
+                {% if booking.status == 2 %}<h3 style="color:#771d13">CANCELED</h3>{% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <ul class="list-group">
+            <li class="list-group-item">Booked for {{ booking.title }} {{ booking.first_name }} {{ booking.last_name }}</li>
+            <li class="list-group-item">Check in <i class="checkin">{{ booking.checkin }}</i>/checkout {{ booking.checkout}}. {{ booking.nights }}<i id="nights"></i> </li>
+            <li class="list-group-item">Number of children: {{ booking.num_children }}</li>
+            <li class="list-group-item">Approximate arrival time: {{ booking.arrival_time }}</li>
+            <li class="list-group-item">Guests: {{ booking.num_guests }}</li>
+        </ul>
+    </div>
+    {% if booking.status == 1 %}
+    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-{% if booking.bike_rent == 1 %}success{% else %}danger{% endif %}">Guest {% if booking.breakfast == 1 %} is {% else %} isn't  {% endif %} interested in bike rent</li>
+            <li class="list-group-item list-group-item-{% if booking.breakfast == 1 %}success{% else %}danger{% endif %}">Breakfast: {% if booking.breakfast == 1 %} ordered {% else %} isn't ordered {% endif %}</li>
+            <li class="list-group-item list-group-item-{% if booking.smoking == 1 %}success{% else %}danger{% endif %}">Smoking guests: {% if booking.smoking == 1 %} yes {% else %} no {% endif %}</li>
+            <li class="list-group-item list-group-item-{% if booking.pets == 1 %}success{% else %}danger{% endif %}">Pets: {% if booking.pets == 1 %} present {% else %} not present {% endif %}</li>
+            <li class="list-group-item list-group-item-{% if booking.quite_room == 1 %}success{% else %}danger{% endif %}">Quite room: {% if booking.quite_room == 1 %} required {% else %} not required {% endif %}</li>
+        </ul>
+    </div>
+    {% elseif booking.status == 0 %}
+    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <ul class="list-group">
+            <li class="list-group-item">REWIEW</li>
+            <li class="list-group-item">REWIEW</li>
+            <li class="list-group-item">REWIEW</li>
+            <li class="list-group-item">REWIEW</li>
+            <li class="list-group-item">REWIEW</li>
+        </ul>
+    </div>
+    {% elseif booking.status == 2 %}
+    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+       <img class="img-responsive thumbnail" src="/uploads/pictures/rooms/cancel.jpg">
+    </div>
+    {% endif %}
+
+    <div class="row notifications ">
+
+    </div>
+
+
+
+</div>
+
+{% endfor %}
+
+{% else %}
+
+<div class="row wrap">
+    <h3>There are no bookings for this room</h3>
+</div>
+
+{% endif %}
+
+{% endblock %}
+
