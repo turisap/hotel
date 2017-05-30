@@ -135,7 +135,7 @@
             quite_room      : '{% if booking.quite_room == 1 %}<li>Quite room required</li>{% endif %}',
             bike_rent       : '{% if booking.bike_rent == 1 %}<li>Interested in bike rent</li>{% endif %}',
             children        : '{% if booking.num_children != 0 %}<li>Children: {{ booking.num_children }}</li>{% endif %}',
-            arrival_time    : '<li>Approximate arrival time: {{ booking.arrival_time }}</li>',
+            arrival_time    : '<li>Approximate arrival time: {% if booking.arrival_time != 0 %}{{booking.arrival_time}}{% else %}not sure{% endif %}</li>',
             review          : 'review feature is under construction',
             status          : '{{ booking.status }}'
 

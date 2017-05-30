@@ -189,6 +189,9 @@ class Bookings extends \Core\Controller {
             // and find respective room
             $room = Room::findById($room_id);
 
+            // and all bookings to that room
+            $bookings = Booking::findAllBookingsToONeRoom($room_id);
+
             // call Booking model's method to create a record in the database and proceed on success
             if($booking->newBooking($room->local_name)){
 
@@ -200,15 +203,14 @@ class Bookings extends \Core\Controller {
                     'site_name' => Config::SITE_NAME
                 ]));
 
-                View::renderTemplate('admin/bookings/book_room.html', ['booking' => $booking]);
+                // and all bookings to that room
+                $bookings = Booking::findAllBookingsToONeRoom($room_id);
+                View::renderTemplate('admin/bookings/book_room.html', ['bookings' => $bookings, 'room' => $room]);
 
             } else {
 
-                if($room_id){
+                if($room){
 
-                    // and all bookings to that room
-                    $bookings = Booking::findAllBookingsToONeRoom($room_id);
-                    $room = Room::findById($room_id);
                     Flash::addMessage('Please fix all errors', Flash::INFO);
                     View::renderTemplate('admin/bookings/book_room.html', [
                         'booking' => $booking,
