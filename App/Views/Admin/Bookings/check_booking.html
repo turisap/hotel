@@ -56,9 +56,9 @@
 
 </div>
 
-<h3 class="head">Guest's notes</h3>
+{% if booking.status !=2 %}<h3 class="head">Guest's notes</h3>{% endif %}
 <div class="row wrap">
-    <p class="lead">{{ booking.wishes }}</p>
+    {% if booking.status == 2 %}<h1 style="color:#771d13">THIS BOOKING WAS CANCELLED</h1>{% else %}<p class="lead"> {{ booking.wishes }}</p>{% endif %}
 </div>
 
 <a class="btn btn-primary" id="viewAllBookings" href="/admin/bookings/all-bookings?id={{ booking.room_id }}">View all bookings for this room</a>

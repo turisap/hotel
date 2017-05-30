@@ -256,5 +256,11 @@ class Booking extends \Core\Model {
     }
 
 
+    // this method checks if cancellation is possible ( more days before cancelation in comparison what was specified)
+    public static function isCancellationPossible(){
+
+    }
+
+
 
 }

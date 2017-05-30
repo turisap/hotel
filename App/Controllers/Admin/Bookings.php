@@ -54,6 +54,8 @@ class Bookings extends \Core\Controller {
             Flash::addMessage('Please check subcategory');
             View::renderTemplate('Admin/bookings/find_room.html', ['subcategories' => $subcategories, 'category' => $category]);
 
+        } else {
+            self::redirect('admin/bookings/create');
         }
     }
 
@@ -99,14 +101,12 @@ class Bookings extends \Core\Controller {
         // first get data from the POST array
         $search_terms = $_POST['search_by_name'] ?? false;
 
-        //var_dump(Search::findByRoomName($search_terms));
-
 
         if($search_terms){
 
             $results = Search::findByRoomName($search_terms);
 
-            if($results && !empty($results)){
+            if(!empty($results)){
 
 
                 // array for keeping results (rooms and their main photos)
@@ -122,7 +122,7 @@ class Bookings extends \Core\Controller {
 
             } else {
                 Flash::addMessage('Nothing was found', Flash::INFO);
-                self::redirect('/admin/bookings/findByRoomName');
+                self::redirect('/admin/bookings/search-room');
             }
 
         } else {
@@ -181,7 +181,7 @@ class Bookings extends \Core\Controller {
         $room_id = $_POST['room_id'] ?? false;
 
 
-        if($data){
+        if(!empty($data)){
 
             // create a new Booking object based on POST data
             $booking = new Booking($data);
@@ -192,7 +192,6 @@ class Bookings extends \Core\Controller {
             // call Booking model's method to create a record in the database and proceed on success
             if($booking->newBooking($room->local_name)){
 
-                View::renderTemplate('admin/bookings/book_room.html', ['booking' => $booking]);
                 // get current user's object
                 $user = Authentifiacation::getCurrentUser();
                 Mail::send($user->email, 'MyHotelSystem', 'New booking', View::getTemplate('admin/bookings/booking_email.html', [
@@ -201,17 +200,26 @@ class Bookings extends \Core\Controller {
                     'site_name' => Config::SITE_NAME
                 ]));
 
+                View::renderTemplate('admin/bookings/book_room.html', ['booking' => $booking]);
+
             } else {
 
                 if($room_id){
+
+                    // and all bookings to that room
+                    $bookings = Booking::findAllBookingsToONeRoom($room_id);
                     $room = Room::findById($room_id);
                     Flash::addMessage('Please fix all errors', Flash::INFO);
                     View::renderTemplate('admin/bookings/book_room.html', [
                         'booking' => $booking,
-                        'room'    => $room
+                        'room'    => $room,
+                        'bookings' => $bookings
                     ]);
+
                 } else {
+
                     $this->redirect('/admin/bookings/create');
+
                 }
 
             }
@@ -243,27 +251,6 @@ class Bookings extends \Core\Controller {
 
         }
 
-
-    }
-
-    // this method renders particular page
-    public function viewAllBookingsToOneRoom(){
-
-        $room_id = $_GET['id'] ?? false;
-
-        if($room_id){
-
-            $bookings = Booking::findAllBookingsToONeRoom($room_id);
-            if($bookings){
-                View::renderTemplate('admin/bookings/all_booking_to_room.html', ['bookings' => $bookings]);
-            }
-
-
-        } else {
-            Flash::addMessage('This room doesn\'t exist', Flash::INFO);
-            self::redirect('admin/bookings/create');
-        }
-        
 
     }
 
@@ -331,6 +318,28 @@ class Bookings extends \Core\Controller {
             Flash::addMessage('It looks like this booking doesn\'t exist');
             self::redirect('/admin/bookings/create');
         }
+    }
+
+
+    // this method renders particular page
+    public function viewAllBookingsToOneRoom(){
+
+        $room_id = $_GET['id'] ?? false;
+
+        if($room_id){
+
+            $bookings = Booking::findAllBookingsToONeRoom($room_id);
+            if($bookings){
+                View::renderTemplate('admin/bookings/all_booking_to_room.html', ['bookings' => $bookings]);
+            }
+
+
+        } else {
+            Flash::addMessage('This room doesn\'t exist', Flash::INFO);
+            self::redirect('admin/bookings/create');
+        }
+
+
     }
 
 
