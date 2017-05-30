@@ -312,14 +312,14 @@ div.past-event {
 }
 
 .booking-canceled {
-    background-color: rgba(255, 23, 19, 0.13);
+    background-color: rgba(230, 218, 229, 0.98);
 }
 
 .booking-future {
     background-color: rgba(180, 218, 180, 0.97);
 }
 
-.upcoming, .tomorrow {
+.upcoming, .tomorrow, .canceled {
     margin-left: 5% !important;
     width: auto !important;
     text-align: center;
