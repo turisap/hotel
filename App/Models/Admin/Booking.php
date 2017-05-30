@@ -237,7 +237,8 @@ class Booking extends \Core\Model {
     // this method cancel bookings (sets status to 2 but doesn't delete it)
     public static function cancelBooking($booking_id, $cancel = true){
 
-        if($booking_id){
+        // check first is cancelation is possible
+        if(self::isCancellationPossible($booking_id)){
 
                 // first set condition for cancelation or setting booking as past
                 $cancel_or_past = $cancel ? 2 : 0;
@@ -257,7 +258,26 @@ class Booking extends \Core\Model {
 
 
     // this method checks if cancellation is possible ( more days before cancelation in comparison what was specified)
-    public static function isCancellationPossible(){
+    public static function isCancellationPossible($booking_id){
+
+        // first get that booking
+        $booking = self::findById($booking_id);
+
+        if($booking){
+
+            // check the number of cancelation days was specified
+            $room = Room::findById($booking->room_id);
+            $cancel_days = ($room->cancel_days == 0) ? 1 : $room->cancel_days;
+
+            if((strtotime($booking->checkin)) > (time()+ ($cancel_days * 24 * 60 * 60))){
+                return true;
+            } else {
+                return false;
+            }
+
+        } else {
+            return false;
+        }
 
     }
 

@@ -60,7 +60,7 @@ class Bookings extends \Core\Controller {
     }
 
     // process search form on submission (apply button)
-    public static function searchRoomsAction(){
+    public static function searchRoomAction(){
 
         // first get data from the POST array
         $data = $_POST ?? false;
@@ -195,6 +195,7 @@ class Bookings extends \Core\Controller {
             // call Booking model's method to create a record in the database and proceed on success
             if($booking->newBooking($room->local_name)){
 
+                Flash::addMessage('Your booking was created successfully');
                 // get current user's object
                 $user = Authentifiacation::getCurrentUser();
                 Mail::send($user->email, 'MyHotelSystem', 'New booking', View::getTemplate('admin/bookings/booking_email.html', [
@@ -312,12 +313,15 @@ class Bookings extends \Core\Controller {
                 Flash::addMessage('Booking was successfully canceled');
                 self::redirect('/admin/bookings/book-room?id=' . $booking->room_id);
 
+            } else {
+                Flash::addMessage('Cancellation is impossible due to elapsing of the cancellation period', Flash::DANGER);
+                self::redirect('/admin/bookings/book-room?id=' . $booking->room_id);
             }
 
 
         } else {
 
-            Flash::addMessage('It looks like this booking doesn\'t exist');
+            Flash::addMessage('It looks like this room doesn\'t exist' );
             self::redirect('/admin/bookings/create');
         }
     }

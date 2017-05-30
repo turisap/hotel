@@ -26,7 +26,7 @@ class Test
 
 
     public function test(){
-        print_r(Booking::findAllBookingsToOneRoom(21));
+        Booking::isCancellationPossible(25);
     }
 
 
