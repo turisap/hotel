@@ -10,6 +10,7 @@ namespace App\Controllers\Admin;
 
 
 use App\Authentifiacation;
+use App\Models\Admin\Booking;
 use Core\View;
 
 class Home  extends \Core\Controller {
@@ -19,6 +20,7 @@ class Home  extends \Core\Controller {
     {
         $this->user = Authentifiacation::getCurrentUser(); // get current user
         $this->requireAdmin();                             // check its admin access
+        Booking::automaticBookingsDeletion();              // automatically delete all old bookings
 
     }
 

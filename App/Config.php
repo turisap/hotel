@@ -51,4 +51,9 @@ class Config
 
     // directory separotor
     const DS = DIRECTORY_SEPARATOR;
+
+    // the number of days for keeping records of bookings and automatic deletion after passing, must be in '- n days' format
+    const DAYS_BOOKING_KEEPING = '-180 days';
+
+
 }

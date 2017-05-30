@@ -9,7 +9,9 @@
 namespace App\Models\Admin;
 
 
+use App\Config;
 use PDO;
+use DateTime;
 
 
 class Booking extends \Core\Model {
@@ -278,6 +280,25 @@ class Booking extends \Core\Model {
         } else {
             return false;
         }
+
+    }
+
+
+    // deletes all bookings which is older than the specified data
+    public static function automaticBookingsDeletion(){
+
+
+        $today = new DateTime();
+        $limit_stamp = $today->modify(Config::DAYS_BOOKING_KEEPING);
+        $limit_date = $limit_stamp->format('Y-m-d');
+
+
+        $sql = 'DELETE FROM ' . static::$db_table . ' WHERE checkin < \'' . $limit_date. '\'';
+
+        $db  = static::getDB();
+        $stm = $db->prepare($sql);
+
+        $stm->execute();
 
     }
 

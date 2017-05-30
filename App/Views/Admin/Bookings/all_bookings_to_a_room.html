@@ -39,6 +39,10 @@
 
 
         // IF SELECTION CHANGED TO PASSED ONLY DISABLE PERIOD SELECT BOX
+        if($('#show_only').val() == 3){
+            $('#period').attr('disabled', true);
+        }
+
         $('#show_only').change(function () {
 
             var status = $(this).val();

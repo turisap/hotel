@@ -26,7 +26,7 @@ class Test
 
 
     public function test(){
-        Booking::isCancellationPossible(25);
+        print_r(Booking::automaticBookingsDeletion());
     }
 
 
