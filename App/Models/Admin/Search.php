@@ -326,6 +326,12 @@ abstract class Search extends \Core\Model {
     }
 
 
+    // sorts bookings by status or by checkin days
+    public static function sortBookingSearch($param){
+
+
+    }
+
 
 
 

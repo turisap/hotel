@@ -27,16 +27,10 @@
             var tomorrowHTML = '<div class="alert alert-danger tomorrow"><p class="lead">Tomorrow</p></div>';
 
 
-            if(dayDiff < 3 && dayDiff > 1){
-
-               notificationsRow.append(upcomingHTML);
-
-
+            if(1 < dayDiff && dayDiff < 3){
+                notificationsRow.append(upcomingHTML);
             } else if(dayDiff == 1){
-
                 notificationsRow.append(tomorrowHTML);
-
-
             }
 
             notificationsRow.width(parentRow.width()); // set width whole span of the parent
@@ -53,6 +47,39 @@
 
 
 {% block body %}
+
+
+<div class="row wrap">
+    <form class="form-inline" method="post" id="sortBookings">
+            <div class="form-group">
+                <label for="show_only">Show only:</label>
+                <select class="form-control" id="show_only">
+                    <option value="0">All</option>
+                    <option value="1">Only upcoming</option>
+                    <option value="2">Only cancelled</option>
+                    <option value="3">Only passed</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="period">Choose a period:</label>
+                <select class="form-control" id="period">
+                    <option value="1">Over the next day</option>
+                    <option value="3">Over the next 3 days</option>
+                    <option value="7">Over the next week</option>
+                    <option value="15">Over the next 15 days</option>
+                    <option value="30">Over the next month</option>
+                    <option value="90">Over the next 3 month</option>
+                    <option value="183">Over the next 6 month</option>
+                    <option value="365">Over the next year</option>
+                </select>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" id="newFirst">New first</label>
+            </div>
+            <button class="btn btn-default" type="submit">Apply</button>
+
+    </form>
+</div>
 
 {% if bookings is not empty %}
 
