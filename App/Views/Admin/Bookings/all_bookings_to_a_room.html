@@ -74,12 +74,13 @@
                 </select>
             </div>
             <div class="radio">
-                <label class="order"><input type="radio"  name="order" value="0">New first</label>
+                <label class="order"><input type="radio"  name="order" value="0">Farthest first</label>
             </div>
             <div class="radio">
-                <label class="order"><input type="radio"  name="order" value="1">Old first</label>
+                <label class="order"><input type="radio"  name="order" value="1">Nearest first</label>
             </div>
             <button class="btn btn-default" type="submit">Apply</button>
+        <input type="hidden" value="{{ room.id }}" name="room_id">
 
     </form>
 </div>

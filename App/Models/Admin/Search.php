@@ -333,6 +333,7 @@ abstract class Search extends \Core\Model {
         $status    = $param['status']   ?? false;
         $period  = $param['period'] ?? false;
         $sort = $param['order']  ?? false;
+        $room_id = $param['room_id'] ?? false;
 
 
         // create corresponding AND parts
@@ -343,6 +344,9 @@ abstract class Search extends \Core\Model {
 
         // check whether search terms were supplied with status or show all
         $sql .= ($status == 0) ? ' ' : (($status == 3) ? ' status = 0 AND' : ' status = ' . $status . ' AND');
+
+        // add room id
+        $sql .= ' room_id=' . $room_id . ' AND';
 
         // add remaining parametres
         $sql .= ' checkin < \'' . $checkin . '\' ORDER BY checkin ' . $sort_by;

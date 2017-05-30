@@ -356,10 +356,28 @@ class Bookings extends \Core\Controller {
     // this method processes searching params from all bookings to one room page
     public function sortAllBookings(){
 
+        //print_r(Search::sortBookingSearch($_POST));
+
+
         // get sort params from the POST array
         $params = $_POST;
+        $room_id = $_POST['room_id'] ?? false;
 
-        print_r(Search::sortBookingSearch($params));
+        $results = Search::sortBookingSearch($params);
+        $room = Room::findById($room_id);
+
+        if($results){
+
+            View::renderTemplate('admin/bookings/all_bookings_to_a_room.html', [
+                'bookings' => $results,
+                'room'  => $room
+            ]);
+
+        } else {
+            Flash::addMessage('There was a problem processing your request, please try again');
+            View::renderTemplate('admin/bookings/all_bookings_to_a_room.html', ['room'  => $room ]);
+        }
+
 
 
 
