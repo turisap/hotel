@@ -34,8 +34,29 @@
                 notificationsDiv.append(tomorrowHTML);
             }
 
+            // get the number of nigths stay
+
+            var checkout = $(this).parents('.row').find('.checkout').text();
+            var checkoutDate = new Date(checkout);
+
+            var dayStay = Math.ceil((checkoutDate.getTime() - checkInDate.getTime())/(1000 * 3600 * 24));
+
+            if (dayStay == 1){
+                parentRow.find('.nights-stay').text(dayStay + ' night stay');
+            } else {
+                parentRow.find('.nights-stay').text(dayStay + ' nights stay');
+            }
+
+
+
+
+
+
 
         });
+
+
+
 
 
         // IF SELECTION CHANGED TO PASSED ONLY DISABLE PERIOD SELECT BOX
@@ -91,10 +112,10 @@
                 </select>
             </div>
             <div class="radio">
-                <label class="order"><input type="radio"  name="order" value="0" {% if params.order == 0 %} checked {% endif %}>Farthest first</label>
+                <label class="order"><input type="radio"  name="order" value="0" {% if params.order == 0 %} checked {% endif %}>Closest first</label>
             </div>
             <div class="radio">
-                <label class="order"><input type="radio"  name="order" value="1" {% if params.order == 1 %} checked {% endif %}>Closest first</label>
+                <label class="order"><input type="radio"  name="order" value="1" {% if params.order == 1 %} checked {% endif %}>Farthest first</label>
             </div>
             <button class="btn btn-primary" type="submit" data-loading-text="searching" >Apply</button>
 
@@ -112,10 +133,11 @@
 
     {% if booking.status == 1 %}                        <!-- upcoming bookings -->
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 tre notifications"><span>{{ booking.room_name }}</span></div>
-    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6  tre"><span class="checkin">{{ booking.checkin }}<i class="nights-stay"></i></span></div>
+    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6  tre"><span class="checkin">{{ booking.checkin }}</span><span class="checkout hide">{{ booking.checkout }}</span><mard><p class="nights-stay"></p></mard></div>
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6  tre"><span>{{ booking.title }} {{ booking.first_name }} {{ booking.last_name }}</span></div>
     <div class="col-lg-1 col-md-1 col-sm-6 col-xs-6  tre"><span>{{ booking.num_guests }} guests</span></div>
     <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 ">
+
         <div class="row">
             <div class="short col-lg-6 col-md-6 col-sm-6 col-xs-6 alert {% if booking.num_children != 0 %}alert-info{% else %}alert-warning{% endif %}"><span>CHILDREN</span></div>
             <div class="short col-lg-6 col-md-6 col-sm-6 col-xs-6 alert {% if booking.smoking == 1 %}alert-info{% else %}alert-warning{% endif %}"><span>SMOKING</span></div>
@@ -138,7 +160,7 @@
 
     {% if booking.status == 2 %}                                <!-- canceled bookings -->
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 tre"><span>{{ booking.room_name }}</span></div>
-    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 tre"><span>{{ booking.checkin }}<i class="nights-stay"></i></span></div>
+    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 tre"><span>{{ booking.checkin }}</span></div>
     <div class="col-lg-2 col-md-2 tre"><span>{{ booking.title }} {{ booking.first_name }} {{ booking.last_name }}</span></div>
     <div class="col-lg-4 col-lg-4 col-sm-6 col-xs-6 tre"><h3 class="cancel">CANCELLED</h3></div>
     <div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 "><a class="btn btn-default" href="/admin/bookings/check-booking?id={{ booking.booking_id }}">View</a></div>
@@ -146,6 +168,8 @@
 
 
 </div>
+
+
 
 {% endfor %}
 

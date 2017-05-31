@@ -359,8 +359,18 @@ h3.cancel {
     padding: 2px;
     margin: 2px;
     display: inline-block;
-    width: auto !important;
 }
+
+.checkout {
+    visibility: hidden;
+}
+
+.hide {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+
 
 
 
