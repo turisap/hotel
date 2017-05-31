@@ -2,7 +2,7 @@
 
 {% block title %}all bookings{% endblock %}
 {% block page_heading %}All bookings around {% endblock %}
-{% block page_subheading %}{{ sitename }}{% endblock %}
+{% block page_subheading %}{{ site_name }}{% endblock %}
 
 
 {% block footer %}
@@ -68,7 +68,7 @@
 
 
 <div class="row wrap">
-    <form class="form-inline" method="post" id="sortBookings" action="/admin/bookings/sort-all-bookings">
+    <form class="form-inline" method="post" id="sortBookings" action="/admin/bookings/sort-all-bookings-around-hotel">
             <div class="form-group">
                 <label for="show_only">Sort by:</label>
                 <select class="form-control" id="show_only" name="status">
@@ -98,8 +98,7 @@
             </div>
             <button class="btn btn-primary" type="submit" data-loading-text="searching" >Apply</button>
 
-        <input type="hidden" value="{{ room.id }}" name="room_id">
-        <a  class="btn btn-default" href="/admin/bookings/view-all-bookings-to-one-room?id={{ room.id }}">View all</a>
+      {% if params is not empty %}  <a  class="btn btn-default" href="/admin/bookings/view-all-bookings">View all</a> {% endif %}
     </form>
 
 </div>

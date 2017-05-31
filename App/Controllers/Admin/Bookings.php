@@ -38,7 +38,7 @@ class Bookings extends \Core\Controller {
 
         View::renderTemplate('admin/bookings/view_all.html', [
             'bookings' => $bookings,
-            'sitename' => Config::SITE_NAME
+            'site_name' => Config::SITE_NAME
         ]);
 
     }
@@ -367,16 +367,15 @@ class Bookings extends \Core\Controller {
     }
 
     // this method processes searching params from all bookings to one room page
-    public function sortAllBookings(){
-
-        //print_r(Search::sortBookingSearch($_POST));
+    public function sortAllBookingsToOneRoom(){
 
 
         // get sort params from the POST array
         $params = $_POST;
         $room_id = $_POST['room_id'] ?? false;
 
-        $results = Search::sortBookingSearch($params);
+        // if the 2nd parameter set to true it returns all bookings around hotel, while here only for a room
+        $results = Search::sortBookingSearch($params, false);
         $room = Room::findById($room_id);
 
         if($results){
@@ -393,11 +392,33 @@ class Bookings extends \Core\Controller {
         }
 
 
-
-
     }
 
 
+    // sorts all bookings in hotel accordingly with search terms
+    public static function sortAllBookingsAroundHotelAction(){
+
+        $params = $_POST;
+
+        if(!empty($params)){
+
+            // if 2nd parameter set to true it returns all bookings for all rooms
+            $results = Search::sortBookingSearch($params, true);
+
+            if($results){
+
+                View::renderTemplate('admin/bookings/view_all.html', [
+                    'bookings' => $results,
+                    'params' => $params,
+                    'site_name' => Config::SITE_NAME
+                ]);
+
+            } else {
+                Flash::addMessage('There was a problem processing your request, please try again');
+                View::renderTemplate('admin/bookings/all_bookings_to_a_room.html');
+            }
+        }
+    }
 
 
 

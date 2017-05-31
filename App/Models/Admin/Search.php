@@ -326,8 +326,8 @@ abstract class Search extends \Core\Model {
     }
 
 
-    // sorts all bookings to one room by sort terms form all bookings to one room page
-    public static function sortBookingSearch($param){
+    // sorts all bookings to one room by sort terms form all bookings to one room page (if the second arg set to true it returns all bookings for all rooms)
+    public static function sortBookingSearch($param, $all){
 
         // get all sort params from POST array
         $status    = $param['status']   ?? false;
@@ -346,7 +346,7 @@ abstract class Search extends \Core\Model {
         $sql .= ($status == 3) ? ' status = 0 AND' : ' status = ' . $status . ' AND';
 
         // add room id
-        $sql .= ' room_id=' . $room_id . ' AND';
+        $sql .= ($all == false) ? ' room_id=' . $room_id . ' AND' : '';
 
         // add remaining parametres
         $sql .= ' checkin < \'' . $checkin . '\' ORDER BY checkin ' . $sort_by;
