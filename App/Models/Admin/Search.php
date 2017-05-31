@@ -334,6 +334,7 @@ abstract class Search extends \Core\Model {
         $period  = $param['period'] ?? false;
         $sort = $param['order']  ?? false;
         $room_id = $param['room_id'] ?? false;
+        $group = $param['group'] ?? false;
 
 
         // create corresponding AND parts
@@ -349,14 +350,13 @@ abstract class Search extends \Core\Model {
         $sql .= ($all == false) ? ' room_id=' . $room_id . ' AND' : '';
 
         // add remaining parametres
-        $sql .= ' checkin < \'' . $checkin . '\' ORDER BY checkin ' . $sort_by;
-
-
+        $sql .= ' checkin < \'' . $checkin . '\'';
 
         // add group by room name if this is search around all bookings in the hotel
-        $sql .= $all ? ' GROUP BY room_name' : '';
+        $sql .= ($all && $group) ? ' ORDER BY room_name '. $sort_by : ' ORDER BY checkin ' . $sort_by;
 
-        return $sql;
+
+        //return $sql;
 
         $db  = static::getDB();
         $stm = $db->prepare($sql);

@@ -400,9 +400,9 @@ class Bookings extends \Core\Controller {
 
         $params = $_POST;
 
-        print_r(Search::sortBookingSearch($params, true));
+        //print_r(Search::sortBookingSearch($params, true));
 
-        /*if(!empty($params)){
+        if(!empty($params)){
 
             // if 2nd parameter set to true it returns all bookings for all rooms
             $results = Search::sortBookingSearch($params, true);
@@ -419,7 +419,7 @@ class Bookings extends \Core\Controller {
                 Flash::addMessage('There was a problem processing your request, please try again');
                 View::renderTemplate('admin/bookings/all_bookings_to_a_room.html');
             }
-        }*/
+        }
     }
 
 
