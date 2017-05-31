@@ -32,18 +32,6 @@ class Home  extends \Core\Controller {
 
     }
 
-    public function testAction(){
-
-        if(Authentifiacation::isAdmin()){
-            echo '<h1>ADMIN</h1>';
-        } else {
-            echo '<h1>NO ADMIN</h1>';
-        }
-    }
-
-
-
-
 
 
 }
