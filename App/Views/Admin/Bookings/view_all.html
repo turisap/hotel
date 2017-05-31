@@ -22,18 +22,18 @@
             var dayDiff  = Math.ceil(timeDiff/(1000 * 3600 * 24));
 
             var parentRow = $(this).parents('.row');
-            var notificationsRow = parentRow.find('.notifications');
-            var upcomingHTML = '<div class="alert alert-info upcoming"><p class="lead">Upcoming</p></div>';
-            var tomorrowHTML = '<div class="alert alert-danger tomorrow"><p class="lead">Tomorrow</p></div>';
+            var notificationsDiv = parentRow.find('.notifications');
+            // wrap one div into another to save block behavior and make it content width on the other hand
+            var upcomingHTML = '<div><div class="highlight alert alert-info">Upcoming</div></div>';
+            var tomorrowHTML = '<div><div class="highlight alert alert-warning">Tomorrow</div></div>';
 
 
-            if(1 < dayDiff && dayDiff < 3){
-                notificationsRow.append(upcomingHTML);
+            if(1 < dayDiff && dayDiff < 10){
+                notificationsDiv.append(upcomingHTML);
             } else if(dayDiff == 1){
-                notificationsRow.append(tomorrowHTML);
+                notificationsDiv.append(tomorrowHTML);
             }
 
-            notificationsRow.width(parentRow.width()); // set width whole span of the parent
 
         });
 
@@ -111,8 +111,8 @@
 <div class="row wrap {% if booking.status == 0 %} booking-past {% elseif booking.status == 2%} booking-canceled {% else %} booking-future {% endif %}">
 
     {% if booking.status == 1 %}                        <!-- upcoming bookings -->
-    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 tre"><span>{{ booking.room_name }}</span></div>
-    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6  tre"><span>{{ booking.checkin }}<i class="nights-stay"></i></span></div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 tre notifications"><span>{{ booking.room_name }}</span></div>
+    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6  tre"><span class="checkin">{{ booking.checkin }}<i class="nights-stay"></i></span></div>
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6  tre"><span>{{ booking.title }} {{ booking.first_name }} {{ booking.last_name }}</span></div>
     <div class="col-lg-1 col-md-1 col-sm-6 col-xs-6  tre"><span>{{ booking.num_guests }} guests</span></div>
     <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 ">
