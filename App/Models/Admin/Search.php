@@ -351,7 +351,12 @@ abstract class Search extends \Core\Model {
         // add remaining parametres
         $sql .= ' checkin < \'' . $checkin . '\' ORDER BY checkin ' . $sort_by;
 
-        //return $sql;
+
+
+        // add group by room name if this is search around all bookings in the hotel
+        $sql .= $all ? ' GROUP BY room_name' : '';
+
+        return $sql;
 
         $db  = static::getDB();
         $stm = $db->prepare($sql);

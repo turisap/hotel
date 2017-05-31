@@ -1,7 +1,7 @@
 {% extends "admin_base.html" %}
 
 {% block title %} {{ booking.room_name}} booking{% endblock %}
-{% block page_heading %}{{ booking.room_name}} bookng{% endblock %}
+{% block page_heading %}{{ booking.room_name}} booking{% endblock %}
 {% block page_subheading %}<a href="/admin/bookings/book-room?id={{ booking.room_id }}">back to room </a> {% endblock %}
 
 
@@ -56,10 +56,18 @@
 
 </div>
 
-{% if booking.status !=2 %}<h3 class="head">Guest's notes</h3>{% endif %}
+{% if booking.status == 1 and booking.wishes is not empty %}
+<h3 class="head">Guest's notes</h3>
 <div class="row wrap">
-    {% if booking.status == 2 %}<h1 style="color:#771d13">THIS BOOKING WAS CANCELLED</h1>{% else %}<p class="lead"> {{ booking.wishes }}</p>{% endif %}
+   <p class="lead"> {{ booking.wishes }}</p>
 </div>
+{% endif %}
+
+{% if booking.status == 2 %}
+<div class="row wrap">
+    <h1 style="color:#771d13">THIS BOOKING WAS CANCELLED</h1>
+</div>
+{% endif %}
 
 <a class="btn btn-primary" id="viewAllBookings" href="/admin/bookings/view-all-bookings-to-one-room?id={{ booking.room_id }}">View all bookings for this room</a>
 {% if booking.status == 1 %}

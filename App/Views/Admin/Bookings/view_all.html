@@ -117,7 +117,14 @@
             <div class="radio">
                 <label class="order"><input type="radio"  name="order" value="1" {% if params.order == 1 %} checked {% endif %}>Farthest first</label>
             </div>
-            <button class="btn btn-primary" type="submit" data-loading-text="searching" >Apply</button>
+            <div class="checkbox">
+                <label class="order"><input type="checkbox"  name="group" value="1" {% if params.group == 1 %} checked {% endif %}>Group by room</label>
+            </div>
+
+            <div class="row">
+                <button class="btn btn-primary" type="submit" id="sortAll" >Apply</button>
+            </div>
+
 
       {% if params is not empty %}  <a  class="btn btn-default" href="/admin/bookings/view-all-bookings">View all</a> {% endif %}
     </form>
@@ -133,7 +140,7 @@
 
     {% if booking.status == 1 %}                        <!-- upcoming bookings -->
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 tre notifications"><span>{{ booking.room_name }}</span></div>
-    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6  tre"><span class="checkin">{{ booking.checkin }}</span><span class="checkout hide">{{ booking.checkout }}</span><mard><p class="nights-stay"></p></mard></div>
+    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6  tre"><span class="checkin">Checkin:{{ booking.checkin }}</span><span class="checkout hide">{{ booking.checkout }}</span><mard><p class="nights-stay"></p></mard></div>
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6  tre"><span>{{ booking.title }} {{ booking.first_name }} {{ booking.last_name }}</span></div>
     <div class="col-lg-1 col-md-1 col-sm-6 col-xs-6  tre"><span>{{ booking.num_guests }} guests</span></div>
     <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 ">
@@ -159,11 +166,11 @@
     {% endif %}
 
     {% if booking.status == 2 %}                                <!-- canceled bookings -->
-    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 tre"><span>{{ booking.room_name }}</span></div>
-    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 tre"><span>{{ booking.checkin }}</span></div>
-    <div class="col-lg-2 col-md-2 tre"><span>{{ booking.title }} {{ booking.first_name }} {{ booking.last_name }}</span></div>
-    <div class="col-lg-4 col-lg-4 col-sm-6 col-xs-6 tre"><h3 class="cancel">CANCELLED</h3></div>
-    <div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 "><a class="btn btn-default" href="/admin/bookings/check-booking?id={{ booking.booking_id }}">View</a></div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6"><span>{{ booking.room_name }}</span></div>
+    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6"><span>{{ booking.checkin }}</span></div>
+    <div class="col-lg-2 col-md-2"><span>{{ booking.title }} {{ booking.first_name }} {{ booking.last_name }}</span></div>
+    <div class="col-lg-4 col-lg-4 col-sm-6 col-xs-6"><h3 class="cancel">CANCELLED</h3></div>
+    <div class="col-lg-1 col-md-1 col-sm-6 col-xs-6"><a class="btn btn-default" href="/admin/bookings/check-booking?id={{ booking.booking_id }}">View</a></div>
     {% endif %}
 
 
