@@ -151,9 +151,13 @@ class Booking extends \Core\Model {
             // loop through bookings to check if there are overlaps
             foreach($bookings as $booking){
 
-                // if checkin date in the range of an existing booking
-                if ($checkin >= strtotime($booking->checkin) && $checkin < strtotime($booking->checkout)){
-                    return true;
+                if($booking->status != 2 && $booking->status !=0){     // check whether a booking was cancelled or already in the past
+
+                    // if checkin date in the range of an existing booking (only for upcoming and not cancelled)
+                    if ($checkin >= strtotime($booking->checkin) && $checkin < strtotime($booking->checkout)){
+                        return true;
+                    }
+
                 }
 
 
@@ -181,10 +185,15 @@ class Booking extends \Core\Model {
             // loop through bookings to check if there are overlaps
             foreach($bookings as $booking){
 
-                // if checkout date later than a booking's checkin and earlier than it's checkout
-                if ($checkout > strtotime($booking->checkin) && $checkout <= strtotime($booking->checkout) ){
-                    return true;
+                if($booking->status != 2 && $booking->status !=0){     // check whether a booking was cancelled or already in the past
+
+                    // if checkout date later than a booking's checkin and earlier than it's checkout(only for upcoming and not cancelled)
+                    if ($checkout > strtotime($booking->checkin) && $checkout <= strtotime($booking->checkout) ){
+                        return true;
+                    }
+
                 }
+                
 
             }
 
