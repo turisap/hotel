@@ -21,8 +21,13 @@
 
 
     // animation to the search results
+   /* $('html, body').animate({
+       scrollTop: $("#sentence").offset().top // this animates to a particular element
+    }, 1000);*/
+
+
     $('html, body').animate({
-       scrollTop: $("#sentence").offset().top
+        scrollTop: ($("#scrollTo").offset().top-50) // this animates to a particular element
     }, 1000);
 
 
@@ -68,7 +73,7 @@
 
 
 
-    <h3 class="head">Or you can find a room by specifying it's parameters</h3>
+    <h3 class="head">Or you can find a room by specifying it's parametrs</h3>
     <div class="row wrap search">
 
         <div class="col-lg-5 col-md-5 col-sm-12 ">
@@ -156,6 +161,8 @@
 <div class="row" >
     <h3 id="sentence" class="lead">{% if sentence is not empty %} {{ sentence }} {% endif %}</h3>
 </div>
+
+<div id="scrollTo"></div>
 
 {% for room in rooms %}
 <div class="row wrap">

@@ -350,7 +350,7 @@ abstract class Search extends \Core\Model {
         $sql .= ($all == false) ? ' room_id=' . $room_id . ' AND' : '';
 
         // add remaining parametres (equality mark for today and tomorrow, while less than for other periods)
-        $sql .= ' checkin ' . (($period == 0 || $period == 1) ? ' = ' : ' < ') . ' \'' . $checkin . '\'';
+        $sql .= ' checkin ' . (($period == 0 || $period == 1) ? ' = ' : ' <= ') . ' \'' . $checkin . '\'';
 
         // add group by room name or checkin if this is search around all bookings in the hotel
         $sql .= ($all && $group) ? ' ORDER BY room_name '. $sort_by : ' ORDER BY checkin ' . $sort_by;

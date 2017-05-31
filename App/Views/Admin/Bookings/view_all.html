@@ -124,10 +124,9 @@
 
             <div class="row">
                 <button class="btn btn-primary" type="submit" id="sortAll" >Apply</button>
+                {% if params is not empty %}  <a  class="btn btn-default" href="/admin/bookings/view-all-bookings" id="viewAll">View all</a> {% endif %}
             </div>
 
-
-      {% if params is not empty %}  <a  class="btn btn-default" href="/admin/bookings/view-all-bookings">View all</a> {% endif %}
     </form>
 
 </div>

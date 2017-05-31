@@ -99,6 +99,10 @@ class Bookings extends \Core\Controller {
                     'sentence' => $search_sentence
                 ]);
 
+            } else {
+                Flash::addMessage('Nothing has been found', Flash::INFO);
+                View::renderTemplate('admin/bookings/find_room.html');
+
             }
 
         } else {
@@ -134,7 +138,7 @@ class Bookings extends \Core\Controller {
                 View::renderTemplate('admin/bookings/find_room.html', ['rooms' => $results_with_photos]);
 
             } else {
-                Flash::addMessage('Nothing was found', Flash::INFO);
+                Flash::addMessage('Nothing has been found', Flash::INFO);
                 self::redirect('/admin/bookings/search-room');
             }
 
@@ -262,6 +266,7 @@ class Bookings extends \Core\Controller {
                 // render template
                 View::renderTemplate('admin/bookings/check_booking.html', ['booking' => $booking]);
             } else {
+                Flash::addMessage('There was a problem processing your request', Flash::INFO);
                 self::redirect('/admin/bookings/book-room?id='. $booking_id);
             }
 
@@ -355,6 +360,13 @@ class Bookings extends \Core\Controller {
                     'bookings' => $bookings,
                     'room'  => $room
                 ]);
+            } else {
+
+                Flash::addMessage('Nothing has been found', Flash::INFO);
+                View::renderTemplate('admin/bookings/all_bookings_to_a_room.html', [
+                    'room'  => $room
+                ]);
+
             }
 
 
@@ -374,17 +386,34 @@ class Bookings extends \Core\Controller {
         $params = $_POST;
         $room_id = $_POST['room_id'] ?? false;
 
+        //print_r($params);
+
+
+
         // if the 2nd parameter set to true it returns all bookings around hotel, while here only for a room
         $results = Search::sortBookingSearch($params, false);
         $room = Room::findById($room_id);
 
-        if($results){
+       // $count =  count($params);
+        //echo $count;
+        if(!empty($params)){
 
-            View::renderTemplate('admin/bookings/all_bookings_to_a_room.html', [
-                'bookings' => $results,
-                'room'  => $room,
-                'params' => $params
-            ]);
+            if($results){
+
+                //print_r($params);
+                View::renderTemplate('admin/bookings/all_bookings_to_a_room.html', [
+                    'bookings' => $results,
+                    'room'  => $room,
+                    'params' => $params
+                ]);
+
+            } else {
+                Flash::addMessage('Nothing has been found', Flash::INFO);
+                View::renderTemplate('admin/bookings/all_bookings_to_a_room.html', [
+                    'room'  => $room,
+                    'params' => $params
+                ]);
+            }
 
         } else {
             Flash::addMessage('There was a problem processing your request, please try again');
@@ -416,9 +445,15 @@ class Bookings extends \Core\Controller {
                 ]);
 
             } else {
-                Flash::addMessage('There was a problem processing your request, please try again');
-                View::renderTemplate('admin/bookings/all_bookings_to_a_room.html');
+                Flash::addMessage('Nothing has been found', Flash::INFO);
+                View::renderTemplate('admin/bookings/view_all.html', [
+                    'params' => $params,
+                    'site_name' => Config::SITE_NAME
+                ]);
             }
+        } else {
+            Flash::addMessage('There was a problem processing your request, please try again');
+            View::renderTemplate('admin/bookings/all_bookings_to_a_room.html');
         }
     }
 
