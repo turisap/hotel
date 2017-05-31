@@ -101,7 +101,8 @@
             <div class="form-group">
                 <label for="period">Choose a period:</label>
                 <select class="form-control" id="period" name="period">
-                    <option value="1" {% if params.period == 1 %} selected {% endif %}>Over the next day</option>
+                    <option value="0" {% if params.period == 0 %} selected {% endif %}>Today</option>
+                    <option value="1" {% if params.period == 1 %} selected {% endif %}>Tomorrow</option>
                     <option value="3" {% if params.period == 3 %} selected {% endif %}>Over the next 3 days</option>
                     <option value="7" {% if params.period == 7 %} selected {% endif %}>Over the next week</option>
                     <option value="15" {% if params.period == 15 %} selected {% endif %}>Over the next 15 days</option>
