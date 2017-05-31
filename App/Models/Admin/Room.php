@@ -146,20 +146,23 @@ class Room extends \Core\Model {
 
             $set = array(); // array for each set of a room and respective pictures
 
-              $pictures = Photo::findAllPhotosToONeRoom($room->id,  true ); // find all pictures to a particular room
+              $pictures = Photo::findAllPhotosToONeRoom($room->id,  true ); // find only main photo
+              $bookings = Booking::findAllBookingsToONeRoom($room->id, 3);
 
             if(count($pictures) < 4){
 
                 $set = [
                     'room'     => $room,
-                    'pictures' => Array ( 'id' => 0, 'room_id' => 0, 'main' => 1, 'name' => '149534948934699692.jpg', 'type' => 'image/jpeg', 'size' => 85505, 'path' => '/uploads/pictures/rooms/room_placeholder.jpg')
+                    'pictures' => Array ( 'id' => 0, 'room_id' => 0, 'main' => 1, 'name' => '149534948934699692.jpg', 'type' => 'image/jpeg', 'size' => 85505, 'path' => '/uploads/pictures/rooms/room_placeholder.jpg'),
+                    'bookings' => $bookings
                 ];
 
             } else {
 
                 $set = [
                     'room'     => $room,
-                    'pictures' => $pictures
+                    'pictures' => $pictures,
+                    'bookings' => $bookings
                 ];
 
             }

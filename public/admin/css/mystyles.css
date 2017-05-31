@@ -94,14 +94,37 @@ div.row.button {
 .booking{
     display: inline-block;
     height: 100px;
-    width: 100px;
+    width: 150px;
     border: solid #a4a4a4 1px;
     margin: 5px;
+}
+
+.date {
+    height: 30px;
+    width: 100%;
+    font-size: large !important;
+    display: block;
+    text-align: center;
+}
+
+.checkin-panel {
+    border-bottom: 1px solid #a8a8a8;
+    padding: 0 0 20px 0;
+}
+
+.checkout-panel {
+    margin-top: 10px;
+}
+
+.panels {
+    margin: 5px 0 0 0px;
 }
 
 #info {
     margin-bottom: 5px;
 }
+
+
 
 
 /*========================================= STYLES FOR ROOM PAGE ===========================================*/

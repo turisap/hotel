@@ -4,6 +4,42 @@
 {% block page_heading %} All rooms {% endblock %}
 {% block page_subheading %} view {% endblock %}
 
+
+{% block footer %}
+
+<script>
+    $(document).ready(function () {
+
+        $('.date').each(function () {
+
+            var month =  [];
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+
+            var value = $(this).text();
+            var date = new Date(value);
+            var m = month[date.getMonth()];
+            var d = date.getDate().toString();
+
+            $(this).text(m +' ' + d);
+
+        });
+
+    })
+</script>
+
+{% endblock %}
+
 {% block body %}
 
 
@@ -37,11 +73,17 @@
         <div class="row room-name">
             <a href="/admin/rooms/room?id={{ set.room.id }}"><h3 class="room-name">{{ set.room.local_name }}</h3></a>
         </div>
-        <div class="row bookings">
-            <div class="booking">Test</div>
-            <div class="booking">Test</div>
-            <div class="booking">Test</div>
-            <div class="booking">Test</div>
+        <div class="row">
+            {% for booking in set.bookings %}
+            <a href="/admin/bookings/check-booking?id={{ booking.booking_id }}" target="_blank">
+                <div class="booking alert alert-warning">
+                    <div class="panels">
+                        <div class="date checkin-panel">{{booking.checkin}}</div>
+                        <div class="date checkout-panel">{{booking.checkout}}</div>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
         </div>
 
     </div>

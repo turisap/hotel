@@ -36,7 +36,7 @@ class Photo extends \Core\Model {
 
 
     // supplied with $_FILES and input name of multiply input file
-    public function __construct($picture) {
+    public function __construct($picture=[]) {
 
             // here we creates properties and their values out of keys and values
             foreach($picture as $key => $value){
