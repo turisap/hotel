@@ -307,10 +307,11 @@ div.past-event {
 
 .booking-past {
     background-color: #c0c2bb;
+    opacity: 0.7;
 }
 
 .booking-canceled {
-    background-color: rgba(230, 218, 229, 0.98);
+    background-color: rgba(230, 180, 174, 0.98);
 }
 
 .booking-future {
@@ -330,6 +331,28 @@ div.past-event {
     margin: 0 10px;
 }
 
+/* ============================================= STYLES FOR ALL BOOKINGS AROUND HOTEL PAGE ======================== */
+
+h3.cancel {
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+.tre span {
+    position: relative;
+    top: 30%;
+}
+
+.tre-future a  {
+    position: relative;
+    top: 15%;
+}
+
+.short {
+    padding: 1px 0 !important;
+    margin: 0 !important;
+    text-align: center !important;
+}
 
 
 

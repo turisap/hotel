@@ -30,6 +30,19 @@ class Bookings extends \Core\Controller {
 
     }
 
+    // this method renders template for all bokings page
+    public function viewAllBookings(){
+
+        // find all bookings
+        $bookings = Booking::findAll();
+
+        View::renderTemplate('admin/bookings/view_all.html', [
+            'bookings' => $bookings,
+            'sitename' => Config::SITE_NAME
+        ]);
+
+    }
+
 
     // this method renders form to create a booking
     public function createAction(){
