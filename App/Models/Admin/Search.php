@@ -350,7 +350,7 @@ abstract class Search extends \Core\Model {
         $sql .= ($all == false) ? ' room_id=' . $room_id . ' AND' : '';
 
         // add remaining parametres
-        $sql .= ' checkin < \'' . $checkin . '\'';
+        $sql .= ' checkin <= \'' . $checkin . '\'';
 
         // add group by room name if this is search around all bookings in the hotel
         $sql .= ($all && $group) ? ' ORDER BY room_name '. $sort_by : ' ORDER BY checkin ' . $sort_by;
