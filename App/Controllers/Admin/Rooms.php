@@ -108,7 +108,7 @@ class Rooms extends \Core\Controller {
         // first get all rooms from the database
         $sets = Room::findAllRoomsWithPhotos();
         // pass them to the view
-        View::renderTemplate('admin/rooms/all_rooms.html', ['sets' => $sets]);
+        View::renderTemplate('admin/rooms/all_rooms.html', ['rooms' => $sets]);
 
     }
 
@@ -170,7 +170,8 @@ class Rooms extends \Core\Controller {
                 $search_sentence = Search::assemblySearchSentence($data);
                 View::renderTemplate('admin/rooms/all_rooms.html', [
                     'rooms' => $results_with_photos,
-                    'sentence' => $search_sentence
+                    'sentence' => $search_sentence,
+                    'view_all' => 1
                 ]);
 
             } else {
@@ -207,13 +208,13 @@ class Rooms extends \Core\Controller {
                 // for each room found append data about main photo to display in search results
                 foreach ($results as $key => $value){
                     $photo = Photo::findAllPhotosToONeRoom($value->id, true);
-                    $bookings = Booking::findAllBookingsToONeRoom($value->id, 3, true);
-                    $result = (array)$value;
-                    $result['bookings'] = $bookings;
-                    $results_with_photos[] = array_merge((array)$result, $photo);
+                    $results_with_photos[] = array_merge((array)$value, $photo);
                 }
 
-                View::renderTemplate('admin/admin/all_rooms.html', ['rooms' => $results_with_photos]);
+                View::renderTemplate('admin/rooms/all_rooms.html', [
+                    'rooms' => $results_with_photos,
+                    'view_all' => 1
+                ]);
 
             } else {
                 Flash::addMessage('Nothing has been found', Flash::INFO);

@@ -150,18 +150,11 @@ class Room extends \Core\Model {
 
             if(count($pictures) < 4){
 
-                $set = [
-                    'room'     => $room,
-                    'pictures' => Array ( 'id' => 0, 'room_id' => 0, 'main' => 1, 'name' => '149534948934699692.jpg', 'type' => 'image/jpeg', 'size' => 85505, 'path' => '/uploads/pictures/rooms/room_placeholder.jpg')
-                ];
+                $pictures = Array ( 'id' => 0, 'room_id' => 0, 'main' => 1, 'name' => '149534948934699692.jpg', 'type' => 'image/jpeg', 'size' => 85505, 'path' => '/uploads/pictures/rooms/room_placeholder.jpg');
+                $set = array_merge((array)$room, $pictures);
 
             } else {
-
-                $set = [
-                    'room'     => $room,
-                    'pictures' => $pictures
-                ];
-
+                $set = array_merge((array)$room, $pictures);
             }
 
 
