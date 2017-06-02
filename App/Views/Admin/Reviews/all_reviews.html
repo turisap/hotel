@@ -1,0 +1,101 @@
+{% extends "admin_base.html" %}
+
+{% block title %}all bookings{% endblock %}
+{% block page_heading %}All bookings around {% endblock %}
+{% block page_subheading %}{{ site_name }}{% endblock %}
+
+
+{% block footer %}
+
+<script>
+
+
+
+</script>
+
+
+
+{% endblock %}
+
+
+{% block body %}
+
+
+
+
+
+<div class="row wrap">
+    <form class="form-inline" method="post" id="sortBookings" action="/admin/bookings/sort-all-bookings-around-hotel">
+            <div class="form-group">
+                <label for="show_only">Sort by:</label>
+                <select class="form-control" id="show_only" name="status">
+                    <option value="1" {% if params.status == 1 %} selected {% endif %}>Only upcoming</option>
+                    <option value="2" {% if params.status == 2 %} selected {% endif %}>Only cancelled</option>
+                    <option value="3" {% if params.status == 3 %} selected {% endif %}>Only passed</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="period">Choose a period:</label>
+                <select class="form-control" id="period" name="period">
+                    <option value="0" {% if params.period == 0 %} selected {% endif %}>Today</option>
+                    <option value="1" {% if params.period == 1 %} selected {% endif %}>Tomorrow</option>
+                    <option value="3" {% if params.period == 3 %} selected {% endif %}>Over the next 3 days</option>
+                    <option value="7" {% if params.period == 7 %} selected {% endif %}>Over the next week</option>
+                    <option value="15" {% if params.period == 15 %} selected {% endif %}>Over the next 15 days</option>
+                    <option value="30" {% if params.period == 30 %} selected {% endif %}>Over the next month</option>
+                    <option value="90" {% if params.period == 90 %} selected {% endif %}>Over the next 3 month</option>
+                    <option value="183" {% if params.period == 183 %} selected {% endif %}>Over the next 6 month</option>
+                    <option value="365" {% if params.period == 365 %} selected {% endif %}>Over the next year</option>
+                </select>
+            </div>
+            <div class="radio">
+                <label class="order"><input type="radio"  name="order" value="0" {% if params.order == 0 %} checked {% endif %}>Farthest first</label>
+            </div>
+            <div class="radio">
+                <label class="order"><input type="radio"  name="order" value="1" {% if params.order == 1 %} checked {% endif %}>Closest first</label>
+            </div>
+            <div class="checkbox">
+                <label class="order"><input type="checkbox"  name="group" value="1" {% if params.group == 1 %} checked {% endif %}>Group by room</label>
+            </div>
+
+            <div class="row">
+                <button class="btn btn-primary" type="submit" id="sortAll" >Apply</button>
+                {% if params is not empty %}  <a  class="btn btn-default" href="/admin/bookings/view-all-bookings" id="viewAll">View all</a> {% endif %}
+            </div>
+
+    </form>
+
+</div>
+
+{% if reviews is not empty %}
+
+{% for review in reviews %}
+
+
+<div class="row wrap {% if booking.status == 0 %} booking-past {% elseif booking.status == 2%} booking-canceled {% else %} booking-future {% endif %}">
+
+
+    {% if booking.status == 0 %}                                <!-- past bookings -->
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6  tre"><span>{{ booking.room_name }}</span></div>
+    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6  tre"><span>{{ booking.checkin }}<i class="nights-stay"></i></span></div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6  tre"><span>{{ booking.title }} {{ booking.first_name }} {{ booking.last_name }}</span></div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6  tre"><span>REVIEW</span></div>
+    <div class="col-lg-1 col-md-1 col-sm-6 col-xs-6"><a class="btn btn-default" href="/admin/bookings/check-booking?id={{ booking.booking_id }}">View</a></div>
+    {% endif %}
+
+</div>
+
+
+
+{% endfor %}
+
+{% else %}
+
+<div class="row wrap">
+    <h3>There are currently no bookings in your hotel</h3>
+</div>
+
+{% endif %}
+
+{% endblock %}
+

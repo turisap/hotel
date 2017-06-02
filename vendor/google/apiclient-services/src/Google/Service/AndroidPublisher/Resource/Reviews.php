@@ -16,20 +16,20 @@
  */
 
 /**
- * The "reviews" collection of methods.
+ * The "Reviews" collection of methods.
  * Typical usage is:
  *  <code>
  *   $androidpublisherService = new Google_Service_AndroidPublisher(...);
- *   $reviews = $androidpublisherService->reviews;
+ *   $Reviews = $androidpublisherService->Reviews;
  *  </code>
  */
 class Google_Service_AndroidPublisher_Resource_Reviews extends Google_Service_Resource
 {
   /**
-   * Returns a single review. (reviews.get)
+   * Returns a single review. (Reviews.get)
    *
    * @param string $packageName Unique identifier for the Android app for which we
-   * want reviews; for example, "com.spiffygame".
+   * want Reviews; for example, "com.spiffygame".
    * @param string $reviewId
    * @param array $optParams Optional parameters.
    *
@@ -43,11 +43,11 @@ class Google_Service_AndroidPublisher_Resource_Reviews extends Google_Service_Re
     return $this->call('get', array($params), "Google_Service_AndroidPublisher_Review");
   }
   /**
-   * Returns a list of reviews. Only reviews from last week will be returned.
-   * (reviews.listReviews)
+   * Returns a list of Reviews. Only Reviews from last week will be returned.
+   * (Reviews.listReviews)
    *
    * @param string $packageName Unique identifier for the Android app for which we
-   * want reviews; for example, "com.spiffygame".
+   * want Reviews; for example, "com.spiffygame".
    * @param array $optParams Optional parameters.
    *
    * @opt_param string maxResults
@@ -63,10 +63,10 @@ class Google_Service_AndroidPublisher_Resource_Reviews extends Google_Service_Re
     return $this->call('list', array($params), "Google_Service_AndroidPublisher_ReviewsListResponse");
   }
   /**
-   * Reply to a single review, or update an existing reply. (reviews.reply)
+   * Reply to a single review, or update an existing reply. (Reviews.reply)
    *
    * @param string $packageName Unique identifier for the Android app for which we
-   * want reviews; for example, "com.spiffygame".
+   * want Reviews; for example, "com.spiffygame".
    * @param string $reviewId
    * @param Google_Service_AndroidPublisher_ReviewsReplyRequest $postBody
    * @param array $optParams Optional parameters.

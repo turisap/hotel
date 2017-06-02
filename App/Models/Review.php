@@ -14,7 +14,7 @@ use PDO;
 
 class Review extends \Core\Model {
 
-    protected static $db_table = 'reviews';
+    protected static $db_table = 'Reviews';
 
 
     // create a review object using form data
@@ -44,7 +44,7 @@ class Review extends \Core\Model {
         $records = $stm->fetchAll();
 
 
-        $cleanliness = $comfort = $service = $food = $location = $overall = array(); // array for keeping reviews values
+        $cleanliness = $comfort = $service = $food = $location = $overall = array(); // array for keeping Reviews values
 
         // get array for keeping results
         $sets = array(
@@ -85,11 +85,52 @@ class Review extends \Core\Model {
 
         }
 
-
         return $averages;
 
+    }
+
+
+    // finds all revies to a particular room
+    public static function findAllReviewsToOneRoom($room_id){
+
+        $sql = 'SELECT * FROM ' . static::$db_table . ' WHERE room_id = :room_id';
+
+        $db  = static::getDB();
+
+        $stm = $db->prepare($sql);
+        $stm->bindValue(':room_id', $room_id, PDO::PARAM_INT);
+        $stm->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stm->execute();
+
+        return $stm->fetchAll();
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
