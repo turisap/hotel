@@ -48,7 +48,7 @@ class Review extends \Core\Model {
 
         // get array for keeping results
         $sets = array(
-            'clean'    => $cleanliness,
+            'cleanliness'    => $cleanliness,
             'comfort'  => $comfort,
             'service'  => $service,
             'food'     => $food,
@@ -60,7 +60,7 @@ class Review extends \Core\Model {
         // get all records and push them into the sets array
         foreach($records as $record){
 
-            $sets ['clean'][] = $record->cleanliness;
+            $sets ['cleanliness'][] = $record->cleanliness;
             $sets ['comfort'][] =$record->comfort;
             $sets ['service'][] = $record->service;
             $sets ['food'][] = $record->food;
@@ -75,7 +75,7 @@ class Review extends \Core\Model {
         // count averages for each category accordingly and push them into the averages array
         foreach ($sets as $key => $value){
 
-            $averages[$key][] = array_sum($value)/count($value);
+            $averages[$key] = array_sum($value)/count($value);
 
         }
 

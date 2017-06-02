@@ -7,9 +7,7 @@
 
 {% block footer %}
 
-<!-- BOOTSTRAP DATEPICKER AND FORM VALIDATION -->
-
-{% for key,review in reviews %}{{ key }}, {% endfor %}
+<!-- ALL JS STUFF TO THIS PAGE -->
 <script>
 
 
@@ -17,17 +15,21 @@
     $(document).ready(function () {
 
         var data = {
-            labels: [{% for key,review in reviews %}'{{ key }}', {% endfor %}],
-            series: [{% for key,review in reviews %}{{review.0}}, {% endfor %}]
+            labels : [{% for key,review in reviews %}'{{ key }}', {% endfor %}],
+            series : [{% for key,review in reviews %}{{review}}, {% endfor %}]
         };
 
         var options = {
-            width: 'auto',
+            width: '500%',
             height: '400px',
+            high: 10,
+            onlyInteger: true,
             distributeSeries: true
         };
 
-        new Chartist.Bar('.ct-chart', data, options);
+        new Chartist.Bar('#ct-chart', data, options);
+
+
 
 
         // CALENDAR
@@ -305,8 +307,8 @@
     </div>
 </div>
 
-<div class="row wrap">
-    <div class="ct-chart" ></div>
+<div class="row wrap" id="chart">
+    <div id="ct-chart" ></div>
 </div>
 
 
