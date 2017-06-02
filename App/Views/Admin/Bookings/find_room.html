@@ -196,7 +196,7 @@
 
         <div class="row">
             {% for bookings in room.bookings %}
-            <a href="/admin/bookings/check-booking?id={{ booking.booking_id }}" target="_blank">
+            <a href="/admin/bookings/check-booking?id={{ bookings.booking_id }}" target="_blank">
                 <div class="booking alert alert-warning">
                     <div class="panels">
                         <div class="dateIn checkin-panel">{{bookings.checkin}}</div>

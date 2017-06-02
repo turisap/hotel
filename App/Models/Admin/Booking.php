@@ -205,9 +205,11 @@ class Booking extends \Core\Model {
 
 
     // this method finds all bookings to a particular room
-    public static function findAllBookingsToONeRoom($room_id, $limit = false){
+    public static function findAllBookingsToONeRoom($room_id, $limit = false, $only_upcoming = false){
 
         $sql = 'SELECT * FROM ' . static::$db_table . ' WHERE room_id = :room_id';
+
+        $sql .= $only_upcoming ? ' AND status = 1 ' : ''; // append only upcoming if it was specified
 
         $sql .= $limit ? ' LIMIT ' . $limit : ''; // append limit statement if it was supplied
 
