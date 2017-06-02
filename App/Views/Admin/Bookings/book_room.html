@@ -13,6 +13,16 @@
 
     $(document).ready(function () {
 
+
+        // JQUERY METER
+        $('#jqmeter-container').jQMeter({
+            goal:'$1,000',
+            raised:'$200',
+            meterOrientation:'vertical',
+            width:'50px',
+            height:'200px'
+        });
+
         // CALENDAR
         $('#calendar').fullCalendar({
             contentHeight: 600,
@@ -286,6 +296,10 @@
         </div>
     </div>
     </div>
+</div>
+
+<div class="row wrap">
+    <div id="jqmeter-container"></div>
 </div>
 
 
