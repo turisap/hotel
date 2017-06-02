@@ -81,7 +81,7 @@
             <div class="form-group">
                 <label for="searchOptions">Find a room by:</label>
                 <select class="form-control" name="categories" id="searchOptions">
-                    <option value="" {% if not category %} selected {% endif %}>Please choose a category</option>
+                    <option value="1" {% if category  == 1 %} selected {% endif %}>Please choose a category</option>
                     <option value="room_number" {% if category == 'room_number' %} selected {% endif %}>By room number</option>
                     <option value="class" {% if category == 'class' %} selected {% endif %}>By class</option>
                     <option value="view" {% if category == 'view' %} selected {% endif %}>By view</option>
@@ -193,12 +193,20 @@
         <div class="row room-name">
             <a href="/admin/bookings/book-room?id={{ room.room_id }}"><h3 class="room-name">{{ room.local_name }}</h3></a>
         </div>
-        <div class="row bookings">
-            <div class="booking">Test</div>
-            <div class="booking">Test</div>
-            <div class="booking">Test</div>
-            <div class="booking">Test</div>
+
+        <div class="row">
+            {% for bookings in room.bookings %}
+            <a href="/admin/bookings/check-booking?id={{ booking.booking_id }}" target="_blank">
+                <div class="booking alert alert-warning">
+                    <div class="panels">
+                        <div class="dateIn checkin-panel">{{bookings.checkin}}</div>
+                        <div class="dateOut checkout-panel">{{bookings.checkout}}</div>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
         </div>
+
 
     </div>
 

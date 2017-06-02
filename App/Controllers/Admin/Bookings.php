@@ -90,8 +90,14 @@ class Bookings extends \Core\Controller {
                 // for each room found append data about main photo to display in search results
                 foreach ($results as $key => $value){
                     $photo = Photo::findAllPhotosToONeRoom($value->id, true);
-                    $results_with_photos[] = array_merge((array)$value, $photo);
+                    $bookings = Booking::findAllBookingsToONeRoom($value->id, 3);
+                    $result = (array)$value;
+                    $result['bookings'] = $bookings;
+                    $results_with_photos[] = array_merge((array)$result, $photo);
+
                 }
+
+                //print_r($results_with_photos);
 
                $search_sentence = Search::assemblySearchSentence($data);
                 View::renderTemplate('admin/bookings/find_room.html', [
@@ -100,6 +106,7 @@ class Bookings extends \Core\Controller {
                 ]);
 
             } else {
+
                 Flash::addMessage('Nothing has been found', Flash::INFO);
                 View::renderTemplate('admin/bookings/find_room.html');
 

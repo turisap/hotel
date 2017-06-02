@@ -179,15 +179,9 @@
 <div class="row wrap">
 
 
-
     <div class="col-lg-3 col-md-3 col-sm-12 crop">
             <img src="{{ set.pictures.path }}" class="img-responsive img-rooms-all">
     </div>
-
-
-
-
-
 
 
     <div class="col-lg-3 col-md-3 col-sm-12 info">
@@ -204,18 +198,7 @@
         <div class="row room-name">
             <a href="/admin/rooms/room?id={{ set.room.id }}"><h3 class="room-name">{{ set.room.local_name }}</h3></a>
         </div>
-        <div class="row">
-            {% for booking in set.bookings %}
-            <a href="/admin/bookings/check-booking?id={{ booking.booking_id }}" target="_blank">
-                <div class="booking alert alert-warning">
-                    <div class="panels">
-                        <div class="dateI checkin-panel">{{booking.checkin}}</div>
-                        <div class="dateOut checkout-panel">{{booking.checkout}}</div>
-                    </div>
-                </div>
-            </a>
-            {% endfor %}
-        </div>
+
 
     </div>
 

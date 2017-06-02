@@ -99,6 +99,10 @@ div.row.button {
     margin: 5px;
 }
 
+.booking:hover {
+    background-color: #fffab0;
+}
+
 .dateIn, .dateOut {
     height: 30px;
     width: 100%;
