@@ -213,7 +213,8 @@ class Rooms extends \Core\Controller {
 
                 View::renderTemplate('admin/rooms/all_rooms.html', [
                     'rooms' => $results_with_photos,
-                    'view_all' => 1
+                    'view_all' => 1,
+                    'search' => $search_terms
                 ]);
 
             } else {
