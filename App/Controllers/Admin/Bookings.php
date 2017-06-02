@@ -15,6 +15,7 @@ use App\Flash;
 use App\Mail;
 use App\Models\Admin\Booking;
 use App\Models\Admin\Photo;
+use App\Models\Review;
 use App\Models\User;
 use Core\View;
 use App\Models\Admin\Room;
@@ -177,14 +178,20 @@ class Bookings extends \Core\Admin {
 
             // find a room based on that id
             $room = Room::findById($room_id);
+
             // and all bookings to that room
             $bookings = Booking::findAllBookingsToONeRoom($room_id);
+
+            // get averages for all reviews for the room
+            $reviews = Review::getAverageRatingsForARoom($room_id);
+
 
             if($room){
                 // render template with room on success
                 View::renderTemplate('admin/bookings/book_room.html', [
-                    'room' => $room,        // room object
-                    'bookings' => $bookings // and all its bookings
+                    'room'     => $room,        // room object
+                    'bookings' => $bookings, // and all its bookings
+                    'reviews'  => $reviews
                 ]);
 
             } else {

@@ -8,6 +8,8 @@
 {% block footer %}
 
 <!-- BOOTSTRAP DATEPICKER AND FORM VALIDATION -->
+
+{% for key,review in reviews %}{{ key }}, {% endfor %}
 <script>
 
 
@@ -15,12 +17,12 @@
     $(document).ready(function () {
 
         var data = {
-            labels: ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
-            series: [20, 60, 120, 200, 180, 20, 10]
+            labels: [{% for key,review in reviews %}'{{ key }}', {% endfor %}],
+            series: [{% for key,review in reviews %}{{review.0}}, {% endfor %}]
         };
 
         var options = {
-            width: '700px',
+            width: 'auto',
             height: '400px',
             distributeSeries: true
         };

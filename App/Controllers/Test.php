@@ -14,6 +14,7 @@ use App\Mail;
 use App\Models\Admin\Booking;
 use App\Models\Admin\Photo;
 use App\Models\Admin\Search;
+use App\Models\Review;
 use \App\Token;
 use App\Models\RememberedLogin;
 use App\Models\Admin\Room;
@@ -26,7 +27,7 @@ class Test
 
 
     public function test(){
-       print_r(Photo::findAllPhotosToONeRoom(37, true));
+       print_r(Review::getAverageRatingsForARoom(21));
     }
 
 
