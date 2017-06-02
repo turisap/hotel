@@ -99,7 +99,7 @@ div.row.button {
     margin: 5px;
 }
 
-.date {
+.dateIn, .dateOut {
     height: 30px;
     width: 100%;
     font-size: large !important;
