@@ -108,6 +108,8 @@ class Rooms extends \Core\Controller {
         // first get all rooms from the database
         $sets = Room::findAllRoomsWithPhotos();
         // pass them to the view
+
+        //print_r($sets);
         View::renderTemplate('admin/rooms/all_rooms.html', ['rooms' => $sets]);
 
     }
@@ -157,12 +159,12 @@ class Rooms extends \Core\Controller {
 
                 // for each room found append data about main photo to display in search results
                 foreach ($results as $key => $value){
-                    $photo = Photo::findAllPhotosToONeRoom($value->id, true);
-                    $bookings = Booking::findAllBookingsToONeRoom($value->id, 3, true);
                     $result = (array)$value;
+                    $photo = Photo::findAllPhotosToONeRoom($value->id, true);
+                    $result['upcoming'] = Booking::upcomingBooking($value->id);
+                    $bookings = Booking::findAllBookingsToONeRoom($value->id, 3, true);
                     $result['bookings'] = $bookings;
-                    $results_with_photos[] = array_merge((array)$result, $photo);
-
+                    $results_with_photos[] = array_merge($result, $photo);
                 }
 
                 //print_r($results_with_photos);
@@ -208,7 +210,9 @@ class Rooms extends \Core\Controller {
                 // for each room found append data about main photo to display in search results
                 foreach ($results as $key => $value){
                     $photo = Photo::findAllPhotosToONeRoom($value->id, true);
-                    $results_with_photos[] = array_merge((array)$value, $photo);
+                    $result = (array)$value;
+                    $result['upcoming'] = Booking::upcomingBooking($value->id);
+                    $results_with_photos[] = array_merge($result, (array)$photo);
                 }
 
                 View::renderTemplate('admin/rooms/all_rooms.html', [

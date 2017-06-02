@@ -195,7 +195,7 @@
             <li class="list-group-item">Room number: {{ room.room_number }}</li>
             <li class="list-group-item">Class: {{ room.class }}</li>
             <li class="list-group-item">View: {{ room.view }}</li>
-            <li class="alert alert-danger list-group-item">Upcoming guest!</li>
+            {% if room.upcoming > 0 %}<li class="alert alert-danger list-group-item">Upcoming guest!</li>{% endif %}
         </ul>
     </div>
 

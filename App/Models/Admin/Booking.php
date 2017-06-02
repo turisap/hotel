@@ -205,11 +205,11 @@ class Booking extends \Core\Model {
 
 
     // this method finds all bookings to a particular room
-    public static function findAllBookingsToONeRoom($room_id, $limit = false, $only_upcoming = false){
+    public static function findAllBookingsToONeRoom($room_id, $limit = false, $only_future = false){
 
         $sql = 'SELECT * FROM ' . static::$db_table . ' WHERE room_id = :room_id';
 
-        $sql .= $only_upcoming ? ' AND status = 1 ' : ''; // append only upcoming if it was specified
+        $sql .= $only_future ? ' AND status = 1 ' : ''; // append only upcoming if it was specified
 
         $sql .= $limit ? ' LIMIT ' . $limit : ''; // append limit statement if it was supplied
 
@@ -314,6 +314,28 @@ class Booking extends \Core\Model {
         $stm->execute();
 
     }
+
+
+    // this method check whether a room has an upcoming booking in order to create notification
+    public static function upcomingBooking($room_id){
+
+        // set up the date when a booking becomes upcoming
+        $today = new DateTime();
+        $limit_stamp = $today->modify(Config::UPCOMING_LIMIT);
+        $limit_date = $limit_stamp->format('Y-m-d');
+
+        $sql = 'SELECT COUNT(booking_id) FROM ' . static::$db_table . ' WHERE room_id = ' . $room_id . ' AND status = 1 AND checkin <= ' . '\'' . $limit_date . '\'';
+
+        $db  = static::getDB();
+
+        $stm = $db->prepare($sql);
+
+        $stm->execute();
+
+        return $stm->fetchColumn();
+
+    }
+
 
 
 

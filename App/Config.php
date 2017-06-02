@@ -55,5 +55,8 @@ class Config
     // the number of days for keeping records of bookings and automatic deletion after passing, must be in '- n days' format
     const DAYS_BOOKING_KEEPING = '-180 days';
 
+    // the number of days when booking becomes upcoming
+    const UPCOMING_LIMIT = '10 days';
+
 
 }

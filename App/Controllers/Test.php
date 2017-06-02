@@ -26,7 +26,7 @@ class Test
 
 
     public function test(){
-        print_r(Booking::automaticBookingsDeletion());
+       print_r(Booking::upcomingBooking(11));
     }
 
 
