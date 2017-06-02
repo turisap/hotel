@@ -159,9 +159,18 @@ class Photo extends \Core\Model {
 
             if($main_photo_only){        // fetch all or only one row (for all_rooms page or for a particular room page)
 
-                $pictures = $stm->fetch();
+                $picture = $stm->fetch();
 
-                return $pictures;
+                if($picture){
+
+                    return $picture;
+
+
+                } else { //return placeholder
+                     return Array ('name' => '149534948934699692.jpg', 'type' => 'image/jpeg', 'size' => 85505, 'path' => '/uploads/pictures/rooms/room_placeholder.jpg');
+                }
+
+
 
             } else {
                 $pictures = $stm->fetchAll();

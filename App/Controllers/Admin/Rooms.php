@@ -215,6 +215,7 @@ class Rooms extends \Core\Controller {
                     $results_with_photos[] = array_merge($result, (array)$photo);
                 }
 
+                //print_r($results_with_photos);
                 View::renderTemplate('admin/rooms/all_rooms.html', [
                     'rooms' => $results_with_photos,
                     'view_all' => 1,

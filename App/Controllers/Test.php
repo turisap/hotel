@@ -26,7 +26,7 @@ class Test
 
 
     public function test(){
-       print_r(Booking::upcomingBooking(11));
+       print_r(Photo::findAllPhotosToONeRoom(37, true));
     }
 
 
