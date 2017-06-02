@@ -448,6 +448,8 @@ class Bookings extends \Core\Controller {
             // if 2nd parameter set to true it returns all bookings for all rooms
             $results = Search::sortBookingSearch($params, true);
 
+           // print_r($results);
+
             if($results){
 
                 View::renderTemplate('admin/bookings/view_all.html', [

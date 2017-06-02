@@ -348,13 +348,16 @@ abstract class Search extends \Core\Model {
         $sql = 'SELECT * FROM bookings WHERE ';
 
         // check whether search terms were supplied with status or show all
-        $sql .= ($status == 3) ? ' status = 0 AND' : ' status = ' . $status . ' AND';
+        $sql .= ($status == 3) ? ' status = 0' : ' status = ' . $status;
+
+        $sql .= ($status == 3) ? '' : ' AND';
 
         // add room id
         $sql .= ($all == false) ? ' room_id=' . $room_id . ' AND' : '';
 
+
         // add remaining parametres (equality mark for today and tomorrow, while less than for other periods)
-        $sql .= ' checkin ' . (($period == 0 || $period == 1) ? ' = ' : ' <= ') . ' \'' . $checkin . '\'';
+        $sql .= !($status == 3) ? (' checkin ' . (($period == 0 || $period == 1) ? ' = ' : ' <= ') . ' \'' . $checkin . '\'') : '';
 
         // add group by room name or checkin if this is search around all bookings in the hotel
         $sql .= ($all && $group) ? ' ORDER BY room_name '. $sort_by : ' ORDER BY checkin ' . $sort_by;
