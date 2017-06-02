@@ -93,6 +93,7 @@ class Bookings extends \Core\Controller {
                     $bookings = Booking::findAllBookingsToONeRoom($value->id, 3, true);
                     $result = (array)$value;
                     $result['bookings'] = $bookings;
+                    $result['upcoming'] = Booking::upcomingBooking($value->id);  // check if there is an upcoming booking
                     $results_with_photos[] = array_merge((array)$result, $photo);
 
                 }
@@ -138,10 +139,11 @@ class Bookings extends \Core\Controller {
 
                 // for each room found append data about main photo to display in search results
                 foreach ($results as $key => $value){
-                    $photo = Photo::findAllPhotosToONeRoom($value->id, true);
-                    $bookings = Booking::findAllBookingsToONeRoom($value->id, 3, true);
+                    $photo = Photo::findAllPhotosToONeRoom($value->id, true); // find main photo
+                    $bookings = Booking::findAllBookingsToONeRoom($value->id, 3, true); // find only three future bookings
                     $result = (array)$value;
-                    $result['bookings'] = $bookings;
+                    $result['bookings'] = $bookings;      // apppend all bookings
+                    $result['upcoming'] = Booking::upcomingBooking($value->id);  // check if there is an upcoming booking
                     $results_with_photos[] = array_merge((array)$result, $photo);
                 }
 
