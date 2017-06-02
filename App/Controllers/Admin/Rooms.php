@@ -16,13 +16,13 @@ use App\Models\Admin\Room;
 use App\Models\Admin\Search;
 use App\Models\Admin\Booking;
 
-class Rooms extends \Core\Controller {
+class Rooms extends \Core\Admin {
 
 
-    // this is an action filter which requires admin status to access these pages
+    // this is an action filter which requires admin status to access these pages / mooved to Core/Admin
     public function before()
     {
-        $this->requireAdmin();
+        parent::requireAdmin();
 
     }
 

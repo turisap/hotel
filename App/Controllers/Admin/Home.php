@@ -13,13 +13,13 @@ use App\Authentifiacation;
 use App\Models\Admin\Booking;
 use Core\View;
 
-class Home  extends \Core\Controller {
+class Home  extends \Core\Admin {
 
     // action filter which gets current user for all action methods and requires admin access
     public function before()
     {
+        parent::requireAdmin();
         $this->user = Authentifiacation::getCurrentUser(); // get current user
-        $this->requireAdmin();                             // check its admin access
         Booking::automaticBookingsDeletion();              // automatically delete all old bookings
 
     }

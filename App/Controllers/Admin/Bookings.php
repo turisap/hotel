@@ -20,13 +20,12 @@ use Core\View;
 use App\Models\Admin\Room;
 use \App\Models\Admin\Search;
 
-class Bookings extends \Core\Controller {
+class Bookings extends \Core\Admin {
 
     // action filter requires to be admin to access all pages from this controller
     public function before()
     {
-        //parent::before();
-        $this->requireAdmin();
+        parent::requireAdmin();
 
     }
 
