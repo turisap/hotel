@@ -169,6 +169,7 @@
             var checkInDate = new Date($('#dateCheckin').val());
             var checkOutDate = new Date();
             checkOutDate.setDate(checkInDate.getDate() + 1);
+            
 
             // initialize checkout datepicker
             $('#checkout').datepicker({
