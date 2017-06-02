@@ -72,12 +72,19 @@ class Review extends \Core\Model {
         // an array for keeping averages
         $averages = array();
 
-        // count averages for each category accordingly and push them into the averages array
-        foreach ($sets as $key => $value){
 
-            $averages[$key] = array_sum($value)/count($value);
+
+        // count averages for each category accordingly and push them into the averages array
+        if(count($sets['food']) > 0){
+
+            foreach ($sets as $key => $value){
+
+                $averages[$key] = array_sum($value)/count($value);
+
+            }
 
         }
+
 
         return $averages;
 

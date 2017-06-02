@@ -1,7 +1,7 @@
 .ct-label {
-  fill: rgba(0, 0, 0, 0.4);
-  color: rgba(0, 0, 0, 0.4);
-  font-size: 0.75rem;
+  fill: rgb(0, 0, 0);
+  color: rgba(1, 1, 1);
+  font-size: 1.75rem;
   line-height: 1; }
 
 .ct-chart-line .ct-label,
@@ -159,7 +159,7 @@
 
 .ct-bar {
   fill: none;
-  stroke-width: 10px; }
+  stroke-width: 30px; }
 
 .ct-slice-donut {
   fill: none;

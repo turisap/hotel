@@ -11,21 +11,41 @@
 <script>
 
 
-    // REVIEW CHART
+
     $(document).ready(function () {
 
-        var data = {
-            labels : [{% for key,review in reviews %}'{{ key }}', {% endfor %}],
-            series : [{% for key,review in reviews %}{{review}}, {% endfor %}]
-        };
+        // REVIEW CHART
+        // get data from php
+        var labels = [{% for key,review in reviews %}'{{ key }}', {% endfor %}];
+        var series = [{% for key,review in reviews %}{{review}}, {% endfor %}];
 
-        var options = {
-            high: 10,
-            onlyInteger: true,
-            distributeSeries: true
-        };
+        // if the data is present, initialize the chart
+        if(labels.length > 0){
 
-        new Chartist.Bar('#ct-chart', data, options);
+            var data = {
+                labels : labels,
+                series : series
+            };
+
+            var options = {
+                axisY: {
+                    onlyInteger: true
+                },
+                distributeSeries: true
+            };
+
+            new Chartist.Bar('#ct-chart', data, options);
+
+        } else { // if there is no data, remove empty chart from the page and append message html instead of it
+
+            var noReviewsElement = '<h2>There are no reviews for this room yet</h2>';
+
+            $('#ct-chart').remove();
+            $('#chart').append(noReviewsElement);
+
+        }
+
+
 
 
 
@@ -305,6 +325,8 @@
     </div>
 </div>
 
+
+<h3 class="head">Average review <a href="#">view all rewies</a></h3>
 <div class="row wrap" id="chart">
     <div id="ct-chart" class="ct-golden-section" ></div>
 </div>
