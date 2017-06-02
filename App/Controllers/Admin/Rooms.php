@@ -13,6 +13,8 @@ use App\Flash;
 use App\Models\Admin\Photo;
 use Core\View;
 use App\Models\Admin\Room;
+use App\Models\Admin\Search;
+use App\Models\Admin\Booking;
 
 class Rooms extends \Core\Controller {
 
@@ -109,6 +111,130 @@ class Rooms extends \Core\Controller {
         View::renderTemplate('admin/rooms/all_rooms.html', ['sets' => $sets]);
 
     }
+
+
+
+
+    // get request from selectboxes in search room page and renders template with subcategories in the second selectbox
+    public function searchCategoriesAction(){
+
+        // get data from post (category)
+        $category = $_POST['categories'] ?? false;
+
+        //print_r($category);
+
+
+        if($category){
+
+            // get subcategories from search model
+            $subcategories = Search::findSearchSubcategories($category);
+            Flash::addMessage('Please check subcategory');
+            View::renderTemplate('Admin/rooms/all_rooms.html', ['subcategories' => $subcategories, 'category' => $category]);
+
+        } else {
+            self::redirect('/admin/rooms/all');
+        }
+    }
+
+    // process search form on submission (apply button)
+    public static function searchRoomAction(){
+
+        // first get data from the POST array
+        $data = $_POST ?? false;
+
+        //print_r($data);
+
+        // if there is data from form
+        if($data){
+
+            $results = Search::findCustomSearch($data);
+
+            //print_r($results);
+            // if search was successful create a sentence about user's search (like 'Your search was rooms with city view and aircon)
+            if($results){
+
+                $results_with_photos = array(); // array for found rooms with photos
+
+                // for each room found append data about main photo to display in search results
+                foreach ($results as $key => $value){
+                    $photo = Photo::findAllPhotosToONeRoom($value->id, true);
+                    $bookings = Booking::findAllBookingsToONeRoom($value->id, 3, true);
+                    $result = (array)$value;
+                    $result['bookings'] = $bookings;
+                    $results_with_photos[] = array_merge((array)$result, $photo);
+
+                }
+
+                //print_r($results_with_photos);
+
+                $search_sentence = Search::assemblySearchSentence($data);
+                View::renderTemplate('admin/rooms/all_rooms.html', [
+                    'rooms' => $results_with_photos,
+                    'sentence' => $search_sentence
+                ]);
+
+            } else {
+
+                Flash::addMessage('Nothing has been found', Flash::INFO);
+                View::renderTemplate('admin/rooms/all_rooms.html');
+
+            }
+
+        } else {
+            Flash::addMessage('There was a problem processing your request, please try again');
+            View::renderTemplate('admin/rooms/all_rooms.html');
+        }
+    }
+
+
+    // this method processes search request from find by name input
+    public function findByRoomName(){
+
+        // first get data from the POST array
+        $search_terms = $_POST['search_by_name'] ?? false;
+
+
+        if($search_terms){
+
+            $results = Search::findByRoomName($search_terms);
+
+            if(!empty($results)){
+
+
+                // array for keeping results (rooms and their main photos)
+                $results_with_photos = array();
+
+                // for each room found append data about main photo to display in search results
+                foreach ($results as $key => $value){
+                    $photo = Photo::findAllPhotosToONeRoom($value->id, true);
+                    $bookings = Booking::findAllBookingsToONeRoom($value->id, 3, true);
+                    $result = (array)$value;
+                    $result['bookings'] = $bookings;
+                    $results_with_photos[] = array_merge((array)$result, $photo);
+                }
+
+                View::renderTemplate('admin/admin/all_rooms.html', ['rooms' => $results_with_photos]);
+
+            } else {
+                Flash::addMessage('Nothing has been found', Flash::INFO);
+                self::redirect('/admin/admin/all-rooms');
+            }
+
+        } else {
+
+            // redirect back on failure with a message
+            Flash::addMessage('There was a problem processing your requests, please try again');
+            View::renderTemplate('admin/rooms/all_rooms.html', ['search' => $search_terms]);
+
+        }
+
+
+    }
+
+
+
+
+
 
     // renders page for a particular room
     public function roomAction(){

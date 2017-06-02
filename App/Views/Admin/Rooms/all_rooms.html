@@ -93,7 +93,7 @@
 <div class="row wrap search">
 
     <div class="col-lg-5 col-md-5 col-sm-12 ">
-        <form class="form-horizontal" method="post"  id="searchForm"  action="/admin/bookings/search-categories">
+        <form class="form-horizontal" method="post"  id="searchForm"  action="/admin/rooms/search-categories">
             <div class="form-group">
                 <label for="searchOptions">Find a room by:</label>
                 <select class="form-control" name="categories" id="searchOptions">
@@ -109,7 +109,7 @@
         </form>
     </div>
 
-    <form class="form-horizontal" method="post"  action="/admin/bookings/search-room">
+    <form class="form-horizontal" method="post"  action="/admin/rooms/search-room">
         <div class="col-lg-5 col-md-5 col-sm-12 right-input">
 
             <div class="form-group">
@@ -174,21 +174,21 @@
 <hr/>
 <br>
 
-{% for set in sets %}
+{% for room in rooms %}
 
 <div class="row wrap">
 
 
     <div class="col-lg-3 col-md-3 col-sm-12 crop">
-            <img src="{{ set.pictures.path }}" class="img-responsive img-rooms-all">
+            <img src="{{ room.path }}" class="img-responsive img-rooms-all">
     </div>
 
 
     <div class="col-lg-3 col-md-3 col-sm-12 info">
         <ul class="list-group">
-            <li class="list-group-item">Room number: {{ set.room.room_number }}</li>
-            <li class="list-group-item">Class: {{ set.room.class }}</li>
-            <li class="list-group-item">View: {{ set.room.view }}</li>
+            <li class="list-group-item">Room number: {{ room.room_number }}</li>
+            <li class="list-group-item">Class: {{ room.class }}</li>
+            <li class="list-group-item">View: {{ room.view }}</li>
             <li class="alert alert-danger list-group-item">Upcoming guest!</li>
         </ul>
     </div>
@@ -196,7 +196,7 @@
     <div class="col-lg-6 col-md-6 col-sm-12 room-name">
 
         <div class="row room-name">
-            <a href="/admin/rooms/room?id={{ set.room.id }}"><h3 class="room-name">{{ set.room.local_name }}</h3></a>
+            <a href="/admin/rooms/room?id={{ room.id }}"><h3 class="room-name">{{ room.local_name }}</h3></a>
         </div>
 
 
