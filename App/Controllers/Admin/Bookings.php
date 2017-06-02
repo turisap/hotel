@@ -68,7 +68,7 @@ class Bookings extends \Core\Controller {
             View::renderTemplate('Admin/bookings/find_room.html', ['subcategories' => $subcategories, 'category' => $category]);
 
         } else {
-            self::redirect('admin/bookings/create');
+            self::redirect('/admin/bookings/create');
         }
     }
 

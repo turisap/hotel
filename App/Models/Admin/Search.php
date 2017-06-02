@@ -28,6 +28,10 @@ abstract class Search extends \Core\Model {
 
 
         switch ($request) {
+
+            case "1":
+                return 1;
+                break;
             case "class":
                 return static::$class_types;
                 break;
