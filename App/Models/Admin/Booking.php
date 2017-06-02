@@ -209,7 +209,7 @@ class Booking extends \Core\Model {
 
         $sql = 'SELECT * FROM ' . static::$db_table . ' WHERE room_id = :room_id';
 
-        $sql .= !$limit ?: ' LIMIT ' . $limit; // append limit statement if it was supplied
+        $sql .= $limit ? ' LIMIT ' . $limit : ''; // append limit statement if it was supplied
 
         $db  = static::getDB();
         $stm = $db->prepare($sql);
