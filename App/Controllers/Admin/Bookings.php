@@ -139,7 +139,10 @@ class Bookings extends \Core\Controller {
                 // for each room found append data about main photo to display in search results
                 foreach ($results as $key => $value){
                     $photo = Photo::findAllPhotosToONeRoom($value->id, true);
-                    $results_with_photos[] = array_merge((array)$value, $photo);
+                    $bookings = Booking::findAllBookingsToONeRoom($value->id, 3, true);
+                    $result = (array)$value;
+                    $result['bookings'] = $bookings;
+                    $results_with_photos[] = array_merge((array)$result, $photo);
                 }
 
                 View::renderTemplate('admin/bookings/find_room.html', ['rooms' => $results_with_photos]);
