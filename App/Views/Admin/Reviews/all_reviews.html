@@ -57,6 +57,7 @@
             <div class="form-group">
                 <label for="show_only">Sort by:</label>
                 <select class="form-control" id="show_only" name="grade">
+                    <option value="0" {% if params.grade == 0 %} selected {% endif %}>All</option>
                     <option value="1" {% if params.grade == 1 %} selected {% endif %}>Only overall low</option>
                     <option value="2" {% if params.grade == 2 %} selected {% endif %}>Only overall middle</option>
                     <option value="3" {% if params.grade == 3 %} selected {% endif %}>Only overall high</option>

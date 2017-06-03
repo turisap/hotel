@@ -397,7 +397,11 @@ abstract class Search extends \Core\Model {
         $sql .= $grade ? (($grade == 1) ? ' AND reviews.overall < 5 ' : (($grade == 2) ? ' AND reviews.overall BETWEEN 5 AND 7' : ' AND reviews.overall >= 7')) : '';
 
         // add period parameters
-        $sql .= $period ? (($period == 0 || $period == 1) ? ' AND date_left = ' . $limit_date : ' AND date_left >=' . $limit_date) : '';
+        $sql .= $period ? (($period == 1) ? ' AND date_left = ' . $limit_date : ' AND date_left >=' . $limit_date) : ' AND date_left = ' . $limit_date;
+
+        // order parameters
+
+        $sql .= $order ? ' ORDER BY date_left DESC' : ' ORDER BY date_left ASC';
 
         return $sql;
 
@@ -405,7 +409,7 @@ abstract class Search extends \Core\Model {
 
         $stm = $db->prepare($sql);
         $stm->bindValue(':room_id', $room_id, PDO::PARAM_INT);
-        $stm->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stm->setFetchMode(PDO::FETCH_CLASS, '\App\Models\Review');
 
 
         $stm->execute();
