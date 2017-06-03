@@ -10,6 +10,8 @@ namespace App\Models\Admin;
 
 
 use PDO;
+use App\Models\Review;
+use DateTime;
 
 
 abstract class Search extends \Core\Model {
@@ -19,6 +21,7 @@ abstract class Search extends \Core\Model {
     public static $guests_number = ['2 guests', '4 guests', '6 guests'];
     public static $beds_number = ['1 bed', '2 beds', '3 beds'];
     public static $rooms_number = ['1 room', '2 rooms', '3 rooms'];
+
 
 
 
@@ -363,8 +366,6 @@ abstract class Search extends \Core\Model {
         $sql .= ($all && $group) ? ' ORDER BY room_name '. $sort_by : ' ORDER BY checkin ' . $sort_by;
 
 
-        //return $sql;
-
         $db  = static::getDB();
         $stm = $db->prepare($sql);
         $stm->setFetchMode(PDO::FETCH_CLASS, 'App\Models\Admin\Booking');
@@ -372,7 +373,48 @@ abstract class Search extends \Core\Model {
         $stm->execute();
 
         return $stm->fetchAll();
+
+
     }
+
+
+    // this method sorts all reviews to one room accordingly with search terms
+    public static function sortAllReviewsToOneRoom($room_id, $params){
+
+        // get values from POST array
+        $grade = $params['grade'] ?? false;
+        $period = $params['period'] ?? false;
+        $order = $params['order'] ?? false;
+
+        // create some dates for comparison purposes
+        $today = new DateTime();
+        $limit_stamp = $today->modify(('-' . strval($period) . ' days'));
+        $limit_date = $limit_stamp->format('Y-m-d');
+
+        $sql = 'SELECT reviews.*, bookings.room_name, bookings.title, bookings.first_name, bookings.last_name FROM reviews  LEFT JOIN bookings USING (booking_id) WHERE reviews.room_id = :room_id';
+
+        // add grade parameters
+        $sql .= $grade ? (($grade == 1) ? ' AND reviews.overall < 5 ' : (($grade == 2) ? ' AND reviews.overall BETWEEN 5 AND 7' : ' AND reviews.overall >= 7')) : '';
+
+        // add period parameters
+        $sql .= $period ? (($period == 0 || $period == 1) ? ' AND date_left = ' . $limit_date : ' AND date_left >=' . $limit_date) : '';
+
+        return $sql;
+
+        $db  = static::getDB();
+
+        $stm = $db->prepare($sql);
+        $stm->bindValue(':room_id', $room_id, PDO::PARAM_INT);
+        $stm->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+
+        $stm->execute();
+
+        return $stm->fetchAll();
+
+
+    }
+
 
 
 

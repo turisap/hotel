@@ -91,7 +91,7 @@ class Review extends \Core\Model {
 
 
     // finds all revies to a particular room with room names from bookings table
-    public static function findAllReviewsToOneRoom($room_id){
+    public static function findAllReviewsToOneRoom($room_id, $params=[]){
 
         $sql = 'SELECT ' . static::$db_table . '.*, bookings.room_name, bookings.title, bookings.first_name, bookings.last_name FROM ' . static::$db_table . '  LEFT JOIN bookings USING (booking_id) WHERE reviews.room_id = :room_id';
 

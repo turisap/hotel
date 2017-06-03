@@ -12,6 +12,7 @@ namespace App\Controllers\Admin;
 use App\Flash;
 use App\Models\Review;
 use Core\View;
+use App\Models\Admin\Search;
 
 class Reviews extends \Core\Admin {
 
@@ -39,6 +40,40 @@ class Reviews extends \Core\Admin {
             self::redirect('/admin/bookings/create');
 
         }
+    }
+
+
+    // processin form submission on sorting reviews
+    public function sortAllReviewsToOneRoomAction(){
+
+        $room_id = $_GET['id'] ?? false;
+        $params  = $_POST;
+
+        if($room_id){
+
+            $reviews = Search::sortAllReviewsToOneRoom($room_id, $params);
+
+            print_r($reviews);
+
+            /*if($reviews){
+
+                View::renderTemplate('admin/reviews/all_reviews', ['reviews' => $reviews]);
+                Flash::addMessage('You results', Flash::INFO);
+
+            } else {
+
+                View::renderTemplate('admin/reviews/all_reviews');
+                Flash::addMessage('Nothing has been found', Flash::INFO);
+
+            }*/
+
+        } else {
+
+            Flash::addMessage('It looks like this room doesn\'t exists', Flash::INFO);
+            self::redirect('/admin/bookings/create');
+
+        }
+
     }
 
 }
