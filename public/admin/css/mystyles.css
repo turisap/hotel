@@ -420,6 +420,18 @@ h3.cancel {
     background-color: #afff9d !important;
 }
 
+.cells {
+    margin: 0;
+}
+
+.inner {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
 
 
 
