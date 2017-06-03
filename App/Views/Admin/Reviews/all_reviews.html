@@ -9,6 +9,34 @@
 
 <script>
 
+    {% for review in reviews %}
+
+    // qtip for reviews' notes
+    $('#qtip-{{review.review_id}}').qtip({
+        title  : 'Guest\'s notes',
+        content: {
+            title  : 'Guest\'s notes',
+            text   : '{{review.notes}}'
+        },
+        style : {
+            classes: 'qtip-light'
+        },
+        position: {
+            my  : 'top left',
+            at  : 'bottom left',
+            effect: function(api, pos, viewport) {
+                // "this" refers to the tooltip
+                $(this).animate(pos, {
+                    duration: 600,
+                    easing: 'linear',
+                    queue: false // Set this to false so it doesn't interfere with the show/hide animations
+                });
+            }
+        }
+    });
+
+    {% endfor %}
+
 
 
 </script>
@@ -53,7 +81,6 @@
             <div class="radio">
                 <label class="order"><input type="radio"  name="order" value="1" {% if params.order == 1 %} checked {% endif %}>New first</label>
             </div>
-            
             <div class="row">
                 <button class="btn btn-primary" type="submit" id="sortAll" >Apply</button>
                 {% if params is not empty %}  <a  class="btn btn-default" href="/admin/bookings/view-all-bookings" id="viewAll">View all</a> {% endif %}
@@ -72,7 +99,7 @@
 
 
 
-    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6  tre"><span>{{ review.title }} {{ review.first_name }} {{ review.last_name }}</span></div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6  tre" id="qtip-{{ review.review_id }}"><span>{{ review.title }} {{ review.first_name }} {{ review.last_name }}</span></div>
     <div class="col-lg-8 col-md-8">
         <div class="row table-reviews">
             <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 cells alert alert-{% if review.cleanliness < 5 %}danger {% elseif 5 <= review.cleanliness < 7 %}warning {% else %}success {% endif %}"><span>Clean: {{review.cleanliness}}</span></div>
