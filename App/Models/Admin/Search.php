@@ -397,13 +397,12 @@ abstract class Search extends \Core\Model {
         $sql .= $grade ? (($grade == 1) ? ' AND reviews.overall < 5 ' : (($grade == 2) ? ' AND reviews.overall BETWEEN 5 AND 7' : ' AND reviews.overall >= 7')) : '';
 
         // add period parameters
-        $sql .= $period ? (($period == 1) ? ' AND date_left = ' . $limit_date : ' AND date_left >=' . $limit_date) : ' AND date_left = ' . $limit_date;
+        $sql .= $period ? (($period == 1) ? ' AND date_left = \'' . $limit_date . '\'': ' AND date_left >= \'' . $limit_date. '\'') : ' AND date_left = \'' . $limit_date . '\' ';
 
-        // order parameters
+        // order parameters (for all except today and yesterday)
+        $sql .= ($period == 0 || $period == 1) ? '' : ($order ? ' ORDER BY date_left DESC' : ' ORDER BY date_left ASC');
 
-        $sql .= $order ? ' ORDER BY date_left DESC' : ' ORDER BY date_left ASC';
-
-        return $sql;
+        //return $sql;
 
         $db  = static::getDB();
 

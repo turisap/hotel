@@ -10,6 +10,7 @@ namespace App\Controllers\Admin;
 
 
 use App\Flash;
+use App\Models\Admin\Room;
 use App\Models\Review;
 use Core\View;
 use App\Models\Admin\Search;
@@ -53,19 +54,26 @@ class Reviews extends \Core\Admin {
 
             $reviews = Search::sortAllReviewsToOneRoom($room_id, $params);
 
-            print_r($reviews);
+            //var_dump($reviews);
 
-            /*if($reviews){
+            if(count($reviews) > 0){
 
-                View::renderTemplate('admin/reviews/all_reviews', ['reviews' => $reviews]);
-                Flash::addMessage('You results', Flash::INFO);
+                View::renderTemplate('admin/reviews/all_reviews.html', [
+                    'reviews' => $reviews,
+                    'params'  => $params
+                ]);
+                Flash::addMessage('Your results', Flash::INFO);
 
             } else {
 
-                View::renderTemplate('admin/reviews/all_reviews');
+                $room = Room::findById($room_id);
                 Flash::addMessage('Nothing has been found', Flash::INFO);
+                View::renderTemplate('admin/reviews/all_reviews.html', [
+                    'room' => $room,
+                    'params' => $params
+                ]);
 
-            }*/
+            }
 
         } else {
 

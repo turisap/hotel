@@ -2,7 +2,7 @@
 
 {% block title %}all reviews{% endblock %}
 {% block page_heading %}All reviews to {% endblock %}
-{% block page_subheading %}{{reviews.0.room_name}}{% endblock %}
+{% block page_subheading %}{{reviews.0.room_name}}{% if not review.0.room_name %}{{room.local_name}}{% endif %}{% endblock %}
 
 
 {% block footer %}
@@ -15,7 +15,7 @@
     $('#qtip-{{review.review_id}}').qtip({
         title  : 'Guest\'s notes',
         content: {
-            title  : 'Guest\'s notes',
+            title  : '{{review.date_left}}',
             text   : '{{review.notes}}'
         },
         style : {
@@ -53,7 +53,7 @@
 
 
 <div class="row wrap">
-    <form class="form-inline" method="post" id="sortBookings" action="/admin/reviews/sort-all-reviews-to-one-room?id={{ reviews.0.room_id}}">
+    <form class="form-inline" method="post" id="sortBookings" action="/admin/reviews/sort-all-reviews-to-one-room?id={{ reviews.0.room_id}}{% if not review.0.room_id %}{{room.id}}{% endif %}">
             <div class="form-group">
                 <label for="show_only">Sort by:</label>
                 <select class="form-control" id="show_only" name="grade">
@@ -67,7 +67,7 @@
                 <label for="period">Choose a period:</label>
                 <select class="form-control" id="period" name="period">
                     <option value="0" {% if params.period == 0 %} selected {% endif %}>Today</option>
-                    <option value="1" {% if params.period == 0 %} selected {% endif %}>Yesterday</option>
+                    <option value="1" {% if params.period == 1 %} selected {% endif %}>Yesterday</option>
                     <option value="3" {% if params.period == 3 %} selected {% endif %}>Over the past 3 days</option>
                     <option value="7" {% if params.period == 7 %} selected {% endif %}>Over the past week</option>
                     <option value="15" {% if params.period == 15 %} selected {% endif %}>Over the past 15 days</option>
@@ -85,14 +85,13 @@
             </div>
             <div class="row">
                 <button class="btn btn-primary" type="submit" id="sortAll" >Apply</button>
-                {% if params is not empty %}  <a  class="btn btn-default" href="/admin/bookings/view-all-bookings" id="viewAll">View all</a> {% endif %}
             </div>
 
     </form>
 
 </div>
 
-{% if reviews is not empty %}
+
 
 {% for review in reviews %}
 
@@ -112,7 +111,7 @@
             <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 cells alert alert-{% if review.overall < 5 %}danger {% elseif 5 <= review.overall and review.overall < 7 %}warning {% else %}success {% endif %}"><span>Overall: {{ review.overall }}</span></div>
         </div>
     </div>
-    <div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 inner"><a class="btn btn-default" href="/admin/bookings/check-booking?id={{ review.booking_id }}">View</a></div>
+    <div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 inner"><a class="btn btn-default" href="">View</a></div>
 
 
 </div>
@@ -121,13 +120,7 @@
 
 {% endfor %}
 
-{% else %}
 
-<div class="row wrap">
-    <h3>There are currently no reviews for this room</h3>
-</div>
-
-{% endif %}
 
 {% endblock %}
 

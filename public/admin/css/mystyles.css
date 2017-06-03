@@ -432,6 +432,10 @@ h3.cancel {
     align-items: center;
 }
 
+#page-wrapper {                /* set wrapper to 100% of window height*/
+    min-height: 100vh;
+}
+
 
 
 
