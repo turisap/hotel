@@ -370,7 +370,7 @@ h3.cancel {
     top: 30%;
 }
 
-.tre-future a  {
+.tre-future a, .title-date  {
     position: relative;
     top: 15%;
 }

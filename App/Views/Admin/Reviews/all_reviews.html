@@ -39,6 +39,19 @@
 
 
 
+    $(document).ready(function () {
+
+
+        // bootstrap confirmation buttons initializing
+        $('[data-toggle=confirmation]').confirmation({
+            rootSelector: '[data-toggle=confirmation]'
+        });
+
+    })
+
+
+
+
 </script>
 
 
@@ -100,7 +113,16 @@
 
 
 
-    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6  tre" id="qtip-{{ review.review_id }}"><span>{{ review.title }} {{ review.first_name }} {{ review.last_name }}</span></div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6" id="qtip-{{ review.review_id }}">
+        <div class="title-date">
+            <div class="row">
+                <span>{{ review.title }} {{ review.first_name }} {{ review.last_name }}</span>
+            </div>
+            <div class="row">
+                <span>{{ review.date_left }}</span>
+            </div>
+        </div>
+    </div>
     <div class="col-lg-8 col-md-8">
         <div class="row table-reviews">
             <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 cells alert alert-{% if review.cleanliness < 5 %}danger {% elseif 5 <= review.cleanliness and review.cleanliness < 7 %}warning {% else %}success {% endif %}"><span>Clean: {{review.cleanliness}}</span></div>
@@ -111,7 +133,7 @@
             <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 cells alert alert-{% if review.overall < 5 %}danger {% elseif 5 <= review.overall and review.overall < 7 %}warning {% else %}success {% endif %}"><span>Overall: {{ review.overall }}</span></div>
         </div>
     </div>
-    <div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 inner"><a class="btn btn-default" href="">View</a></div>
+    <div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 inner"><a class="btn btn-danger" href="/admin/reviews/delete-review?id={{ review.review_id }}&room_id={{review.room_id}}" data-toggle="confirmation" data-title="Delete this review?" data-popout="true" data-placement="top">Delete</a></div>
 
 
 </div>

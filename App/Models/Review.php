@@ -15,6 +15,7 @@ use PDO;
 class Review extends \Core\Model {
 
     protected static $db_table = 'reviews';
+    public static $column = 'review_id';
 
 
     // create a review object using form data
