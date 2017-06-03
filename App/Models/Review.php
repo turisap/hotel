@@ -14,7 +14,7 @@ use PDO;
 
 class Review extends \Core\Model {
 
-    protected static $db_table = 'Reviews';
+    protected static $db_table = 'reviews';
 
 
     // create a review object using form data
@@ -90,16 +90,17 @@ class Review extends \Core\Model {
     }
 
 
-    // finds all revies to a particular room
+    // finds all revies to a particular room with room names from bookings table
     public static function findAllReviewsToOneRoom($room_id){
 
-        $sql = 'SELECT * FROM ' . static::$db_table . ' WHERE room_id = :room_id';
+        $sql = 'SELECT ' . static::$db_table . '.*, bookings.room_name, bookings.title, bookings.first_name, bookings.last_name FROM ' . static::$db_table . '  LEFT JOIN bookings USING (booking_id) WHERE reviews.room_id = :room_id';
 
         $db  = static::getDB();
 
         $stm = $db->prepare($sql);
         $stm->bindValue(':room_id', $room_id, PDO::PARAM_INT);
         $stm->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
 
         $stm->execute();
 

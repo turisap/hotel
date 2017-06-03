@@ -27,7 +27,7 @@ class Test
 
 
     public function test(){
-       print_r(Review::getAverageRatingsForARoom(22));
+       print_r(Review::findAllReviewsToOneRoom(21));
     }
 
 

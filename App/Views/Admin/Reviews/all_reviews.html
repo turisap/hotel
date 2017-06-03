@@ -1,8 +1,8 @@
 {% extends "admin_base.html" %}
 
-{% block title %}all bookings{% endblock %}
-{% block page_heading %}All bookings around {% endblock %}
-{% block page_subheading %}{{ site_name }}{% endblock %}
+{% block title %}all reviews{% endblock %}
+{% block page_heading %}All reviews to {% endblock %}
+{% block page_subheading %}{{reviews.0.room_name}}{% endblock %}
 
 
 {% block footer %}
@@ -72,16 +72,23 @@
 {% for review in reviews %}
 
 
-<div class="row wrap {% if booking.status == 0 %} booking-past {% elseif booking.status == 2%} booking-canceled {% else %} booking-future {% endif %}">
+<div class="row wrap {% if review.overall < 5 %}review-low {% elseif 5 <= review.overall < 7 %}review-middle {% else %}review-high {% endif %}">
 
 
-    {% if booking.status == 0 %}                                <!-- past bookings -->
-    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6  tre"><span>{{ booking.room_name }}</span></div>
-    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6  tre"><span>{{ booking.checkin }}<i class="nights-stay"></i></span></div>
-    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6  tre"><span>{{ booking.title }} {{ booking.first_name }} {{ booking.last_name }}</span></div>
-    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6  tre"><span>REVIEW</span></div>
-    <div class="col-lg-1 col-md-1 col-sm-6 col-xs-6"><a class="btn btn-default" href="/admin/bookings/check-booking?id={{ booking.booking_id }}">View</a></div>
-    {% endif %}
+
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6  tre"><span>{{ review.title }} {{ review.first_name }} {{ review.last_name }}</span></div>
+    <div class="col-lg-8 col-md-8">
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6  tre alert alert-info"><span>Clean: {{review.cleanliness}}</span></div>
+            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6  tre alert alert-info"><span>Comfort: {{ review.comfort }}</span></div>
+            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6  tre alert alert-info"><span>Service: {{ review.service }}</span></div>
+            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6  tre alert alert-info"><span>Food: {{ review.food }}</span></div>
+            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6  tre alert alert-info"><span>Location: {{ review.location }}</span></div>
+            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6  tre alert alert-info"><span>Overall: {{ review.overall }}</span></div>
+        </div>
+    </div>
+    <div class="col-lg-1 col-md-1 col-sm-6 col-xs-6"><a class="btn btn-default" href="/admin/bookings/check-booking?id={{ review.booking_id }}">View</a></div>
+
 
 </div>
 

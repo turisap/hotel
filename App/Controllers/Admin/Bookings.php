@@ -36,7 +36,7 @@ class Bookings extends \Core\Admin {
         // find all bookings
         $bookings = Booking::findAll();
 
-        View::renderTemplate('admin/bookings/all_reviews.html', [
+        View::renderTemplate('admin/bookings/view_all.html', [
             'bookings' => $bookings,
             'site_name' => Config::SITE_NAME
         ]);
@@ -458,7 +458,7 @@ class Bookings extends \Core\Admin {
 
             if($results){
 
-                View::renderTemplate('admin/bookings/all_reviews.html', [
+                View::renderTemplate('admin/bookings/view_all.html', [
                     'bookings' => $results,
                     'params' => $params,
                     'site_name' => Config::SITE_NAME
@@ -466,7 +466,7 @@ class Bookings extends \Core\Admin {
 
             } else {
                 Flash::addMessage('Nothing has been found', Flash::INFO);
-                View::renderTemplate('admin/bookings/all_reviews.html', [
+                View::renderTemplate('admin/bookings/view_all.html', [
                     'params' => $params,
                     'site_name' => Config::SITE_NAME
                 ]);
