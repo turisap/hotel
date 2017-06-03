@@ -102,12 +102,12 @@
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6  tre" id="qtip-{{ review.review_id }}"><span>{{ review.title }} {{ review.first_name }} {{ review.last_name }}</span></div>
     <div class="col-lg-8 col-md-8">
         <div class="row table-reviews">
-            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 cells alert alert-{% if review.cleanliness < 5 %}danger {% elseif 5 <= review.cleanliness < 7 %}warning {% else %}success {% endif %}"><span>Clean: {{review.cleanliness}}</span></div>
-            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 cells alert alert-{% if review.comfort < 5 %}danger {% elseif 5 <= review.comfort < 7 %}warning {% else %}success {% endif %}"><span>Comfort: {{ review.comfort }}</span></div>
-            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 cells alert alert-{% if review.service < 5 %}danger {% elseif 5 <= review.service < 7 %}warning {% else %}success {% endif %}"><span>Service: {{ review.service }}</span></div>
-            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 cells alert alert-{% if review.food < 5 %}danger {% elseif 5 <= review.food < 7 %}warning {% else %}success {% endif %}"><span>Food: {{ review.food }}</span></div>
-            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 cells alert alert-{% if review.location < 5 %}danger {% elseif 5 <= review.location < 7 %}warning {% else %}success {% endif %}"><span>Location: {{ review.location }}</span></div>
-            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 cells alert alert-{% if review.overall < 5 %}danger {% elseif 5 <= review.overall < 7 %}warning {% else %}success {% endif %}"><span>Overall: {{ review.overall }}</span></div>
+            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 cells alert alert-{% if review.cleanliness < 5 %}danger {% elseif 5 <= review.cleanliness and review.cleanliness < 7 %}warning {% else %}success {% endif %}"><span>Clean: {{review.cleanliness}}</span></div>
+            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 cells alert alert-{% if review.comfort < 5 %}danger {% elseif 5 <= review.comfort and review.comfort < 7 %}warning {% else %}success {% endif %}"><span>Comfort: {{ review.comfort }}</span></div>
+            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 cells alert alert-{% if review.service < 5 %}danger {% elseif 5 <= review.service and review.service < 7 %}warning {% else %}success {% endif %}"><span>Service: {{ review.service }}</span></div>
+            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 cells alert alert-{% if review.food < 5 %}danger {% elseif 5 <= review.food and review.food < 7 %}warning {% else %}success {% endif %}"><span>Food: {{ review.food }}</span></div>
+            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 cells alert alert-{% if review.location < 5 %}danger {% elseif 5 <= review.location and review.location < 7 %}warning {% else %}success {% endif %}"><span>Location: {{ review.location }}</span></div>
+            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 cells alert alert-{% if review.overall < 5 %}danger {% elseif 5 <= review.overall and review.overall < 7 %}warning {% else %}success {% endif %}"><span>Overall: {{ review.overall }}</span></div>
         </div>
     </div>
     <div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 inner"><a class="btn btn-default" href="/admin/bookings/check-booking?id={{ review.booking_id }}">View</a></div>
