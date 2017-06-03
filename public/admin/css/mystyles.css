@@ -424,7 +424,7 @@ h3.cancel {
     margin: 0;
 }
 
-.inner {
+.inner {                     /* center one div vertically inside another */
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
