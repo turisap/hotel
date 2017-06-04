@@ -358,6 +358,7 @@ class User extends \Core\Model {
     // this method updates user's profile on the edit page
     public function updateUser($data){
 
+        //$this->validate();          // validate input data
 
         if(empty($this->errors)) {  // update user only if there are no errors on submission
 

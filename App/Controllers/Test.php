@@ -28,8 +28,23 @@ class Test
 
 
     public function test(){
-       print_r(Menu::findByName(21, 0));
+
+
+        if(static::test2()){
+            echo 'true';
+
+        }else{
+            echo 'false';
+        }
     }
+
+
+    public static function test2(){
+
+
+        return $a !== false;
+    }
+
 
 
 

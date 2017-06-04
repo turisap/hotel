@@ -74,8 +74,6 @@ class Profile extends \Core\Controller {
     }
 
 
-    public function testAction(){
-        print_r($this->user);
-    }
+
 
 }

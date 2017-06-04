@@ -47,6 +47,7 @@ class Menu extends \Core\Model {
         $stm = $db->prepare($sql);
 
         $stm->bindValue(':id', $id, PDO::PARAM_INT);
+        $stm->setFetchMode(PDO::FETCH_CLASS, get_called_class());
 
         $stm->execute();
 
@@ -99,7 +100,7 @@ class Menu extends \Core\Model {
             $this->errors[] = 'Category description should be at least 10 characters long';
         }
 
-        if($this->categoryExists($this->category_name)){
+        if($this->categoryExists($this->category_name, $this->category_id ?? null)){ //category_id only on edit existing category to prevent error appearing if we wan tot keep the same name
             $this->errors[] = 'Category name is already taken';
         }
 
@@ -139,6 +140,30 @@ class Menu extends \Core\Model {
 
         return $stm->fetch();
 
+    }
+
+
+    // updates category and courses
+    public function updateCategory(){
+
+        $this->validate();
+
+        if(empty($this->errors)){
+
+            $sql = 'UPDATE ' . static::$db_tables[0] . ' SET category_name = :category_name, category_description = :category_description WHERE category_id = :category_id';
+
+            $db  = static::getDB();
+            $stm = $db->prepare($sql);
+
+            $stm->bindValue(':category_name', $this->category_name, PDO::PARAM_STR);
+            $stm->bindValue(':category_description', $this->category_description, PDO::PARAM_STR);
+            $stm->bindValue(':category_id', $this->category_id, PDO::PARAM_INT);
+
+            return $stm->execute();
+
+        }
+
+        return false; // on complete failure
     }
 
 }

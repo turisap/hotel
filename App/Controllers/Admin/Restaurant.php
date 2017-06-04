@@ -82,7 +82,7 @@ class Restaurant extends \Core\Admin {
 
 
     // renders edit category page
-    public static function editCategoryAction(){
+    public function editCategoryAction(){
 
         $category_id = $_GET['id'] ?? false;
 
@@ -99,6 +99,43 @@ class Restaurant extends \Core\Admin {
     }
 
 
+    // processes form on edit category and updates it in the database
+    public function updateCategory(){
+
+        $data = $_POST;
+        $category_id = $_POST['category_id'] ?? false;
+
+        if(!empty($data) && $category_id){
+
+            $category = new Menu($data); // initialize a new object using POST data
+
+            if($category){
+
+                if($category->updateCategory()){
+
+                    Flash::addMessage('The category was updated successfully', Flash::INFO);
+                    self::redirect('/admin/restaurant/categories');
+
+                } else {
+                    Flash::addMessage('Please fix all errors', Flash::DANGER);
+                    View::renderTemplate('/admin/restaurant/edit_category.html', ['category' => $category]); // category object with all errors
+                }
+
+            } else {
+
+                Flash::addMessage('It looks like there is no such a category', Flash::INFO);
+                self::redirect('/admin/restaurant/categories');
+
+            }
+
+        } else {
+
+            Flash::addMessage('There was a problem processing your request, please try again', Flash::INFO);
+            self::redirect('/admin/restaurant/categories');
+
+        }
+
+    }
 
 
 
