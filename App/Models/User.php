@@ -358,14 +358,16 @@ class User extends \Core\Model {
     // this method updates user's profile on the edit page
     public function updateUser($data){
 
-        //$this->validate();          // validate input data
+        // assign data from the POST array to object's properties
+        $this->first_name   = $data['first_name'];
+        $this->last_name    = $data['last_name'];
+        $this->email        = $data['email'];
+
+        $this->validate();          // validate input data
 
         if(empty($this->errors)) {  // update user only if there are no errors on submission
 
-            // assing data from the POST array to object's properties
-            $this->first_name   = $data['first_name'];
-            $this->last_name    = $data['last_name'];
-            $this->email        = $data['email'];
+
             isset($data['new_password']) ? $this->password = $data['new_password'] : null;  // because changing password is optional
 
             $sql = 'UPDATE ' . static::$db_table . ' SET first_name = :first_name, last_name = :last_name, email = :email, ';
