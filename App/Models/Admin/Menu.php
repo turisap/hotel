@@ -189,5 +189,13 @@ class Menu extends \Core\Model {
     }
 
 
+    // use findAll() mehtod in Core\Model to obtain all courses using array with database tables
+    public static function getAllCourses(){
+
+        return static::findAll(static::$db_tables[1]);
+
+    }
+
+
 
 }

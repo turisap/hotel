@@ -37,8 +37,7 @@ class Bookings extends \Core\Admin {
         $bookings = Booking::findAll();
 
         View::renderTemplate('admin/bookings/view_all.html', [
-            'bookings' => $bookings,
-            'site_name' => Config::SITE_NAME
+            'bookings' => $bookings
         ]);
 
     }
@@ -235,8 +234,7 @@ class Bookings extends \Core\Admin {
                 $user = Authentifiacation::getCurrentUser();
                 Mail::send($user->email, 'MyHotelSystem', 'New booking', View::getTemplate('admin/bookings/booking_email.html', [
                     'user' => $user,
-                    'booking' => $booking,
-                    'site_name' => Config::SITE_NAME
+                    'booking' => $booking
                 ]));
 
                 // and all bookings to that room
@@ -460,15 +458,13 @@ class Bookings extends \Core\Admin {
 
                 View::renderTemplate('admin/bookings/view_all.html', [
                     'bookings' => $results,
-                    'params' => $params,
-                    'site_name' => Config::SITE_NAME
+                    'params' => $params
                 ]);
 
             } else {
                 Flash::addMessage('Nothing has been found', Flash::INFO);
                 View::renderTemplate('admin/bookings/view_all.html', [
-                    'params' => $params,
-                    'site_name' => Config::SITE_NAME
+                    'params' => $params
                 ]);
             }
         } else {

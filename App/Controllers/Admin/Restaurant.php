@@ -30,8 +30,7 @@ class Restaurant extends \Core\Admin {
         $categories = Menu::getAllCategories();
 
         View::renderTemplate('admin/restaurant/all_categories.html', [
-                'categories' => $categories,
-                'site_name'  => Config::SITE_NAME
+                'categories' => $categories
         ]);
 
 
@@ -146,7 +145,7 @@ class Restaurant extends \Core\Admin {
 
 
     // processes request on category deletion
-    public static function deleteCategoryAction(){
+    public function deleteCategoryAction(){
 
         $category_id = $_GET['id'] ?? false;
 
@@ -169,6 +168,15 @@ class Restaurant extends \Core\Admin {
             Flash::addMessage('There no such a category');
             self::redirect('/admin/restaurant/categories');
         }
+
+    }
+
+
+    // renders template with all courses
+    public function allCoursesAction(){
+
+        $courses = Menu::getAllCourses();
+        View::renderTemplate('admin/restaurant/all_courses.html', ['courses' => $courses]);
 
     }
 

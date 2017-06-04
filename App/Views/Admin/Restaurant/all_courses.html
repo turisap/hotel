@@ -1,0 +1,62 @@
+{% extends "admin_base.html" %}
+
+{% block title %}All menu courses{% endblock %}
+{% block page_heading %}All menu courses in{% endblock %}
+{% block page_subheading %}{{ site_name }}{% endblock %}
+
+
+{% block footer %}
+
+{% endblock %}
+
+
+{% block body %}
+
+<div class="row" id="createCategory">
+    <a class="btn btn-default" href="/admin/restaurant/create-course" >Create</a>
+</div>
+
+<div class="row wrap">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div>
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for course in courses %}
+                <tr>
+                    <td class="edit-category-table"><img src="#"></td>
+                    <td class="edit-category-table">{{ course.course_name }}</td>
+                    <td class="edit-category-table">{{ course.category_name }}</td>
+                    <td>{{ course.course_description}}</td>
+                    <td class="edit-category-table">{{ course.price }}</td>
+                    <td class="edit-category-table"><a class="btn btn-default" href="/admin/restaurant/edit-course?id={{ course.course_id}}">Edit</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    </div>
+</div>
+
+
+
+
+{% if categories is empty %}
+<div class="row wrap">
+    <h3>There are currently no courses in your menu. You can <a href="/admin/menu/create-category">create</a> one</h3>
+</div>
+{% endif %}
+
+
+
+{% endblock %}
+
