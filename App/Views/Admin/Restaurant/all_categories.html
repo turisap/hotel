@@ -12,8 +12,8 @@
 
 {% block body %}
 
-<div class="row wrap">
-    <a class="btn btn-default" href="/admin/restaurant/create-category"></a>
+<div class="row" id="createCategory">
+    <a class="btn btn-default" href="/admin/restaurant/create-category" >Create</a>
 </div>
 
 <div class="row wrap">
@@ -30,9 +30,9 @@
             <tbody>
             {% for category in categories %}
                 <tr>
-                    <td>{{ category.category_name }}</td>
+                    <td class="edit-category-table">{{ category.category_name }}</td>
                     <td>{{ category.category_description}}</td>
-                    <td><a class="btn btn-default" href="/admin/menu/edit-category?id={{ category.category_id}}">Edit</a></td>
+                    <td class="edit-category-table"><a class="btn btn-default" href="/admin/menu/edit-category?id={{ category.category_id}}">Edit</a></td>
                 </tr>
             {% endfor %}
             </tbody>
