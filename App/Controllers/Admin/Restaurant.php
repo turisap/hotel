@@ -47,7 +47,7 @@ class Restaurant extends \Core\Admin {
 
 
     // this method saves categories
-    public function saveCategory(){
+    public function saveCategoryAction(){
 
         $params = $_POST;
 
@@ -90,7 +90,14 @@ class Restaurant extends \Core\Admin {
 
             $category = Menu::getById($category_id, 0);
 
-            View::renderTemplate('admin/restaurant/edit_category.html', ['category' => $category]);
+            if($category){
+
+                View::renderTemplate('admin/restaurant/edit_category.html', ['category' => $category]);
+
+            } else {
+                Flash::addMessage('This category doesn\'t exist');
+                self::redirect('/admin/restaurant/categories');
+            }
 
         } else {
             self::redirect('/admin/restaurant/categories');
@@ -100,7 +107,7 @@ class Restaurant extends \Core\Admin {
 
 
     // processes form on edit category and updates it in the database
-    public function updateCategory(){
+    public function updateCategoryAction(){
 
         $data = $_POST;
         $category_id = $_POST['category_id'] ?? false;
@@ -133,6 +140,34 @@ class Restaurant extends \Core\Admin {
             Flash::addMessage('There was a problem processing your request, please try again', Flash::INFO);
             self::redirect('/admin/restaurant/categories');
 
+        }
+
+    }
+
+
+    // processes request on category deletion
+    public static function deleteCategoryAction(){
+
+        $category_id = $_GET['id'] ?? false;
+
+        if($category_id){
+
+            // second parametr is the index of table in $db_tables array
+            $category = Menu::getById($category_id, 0);
+
+            if($category->deleteItem(0)){
+
+                Flash::addMessage('the category was succussfully deleted');
+                self::redirect('/admin/restaurant/categories');
+
+            } else {
+                Flash::addMessage('There was a problem processing your request, try again');
+                self::redirect('/admin/restaurant/edit-category?id=' . $category_id);
+            }
+
+        } else {
+            Flash::addMessage('There no such a category');
+            self::redirect('/admin/restaurant/categories');
         }
 
     }

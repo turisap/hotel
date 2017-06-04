@@ -11,3 +11,5 @@ function fadeMessage() {
     $('.flash_message').fadeOut(500);
 }
 
+
+

@@ -8,12 +8,26 @@
 {% block footer %}
 <script>
 
+    $(document).ready(function () {
+
+
+        // bootstrap confirmation buttons initializing
+        $('[data-toggle=confirmation]').confirmation({
+            rootSelector: '[data-toggle=confirmation]'
+        });
+
+    });
+
     // TINYMCE TEXTAREA PLUGIN
     tinymce.init({
         forced_root_block : "",
         browser_spellcheck: true,
         selector: 'textarea'
     });
+
+
+
+
 </script>
 
 {% endblock %}
@@ -53,6 +67,7 @@
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     <button type="submit" class="btn btn-default">Save</button>
+                    <a href="/admin/restaurant/delete-category?id={{category.category_id}}" class="btn btn-danger" data-toggle="confirmation" data-title="Delete this category?" data-popout="true" data-placement="top">Delete</a>
                 </div>
             </div>
 

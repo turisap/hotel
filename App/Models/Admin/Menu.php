@@ -166,4 +166,28 @@ class Menu extends \Core\Model {
         return false; // on complete failure
     }
 
+
+    // this method deletes both category or a course
+    public function deleteItem($table){
+
+        $sql = 'DELETE FROM ' . static::$db_tables[$table] . ' WHERE ';
+
+        // choose which table delete from
+        $sql .= ($table == 0) ? 'category_id = :id' : 'course_id = :id';
+
+        $db  = static::getDB();
+        $stm = $db->prepare($sql);
+
+        // choose which id property to use
+        $id = ($table == 0) ? $this->category_id : $this->course_id;
+
+        $stm->bindValue(':id', $id, PDO::PARAM_INT);
+
+        return $stm->execute();
+
+
+    }
+
+
+
 }
