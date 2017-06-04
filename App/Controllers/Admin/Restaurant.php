@@ -53,14 +53,20 @@ class Restaurant extends \Core\Admin {
 
         if(!empty($params)){
 
-            if(Menu::save($params)){
+            // create a new Menu object using POST data
+            $category = new Menu($params);
+
+            if($category->saveCategory(0)){
 
                 Flash::addMessage('Category has been saved');
-                self::redirect('admin/restaurant/categories');
+                self::redirect('/admin/restaurant/categories');
 
             } else {
-
-                View::renderTemplate('/admin/restaurant/create_category.html', ['params' => $params]);
+                //print_r($category);
+                Flash::addMessage('Please fix all errors');
+                View::renderTemplate('/admin/restaurant/create_category.html', [
+                    'category' => $category       // pass categor object to the view in order to access its POST data and errors array
+                ]);
 
             }
 
