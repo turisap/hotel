@@ -60,10 +60,12 @@ abstract class Model
         return $statament->execute();
     }
 
-    // returns everything from selected database table
-    public static function findAll(){
+    // returns everything from selected database table (table parameter is set for models which use several tables, like menu)
+    public static function findAll($table = null){
 
-        $sql = 'SELECT * FROM ' . static::$db_table;
+        $sql = 'SELECT * FROM ';
+
+        $sql .= $table ? $table : static::$db_table;
 
         $db  = static::getDB();
         $stm = $db->prepare($sql);
