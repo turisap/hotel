@@ -18,6 +18,7 @@ use App\Models\Review;
 use \App\Token;
 use App\Models\RememberedLogin;
 use App\Models\Admin\Room;
+use App\Models\Admin\Menu;
 
 
 class Test
@@ -27,7 +28,7 @@ class Test
 
 
     public function test(){
-       print_r(Review::findAllReviewsToOneRoom(21));
+       print_r(Menu::findByName(21, 0));
     }
 
 

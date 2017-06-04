@@ -37,6 +37,23 @@ class Menu extends \Core\Model {
 
     }
 
+    // finds an item by id from both tables
+    public static function getById($id, $table){
+
+        $sql = 'SELECT * FROM ' . static::$db_tables[$table] . ' WHERE ';
+        $sql .= ($table == 0) ? ' category_id = :id' : ' course_id = :id';
+
+        $db  = static::getDB();
+        $stm = $db->prepare($sql);
+
+        $stm->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $stm->execute();
+
+        return $stm->fetch();
+
+    }
+
 
     // this method saves categories and courses
     public function saveCategory($table_index){
@@ -82,6 +99,45 @@ class Menu extends \Core\Model {
             $this->errors[] = 'Category description should be at least 10 characters long';
         }
 
+        if($this->categoryExists($this->category_name)){
+            $this->errors[] = 'Category name is already taken';
+        }
+
+
+    }
+
+
+    // checks if a category with the same name already exists
+    protected function categoryExists($category_name, $id_ignore = []){
+
+        $category = static::findByName(trim($category_name), 0);
+
+        if($category){
+
+            if($category->category_id != $id_ignore){
+                return true;
+            }
+
+        }
+
+        return false;
+    }
+
+    // finds an item by name (from both tables)
+    public static function findByName($name, $table){
+
+        $sql = 'SELECT * FROM ' . static::$db_tables[$table] . ' WHERE ';
+        $sql .= ($table == 0) ? ' category_name = :name' : ' course_name  = :name';
+
+        $db  = static::getDB();
+
+        $stm = $db->prepare($sql);
+        $stm->bindValue(':name', $name, PDO::PARAM_STR);
+        $stm->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stm->execute();
+
+        return $stm->fetch();
 
     }
 

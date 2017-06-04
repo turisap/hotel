@@ -84,6 +84,18 @@ class Restaurant extends \Core\Admin {
     // renders edit category page
     public static function editCategoryAction(){
 
+        $category_id = $_GET['id'] ?? false;
+
+        if($category_id){
+
+            $category = Menu::getById($category_id, 0);
+
+            View::renderTemplate('admin/restaurant/edit_category.html', ['category' => $category]);
+
+        } else {
+            self::redirect('/admin/restaurant/categories');
+        }
+
     }
 
 
