@@ -3,10 +3,7 @@
  */
 $(document).ready(function () {
 
-    // bootstrap confirmation buttons initializing
-    $('[data-toggle=confirmation]').confirmation({
-        rootSelector: '[data-toggle=confirmation]'
-    });
+
 
    /* // add a current room id to the query string of form action property
     var roomId = getParameterByName('id');
