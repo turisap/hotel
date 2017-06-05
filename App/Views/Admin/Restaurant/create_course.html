@@ -95,10 +95,7 @@
 {% for error in photo.errors_on_upload %}
 <div class="row wrap alert alert-danger">
     <ul>
-        {% for error in category.errors %}
         <li>{{ error }}</li>
-        {% endfor %}
-
     </ul>
 </div>
 {% endfor %}
@@ -137,7 +134,7 @@
             <div class="form-group col-lg-12">
                 <label class="control-label col-lg-2">Select a picture</label>
                 <div class="col-lg-10">
-                    <input id="course-photo" name="photo" multiple type="file" class="file file-loading" data-allowed-file-extensions='["jpeg", "jpg", "png"]'>
+                    <input id="course-photo" name="photo" multiple type="file"  data-allowed-file-extensions='["jpeg", "jpg", "png"]'>
                     <label for="course-photo" generated="true" class="error"></label>
                 </div>
             </div>

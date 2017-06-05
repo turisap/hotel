@@ -238,7 +238,9 @@ class Restaurant extends \Core\Admin {
 
                         // delete course if a picture wasn't saved
                         Flash::addMessage('The course wasn\'t saved');
-                        $course->deleteItem(1);
+                        $course = Menu::getById($course_id, 1);
+                        $course->deleteItem(1);                                                           // delete the course on photo saving failure
+                        //print_r($photo);
                         View::renderTemplate('admin/restaurant/create_course.html', ['photo' => $photo]); // CHECK array with errors
 
                     }
