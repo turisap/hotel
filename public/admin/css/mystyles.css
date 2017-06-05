@@ -447,5 +447,13 @@ h3.cancel {
 }
 
 
+/*===================================== STYLES FOR CREATE COURSE PAGE =================================*/
+
+#categoryCourse {
+    text-align: right!important;   /* align this label to the right as others*/
+}
+
+
+
 
 

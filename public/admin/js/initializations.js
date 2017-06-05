@@ -9,4 +9,17 @@ $(document).ready(function () {
         rootSelector: '[data-toggle=confirmation]'
     });
 
+
+
+    // TINYMCE TEXTAREA PLUGIN
+    tinymce.init({
+        forced_root_block : "",
+        browser_spellcheck: true,
+        selector: 'textarea'
+    });
+
+
 });
+
+
+

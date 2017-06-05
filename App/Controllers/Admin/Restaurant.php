@@ -181,6 +181,19 @@ class Restaurant extends \Core\Admin {
     }
 
 
+    // renders create course page
+    public function createCourseAction(){
+
+        // get list of all categories to pass them to the view in order to get them in selectbox
+        $categories = Menu::getAllCategories();
+
+        View::renderTemplate('admin/restaurant/create_course.html', [
+            'categories' => $categories
+        ]);
+
+    }
+
+
 
 
 
