@@ -109,7 +109,7 @@ class Menu extends \Core\Model {
 
 
     // checks if a category with the same name already exists
-    protected function categoryExists($category_name, $id_ignore = []){
+    public static function categoryExists($category_name, $id_ignore = []){
 
         $category = static::findByName(trim($category_name), 0);
 

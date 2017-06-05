@@ -194,6 +194,17 @@ class Restaurant extends \Core\Admin {
     }
 
 
+    // validates that there is no such an item name in the database (both category and  course names)
+    public function validateCategoryName(){
+
+        $is_valid = ! Menu::categoryExists($_GET['category_name'], $_GET['ignore_id'] ?? null); // check the email in the database,
+        // get request from profile/edit
+        header('Content-type: application/json'); //
+        echo json_encode($is_valid); //echo out true or false for ajax
+
+    }
+
+
 
 
 

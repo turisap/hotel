@@ -44,20 +44,17 @@
         rules: {
             category_name: {
                 required: true,
-                minlength: 2
-            },
-            category_description: {
-                textInMce: true
+                minlength: 2,
+                remote: {
+                    url: '/admin/restaurant/validate-category-name'
+                }
             }
-
         },
         messages: {
             category_name: {
                 required: "Please enter a course name",
-                minlenght: "Name should be at least 2 characters long"
-            },
-            category_description: {
-                textInMce: "Please enter description of a course"
+                minlenght: "Name should be at least 2 characters long",
+                remote: "This name is already taken"
             }
         }
 
