@@ -210,9 +210,10 @@ class Restaurant extends \Core\Admin {
     public function saveCourse(){
 
         $data = $_POST;
-        $file = $_FILES['photo'];
+        $file = $_FILES['photo'] ?? false;
 
-        if(!empty($data) && !empty($file)){
+
+        if(!empty($data) && $file){
 
             // create a new Photo object using POST data and a new Menu objects
             $photo = new Photo($file);
@@ -220,10 +221,10 @@ class Restaurant extends \Core\Admin {
 
             if($photo && $course){
 
-                $course_id = $course->save(); //save() method returns false on failure and last inserted id on success
+                $course_id = $course->saveCourse(); //save() method returns false on failure and last inserted id on success
 
-                if($course){
-                    echo "success";
+                if($course_id){
+                    echo "success" . $course_id;
                 }
 
                 //if($photo->save(false, false, $course_id))

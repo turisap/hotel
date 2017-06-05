@@ -58,5 +58,7 @@ class Config
     // the number of days when booking becomes upcoming
     const UPCOMING_LIMIT = '10 days';
 
+    // currency (sign of currency which will be displayed with prices)
+    const CURRENCY = '$';
 
 }

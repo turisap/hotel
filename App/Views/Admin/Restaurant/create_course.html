@@ -51,24 +51,23 @@
                 required: true,
                 minlength: 2
             },
+            course_price: {
+                number: true
+            },
             photos: {
                 required: true
-            },
-            course_description: {
-                textInMce: true
             }
-
         },
         messages: {
             course_name: {
                 required: "Please enter a course name",
                 minlenght: "Name should be at least 2 characters long"
             },
+            course_price: {
+                number: "Price should consist of numbers only"
+            },
             photos: {
                 required: "You need to upload a photo"
-            },
-            course_description: {
-                textInMce: "Please enter description of a course"
             }
         }
 
@@ -96,7 +95,7 @@
 <div class="row wrap">
 
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <form id="createCourseForm" class="form-horizontal" method="post" action="/admin/restaurant/save-course">
+        <form id="createCourseForm" class="form-horizontal" enctype="multipart/form-data" method="post" action="/admin/restaurant/save-course">
 
             <div class="form-group col-lg-12">
                 <label for="courseName" class="control-label col-lg-2">Course Name</label>
@@ -108,7 +107,7 @@
             <div class="form-group col-lg-12">
                 <label for="categories" class="col-lg-2" id="categoryCourse">Select a category</label>
                 <div class="col-lg-10">
-                <select class="form-control" id="categories" name="categories">
+                <select class="form-control" id="categories" name="category_id">
                     {% for category in categories %}
                     <option value="{{category.category_id}}">{{category.category_name}}</option>
                     {% endfor %}
@@ -117,9 +116,9 @@
             </div>
 
             <div class="form-group col-lg-12">
-                <label for="coursePrice" class="control-label col-lg-2">Course Name</label>
+                <label for="coursePrice" class="control-label col-lg-2">Course Price</label>
                 <div class="col-lg-10">
-                    <input id="coursePrice" name="course_name" type="text" class="form-control" value="{{category.course_name}}">
+                    <input id="coursePrice" name="course_price" type="text" class="form-control" value="{{category.course_price}}">
                 </div>
             </div>
 
