@@ -367,6 +367,7 @@ class Rooms extends \Core\Admin {
 
                     foreach ($photos as $photo) {
                         Photo::unlinkImages($photo['name']);
+                        Photo::delete($photo['id']);
                     }
 
                 }
