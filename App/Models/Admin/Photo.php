@@ -64,7 +64,7 @@ class Photo extends \Core\Model {
     }
 
     // this function saves photos to the database
-    public function save($room_id, $i){
+    public function save($room_id=[], $i=[], $course_id =[]){
 
         // first validate uploaded file
         $this->validatePhoto();
@@ -73,15 +73,19 @@ class Photo extends \Core\Model {
 
             $this->filename = time() . $this->name;
 
-            $sql = 'INSERT INTO ' . static::$db_table . ' (room_id, main, name, type, size, path) VALUES (:room_id, :main, :name, :type, :size, :path)';
+            $sql = 'INSERT INTO ' . static::$db_table . ' (room_id, main, name, type, size, path) VALUES';
+            $sql .= $room_id ? '(:room_id, :main,' : ''; // these values only for rooms' photos
+            $sql .= $course_id ? ' :course_id, ' : '' ; // this value only for courses' photos
+            $sql .= ':name, :type, :size, :path)';
+
             $db  = static::getDB();
 
             $stm = $db->prepare($sql);
 
-            $i = ($i === 0) ? true : false;
 
-            $stm->bindValue(':room_id', $room_id, PDO::PARAM_INT);
-            $stm->bindValue(':main', $i, PDO::PARAM_INT);
+            $room_id ? $stm->bindValue(':room_id', $room_id, PDO::PARAM_INT) : ''; // bind this value only for room photos for room saving (not for photos for restaurant's courses)
+            $i ? $stm->bindValue(':main', (($i === 1) ? true : false), PDO::PARAM_INT) : ''; //counter for the main photo, bind this value only for room photos, not for photos in restaurant courses
+            $course_id ? $stm->bindValue(':course_id', $course_id, PDO::PARAM_INT) : ''; // bind this value only those photos which ara being saved from restaurant's courses
             $stm->bindValue(':name', $this->filename, PDO::PARAM_STR);
             $stm->bindValue(':type', $this->type, PDO::PARAM_STR);
             $stm->bindValue(':size', $this->size, PDO::PARAM_INT);

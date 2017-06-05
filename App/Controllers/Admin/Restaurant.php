@@ -11,6 +11,7 @@ namespace App\Controllers\Admin;
 
 use App\Config;
 use \App\Models\Admin\Menu;
+use App\Models\Admin\Photo;
 use Core\View;
 use \App\Flash;
 
@@ -208,7 +209,35 @@ class Restaurant extends \Core\Admin {
     // create a course using data from the POST array
     public function saveCourse(){
 
+        $data = $_POST;
+        $file = $_FILES['photo'];
 
+        if(!empty($data) && !empty($file)){
+
+            // create a new Photo object using POST data and a new Menu objects
+            $photo = new Photo($file);
+            $course = new Menu($data);
+
+            if($photo && $course){
+
+                $course_id = $course->save(); //save() method returns false on failure and last inserted id on success
+
+                if($course){
+                    echo "success";
+                }
+
+                //if($photo->save(false, false, $course_id))
+
+
+
+            }
+
+
+        } else {
+
+
+
+        }
 
     }
 

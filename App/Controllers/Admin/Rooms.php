@@ -44,14 +44,16 @@ class Rooms extends \Core\Admin {
 
 
             // save all photos which were attached while creating room
+            $i = 1; // use it as counter instead of $key due to restrictions in Photo save()
             foreach ($photos as $key => $value) { // we use $key to assign 'main' property of each photo (virtually main is the first saved one)
 
                 if($value['error'] != 4){  // error when there is no files which is allowed
 
                     $photo = new Photo($value); // new instance on photo object for each photo with set of properties from FILES array
 
-                    if ($photo->save($room_id, $key)) {  // save using room_id as a foreigner key
+                    if ($photo->save($room_id, $i)) {  // save using room_id as a foreigner key
                         $photo_errors[] = 'success';   // push false or true in errors array
+                        $i++;
                     } else {
                         $photo_errors[] = 'fail';
                     }

@@ -190,9 +190,28 @@ class Menu extends \Core\Model {
 
 
     // use findAll() mehtod in Core\Model to obtain all courses using array with database tables
-    public function getAllCourses(){
+    public static function getAllCourses(){
 
         return static::findAll(static::$db_tables[1]);
+
+    }
+
+
+    // creates record in the database
+    public function saveCourse(){
+
+        $sql = 'INSERT INTO ' . static::$db_tables[1] . ' (category_id, course_name, description, price)
+        VALUES (:category_id, :course_name, :description, :price)';
+
+        $db  = static::getDB();
+
+        $stm = $db->prepare($sql);
+        $stm->bindValue(':category_id', $this->category_id, PDO::PARAM_INT);
+        $stm->bindValue(':course_id', $this->course_name, PDO::PARAM_STR);
+        $stm->bindValue(':description', $this->description, PDO::PARAM_STR);
+        $stm->bindValue(':description', $this->price, PDO::PARAM_INT);
+
+        return $stm->execute() ? $db->lastInsertId() : false;    // return the last inserted id on success and false on failure
 
     }
 
