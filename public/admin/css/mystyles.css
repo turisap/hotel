@@ -453,6 +453,10 @@ h3.cancel {
     text-align: right!important;   /* align this label to the right as others*/
 }
 
+.descerror {
+    font-weight: bold;
+}
+
 
 
 
