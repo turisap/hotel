@@ -252,6 +252,7 @@ class Restaurant extends \Core\Admin {
 
                 }  else { // course wasn't saved
 
+                    // HERE TO CONTINUE
 
                 }
 

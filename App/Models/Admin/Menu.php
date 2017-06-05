@@ -60,7 +60,7 @@ class Menu extends \Core\Model {
     public function saveCategory($table_index){
 
         // validate data first
-        $this->validate();
+        $this->validateCategory();
 
         // if array with errors is empty there are no errors and we can save a category
         if(empty($this->errors)){
@@ -81,7 +81,7 @@ class Menu extends \Core\Model {
 
 
     // this method validates users inputs
-    protected function validate(){
+    protected function validateCategory(){
 
 
         if($this->category_name == ''){
@@ -200,7 +200,7 @@ class Menu extends \Core\Model {
     // creates record in the database
     public function saveCourse(){
 
-        
+        $this->validateCourse();
 
         $sql = 'INSERT INTO ' . static::$db_tables[1] . ' (category_id, course_name, description, price)
         VALUES (:category_id, :course_name, :description, :price)';
@@ -216,6 +216,39 @@ class Menu extends \Core\Model {
         return $stm->execute() ? $db->lastInsertId() : false;    // return the last inserted id on success and false on failure
 
     }
+
+
+    // this method validates users inputs
+    protected function validateCourse(){
+
+
+        if($this->course_name == ''){
+            $this->errors[] = 'Course name cannot be empty';
+        }
+
+        if($this->course_description == ''){
+            $this->errors[] = 'Course description shouldn\'t be empty';
+        }
+
+        if(strlen($this->course_name) < 2){
+            $this->errors[] = 'Course name should be at least 3 characters long';
+        }
+
+        if(strlen($this->course_description) < 10){
+            $this->errors[] = 'Course description should be at least 10 characters long';
+        }
+
+        if(is_numeric($this->course_price) < 0){
+            $this->errors[] = 'Course price should be a number';
+        }
+
+        /*if($this->categoryExists($this->category_name, $this->category_id ?? null)){ //category_id only on edit existing category to prevent error appearing if we wan tot keep the same name
+            $this->errors[] = 'Course name is already taken';
+        }*/
+
+
+    }
+
 
 
 
