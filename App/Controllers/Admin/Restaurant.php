@@ -205,7 +205,12 @@ class Restaurant extends \Core\Admin {
     }
 
 
+    // create a course using data from the POST array
+    public function saveCourse(){
 
+
+
+    }
 
 
 

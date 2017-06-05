@@ -9,6 +9,11 @@
 
 <script>
 
+    // bootstrap upload files plugin
+    $("#course-photo").fileinput({
+        maxFileCount: 1
+    });
+
    // validation of tinyMCE
    $("#create").click(function() {
 
@@ -91,7 +96,7 @@
 <div class="row wrap">
 
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <form id="createCourseForm" class="form-horizontal" method="post" action="/admin/restaurant/save-category">
+        <form id="createCourseForm" class="form-horizontal" method="post" action="/admin/restaurant/save-course">
 
             <div class="form-group col-lg-12">
                 <label for="courseName" class="control-label col-lg-2">Course Name</label>
@@ -114,7 +119,7 @@
             <div class="form-group col-lg-12">
                 <label class="control-label col-lg-2">Select a picture</label>
                 <div class="col-lg-10">
-                    <input id="course-photo" name="photos" multiple type="file" class="file file-loading" data-allowed-file-extensions='["jpeg", "jpg", "png"]'>
+                    <input id="course-photo" name="photo" multiple type="file" class="file file-loading" data-allowed-file-extensions='["jpeg", "jpg", "png"]'>
                     <label for="course-photo" generated="true" class="error"></label>
                 </div>
             </div>
