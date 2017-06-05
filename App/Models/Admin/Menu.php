@@ -200,6 +200,8 @@ class Menu extends \Core\Model {
     // creates record in the database
     public function saveCourse(){
 
+        
+
         $sql = 'INSERT INTO ' . static::$db_tables[1] . ' (category_id, course_name, description, price)
         VALUES (:category_id, :course_name, :description, :price)';
 
