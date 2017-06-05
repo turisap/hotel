@@ -243,16 +243,23 @@ class Restaurant extends \Core\Admin {
                         $course = Menu::getById($course_id, 1);
 
                         // delete the course on photo saving failure
-                        $course->deleteItem(1);
+                        $course->deleteItem(1); // 1 is a tabel index in $db_tables array for Menu model
 
                         // path photo object with errors to the view
                         View::renderTemplate('admin/restaurant/create_course.html', ['photo' => $photo]);
 
                     }
 
-                }  else { // course wasn't saved
+                }  else { // course wasn't saved, no course id
 
-                    // HERE TO CONTINUE
+                    // get list of all categories to pass them to the view in order to get them in selectbox
+                    $categories = Menu::getAllCategories();
+
+                    Flash::addMessage('There was a problem saving th course, please try again');
+                    View::renderTemplate('admin/restaurant/create_course.html', [
+                        'course' => $course,
+                        'categories' => $categories
+                    ]);
 
                 }
 

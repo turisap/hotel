@@ -146,7 +146,7 @@ class Menu extends \Core\Model {
     // updates category and courses
     public function updateCategory(){
 
-        $this->validate();
+        $this->validateCategory();
 
         if(empty($this->errors)){
 
@@ -163,7 +163,7 @@ class Menu extends \Core\Model {
 
         }
 
-        return false; // on complete failure
+        return false; // on validation failure
     }
 
 
@@ -202,18 +202,24 @@ class Menu extends \Core\Model {
 
         $this->validateCourse();
 
-        $sql = 'INSERT INTO ' . static::$db_tables[1] . ' (category_id, course_name, description, price)
-        VALUES (:category_id, :course_name, :description, :price)';
+        if(empty($this->errors)){
 
-        $db  = static::getDB();
+            $sql = 'INSERT INTO ' . static::$db_tables[1] . ' (category_id, course_name, description, price)
+             VALUES (:category_id, :course_name, :description, :price)';
 
-        $stm = $db->prepare($sql);
-        $stm->bindValue(':category_id', $this->category_id, PDO::PARAM_INT);
-        $stm->bindValue(':course_name', $this->course_name, PDO::PARAM_STR);
-        $stm->bindValue(':description', $this->course_description, PDO::PARAM_STR);
-        $stm->bindValue(':price', $this->course_price, PDO::PARAM_INT);
+            $db  = static::getDB();
 
-        return $stm->execute() ? $db->lastInsertId() : false;    // return the last inserted id on success and false on failure
+            $stm = $db->prepare($sql);
+            $stm->bindValue(':category_id', $this->category_id, PDO::PARAM_INT);
+            $stm->bindValue(':course_name', $this->course_name, PDO::PARAM_STR);
+            $stm->bindValue(':description', $this->course_description, PDO::PARAM_STR);
+            $stm->bindValue(':price', $this->course_price, PDO::PARAM_INT);
+
+            return $stm->execute() ? $db->lastInsertId() : false;    // return the last inserted id on success and false on failure
+
+        }
+
+        return false; // on validation failure
 
     }
 
@@ -231,22 +237,38 @@ class Menu extends \Core\Model {
         }
 
         if(strlen($this->course_name) < 2){
-            $this->errors[] = 'Course name should be at least 3 characters long';
+            $this->errors[] = 'Course name should be at least 2 characters long';
         }
 
         if(strlen($this->course_description) < 10){
             $this->errors[] = 'Course description should be at least 10 characters long';
         }
 
-        if(is_numeric($this->course_price) < 0){
+        if(!is_numeric($this->course_price)){
             $this->errors[] = 'Course price should be a number';
         }
 
-        /*if($this->categoryExists($this->category_name, $this->category_id ?? null)){ //category_id only on edit existing category to prevent error appearing if we wan tot keep the same name
+        if($this->courseExists($this->course_name, $this->course_id ?? null)){ //category_id only on edit existing category to prevent error appearing if we wan tot keep the same name
             $this->errors[] = 'Course name is already taken';
-        }*/
+        }
 
 
+    }
+
+    // checks if a category with the same name already exists
+    public static function courseExists($course_name, $id_ignore = []){
+
+        $course = static::findByName(trim($course_name), 1);
+
+        if($course){
+
+            if($course->course_id != $id_ignore){
+                return true;
+            }
+
+        }
+
+        return false;
     }
 
 
