@@ -8,12 +8,63 @@
 {% block footer %}
 <script>
 
-    // TINYMCE TEXTAREA PLUGIN
-    tinymce.init({
-        forced_root_block : "",
-        browser_spellcheck: true,
-        selector: 'textarea'
+
+    // validation of tinyMCE
+    $("#create").click(function() {
+
+        var editorContent = tinyMCE.get('categoryDescription').getContent();           // get content from textarea
+        if (editorContent == '' || editorContent == null || editorContent.length < 10)
+        {
+            // Add error message if not already present
+            if (!$('#editor-error-message').html().length){
+                $('#editor-error-message').html("Description should be at least 10 characters");
+            }
+
+            return false;
+
+
+        }
+        else
+        {
+            // Remove error message
+            if ($('#editor-error-message')){
+                $('#editor-error-message').empty();
+            }
+
+            return true;
+
+        }
+
     });
+
+
+
+    // jQuery validation
+    $('#createCategoryForm').validate({
+        rules: {
+            category_name: {
+                required: true,
+                minlength: 2
+            },
+            category_description: {
+                textInMce: true
+            }
+
+        },
+        messages: {
+            category_name: {
+                required: "Please enter a course name",
+                minlenght: "Name should be at least 2 characters long"
+            },
+            category_description: {
+                textInMce: "Please enter description of a course"
+            }
+        }
+
+    });
+
+
+
 </script>
 
 {% endblock %}
@@ -34,7 +85,7 @@
 <div class="row wrap">
 
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <form class="form-horizontal" method="post" action="/admin/restaurant/save-category">
+        <form class="form-horizontal" method="post" action="/admin/restaurant/save-category" id="createCategoryForm">
 
             <div class="form-group">
                 <label for="categoryName" class="control-label col-lg-2">Category Name</label>
@@ -47,12 +98,13 @@
                 <label for="categoryDescription" class="control-label col-lg-2">Description</label>
                 <div class="col-lg-10">
                     <textarea id="categoryDescription" name="category_description" rows="5" type="text" class="form-control">{{category.category_description}}</textarea>
+                    <div class="descerror">&nbsp;<span id="editor-error-message" class="error"></span></div>
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default">Create</button>
+                    <button type="submit" class="btn btn-default" id="create">Create</button>
                 </div>
             </div>
         </form>

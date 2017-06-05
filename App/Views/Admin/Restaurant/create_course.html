@@ -9,10 +9,10 @@
 
 <script>
 
-   
+   // validation of tinyMCE
+   $("#create").click(function() {
 
-    $("#create").click(function() {
-        var editorContent = tinyMCE.get('courseDescription').getContent();     // get content from textarea
+        var editorContent = tinyMCE.get('courseDescription').getContent();           // get content from textarea
         if (editorContent == '' || editorContent == null || editorContent.length < 10)
         {
             // Add error message if not already present
