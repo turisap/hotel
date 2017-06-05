@@ -244,7 +244,7 @@ class Menu extends \Core\Model {
             $this->errors[] = 'Course description should be at least 10 characters long';
         }
 
-        if(!is_numeric($this->course_price)){
+        if( ! is_numeric($this->course_price) && ! empty($this->course_price)){
             $this->errors[] = 'Course price should be a number';
         }
 

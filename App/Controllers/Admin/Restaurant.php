@@ -212,6 +212,9 @@ class Restaurant extends \Core\Admin {
         $data = $_POST;
         $file = $_FILES['photo'] ?? false;
 
+        // get list of all categories to pass them to the view in order to get them in selectbox in the case of errors
+        $categories = Menu::getAllCategories();
+
 
         if(!empty($data) && $file){
 
@@ -225,9 +228,8 @@ class Restaurant extends \Core\Admin {
 
                 if($course_id){  // if id is present (the course was saved)
 
+
                     // save photo
-
-
                     if($photo->save(false, false, $course_id)){
 
                         // if a picture was saved as well, redirect to all courses
@@ -237,7 +239,7 @@ class Restaurant extends \Core\Admin {
                     } else {
 
                         // delete course if a picture wasn't saved
-                        Flash::addMessage('The course wasn\'t saved');
+                        Flash::addMessage('There was a problem saving this photo, try again');
 
                         // get an object of course
                         $course = Menu::getById($course_id, 1);
@@ -246,16 +248,18 @@ class Restaurant extends \Core\Admin {
                         $course->deleteItem(1); // 1 is a tabel index in $db_tables array for Menu model
 
                         // path photo object with errors to the view
-                        View::renderTemplate('admin/restaurant/create_course.html', ['photo' => $photo]);
+                        View::renderTemplate('admin/restaurant/create_course.html', [
+                            'course'     => $course,
+                            'photo'      => $photo,
+                            'categories' => $categories
+
+                        ]);
 
                     }
 
                 }  else { // course wasn't saved, no course id
 
-                    // get list of all categories to pass them to the view in order to get them in selectbox
-                    $categories = Menu::getAllCategories();
-
-                    Flash::addMessage('There was a problem saving th course, please try again');
+                    Flash::addMessage('There was a problem saving the course, please try again');
                     View::renderTemplate('admin/restaurant/create_course.html', [
                         'course' => $course,
                         'categories' => $categories
@@ -275,6 +279,16 @@ class Restaurant extends \Core\Admin {
 
 
         }
+
+    }
+
+    // validates that there is no such an item name in the database (both category and  course names)
+    public function validateCourseName(){
+
+        $is_valid = ! Menu::courseExists($_GET['course_name'], $_GET['ignore_id'] ?? null); // check the email in the database,
+        // get request from profile/edit
+        header('Content-type: application/json'); //
+        echo json_encode($is_valid); //echo out true or false for ajax
 
     }
 

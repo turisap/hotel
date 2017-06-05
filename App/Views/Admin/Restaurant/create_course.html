@@ -25,6 +25,7 @@
                 $('#editor-error-message').html("Description should be at least 10 characters");
             }
 
+
             return false;
 
 
@@ -49,24 +50,28 @@
         rules: {
             course_name: {
                 required: true,
-                minlength: 2
+                minlength: 2,
+                remote: {
+                    url: '/admin/restaurant/validate-course-name'
+                }
             },
             course_price: {
                 number: true
             },
-            photos: {
+            photo: {
                 required: true
             }
         },
         messages: {
             course_name: {
                 required: "Please enter a course name",
-                minlenght: "Name should be at least 2 characters long"
+                minlenght: "Name should be at least 2 characters long",
+                remote: "This course name is already taken"
             },
             course_price: {
                 number: "Price should consist of numbers only"
             },
-            photos: {
+            photo: {
                 required: "You need to upload a photo"
             }
         }
