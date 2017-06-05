@@ -9,26 +9,30 @@
 
 <script>
 
-    $(function() {
-        tinyMCE.init({
-            mode:'textareas'
-        });
-    });
+   
 
     $("#create").click(function() {
-        var editorContent = tinyMCE.get('courseDescription').getContent();
+        var editorContent = tinyMCE.get('courseDescription').getContent();     // get content from textarea
         if (editorContent == '' || editorContent == null || editorContent.length < 10)
         {
             // Add error message if not already present
-            if (!$('#editor-error-message').html().length)
+            if (!$('#editor-error-message').html().length){
                 $('#editor-error-message').html("Description should be at least 10 characters");
+            }
+
+            return false;
+
 
         }
         else
         {
             // Remove error message
-            if ($('#editor-error-message'))
+            if ($('#editor-error-message')){
                 $('#editor-error-message').empty();
+            }
+
+            return true;
+
         }
 
     });
