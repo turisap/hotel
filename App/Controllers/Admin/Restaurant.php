@@ -268,19 +268,25 @@ class Restaurant extends \Core\Admin {
                 }
 
 
+            } else {
 
-
+                Flash::addMessage('there was a problem processing your request, try again');
+                self::redirect('/admin/restaurant/all-courses');
 
             }
 
 
         } else {
 
+            Flash::addMessage('there was a problem processing your request, try again');
+            self::redirect('/admin/restaurant/all-courses');
 
 
         }
 
     }
+
+
 
     // validates that there is no such an item name in the database (both category and  course names)
     public function validateCourseName(){
