@@ -8,25 +8,65 @@
 {% block footer %}
 <script>
 
-    $(document).ready(function () {
+
+    // validation of tinyMCE
+    $("#updateCategory").click(function() {
+
+        var editorContent = tinyMCE.get('categoryDescription').getContent();           // get content from textarea
+        if (editorContent == '' || editorContent == null || editorContent.length < 10)
+        {
+            // Add error message if not already present
+            if (!$('#editor-error-message').html().length){
+                $('#editor-error-message').html("Description should be at least 10 characters");
+            }
+
+            return false;
 
 
-        // bootstrap confirmation buttons initializing
-        $('[data-toggle=confirmation]').confirmation({
-            rootSelector: '[data-toggle=confirmation]'
-        });
+        }
+        else
+        {
+            // Remove error message
+            if ($('#editor-error-message')){
+                $('#editor-error-message').empty();
+            }
+
+            return true;
+
+        }
 
     });
 
-    // TINYMCE TEXTAREA PLUGIN
-    tinymce.init({
-        forced_root_block : "",
-        browser_spellcheck: true,
-        selector: 'textarea'
+
+
+
+    // jQuery validation
+    var categoryID = '{{ category.category_id }}';
+
+    $('#editCategoryForm').validate({
+        rules: {
+            category_name: {
+                required: true,
+                minlength: 2,
+                remote: {
+                    url: '/admin/restaurant/validate-category-name',
+                    data: {
+                        ignore_id: function () {
+                            return categoryID
+                        }
+                    }
+                }
+            }
+        },
+        messages: {
+            category_name: {
+                required: "Please enter a course name",
+                minlenght: "Name should be at least 2 characters long",
+                remote: "This name is already taken"
+            }
+        }
+
     });
-
-
-
 
 </script>
 
@@ -48,7 +88,7 @@
 <div class="row wrap">
 
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <form class="form-horizontal" method="post" action="/admin/restaurant/update-category">
+        <form class="form-horizontal" method="post" action="/admin/restaurant/update-category" id="editCategoryForm">
 
             <div class="form-group">
                 <label for="categoryName" class="control-label col-lg-2">Category Name</label>
@@ -66,8 +106,9 @@
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default">Save</button>
+                    <button type="submit" class="btn btn-default" id="updateCategory">Save</button>
                     <a href="/admin/restaurant/delete-category?id={{category.category_id}}" class="btn btn-danger" data-toggle="confirmation" data-title="Delete this category?" data-popout="true" data-placement="top">Delete</a>
+                    <div class="descerror">&nbsp;<span id="editor-error-message" class="error"></span></div>
                 </div>
             </div>
 
