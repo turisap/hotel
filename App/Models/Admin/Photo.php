@@ -73,9 +73,16 @@ class Photo extends \Core\Model {
 
             $this->filename = time() . $this->name;
 
-            $sql = 'INSERT INTO ' . static::$db_table . ' (room_id, main, name, type, size, path) VALUES';
+            $sql = 'INSERT INTO ' . static::$db_table;
+
+            $sql .= $room_id ? ' (room_id, main, name, type, size, path) VALUES ' : ''; // these values only for rooms' photos
+
+            $sql .= $course_id ? ' (course_id, name, type, size, path) VALUES ' : '';  // these values only for courses' photos
+
             $sql .= $room_id ? '(:room_id, :main,' : ''; // these values only for rooms' photos
-            $sql .= $course_id ? ' :course_id, ' : '' ; // this value only for courses' photos
+
+            $sql .= $course_id ? ' (:course_id, ' : '' ; // this value only for courses' photos
+
             $sql .= ':name, :type, :size, :path)';
 
             $db  = static::getDB();
@@ -90,6 +97,8 @@ class Photo extends \Core\Model {
             $stm->bindValue(':type', $this->type, PDO::PARAM_STR);
             $stm->bindValue(':size', $this->size, PDO::PARAM_INT);
             $stm->bindValue(':path', $this->pathToPicture(), PDO::PARAM_STR);
+
+            //return $sql;
 
             $stm->execute();
 

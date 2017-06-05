@@ -223,11 +223,32 @@ class Restaurant extends \Core\Admin {
 
                 $course_id = $course->saveCourse(); //save() method returns false on failure and last inserted id on success
 
-                if($course_id){
-                    echo "success" . $course_id;
+                if($course_id){  // if id is present (the course was saved)
+
+                    // save photo
+
+
+                    if($photo->save(false, false, $course_id)){
+
+                        // if a picture was saved as well, redirect to all courses
+                        Flash::addMessage('Course was successfully saved');
+                        self::redirect('/admin/restaurant/all-courses');
+
+                    } else {
+
+                        // delete course if a picture wasn't saved
+                        Flash::addMessage('The course wasn\'t saved');
+                        $course->deleteItem(1);
+                        View::renderTemplate('admin/restaurant/create_course.html', ['photo' => $photo]); // CHECK array with errors
+
+                    }
+
+                }  else { // course wasn't saved
+
+
                 }
 
-                //if($photo->save(false, false, $course_id))
+
 
 
 
