@@ -57,7 +57,7 @@
             <tbody>
             {% for course in courses %}
                 <tr>
-                    <td class="edit-category-table course"><img class="img-responsive" src="{{course.path}}"></td>
+                    <td class="edit-category-table"><div class="course"><img class="img-responsive" src="{{course.path}}"></div></td>
                     <td class="edit-category-table text-center">{{ course.course_name }}</td>
                     <td class="edit-category-table">{{ course.category_name }}</td>
                     <td>{{ course.description}}</td>

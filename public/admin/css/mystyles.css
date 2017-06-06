@@ -458,8 +458,14 @@ h3.cancel {
 }
 
 .course {
+    height: 200px;
     width: 200px;
-    heigth: 200px;
+    overflow: hidden;
+}
+.course img {
+    height: auto;
+    width: 200px;
+    max-height: 200px;
 }
 
 
