@@ -374,6 +374,7 @@ class Restaurant extends \Core\Admin {
     public function updateCourse(){
 
         $data = $_POST;
+        // check whether a new picture was supplied in the from
         $picture = ($_FILES['photo']['size'] > 0) ? $_FILES['photo'] : false;
         //print_r($picture);
 

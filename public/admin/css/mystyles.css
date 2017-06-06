@@ -447,7 +447,7 @@ h3.cancel {
 }
 
 
-/*===================================== STYLES FOR CREATE COURSE PAGES =================================*/
+/*===================================== STYLES FOR CREATE AND EDIT COURSE PAGES =================================*/
 
 #categoryCourse {
     text-align: right!important;   /* align this label to the right as others*/
@@ -467,6 +467,15 @@ h3.cancel {
     width: 200px;
     max-height: 200px;
 }
+
+.course-container {
+    margin: 0 auto;
+    height: 300px;
+    width: 400px;
+    overflow: hidden;
+}
+
+
 
 
 
