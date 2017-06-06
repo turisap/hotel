@@ -341,7 +341,7 @@ class Rooms extends \Core\Admin {
 
             $photo = Photo::findById($id);
 
-            if(Photo::delete($id) && Photo::unlinkImages($photo->name)){
+            if(Photo::delete($id) && Photo::unlinkImages($photo->name, 0)){
                 Flash::addMessage('Photo has been deleted');
                 self::redirect('/admin/rooms/room?id=' . $room_id);
             }
@@ -371,7 +371,7 @@ class Rooms extends \Core\Admin {
                 if(count($photos) > 0){ // if there are images
 
                     foreach ($photos as $photo) {
-                        Photo::unlinkImages($photo['name']);
+                        Photo::unlinkImages($photo['name'], 0);
                         Photo::delete($photo['id']);
                     }
 

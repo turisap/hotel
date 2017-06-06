@@ -299,7 +299,7 @@ class Menu extends \Core\Model {
                     $photo = Photo::findPhotoByCourseId($id);
 
                     // delete photo file from the uploads folder
-                    Photo::unlinkImages($photo->name);
+                    Photo::unlinkImages($photo->name, 1);
 
                     // delete photo to the course if it was course (categories don't have photos)
                     Photo::delete($photo->id);

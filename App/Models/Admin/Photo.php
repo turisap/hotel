@@ -19,7 +19,7 @@ class Photo extends \Core\Model {
     public static $column = 'id';
     protected static $upload_directories = ['public\uploads\pictures\rooms', 'public\uploads\pictures\courses']; // path to uploaded pictures
     protected static $directory_pathes = ['/uploads/pictures/rooms', '/uploads/pictures/courses'];
-    protected static $path_to_unlink = 'uploads/pictures/rooms/';
+    protected static $pathes_to_unlink = ['uploads/pictures/rooms/', 'uploads/pictures/courses/'];
     public $upload_errors_array = array(
 
 
@@ -262,8 +262,8 @@ class Photo extends \Core\Model {
 
 
     // this method deletes images from upload folder
-    public static function unlinkImages($filename){
-        return unlink(static::$path_to_unlink . $filename);
+    public static function unlinkImages($filename, $dir){
+        return unlink(static::$pathes_to_unlink[$dir] . $filename);
     }
 
 
