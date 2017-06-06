@@ -351,7 +351,7 @@ class Restaurant extends \Core\Admin {
                     'course'     => $course,
                     'categories' => $categories
                 ]);
-              
+
 
             }
 
