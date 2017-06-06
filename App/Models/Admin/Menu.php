@@ -69,7 +69,7 @@ class Menu extends \Core\Model {
 
             $db  = static::getDB();
             $stm = $db->prepare($sql);
-            $stm->bindValue(':category_name', $this->category_name, PDO::PARAM_STR);
+            $stm->bindValue(':category_name', self::getCleanName($this->category_name), PDO::PARAM_STR);
             $stm->bindValue(':category_description', $this->category_description, PDO::PARAM_STR);
 
             return $stm->execute();
@@ -111,7 +111,9 @@ class Menu extends \Core\Model {
     // checks if a category with the same name already exists
     public static function categoryExists($category_name, $id_ignore = []){
 
-        $category = static::findByName(trim($category_name), 0);
+        $name = self::getCleanName($category_name);
+
+        $category = static::findByName(trim($name), 0);
 
         if($category){
 
@@ -155,7 +157,7 @@ class Menu extends \Core\Model {
             $db  = static::getDB();
             $stm = $db->prepare($sql);
 
-            $stm->bindValue(':category_name', $this->category_name, PDO::PARAM_STR);
+            $stm->bindValue(':category_name', self::getCleanName($this->category_name), PDO::PARAM_STR);
             $stm->bindValue(':category_description', $this->category_description, PDO::PARAM_STR);
             $stm->bindValue(':category_id', $this->category_id, PDO::PARAM_INT);
 
@@ -223,7 +225,7 @@ class Menu extends \Core\Model {
             $db  = static::getDB();
 
             $stm = $db->prepare($sql);
-            $stm->bindValue(':category_id', $this->category_id, PDO::PARAM_INT);
+            $stm->bindValue(':category_id', self::getCleanName($this->category_id), PDO::PARAM_INT);
             $stm->bindValue(':course_name', $this->course_name, PDO::PARAM_STR);
             $stm->bindValue(':description', $this->course_description, PDO::PARAM_STR);
             $stm->bindValue(':price', $this->course_price, PDO::PARAM_INT);
@@ -271,7 +273,10 @@ class Menu extends \Core\Model {
     // checks if a category with the same name already exists
     public static function courseExists($course_name, $id_ignore = []){
 
-        $course = static::findByName(trim($course_name), 1);
+        // clean name from whitespaces
+        $name = self::getCleanName($course_name);
+
+        $course = static::findByName($name, 1);
 
         if($course){
 
@@ -283,6 +288,14 @@ class Menu extends \Core\Model {
 
         return false;
     }
+
+
+
+    // trims whitespaces in the biginning and end of a string as well as more than whitespaces between words
+    protected static function getCleanName($name){
+        return preg_replace('/\s+/', ' ', trim($name));
+    }
+
 
 
     // this method deletes a group of items based on thier IDs

@@ -29,7 +29,10 @@ class Test
 
     public function test(){
 
-        print_r(Photo::findPhotoByCourseId(78));
+        var_dump(Menu::courseExists('Fresh    Berry Fool'));
+        echo '</br>';
+        $course = Menu::getById(83, 1);
+        var_dump($course->course_name);
 
     }
 
