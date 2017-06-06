@@ -58,7 +58,7 @@
             </div>
 
             <div class="buttons">
-            <a class="btn btn-md btn-danger btn-popup btn-popup-left" id="delete-{{ picture.id }}" data-toggle="confirmation" data-title="Delete this picture?" data-popout="true" data-placement="top"
+            <a href="/admin/rooms/delete-photo?picture_id={{picture.id}}&room_id={{picture.room_id}}" class="btn btn-md btn-danger btn-popup btn-popup-left" id="delete-{{ picture.id }}" data-toggle="confirmation" data-title="Delete this picture?" data-popout="true" data-placement="top"
                >Delete</a>
 
             {% if picture.main == 0 %}

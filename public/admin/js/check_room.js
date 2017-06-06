@@ -56,7 +56,7 @@ $(document).ready(function () {
     });
 
 
-    // ajax for photo deletion
+    /*// ajax for photo deletion
     $('.btn-popup-left').click(function () {
 
         // current picture id
@@ -87,7 +87,7 @@ $(document).ready(function () {
         //alert(pictureId);
 
 
-    });
+    });*/
 
 
 

@@ -333,7 +333,8 @@ class Rooms extends \Core\Admin {
     public static function deletePhoto(){
 
         // first get id from the query string
-        $id = $_POST['picture_id'] ?? false;
+        $id = $_GET['picture_id'] ?? false;
+        $room_id = $_GET['room_id'] ?? false;
 
         // and delete  a photo based on that id
         if($id){
@@ -342,6 +343,7 @@ class Rooms extends \Core\Admin {
 
             if(Photo::delete($id) && Photo::unlinkImages($photo->name)){
                 Flash::addMessage('Photo has been deleted');
+                self::redirect('/admin/rooms/room?id=' . $room_id);
             }
         }
 
