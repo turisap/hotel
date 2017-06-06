@@ -154,7 +154,8 @@
                     <div class="descerror">&nbsp;<span id="editor-error-message" class="error"></span></div>
                 </div>
             </div>
-            <input type="hidden" name="course_id" value="{{course.course_id}}">
+            <input type="hidden" name="course_id" value="{{course.course_id}}"><!-- this input for passing value of course_id -->
+            <input type="hidden" name="old_filename" value="{{course.name}}"><!-- this input for passing value of current picture filename for deletion purposes -->
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">

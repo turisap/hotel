@@ -390,7 +390,7 @@ class Restaurant extends \Core\Admin {
                     // initialize a new photo object using POST data
                     $photo = new Photo($photo);
 
-                    if($photo->updateCoursePicture($course->course_id)){
+                    if($photo->updateCoursePicture($course->course_id, $course->old_filename)){
 
                         Flash::addMessage('Course was successfully updated');
                         self::redirect('/admin/restaurant/all-courses');

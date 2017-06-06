@@ -102,7 +102,7 @@ class Photo extends \Core\Model {
 
             $stm->execute();
 
-            return $this->moveUploadedFile(0);
+            return $this->moveUploadedFile(($course_id ? 1 : 0));
 
         }
         return false; // on failure
@@ -274,7 +274,7 @@ class Photo extends \Core\Model {
 
 
     // this method updates course's photo
-    public function updateCoursePicture($course_id){
+    public function updateCoursePicture($course_id, $old_filename){
 
         // get values out of photo array
         $this->filename = time() . $this->name;
@@ -294,6 +294,10 @@ class Photo extends \Core\Model {
 
         $stm->execute();
 
+        // remove old file
+        self::unlinkImages($old_filename, 1);
+
+        // move the new photo to respective directory
         return $this->moveUploadedFile(1);
 
     }
