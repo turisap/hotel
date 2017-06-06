@@ -337,7 +337,10 @@ class Rooms extends \Core\Admin {
 
         // and delete  a photo based on that id
         if($id){
-            if(Photo::delete($id)){
+
+            $photo = Photo::findById($id);
+
+            if(Photo::delete($id) && Photo::unlinkImages($photo->name)){
                 Flash::addMessage('Photo has been deleted');
             }
         }
