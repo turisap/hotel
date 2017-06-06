@@ -300,5 +300,42 @@ class Restaurant extends \Core\Admin {
     }
 
 
+    // this method deletes checked courses on all courses page
+    public function deleteChecked(){
+
+        // array with checked checkboxes
+        $data = $_POST;
+
+        if(!empty($data)){
+
+            if(Menu::deleteItems($data)){
+
+
+
+            }
+
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

@@ -7,6 +7,29 @@
 
 {% block footer %}
 
+
+<script>
+
+    // make delete checked button active on checking at least one checkbox and disable it if no checkboxes are checked
+    $(document).ready(function () {
+
+        $('.delete-course').change(function () {
+
+            if($('.delete-course').is(':checked')){
+
+                $('#deleteCheckedCourses').removeClass('disabled');
+
+            } else {
+
+                $('#deleteCheckedCourses').addClass('disabled');
+
+            }
+
+        })
+
+    });
+</script>
+
 {% endblock %}
 
 
@@ -40,11 +63,12 @@
                     <td>{{ course.description}}</td>
                     <td class="edit-category-table">{{ course.price }}</td>
                     <td class="edit-category-table"><a class="btn btn-default" href="/admin/restaurant/edit-course?id={{ course.course_id}}">Edit</a></td>
-                    <td class="edit-category-table"><input type="checkbox" value="{{ category_id }}"></td>
+                    <td class="edit-category-table"><input type="checkbox" value="{{ category_id }}" class="delete-course"></td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
+            <button id="deleteCheckedCourses" class="btn btn-danger disabled" type="submit"  data-toggle="confirmation" data-title="Delete courses?" data-popout="true" data-placement="top">Delete checked</button>
         </form>
     </div>
     </div>

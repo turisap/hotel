@@ -279,6 +279,20 @@ class Menu extends \Core\Model {
         return false;
     }
 
+    // this method deletes a group of items based on thier IDs
+    public static function deleteItems($ids, $table){
+
+        if(is_array($ids)){
+
+            foreach ($ids as $id){
+
+                $item = self::getById()
+
+            }
+
+        }
+
+    }
 
 
 
