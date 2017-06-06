@@ -56,38 +56,6 @@ $(document).ready(function () {
     });
 
 
-    /*// ajax for photo deletion
-    $('.btn-popup-left').click(function () {
-
-        // current picture id
-        var buttonId = ($(this).attr('id'));
-        var array    = buttonId.split('-');
-        var pictureId = parseInt(array[1]);
-
-        // ajax
-        $.ajax({
-            url: '/admin/rooms/delete-photo',
-            data: {
-                picture_id: pictureId
-            },
-            type: 'POST',
-            success: function(data){
-
-                if(!data.error){
-
-                    //alert(data);
-
-
-                    location.reload(true);
-                }
-
-            }
-        });
-
-        //alert(pictureId);
-
-
-    });*/
 
 
 

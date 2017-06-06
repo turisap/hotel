@@ -72,7 +72,7 @@ class Rooms extends \Core\Admin {
         if($room_id != false && !in_array('fail', $photo_errors, false)){ // redirect back to the create room page with a message on success
 
             Flash::addMessage('Room has been created');
-            self::redirect('/admin/rooms/create-room');
+            self::redirect('/admin/rooms/all-rooms');
 
         } elseif ($room_id == false) {
 
