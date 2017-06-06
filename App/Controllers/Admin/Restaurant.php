@@ -331,6 +331,39 @@ class Restaurant extends \Core\Admin {
     }
 
 
+    // renders edit course page
+    public function editCourse(){
+
+        $course_id = $_GET['id'] ?? false;
+
+        // get a course with picture
+        if($course_id){
+
+            // find that course (this method finds a particular course if supplied with id)
+            $course = Menu::getAllCoursesWithCategoryNamesAndPhotos($course_id);
+
+            if($course){
+
+                // get list of all categories to pass them to the view in order to get them in selectbox
+                $categories = Menu::getAllCategories();
+
+                View::renderTemplate('/admin/restaurant/edit_course.html', [
+                    'course'     => $course,
+                    'categories' => $categories
+                ]);
+              
+
+            }
+
+
+
+        }
+
+
+
+    }
+
+
 
 
 

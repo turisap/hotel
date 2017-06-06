@@ -457,7 +457,10 @@ h3.cancel {
     font-weight: bold;
 }
 
-
+.course {
+    width: 200px;
+    heigth: 200px;
+}
 
 
 

@@ -190,9 +190,12 @@ class Menu extends \Core\Model {
 
 
     // use findAll() mehtod in Core\Model to obtain all courses using array with database tables
-    public static function getAllCoursesWithCategoryNamesAndPhotos(){
+    public static function getAllCoursesWithCategoryNamesAndPhotos($id = false){
 
         $sql = 'SELECT courses.*, meal_categories.category_name, photos.path FROM courses LEFT JOIN meal_categories ON courses.category_id = meal_categories.category_id LEFT JOIN photos ON courses.course_id = photos.course_id';
+
+        // add WHERE clause only if we need a particular course
+        $sql .= $id ? ' WHERE courses.course_id = ' . $id : '';
 
         $db  = static::getDB();
         $stm = $db->prepare($sql);
@@ -202,7 +205,7 @@ class Menu extends \Core\Model {
 
         $stm->execute();
 
-        return $stm->fetchAll();
+        return $id ? $stm->fetch() : $stm->fetchAll(); // fetch all for all courses and fetch if only one is required
 
     }
 
