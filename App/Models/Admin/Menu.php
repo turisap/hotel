@@ -279,6 +279,7 @@ class Menu extends \Core\Model {
         return false;
     }
 
+
     // this method deletes a group of items based on thier IDs
     public static function deleteItems($ids, $table){
 
@@ -286,13 +287,21 @@ class Menu extends \Core\Model {
 
             foreach ($ids as $id){
 
+                // get Menu object based on id
                 $item = self::getById($id, $table);
+
+                // get Photo object for only courses
+                $table == 0 ?: $photo = Photo::findPhotoByCourseId($id);
+
+                // delete photo to the course if it was course (categories don't have photos)
+                $table == 0 ?: Photo::delete($photo->id);
+
+                // delete item
                 $item->deleteItem($table);
 
             }
 
             return true;
-
         }
 
         return false;

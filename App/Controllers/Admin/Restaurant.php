@@ -234,7 +234,7 @@ class Restaurant extends \Core\Admin {
                     if($photo->save(false, false, $course_id)){
 
                         // if a picture was saved as well, redirect to all courses
-                        Flash::addMessage('Course was successfully saved');
+                        Flash::addMessage('Course was successfully created');
                         self::redirect('/admin/restaurant/all-courses');
 
                     } else {
@@ -305,6 +305,7 @@ class Restaurant extends \Core\Admin {
 
         // array with checked checkboxes
         $data = $_POST;
+
 
         if(!empty($data)){
 

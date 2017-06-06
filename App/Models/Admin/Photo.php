@@ -267,5 +267,22 @@ class Photo extends \Core\Model {
     }
 
 
+    // finds a photo by a course id
+    public static function findPhotoByCourseId($course_id){
+
+        $sql = 'SELECT * FROM ' . static::$db_table . ' WHERE course_id = :id';
+
+        $db  = static::getDB();
+        $stm = $db->prepare($sql);
+        $stm->bindValue(':id', $course_id, PDO::PARAM_INT);
+        $stm->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stm->execute();
+
+        return $stm->fetch();
+
+    }
+
+
 
 }

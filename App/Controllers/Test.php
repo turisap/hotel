@@ -29,21 +29,10 @@ class Test
 
     public function test(){
 
+        print_r(Photo::findById(34));
 
-        if(static::test2()){
-            echo 'true';
-
-        }else{
-            echo 'false';
-        }
     }
 
-
-    public static function test2(){
-
-
-        return $a !== false;
-    }
 
 
 
