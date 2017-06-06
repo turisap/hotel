@@ -102,21 +102,7 @@ class Photo extends \Core\Model {
 
             $stm->execute();
 
-            $target_path = dirname(__DIR__, 3) . Config::DS . ($room_id ? static::$upload_directories[0] : static::$upload_directories[1]) . Config::DS . $this->filename;
-            if(file_exists($target_path)){
-                $this->errors_on_upload[] = 'This file already exists in this directory';
-                return false;
-            }
-
-            if( !empty($this->tmp_name)){ // if tmp_name is empty, we just don't upload files
-
-                if( ! move_uploaded_file($this->tmp_name, $target_path)){
-                    $this->errors_on_upload[] = 'The folder probably doesnt have permissions';
-                } else {
-                    return true;
-                }
-
-            }
+            return $this->moveUploadedFile(0);
 
         }
         return false; // on failure
@@ -308,7 +294,15 @@ class Photo extends \Core\Model {
 
         $stm->execute();
 
-        $target_path = dirname(__DIR__, 3) . Config::DS . static::$upload_directories[1] . Config::DS . $this->filename;
+        return $this->moveUploadedFile(1);
+
+    }
+
+
+    // this method moves actual picture file into the upload directory
+    public function moveUploadedFile($directory){
+
+        $target_path = dirname(__DIR__, 3) . Config::DS . static::$upload_directories[$directory] . Config::DS . $this->filename;
         if(file_exists($target_path)){
             $this->errors_on_upload[] = 'This file already exists in this directory';
             return false;
@@ -318,6 +312,7 @@ class Photo extends \Core\Model {
 
             if( ! move_uploaded_file($this->tmp_name, $target_path)){
                 $this->errors_on_upload[] = 'The folder probably doesnt have permissions';
+                return false;
             } else {
                 return true;
             }
@@ -326,5 +321,5 @@ class Photo extends \Core\Model {
 
     }
 
-
 }
+
