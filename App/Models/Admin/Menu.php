@@ -286,11 +286,16 @@ class Menu extends \Core\Model {
 
             foreach ($ids as $id){
 
-                $item = self::getById()
+                $item = self::getById($id, $table);
+                $item->deleteItem($table);
 
             }
 
+            return true;
+
         }
+
+        return false;
 
     }
 

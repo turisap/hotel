@@ -308,11 +308,22 @@ class Restaurant extends \Core\Admin {
 
         if(!empty($data)){
 
-            if(Menu::deleteItems($data)){
+            if(Menu::deleteItems($data, 1)){
 
+                count($data) == 1 ? Flash::addMessage('Course was deleted successfully') : Flash::addMessage('Courses were deleted successfully');
+                self::redirect('/admin/restaurant/all-courses');
 
+            } else {
+
+                Flash::addMessage('There was a problem deleting these courses, pleasy try again');
+                self::redirect('/admin/restaurant/all-courses');
 
             }
+
+        } else {
+
+            Flash::addMessage('Nothing to delete');
+            self::redirect('/admin/restaurant/all-courses');
 
         }
 
