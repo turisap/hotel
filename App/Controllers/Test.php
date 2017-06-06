@@ -29,7 +29,7 @@ class Test
 
     public function test(){
 
-        print_r(Photo::findById(34));
+        print_r(Photo::findPhotoByCourseId(78));
 
     }
 

@@ -290,11 +290,19 @@ class Menu extends \Core\Model {
                 // get Menu object based on id
                 $item = self::getById($id, $table);
 
-                // get Photo object for only courses
-                $table == 0 ?: $photo = Photo::findPhotoByCourseId($id);
+                // only for courses
+                if($table == 1){
 
-                // delete photo to the course if it was course (categories don't have photos)
-                $table == 0 ?: Photo::delete($photo->id);
+                    // get Photo object for only courses
+                    $photo = Photo::findPhotoByCourseId($id);
+
+                    // delete photo file from the uploads folder
+                    Photo::unlinkImages($photo->name);
+
+                    // delete photo to the course if it was course (categories don't have photos)
+                    Photo::delete($photo->id);
+
+                }
 
                 // delete item
                 $item->deleteItem($table);
