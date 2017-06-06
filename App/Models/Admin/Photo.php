@@ -16,9 +16,10 @@ class Photo extends \Core\Model {
 
     public $errors_on_upload = [];                          // array for saving error messages
     public static $db_table = 'photos';                     // database table
+    const CTO_ARG = array('picture');
     public static $column = 'id';
     protected static $upload_derictory = 'public\uploads\pictures\rooms'; // path to uploaded pictures
-    protected static $path = '/uploads/pictures/rooms';
+    protected static $directory_path = '/uploads/pictures/rooms';
     protected static $path_to_unlink = 'uploads/pictures/rooms/';
     public $upload_errors_array = array(
 
@@ -148,7 +149,7 @@ class Photo extends \Core\Model {
 
 
     protected function pathToPicture(){
-        return static::$path . Config::DS . $this->filename;
+        return static::$directory_path . Config::DS . $this->filename;
     }
 
 
@@ -275,7 +276,7 @@ class Photo extends \Core\Model {
         $db  = static::getDB();
         $stm = $db->prepare($sql);
         $stm->bindValue(':id', $course_id, PDO::PARAM_INT);
-        $stm->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stm->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, self::class);
 
         $stm->execute();
 
