@@ -17,8 +17,8 @@ class Photo extends \Core\Model {
     public $errors_on_upload = [];                          // array for saving error messages
     public static $db_table = 'photos';                     // database table
     public static $column = 'id';
-    protected static $upload_derictory = 'public\uploads\pictures\rooms'; // path to uploaded pictures
-    protected static $directory_path = '/uploads/pictures/rooms';
+    protected static $upload_directories = ['public\uploads\pictures\rooms', 'public\uploads\pictures\courses']; // path to uploaded pictures
+    protected static $directory_pathes = ['/uploads/pictures/rooms', '/uploads/pictures/courses'];
     protected static $path_to_unlink = 'uploads/pictures/rooms/';
     public $upload_errors_array = array(
 
@@ -96,13 +96,13 @@ class Photo extends \Core\Model {
             $stm->bindValue(':name', $this->filename, PDO::PARAM_STR);
             $stm->bindValue(':type', $this->type, PDO::PARAM_STR);
             $stm->bindValue(':size', $this->size, PDO::PARAM_INT);
-            $stm->bindValue(':path', $this->pathToPicture(), PDO::PARAM_STR);
+            $stm->bindValue(':path', ($room_id ? $this->pathToPicture(0) : $this->pathToPicture(1)), PDO::PARAM_STR);
 
             //return $sql;
 
             $stm->execute();
 
-            $target_path = dirname(__DIR__, 3) . Config::DS . static::$upload_derictory . Config::DS . $this->filename;
+            $target_path = dirname(__DIR__, 3) . Config::DS . ($room_id ? static::$upload_directories[0] : static::$upload_directories[1]) . Config::DS . $this->filename;
             if(file_exists($target_path)){
                 $this->errors_on_upload[] = 'This file already exists in this directory';
                 return false;
@@ -147,8 +147,8 @@ class Photo extends \Core\Model {
 
 
 
-    protected function pathToPicture(){
-        return static::$directory_path . Config::DS . $this->filename;
+    protected function pathToPicture($derictory){
+        return static::$directory_pathes[$derictory] . Config::DS . $this->filename;
     }
 
 
