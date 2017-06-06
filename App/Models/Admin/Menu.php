@@ -337,5 +337,35 @@ class Menu extends \Core\Model {
 
 
 
+    // this method updates a course's record in the database
+    public function updateCourseData(){
+
+        $this->validateCourse();
+
+        if(empty($this->errors)){
+
+            $sql = 'UPDATE ' . static::$db_tables[1] . ' SET course_name = :course_name, category_id = :category_id, price = :course_price, description = :course_description WHERE course_id = :course_id';
+
+            $db  = static::getDB();
+            $stm = $db->prepare($sql);
+
+            $stm->bindValue(':course_name', $this->course_name, PDO::PARAM_STR);
+            $stm->bindValue(':category_id', $this->category_id, PDO::PARAM_INT);
+            $stm->bindValue(':course_price', $this->course_price, PDO::PARAM_INT);
+            $stm->bindValue(':course_description', $this->course_description, PDO::PARAM_STR);
+            $stm->bindValue(':course_id', $this->course_id, PDO::PARAM_INT);
+
+            return $stm->execute();
+
+        }
+
+        return false; // on validation failure
+
+    }
+
+
+
+
+
 
 }

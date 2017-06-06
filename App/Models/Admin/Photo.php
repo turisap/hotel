@@ -124,6 +124,9 @@ class Photo extends \Core\Model {
 
 
 
+
+
+
     // this method validates pictures on upload
     protected function validatePhoto(){
 
@@ -147,8 +150,8 @@ class Photo extends \Core\Model {
 
 
 
-    protected function pathToPicture($derictory){
-        return static::$directory_pathes[$derictory] . Config::DS . $this->filename;
+    protected function pathToPicture($directory){
+        return static::$directory_pathes[$directory] . Config::DS . $this->filename;
     }
 
 
@@ -283,6 +286,45 @@ class Photo extends \Core\Model {
 
     }
 
+
+    // this method updates course's photo
+    public function updateCoursePicture($course_id){
+
+        // get values out of photo array
+        $this->filename = time() . $this->name;
+        $this->path = self::pathToPicture(1);
+
+        $sql = 'UPDATE ' . static::$db_table . ' SET course_id = :course_id, name = :name, type = :type, size = :size, path = :path WHERE course_id = :course_id';
+
+        $db  = static::getDB();
+
+        $stm = $db->prepare($sql);
+        $stm->bindValue(':course_id', $course_id, PDO::PARAM_INT);
+        $stm->bindValue(':name', $this->filename, PDO::PARAM_STR);
+        $stm->bindVAlue(':type', $this->type, PDO::PARAM_STR);
+        $stm->bindValue(':size', $this->size, PDO::PARAM_INT);
+        $stm->bindValue(':path', $this->path, PDO::PARAM_STR);
+        $stm->bindValue(':course_id', $course_id, PDO::PARAM_INT);
+
+        $stm->execute();
+
+        $target_path = dirname(__DIR__, 3) . Config::DS . static::$upload_directories[1] . Config::DS . $this->filename;
+        if(file_exists($target_path)){
+            $this->errors_on_upload[] = 'This file already exists in this directory';
+            return false;
+        }
+
+        if( !empty($this->tmp_name)){ // if tmp_name is empty, we just don't upload files
+
+            if( ! move_uploaded_file($this->tmp_name, $target_path)){
+                $this->errors_on_upload[] = 'The folder probably doesnt have permissions';
+            } else {
+                return true;
+            }
+
+        }
+
+    }
 
 
 }

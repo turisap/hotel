@@ -353,17 +353,76 @@ class Restaurant extends \Core\Admin {
                 ]);
 
 
+            } else {
+
+                Flash::addMessage('There is no such a course');
+                self::redirect('/admin/restaurant/all-courses');
+
             }
 
+        } else {
 
+            Flash::addMessage('There is no such a course');
+            self::redirect('/admin/restaurant/all-courses');
 
         }
-
-
 
     }
 
 
+    // this method updates course (processes form on edit course page)
+    public function updateCourse(){
+
+        $data = $_POST;
+        $photo = $_FILES['photo'] ?? false;
+        //print_r($data);
+
+
+        if(!empty($data)){
+
+            // initialize a new object using POST data
+            $course = new Menu($data);
+
+            if($course){
+
+                if($course->updateCourseData()){
+
+                    // initialize a new photo object using POST data
+                    $photo = new Photo($photo);
+
+                    if($photo->updateCoursePicture($course->course_id)){
+
+                        Flash::addMessage('Course was successfully updated');
+                        self::redirect('/admin/restaurant/all-courses');
+
+                    } else {
+
+                        Flash::addMessage('There was a problem updating picture, try again', Flash::INFO);
+                        self::redirect('/admin/restaurant/edit-course?id=' . $course->course_id);
+
+                    }
+
+                } else {
+
+                    Flash::addMessage('There was a problem updating the course, try again', Flash::INFO);
+                    self::redirect('/admin/restaurant/edit-course?id=' . $course->course_id);
+
+                }
+
+            } else {
+
+                Flash::addMessage('It looks like this course does not exist');
+                self::redirect('/admin/restaurant/all-courses');
+
+            }
+
+        } else {
+
+            self::redirect('/admin/restaurant/all-courses');
+
+        }
+
+    }
 
 
 

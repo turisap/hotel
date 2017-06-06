@@ -60,7 +60,7 @@
                     <td class="edit-category-table"><div class="course"><img class="img-responsive" src="{{course.path}}"></div></td>
                     <td class="edit-category-table text-center">{{ course.course_name }}</td>
                     <td class="edit-category-table">{{ course.category_name }}</td>
-                    <td>{{ course.description}}</td>
+                    <td class="edit-category-table text-center">{{ course.description}}</td>
                     <td class="edit-category-table text-center">{{ course.price }}</td>
                     <td class="edit-category-table text-center"><a class="btn btn-default" href="/admin/restaurant/edit-course?id={{ course.course_id}}">Edit</a></td>
                     <td class="edit-category-table text-center"><input type="checkbox" name="course-{{ course.course_id }}" value="{{ course.course_id }}" class="delete-course"></td>
