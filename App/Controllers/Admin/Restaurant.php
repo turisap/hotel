@@ -374,11 +374,11 @@ class Restaurant extends \Core\Admin {
     public function updateCourse(){
 
         $data = $_POST;
-        $photo = $_FILES['photo'] ?? false;
-        //print_r($data);
+        $picture = ($_FILES['photo']['size'] > 0) ? $_FILES['photo'] : false;
+        //print_r($picture);
 
 
-        if(!empty($data)){
+         if(!empty($data)){
 
             // initialize a new object using POST data
             $course = new Menu($data);
@@ -388,17 +388,28 @@ class Restaurant extends \Core\Admin {
                 if($course->updateCourseData()){
 
                     // initialize a new photo object using POST data
-                    $photo = new Photo($photo);
 
-                    if($photo->updateCoursePicture($course->course_id, $course->old_filename)){
+                    $photo = $picture ?  new Photo($picture) : false;
 
-                        Flash::addMessage('Course was successfully updated');
-                        self::redirect('/admin/restaurant/all-courses');
+                    if($photo){
+
+                        if($photo->updateCoursePicture($course->course_id, $course->old_filename)){
+
+                            Flash::addMessage('Course was successfully updated');
+                            self::redirect('/admin/restaurant/all-courses');
+
+                        } else {
+
+                            Flash::addMessage('There was a problem updating picture, try again', Flash::INFO);
+                            self::redirect('/admin/restaurant/edit-course?id=' . $course->course_id);
+
+                        }
+
 
                     } else {
 
-                        Flash::addMessage('There was a problem updating picture, try again', Flash::INFO);
-                        self::redirect('/admin/restaurant/edit-course?id=' . $course->course_id);
+                        Flash::addMessage('Course was successfully updated');
+                        self::redirect('/admin/restaurant/all-courses');
 
                     }
 
