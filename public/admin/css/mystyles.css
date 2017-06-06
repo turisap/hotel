@@ -436,7 +436,7 @@ h3.cancel {
     min-height: 95vh;
 }
 
-/*================================ STYLES FOR ALL MENU CATEGORIES PAGE =====================================*/
+/*================================ STYLES FOR ALL MENU CATEGORIES PAGES =====================================*/
 
 #createCategory {
     padding: 10px 25px;
@@ -447,7 +447,7 @@ h3.cancel {
 }
 
 
-/*===================================== STYLES FOR CREATE COURSE PAGE =================================*/
+/*===================================== STYLES FOR CREATE COURSE PAGES =================================*/
 
 #categoryCourse {
     text-align: right!important;   /* align this label to the right as others*/
@@ -456,6 +456,10 @@ h3.cancel {
 .descerror {
     font-weight: bold;
 }
+
+
+
+
 
 
 

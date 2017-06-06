@@ -190,13 +190,15 @@ class Menu extends \Core\Model {
 
 
     // use findAll() mehtod in Core\Model to obtain all courses using array with database tables
-    public static function getAllCoursesWithCategoryNames(){
+    public static function getAllCoursesWithCategoryNamesAndPhotos(){
 
-        $sql = 'SELECT courses.*, meal_categories.category_name FROM courses LEFT JOIN meal_categories USING (category_id)';
+        $sql = 'SELECT courses.*, meal_categories.category_name, photos.path FROM courses LEFT JOIN meal_categories ON courses.category_id = meal_categories.category_id LEFT JOIN photos ON courses.course_id = photos.course_id';
 
         $db  = static::getDB();
         $stm = $db->prepare($sql);
         $stm->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        //return $sql;
 
         $stm->execute();
 

@@ -176,8 +176,8 @@ class Restaurant extends \Core\Admin {
     // renders template with all courses
     public function allCoursesAction(){
 
-        $courses = Menu::getAllCoursesWithCategoryNames();
-
+        $courses = Menu::getAllCoursesWithCategoryNamesAndPhotos();
+        //print_r($courses);
         View::renderTemplate('admin/restaurant/all_courses.html', ['courses' => $courses]);
 
     }
