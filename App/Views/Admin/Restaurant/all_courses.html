@@ -17,11 +17,11 @@
 
             if($('.delete-course').is(':checked')){
 
-                $('#deleteCheckedCourses').removeClass('disabled');
+                $('#deleteCheckedCourses').removeAttr('disabled');
 
             } else {
 
-                $('#deleteCheckedCourses').addClass('disabled');
+                $('#deleteCheckedCourses').attr('disabled', 'disabled');
 
             }
 
@@ -68,7 +68,7 @@
             {% endfor %}
             </tbody>
         </table>
-            <button id="deleteCheckedCourses" class="btn btn-danger disabled" type="submit"  data-toggle="confirmation" data-title="Delete courses?" data-popout="true" data-placement="top">Delete checked</button>
+            <button id="deleteCheckedCourses" disabled="disabled" class="btn btn-danger" type="submit"  data-toggle="confirmation" data-title="Delete courses?" data-popout="true" data-placement="top">Delete checked</button>
         </form>
     </div>
     </div>
