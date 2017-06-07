@@ -12,6 +12,7 @@ namespace App\Controllers\Admin;
 use App\Config;
 use \App\Models\Admin\Menu;
 use App\Models\Admin\Photo;
+use App\Models\Admin\Search;
 use Core\View;
 use \App\Flash;
 
@@ -176,9 +177,16 @@ class Restaurant extends \Core\Admin {
     // renders template with all courses
     public function allCoursesAction(){
 
+        // get all courses
         $courses = Menu::getAllCoursesWithCategoryNamesAndPhotos();
-        //print_r($courses);
-        View::renderTemplate('admin/restaurant/all_courses.html', ['courses' => $courses]);
+
+        // get list of all categories to pass them to the view in order to get them in selectbox
+        $categories = Menu::getAllCategories();
+
+        View::renderTemplate('admin/restaurant/all_courses.html', [
+            'courses'    => $courses,
+            'categories' => $categories
+        ]);
 
     }
 
@@ -430,6 +438,45 @@ class Restaurant extends \Core\Admin {
 
         } else {
 
+            self::redirect('/admin/restaurant/all-courses');
+
+        }
+
+    }
+
+
+    // sorts courses on all courses page
+    public function sortAllCourses(){
+
+        $data = $_POST;
+        $categories = Menu::getAllCategories();
+
+        if(!empty($data)){
+
+            $results = Search::sortAllCourses($data);
+
+            if($results){
+
+                //print_r($results);
+                View::renderTemplate('/admin/restaurant/all_courses.html', [
+                    'courses'      => $results,
+                    'categories'     => $categories,
+                    'search_terms' => $data
+                ]);
+
+            } else {
+
+                Flash::addMessage('Nothing has been found');
+                View::renderTemplate('/admin/restaurant/all_courses.html', [
+                    'no_results' => 1,
+                    'categories' => $categories
+                ]);
+
+            }
+
+        } else {
+
+            Flash::addMessage('There was a problem processing your request, please try again');
             self::redirect('/admin/restaurant/all-courses');
 
         }

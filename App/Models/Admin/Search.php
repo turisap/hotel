@@ -419,6 +419,71 @@ abstract class Search extends \Core\Model {
     }
 
 
+    // sorts courses accordingly with search terms
+    public static function sortAllCourses($data){
+
+        // get values from POST array
+        $course_name = $data['course_name'] ?? false;
+        $category_id    = $data['category'] ?? false;
+        $order_price = $data['order'] ?? false;
+
+        // if course name was entered
+        if($course_name){
+
+            $sql = "SELECT course_id, MATCH (course_name) AGAINST (:course_name) AS relevance
+             FROM courses WHERE MATCH (course_name) AGAINST (:course_name IN BOOLEAN MODE) ORDER BY relevance DESC";
+
+            $db  = static::getDB();
+            $stm = $db->prepare($sql);
+            $stm->bindValue(':course_name', '\'' . $course_name . '\'', PDO::PARAM_STR);
+
+            $stm->execute();
+
+            $results = $stm->fetchAll(PDO::FETCH_ASSOC);
+
+
+            // results are without category name and picture path due to  we select only from one table
+            // so we join some data to results
+            return self::getCoursesSets($results);
+
+        } elseif($category_id) {
+
+            $sql = 'SELECT course_id FROM courses WHERE category_id = :category ORDER BY price '. $order_price;
+
+            $db  = static::getDB();
+            $stm = $db->prepare($sql);
+
+            $stm->bindValue(':category_id', $category_id, PDO::PARAM_INT);
+
+            $stm->execute();
+
+            $results = $stm->fetchAll(PDO::FETCH_ASSOC);
+
+            return self::getCoursesSets($results);
+        }
+
+
+        return false; // on the absence of data
+    }
+
+
+    //this method just gets sets of courses with photos and category names for search above
+    protected static function getCoursesSets($results){
+
+        // results are without category name and picture path due to  we select only from one table
+        // so we join some data to results
+        $search_results = array();
+        foreach($results as $result){
+
+            // based on our found IDs get complete sets of courses with photos and category names
+            $search_results[] = Menu::getAllCoursesWithCategoryNamesAndPhotos($result['course_id']);
+
+        }
+        return $search_results;
+
+    }
+
+
 
 
 

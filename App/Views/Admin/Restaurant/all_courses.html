@@ -35,9 +35,37 @@
 
 {% block body %}
 
-<div class="row" id="createCategory">
-    <a class="btn btn-default" href="/admin/restaurant/create-course" >Create</a>
+<div class="row wrap">
+    <form class="form-inline" method="post" id="sortBookings" action="/admin/restaurant/sort-all-courses">
+
+        <div class="form-group">
+            <label for="courseName">Find by course name</label>
+            <input class="form-control" id="courseName" name="course_name">
+        </div>
+
+        <div class="form-group">
+            <label for="show_only">Or by category</label>
+            <select class="form-control" id="show_only" name="status">
+                {% for category in categories %}
+                <option value="category.category_id" {% if 1 == 3 %} selected {% endif %}>{{category.category_name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="checkbox">
+            <label class="order"><input type="checkbox"  name="order" value="0" >Most expensive first</label>
+        </div>
+        <button class="btn btn-primary" type="submit" data-loading-text="searching" >Apply</button>
+
+        <input type="hidden" value="{{ room.id }}" name="room_id">
+        <a  class="btn btn-default" href="/admin/bookings/view-all-bookings-to-one-room?id={{ room.id }}">View all</a>
+
+
+    </form>
+
 </div>
+
+
 
 <div class="row wrap">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -69,6 +97,7 @@
             </tbody>
         </table>
             <button id="deleteCheckedCourses" disabled="disabled" class="btn btn-danger" type="submit"  data-toggle="confirmation" data-title="Delete courses?" data-popout="true" data-placement="top">Delete checked</button>
+            <a class="btn btn-default" href="/admin/restaurant/create-course" >Create</a>
         </form>
     </div>
     </div>
@@ -77,9 +106,15 @@
 
 
 
-{% if courses is empty %}
+{% if courses is empty and no_results != 1 %}
 <div class="row wrap">
     <h3>There are currently no courses in your menu. You can <a href="/admin/restaurant/create-course">create</a> one</h3>
+</div>
+{% endif %}
+
+{% if no_results == 1 %}
+<div class="row wrap">
+    <h3>Nothing has been found</h3>
 </div>
 {% endif %}
 

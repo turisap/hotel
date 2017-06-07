@@ -293,7 +293,7 @@ class Menu extends \Core\Model {
 
 
     // trims whitespaces in the biginning and end of a string as well as more than whitespaces between words
-    protected static function getCleanName($name){
+    public static function getCleanName($name){
         return preg_replace('/\s+/', ' ', trim($name));
     }
 
