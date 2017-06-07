@@ -1,0 +1,87 @@
+{% extends "admin_base.html" %}
+
+{% block title %}All notifications{% endblock %}
+{% block page_heading %}All notifications{% endblock %}
+{% block page_subheading %}{{ site_name }}{% endblock %}
+
+
+{% block footer %}
+
+
+<script>
+
+
+    $(document).ready(function () {
+
+        // make delete checked button active on checking at least one checkbox and disable it if no checkboxes are checked
+        $('.delete-course').change(function () {
+
+            if($('.delete-course').is(':checked')){
+                $('#deleteCheckedCourses').removeAttr('disabled');
+            } else {
+                $('#deleteCheckedCourses').attr('disabled', 'disabled');
+            }
+
+        });
+
+        // disable select boxes with categories if search by name input isn't empty
+        $('#courseName').change(function () {
+
+            if($(this).val() != ''){
+                $('#courseCategories').attr('disabled', 'disabled');
+            } else {
+                $('#courseCategories').removeAttr('disabled');
+            }
+        });
+
+
+        // disable input with course name on category choosing
+        $('#courseCategories').change(function () {
+
+            if($(this).val() != 0){
+                $('#courseName').attr('disabled', 'disabled');
+            } else {
+                $('#courseName').removeAttr('disabled');
+            }
+
+        })
+    });
+</script>
+
+{% endblock %}
+
+
+{% block body %}
+
+<div class="row wrap">
+    <form class="form-inline" method="post" id="sortBookings" action="/admin/restaurant/sort-all-courses">
+
+        <div class="form-group">
+            <label for="courseName">Find by course name</label>
+            <input class="form-control"  id="courseName" name="course_name">
+        </div>
+
+        <div class="form-group">
+            <label for="courseCategories">Or by category</label>
+            <select class="form-control" id="courseCategories" name="category">
+                <option value="0">Select a category</option>
+                {% for category in categories %}
+                <option value="{{category.category_id}}" {% if search_terms.category == category.category_id %} selected {% endif %}>{{category.category_name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="checkbox">
+            <label class="order"><input type="checkbox"  name="order" {% if search_terms.order == 1 %} checked {% endif %} value="1" >Most expensive first</label>
+        </div>
+        <button class="btn btn-primary" type="submit" data-loading-text="searching" >Apply</button>
+
+
+
+    </form>
+
+
+
+
+{% endblock %}
+

@@ -475,12 +475,9 @@ h3.cancel {
     overflow: hidden;
 }
 
-.disabled {
-    user-select : none !important;
-    -moz-user-select : none !important;
-    -webkit-user-select : none !important;
-    color: gray !important;
-    cursor: pointer !important;
+.badge-notifications {
+    color: white;
+    background-color: darkred!important;
 }
 
 
