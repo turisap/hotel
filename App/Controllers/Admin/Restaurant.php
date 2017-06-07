@@ -451,6 +451,8 @@ class Restaurant extends \Core\Admin {
         $data = $_POST;
         $categories = Menu::getAllCategories();
 
+        //print_r($data);
+
         if(!empty($data)){
 
             $results = Search::sortAllCourses($data);

@@ -10,23 +10,41 @@
 
 <script>
 
-    // make delete checked button active on checking at least one checkbox and disable it if no checkboxes are checked
+
     $(document).ready(function () {
 
+        // make delete checked button active on checking at least one checkbox and disable it if no checkboxes are checked
         $('.delete-course').change(function () {
 
             if($('.delete-course').is(':checked')){
-
                 $('#deleteCheckedCourses').removeAttr('disabled');
-
             } else {
-
                 $('#deleteCheckedCourses').attr('disabled', 'disabled');
+            }
 
+        });
+
+        // disable select boxes with categories if search by name input isn't empty
+        $('#courseName').change(function () {
+
+            if($(this).val() != ''){
+             $('#courseCategories').attr('disabled', 'disabled');
+             } else {
+                $('#courseCategories').removeAttr('disabled');
+            }
+        });
+
+
+        // disable input with course name on category choosing
+        $('#courseCategories').change(function () {
+
+            if($(this).val() != 0){
+                $('#courseName').attr('disabled', 'disabled');
+            } else {
+                $('#courseName').removeAttr('disabled');
             }
 
         })
-
     });
 </script>
 
@@ -40,25 +58,24 @@
 
         <div class="form-group">
             <label for="courseName">Find by course name</label>
-            <input class="form-control" id="courseName" name="course_name">
+            <input class="form-control"  id="courseName" name="course_name">
         </div>
 
         <div class="form-group">
-            <label for="show_only">Or by category</label>
-            <select class="form-control" id="show_only" name="status">
+            <label for="courseCategories">Or by category</label>
+            <select class="form-control" id="courseCategories" name="category">
+                <option value="0">Select a category</option>
                 {% for category in categories %}
-                <option value="category.category_id" {% if 1 == 3 %} selected {% endif %}>{{category.category_name}}</option>
+                <option value="{{category.category_id}}" {% if search_terms.category == category.category_id %} selected {% endif %}>{{category.category_name}}</option>
                 {% endfor %}
             </select>
         </div>
 
         <div class="checkbox">
-            <label class="order"><input type="checkbox"  name="order" value="0" >Most expensive first</label>
+            <label class="order"><input type="checkbox"  name="order" {% if search_terms.order == 1 %} checked {% endif %} value="1" >Most expensive first</label>
         </div>
         <button class="btn btn-primary" type="submit" data-loading-text="searching" >Apply</button>
 
-        <input type="hidden" value="{{ room.id }}" name="room_id">
-        <a  class="btn btn-default" href="/admin/bookings/view-all-bookings-to-one-room?id={{ room.id }}">View all</a>
 
 
     </form>

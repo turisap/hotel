@@ -448,7 +448,10 @@ abstract class Search extends \Core\Model {
 
         } elseif($category_id) {
 
-            $sql = 'SELECT course_id FROM courses WHERE category_id = :category ORDER BY price '. $order_price;
+            $sql = 'SELECT course_id FROM courses WHERE category_id = :category_id ORDER BY price ';
+
+            // add ASC or DESC price order
+            $sql .= $order_price ? 'DESC' : 'ASC';
 
             $db  = static::getDB();
             $stm = $db->prepare($sql);

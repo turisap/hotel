@@ -28,11 +28,14 @@ class Test
 
 
     public function test(){
+        $a = ['course' => 1, 'category' => ''];
 
-        var_dump(Menu::courseExists('Fresh    Berry Fool'));
-        echo '</br>';
-        $course = Menu::getById(83, 1);
-        var_dump($course->course_name);
+        $b = $a['category'] ?? false;
+        if($b){
+            echo 'uye';
+        } else {
+            echo 'no';
+        }
 
     }
 
