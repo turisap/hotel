@@ -56,15 +56,17 @@
             </thead>
             <tbody>
             {% for course in courses %}
+            {% for set in course %}
                 <tr>
-                    <td class="edit-category-table"><div class="course"><img class="img-responsive" src="{{course.path}}"></div></td>
-                    <td class="edit-category-table text-center">{{ course.course_name }}</td>
-                    <td class="edit-category-table">{{ course.category_name }}</td>
-                    <td class="edit-category-table text-center">{{ course.description}}</td>
-                    <td class="edit-category-table text-center">{{ course.price }}</td>
-                    <td class="edit-category-table text-center"><a class="btn btn-default" href="/admin/restaurant/edit-course?id={{ course.course_id}}">Edit</a></td>
-                    <td class="edit-category-table text-center"><input type="checkbox" name="course-{{ course.course_id }}" value="{{ course.course_id }}" class="delete-course"></td>
+                    <td class="edit-category-table text-center"><div class="course"><img class="img-responsive" src="{{set.path}}"></div></td>
+                    <td class="edit-category-table text-center">{{ set.course_name }}</td>
+                    <td class="edit-category-table">{{ set.category_name }}</td>
+                    <td class="edit-category-table text-center">{{ set.description}}</td>
+                    <td class="edit-category-table text-center">{{ set.price }}</td>
+                    <td class="edit-category-table text-center"><a class="btn btn-default" href="/admin/restaurant/edit-course?id={{ set.course_id}}">Edit</a></td>
+                    <td class="edit-category-table text-center"><input type="checkbox" name="course-{{ course.course_id }}" value="{{ set.course_id }}" class="delete-course"></td>
                 </tr>
+            {% endfor %}
             {% endfor %}
             </tbody>
         </table>
