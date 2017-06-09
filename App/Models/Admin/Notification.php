@@ -10,6 +10,7 @@ namespace App\Models\Admin;
 
 use PDO;
 use DateTime;
+use DateTimeZone;
 
 
 class Notification extends \Core\Model {
@@ -94,6 +95,8 @@ class Notification extends \Core\Model {
 
     // this method turns timestamp into "days and hours ago format)
     public static function getDaysAndHoursAgo($timestamp){
+
+        date_default_timezone_set("Asia/Bangkok");
 
         $today = new DateTime();
         $date = new DateTime($timestamp);
