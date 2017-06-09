@@ -29,12 +29,21 @@
                     </thead>
                     <tbody>
                     {% for notification in notifications %}
+                    {% if notification.action > 2 %}
                     <tr>
                         <td class="edit-category-table text-center">{{ notification.message}}</td>
                         <td class="edit-category-table text-center">{{ notification.timestamp }}</td>
-                        <td class="edit-category-table text-center">{{ notification.description }}</td>
+                        <td class="edit-category-table text-center">{{ notification.first_name }} {{notification.last_name}} {% if notification.action == 3 %} activated account {% else %} joined us {% endif %}</td>
                         <td class="edit-category-table text-center"><input type="checkbox" name="course-{{ course.course_id }}" value="{{ course.course_id }}" class="delete-course"></td>
                     </tr>
+                    {% else %}
+                    <tr>
+                        <td class="edit-category-table text-center">{{ notification.message}}</td>
+                        <td class="edit-category-table text-center">{{ notification.timestamp }}</td>
+                        <td class="edit-category-table text-center">{{ notification.title }} {{ notification.first_name }} {{ notification.last_name }} booked {{ notification.room_name }} from {{notification.checkin}} to {{ notification.checkout }}</td>
+                        <td class="edit-category-table text-center"><input type="checkbox" name="course-{{ course.course_id }}" value="{{ course.course_id }}" class="delete-course"></td>
+                    </tr>
+                    {% endif %}
                     {% endfor %}
                     </tbody>
                 </table>

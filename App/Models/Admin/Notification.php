@@ -76,8 +76,6 @@ class Notification extends \Core\Model {
         $sql = 'SELECT ' . (($action > 2) ? 'first_name, last_name ' : 'room_name, title, first_name, last_name, checkin, checkout') . ' FROM ' . (($action > 2) ? 'users' : 'bookings') . ' WHERE ' . (($action > 2) ? 'id' : 'booking_id') . ' = :id';
         $db  = static::getDB();
 
-        //return $sql;
-
         $stm = $db->prepare($sql);
         $stm->bindValue(':id', $id, PDO::PARAM_INT);
         $stm->setFetchMode(PDO::FETCH_ASSOC);
