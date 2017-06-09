@@ -55,7 +55,7 @@ class Notification extends \Core\Model {
         foreach ($results as $result){
 
             $action = $result['action'] ?? false;
-            $id     = ($result['action'] > 2) ? $result['booking_id'] : $result['user_id'];
+            $id     = ($result['action'] > 2) ? $result['user_id'] : $result['booking_id'];
 
             // get notification info
             $info = self::getNotificationsInfo($action, $id);
