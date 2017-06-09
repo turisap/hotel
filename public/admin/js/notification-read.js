@@ -3,6 +3,9 @@
  */
 $(document).ready(function () {
 
+
+
+
     $('.set-read').click(function () {
 
         // get notification id from link id attribute
@@ -31,13 +34,34 @@ $(document).ready(function () {
                     var notification = notification_id.parents('.notification-container');
                     //alert(JSON.stringify(notification, null, 4));
                     notification.remove();
-                    
+
+                   checkCounter();
+
 
                 }
 
             }
         });
 
-    })
+
+
+    });
+
+
+
+  checkCounter();
+
 
 });
+
+
+function checkCounter(){
+    // get counter element and its value in order to remove it if its equal 0
+    var counter = $('#notificationCount');
+    var counterValue = counter.text();
+    // remove red counter if it's equal to 0 on document ready
+    if (counterValue == 0){
+        counter.remove();
+    }
+
+}
