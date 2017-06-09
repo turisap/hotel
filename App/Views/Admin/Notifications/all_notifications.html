@@ -21,21 +21,24 @@
                 <table class="table table-bordered table-hover">
                     <thead>
                     <tr>
-                        <th class="text-center">Title</th>
+                        <th class="text-center col-lg-3">Title</th>
+                        <th class="edit-category-table text-center col-lg-2">Date/Time</th>
                         <th class="text-center">Description</th>
-                        <th colspan="2" class="text-center">Actions</th>
+                        <th class="text-center col-lg-2">Actions</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {% for course in courses %}
+                    {% for notification in notifications %}
                     <tr>
-                        <td class="edit-category-table text-center">{{ course.description}}</td>
-                        <td class="edit-category-table text-center">{{ course.price }}</td>
+                        <td class="edit-category-table text-center">{{ notification.message}}</td>
+                        <td class="edit-category-table text-center">{{ notification.timestamp }}</td>
+                        <td class="edit-category-table text-center">{{ notification.description }}</td>
                         <td class="edit-category-table text-center"><input type="checkbox" name="course-{{ course.course_id }}" value="{{ course.course_id }}" class="delete-course"></td>
                     </tr>
                     {% endfor %}
                     </tbody>
                 </table>
+             </form>
 
 </div>
 

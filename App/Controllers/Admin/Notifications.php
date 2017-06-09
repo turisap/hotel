@@ -23,9 +23,9 @@ class Notifications extends \Core\Admin {
 
 
     // renders page with all notifications
-    public function allUnreadNotifications(){
+    public function allNotifications(){
 
-        $notifications = Notification::getAllUnreadNotifications();
+        $notifications = Notification::getAllNotifications(false, false);
 
         if($notifications){
 

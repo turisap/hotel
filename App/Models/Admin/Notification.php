@@ -42,11 +42,49 @@ class Notification extends \Core\Model {
         $stm = $db->prepare($sql);
 
         // fetch a class or just a column in the case if we need only the number of notifications
-        $count ? $stm->setFetchMode(PDO::FETCH_COLUMN, 0) : $stm->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $count ? $stm->setFetchMode(PDO::FETCH_COLUMN, 0) : $stm->setFetchMode(PDO::FETCH_ASSOC);
 
         $stm->execute();
 
+        $results = $stm->fetchAll();
+
+        // array for keeping notificatons with info
+        $full_results = array();
+
+        // find and append information about notifications from respective tables
+        foreach ($results as $result){
+
+            $action = $result['action'] ?? false;
+            $id     = ($result['action'] > 2) ? $result['booking_id'] : $result['user_id'];
+
+            // get notification info
+            $info = self::getNotificationsInfo($action, $id);
+
+            // merge results into a single array
+            $full_results[] = array_merge($result, $info[0]);
+
+        }
+
+        return $full_results;
+    }
+
+
+    // supplies simple info about notification from other tables
+    public static function getNotificationsInfo($action, $id){
+
+        // choose a table and columns based on action parameter
+        $sql = 'SELECT ' . (($action > 2) ? 'first_name, last_name ' : 'room_name, title, first_name, last_name, checkin, checkout') . ' FROM ' . (($action > 2) ? 'users' : 'bookings') . ' WHERE ' . (($action > 2) ? 'id' : 'booking_id') . ' = :id';
+        $db  = static::getDB();
+
+        //return $sql;
+
+        $stm = $db->prepare($sql);
+        $stm->bindValue(':id', $id, PDO::PARAM_INT);
+        $stm->setFetchMode(PDO::FETCH_ASSOC);
+        $stm->execute();
+
         return $stm->fetchAll();
+
     }
 
 
