@@ -475,10 +475,25 @@ h3.cancel {
     overflow: hidden;
 }
 
+
+/* ========================================== STYLES FOR NOTIFICATIONS IN NAVBAR =============================== */
 .badge-notifications {
     color: white;
     background-color: darkred!important;
 }
+
+.notification-read {
+    cursor: pointer;
+    color: #ffcacf;
+}
+
+.notification-read:hover {
+    color: #ff8880;
+}
+
+
+
+
 
 
 

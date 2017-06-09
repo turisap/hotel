@@ -40,4 +40,19 @@ class Notifications extends \Core\Admin {
 
     }
 
+
+    // this method sets a notification as viewed
+    public static function setAsRead(){
+
+        $notification_id = $_POST['notification_id'] ?? false;
+
+        if($notification_id){
+
+            Notification::setAsRead($notification_id);
+            return true;
+
+        }
+        return false;
+    }
+
 }

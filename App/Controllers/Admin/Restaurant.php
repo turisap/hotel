@@ -208,7 +208,7 @@ class Restaurant extends \Core\Admin {
     public function validateCategoryName(){
 
         $is_valid = ! Menu::categoryExists($_GET['category_name'], $_GET['ignore_id'] ?? null); // check the email in the database,
-        // get request from profile/edit
+
         header('Content-type: application/json'); //
         echo json_encode($is_valid); //echo out true or false for ajax
 
@@ -301,7 +301,7 @@ class Restaurant extends \Core\Admin {
     public function validateCourseName(){
 
         $is_valid = ! Menu::courseExists($_GET['course_name'], $_GET['ignore_id'] ?? null); // check the email in the database,
-        // get request from profile/edit
+
         header('Content-type: application/json'); //
         echo json_encode($is_valid); //echo out true or false for ajax
 

@@ -10,7 +10,6 @@ namespace App\Models\Admin;
 
 use PDO;
 use DateTime;
-use DateTimeZone;
 
 
 class Notification extends \Core\Model {
@@ -38,9 +37,9 @@ class Notification extends \Core\Model {
         // get all notifications, read only or unread only (0 for all (by default), 1 for unread and 0 for read only)
         $sql .= $unread ? ($unread == 1 ? ' WHERE read_status = 1' : ' WHERE read_status = 0') : '';
 
-        $sql .= $limit ? ' LIMIT ' . $limit : '' ;
-
         $sql .= $count ? '' : ' ORDER BY timestamp ASC';
+
+        $sql .= $limit ? ' LIMIT ' . $limit : '' ;
 
         //return $sql;
         $db  = static::getDB();
@@ -112,7 +111,7 @@ class Notification extends \Core\Model {
         $diff = $date->diff($today);
 
         $message =  (($diff->d) > 0) ? $diff->d . ' day(s) and ' . $diff->h . ' ago' : '' ;
-        $message .= ($diff->d == 0) ? ($diff->h . ' hours ' .  $diff->i . ' minutes ago') : '';
+        $message .= ($diff->d == 0 && $diff->h != 0) ? ($diff->h . ' hours ' .  $diff->i . ' minutes ago') : ($diff->i . ' minutes ago');
 
         return $message;
 
@@ -124,8 +123,21 @@ class Notification extends \Core\Model {
 
         return [
             'count' => self::getAllNotifications(true, true, false),
-           // 'notifications'           => self::getAllNotifications(false, true, 3)
+            'notifications'           => self::getAllNotifications(false, true, 7)
         ];
+
+    }
+
+
+    // this method sets a notification as viewed
+    public static function setAsRead($notification_id){
+
+        $sql = 'UPDATE ' . static::$db_table . ' SET read_status = 0 WHERE notification_id = ' . $notification_id;
+
+        $db  = static::getDB();
+        $stm = $db->prepare($sql);
+
+        return $stm->execute();
 
     }
 
