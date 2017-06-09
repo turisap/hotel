@@ -45,6 +45,7 @@ class View
             $twig->addGlobal('current_user', \App\Authentifiacation::getCurrentUser());// add current user for global twig usage
             $twig->addGlobal('flash_messages', \App\Flash::getFlashMessage()); // add flash messages for twig global usage
             $twig->addGlobal('site_name', \App\Config::SITE_NAME); // add site name for twig global usage
+            $twig->addGlobal('notifications_global', \App\Models\Admin\Notification::getGlobalPackage()); // getting notifications to show in the navbar
         }
 
         return $twig->render($template, $args);

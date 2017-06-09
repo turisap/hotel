@@ -31,14 +31,16 @@ class Notification extends \Core\Model {
 
 
     // this method gets all unread notifications
-    public static function getAllNotifications($count=false, $unread=false){
+    public static function getAllNotifications($count=false, $unread=false, $limit=false){
 
         $sql = 'SELECT ' . ($count ? 'COUNT(notification_id)' :  '*') . ' FROM '  . static::$db_table;
 
-        // get all notifications, read only or unread only
+        // get all notifications, read only or unread only (0 for all (by default), 1 for unread and 0 for read only)
         $sql .= $unread ? ($unread == 1 ? ' WHERE read_status = 1' : ' WHERE read_status = 0') : '';
 
-        $sql .= ' ORDER BY timestamp ASC';
+        $sql .= $limit ? ' LIMIT ' . $limit : '' ;
+
+        $sql .= $count ? '' : ' ORDER BY timestamp ASC';
 
         //return $sql;
         $db  = static::getDB();
@@ -46,33 +48,39 @@ class Notification extends \Core\Model {
         $stm = $db->prepare($sql);
 
         // fetch a class or just a column in the case if we need only the number of notifications
-        $count ? $stm->setFetchMode(PDO::FETCH_COLUMN, 0) : $stm->setFetchMode(PDO::FETCH_ASSOC);
+        $count ?  : $stm->setFetchMode(PDO::FETCH_ASSOC);
 
         $stm->execute();
 
-        $results = $stm->fetchAll();
+        $results = $count ? $stm->fetch(PDO::FETCH_COLUMN) : $stm->fetchAll() ;
 
-        // array for keeping notificatons with info
-        $full_results = array();
 
-        // find and append information about notifications from respective tables
-        foreach ($results as $result){
+        if( ! $count){ // only if we didn't set the method just to count notifications
 
-            $action = $result['action'] ?? false;
-            $id     = ($result['action'] > 2) ? $result['user_id'] : $result['booking_id'];
+            // array for keeping notificatons with info
+            $full_results = array();
 
-            // get notification info
-            $info = self::getNotificationsInfo($action, $id);
+            // find and append information about notifications from respective tables
+            foreach ($results as $result){
 
-            // turn timestamp to a message
-            $result['timestamp'] = self::getDaysAndHoursAgo($result['timestamp']);
+                $action = $result['action'] ?? false;
+                $id     = ($result['action'] > 2) ? $result['user_id'] : $result['booking_id'];
 
-            // merge results into a single array
-            $full_results[] = array_merge($result, $info[0]);
+                // get notification info
+                $info = self::getNotificationsInfo($action, $id);
 
+                // turn timestamp to a message
+                $result['timestamp'] = self::getDaysAndHoursAgo($result['timestamp']);
+
+                // merge results into a single array
+                $full_results[] = array_merge($result, $info[0]);
+
+            }
+
+            return $full_results;
         }
 
-        return $full_results;
+        return $results;
     }
 
 
@@ -107,6 +115,17 @@ class Notification extends \Core\Model {
         $message .= ($diff->d == 0) ? ($diff->h . ' hours ' .  $diff->i . ' minutes ago') : '';
 
         return $message;
+
+    }
+
+
+    // this method assemblies a package for Twig global notifications (to show in navbar)
+    public static function getGlobalPackage(){
+
+        return [
+            'count' => self::getAllNotifications(true, true, false),
+           // 'notifications'           => self::getAllNotifications(false, true, 3)
+        ];
 
     }
 

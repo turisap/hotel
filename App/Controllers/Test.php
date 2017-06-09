@@ -30,7 +30,7 @@ class Test
 
     public function test(){
 
-        print_r(Notification::getAllNotifications(false, false));
+        print_r(Notification::getAllNotifications(true, true, false));
         //print_r(Notification::getNotificationsInfo(4, 1));
     }
 
