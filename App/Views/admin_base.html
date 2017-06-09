@@ -165,10 +165,10 @@
             </ul>
         </li>
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"><span class="badge badge-notifications">{{notifications_global.count}}</span></i> <b class="caret"></b></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"><span class="badge badge-notifications" id="notificationCount">{{notifications_global.count}}</span></i> <b class="caret"></b></a>
             <ul class="dropdown-menu alert-dropdown">
                 {% for notification in notifications_global.notifications %}
-                <li>
+                <li class="notification-container">
                     <div class="row">
                         <div class="col-lg-1"></div>
                         <div class="col-lg-8"> <p>{{ notification.message }}</p></div>
