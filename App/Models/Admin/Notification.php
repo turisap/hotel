@@ -31,17 +31,12 @@ class Notification extends \Core\Model {
     // this method gets all unread notifications
     public static function getAllUnreadNotifications($count=false){
 
-        $sql = 'SELECT';
-
-        // add count statement if it was required
-        $sql .= $count ? ' COUNT(notification_id) ' : ' * ';
-
-        $sql .= 'FROM ' . static::$db_table . ' WHERE read_status = 1';
+        $sql = 'SELECT ' . ($count ? 'COUNT(notification_id)' :  '*') . ' FROM '  . static::$db_table . ' WHERE read_status = 1';
 
         $db  = static::getDB();
 
         $stm = $db->prepare($sql);
-        $stm->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $count ? $stm->setFetchMode(PDO::FETCH_COLUMN, 0) : $stm->setFetchMode(PDO::FETCH_CLASS, get_called_class());
 
         $stm->execute();
 

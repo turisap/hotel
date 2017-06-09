@@ -12,6 +12,7 @@ use \App\Authentifiacation;
 use App\Calendar;
 use App\Mail;
 use App\Models\Admin\Booking;
+use App\Models\Admin\Notification;
 use App\Models\Admin\Photo;
 use App\Models\Admin\Search;
 use App\Models\Review;
@@ -28,14 +29,7 @@ class Test
 
 
     public function test(){
-        $a = ['course' => 1, 'category' => ''];
-
-        $b = $a['category'] ?? false;
-        if($b){
-            echo 'uye';
-        } else {
-            echo 'no';
-        }
+        print_r(Notification::getAllUnreadNotifications(false));
 
     }
 
