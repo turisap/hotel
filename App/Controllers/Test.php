@@ -29,7 +29,8 @@ class Test
 
 
     public function test(){
-        print_r(Notification::getAllUnreadNotifications(false));
+
+        print_r(Notification::getAllNotifications(false, 2));
 
     }
 

@@ -8,77 +8,36 @@
 {% block footer %}
 
 
-<script>
-
-
-    $(document).ready(function () {
-
-        // make delete checked button active on checking at least one checkbox and disable it if no checkboxes are checked
-        $('.delete-course').change(function () {
-
-            if($('.delete-course').is(':checked')){
-                $('#deleteCheckedCourses').removeAttr('disabled');
-            } else {
-                $('#deleteCheckedCourses').attr('disabled', 'disabled');
-            }
-
-        });
-
-        // disable select boxes with categories if search by name input isn't empty
-        $('#courseName').change(function () {
-
-            if($(this).val() != ''){
-                $('#courseCategories').attr('disabled', 'disabled');
-            } else {
-                $('#courseCategories').removeAttr('disabled');
-            }
-        });
-
-
-        // disable input with course name on category choosing
-        $('#courseCategories').change(function () {
-
-            if($(this).val() != 0){
-                $('#courseName').attr('disabled', 'disabled');
-            } else {
-                $('#courseName').removeAttr('disabled');
-            }
-
-        })
-    });
-</script>
-
 {% endblock %}
 
 
 {% block body %}
 
 <div class="row wrap">
-    <form class="form-inline" method="post" id="sortBookings" action="/admin/restaurant/sort-all-courses">
 
-        <div class="form-group">
-            <label for="courseName">Find by course name</label>
-            <input class="form-control"  id="courseName" name="course_name">
-        </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div>
+            <form method="post" action="/admin/notifications/delete-checked">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th class="text-center">Title</th>
+                        <th class="text-center">Description</th>
+                        <th colspan="2" class="text-center">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for course in courses %}
+                    <tr>
+                        <td class="edit-category-table text-center">{{ course.description}}</td>
+                        <td class="edit-category-table text-center">{{ course.price }}</td>
+                        <td class="edit-category-table text-center"><input type="checkbox" name="course-{{ course.course_id }}" value="{{ course.course_id }}" class="delete-course"></td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
 
-        <div class="form-group">
-            <label for="courseCategories">Or by category</label>
-            <select class="form-control" id="courseCategories" name="category">
-                <option value="0">Select a category</option>
-                {% for category in categories %}
-                <option value="{{category.category_id}}" {% if search_terms.category == category.category_id %} selected {% endif %}>{{category.category_name}}</option>
-                {% endfor %}
-            </select>
-        </div>
-
-        <div class="checkbox">
-            <label class="order"><input type="checkbox"  name="order" {% if search_terms.order == 1 %} checked {% endif %} value="1" >Most expensive first</label>
-        </div>
-        <button class="btn btn-primary" type="submit" data-loading-text="searching" >Apply</button>
-
-
-
-    </form>
+</div>
 
 
 

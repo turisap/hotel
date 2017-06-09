@@ -8,6 +8,10 @@
 
 namespace App\Controllers\Admin;
 
+use \App\Models\Admin\Notification;
+use \Core\View;
+use \App\Flash;
+
 
 class Notifications extends \Core\Admin {
 
@@ -22,6 +26,17 @@ class Notifications extends \Core\Admin {
     public function allUnreadNotifications(){
 
         $notifications = Notification::getAllUnreadNotifications();
+
+        if($notifications){
+
+            View::renderTemplate('admin/notifications/all_notifications.html', ['notifications' => $notifications]);
+
+        } else {
+
+            Flash::addMessage('There are no unread notifications',Flash::INFO);
+            View::renderTemplate('admin/notifications/all_notifications.html', ['empty' => 1]);
+
+        }
 
     }
 
