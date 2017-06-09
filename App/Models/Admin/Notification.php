@@ -9,6 +9,7 @@
 namespace App\Models\Admin;
 
 use PDO;
+use DateTime;
 
 
 class Notification extends \Core\Model {
@@ -36,6 +37,8 @@ class Notification extends \Core\Model {
         // get all notifications, read only or unread only
         $sql .= $unread ? ($unread == 1 ? ' WHERE read_status = 1' : ' WHERE read_status = 0') : '';
 
+        $sql .= ' ORDER BY timestamp ASC';
+
         //return $sql;
         $db  = static::getDB();
 
@@ -60,6 +63,9 @@ class Notification extends \Core\Model {
             // get notification info
             $info = self::getNotificationsInfo($action, $id);
 
+            // turn timestamp to a message
+            $result['timestamp'] = self::getDaysAndHoursAgo($result['timestamp']);
+
             // merge results into a single array
             $full_results[] = array_merge($result, $info[0]);
 
@@ -82,6 +88,22 @@ class Notification extends \Core\Model {
         $stm->execute();
 
         return $stm->fetchAll();
+
+    }
+
+
+    // this method turns timestamp into "days and hours ago format)
+    public static function getDaysAndHoursAgo($timestamp){
+
+        $today = new DateTime();
+        $date = new DateTime($timestamp);
+
+        $diff = $date->diff($today);
+
+        $message =  (($diff->d) > 0) ? $diff->d . ' day(s) and ' . $diff->h . ' ago' : '' ;
+        $message .= ($diff->d == 0) ? ($diff->h . ' hours ' .  $diff->i . ' minutes ago') : '';
+
+        return $message;
 
     }
 
