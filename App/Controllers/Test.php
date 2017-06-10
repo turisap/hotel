@@ -32,7 +32,10 @@ class Test
 
         //print_r(Notification::getAllNotifications(false, true, 3));
         //print_r(Notification::getNotificationsInfo(4, 1));
-        print_r(Notification::getGlobalPackage());
+        //print_r(Notification::getGlobalPackage());
+        //Notification::sinceLastVisit();
+        print_r($_SESSION['new_notifications']);
+        print_r(Notification::showUnviewedNotifications());
     }
 
 

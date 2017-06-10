@@ -35,7 +35,8 @@ $(document).ready(function () {
                     //alert(JSON.stringify(notification, null, 4));
                     notification.remove();
 
-                   checkCounter();
+                    // check counter after a successful ajax request
+                    checkCounter();
 
 
                 }
@@ -48,7 +49,7 @@ $(document).ready(function () {
     });
 
 
-
+  // check counter on document.ready
   checkCounter();
 
 
@@ -56,9 +57,11 @@ $(document).ready(function () {
 
 
 function checkCounter(){
+
     // get counter element and its value in order to remove it if its equal 0
     var counter = $('#notificationCount');
     var counterValue = counter.text();
+
     // remove red counter if it's equal to 0 on document ready
     if (counterValue == 0){
         counter.remove();

@@ -110,8 +110,8 @@ class Notification extends \Core\Model {
 
         $diff = $date->diff($today);
 
-        $message =  (($diff->d) > 0) ? $diff->d . ' day(s) and ' . $diff->h . ' ago' : '' ;
-        $message .= ($diff->d == 0 && $diff->h != 0) ? ($diff->h . ' hours ' .  $diff->i . ' minutes ago') : ($diff->i . ' minutes ago');
+        $message =  (($diff->d) > 0) ? $diff->d . ' day(s) and ' . $diff->h . ' hours ago' : '' ;
+        $message .= ($diff->d == 0 && $diff->h != 0) ? ($diff->h . ' hours ' .  $diff->i . ' minutes ago') : ( ($diff->d == 0 && $diff->h != 0) ? ($diff->i . ' minutes ago') : '');
 
         return $message;
 
@@ -123,7 +123,7 @@ class Notification extends \Core\Model {
 
         return [
             'count' => self::getAllNotifications(true, true, false),
-            'notifications'           => self::getAllNotifications(false, true, 7)
+            'notifications'           => self::getAllNotifications(false, true, 4)
         ];
 
     }
@@ -142,6 +142,88 @@ class Notification extends \Core\Model {
     }
 
 
+
+    // this method assemblies a message for /admin/home/index about what happened since last visit
+    public static function sinceLastVisit(){
+
+        // we assume this is th beginning of a new visit only if $_SESSION['new_notifications'] isn't set
+        $notification_ids = $_SESSION['new_notifications'] ?? false;
+
+        if( ! $notification_ids){
+
+            // first get all notifications with view_status equal to one
+            $sql = 'SELECT notification_id FROM notifications WHERE view_status = 1';
+
+            $db  = static::getDB();
+            $stm = $db->prepare($sql);
+
+            $stm->execute();
+
+            $notifications = $stm->fetchAll(PDO::FETCH_COLUMN);
+
+            if($notifications){
+
+                // if there are results, set them as viewed in the database
+                self::setAllAsViewed();
+
+                // set session to show these notifications during session
+                $_SESSION['new_notifications'] = $notifications;
+
+                return true;
+
+            }
+
+
+        }
+
+
+        return false;
+
+    }
+
+
+
+    // this method sets all notifications as viewed
+    protected static function setAllAsViewed(){
+
+        $sql = 'UPDATE notifications SET view_status = 0';
+        $db  = static::getDB();
+
+        $stm = $db->prepare($sql);
+
+        return $stm->execute();
+
+    }
+
+
+    // this method gets all notifications based on ids in session from previous method
+    public static function showUnviewedNotifications(){
+
+
+        $notification_ids = $_SESSION['new_notifications'] ?? false;
+
+        if($notification_ids) {
+
+            $sql = 'SELECT * FROM notifications WHERE notification_id = ?';
+            $db  =  static::getDB();
+
+            $stm = $db->prepare($sql);
+            $stm->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+            $notifications = array();
+
+            foreach ($notification_ids as $notification_id){
+
+                $stm->execute([$notification_id]);
+                $notifications[] = $stm->fetch();
+
+            }
+
+            return $notifications;
+
+        }
+        return false;
+    }
 
 
 }
