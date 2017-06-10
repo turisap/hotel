@@ -10,29 +10,12 @@ namespace App;
 class Config
 {
 
-    /**
-     * Database host
-     * @var string
-     */
+    // database credentials
     const DB_HOST = 'localhost';
-
-    /**
-     * Database name
-     * @var string
-     */
     const DB_NAME = 'hotel';
-
-    /**
-     * Database user
-     * @var string
-     */
     const DB_USER = 'root';
-
-    /**
-     * Database Password
-     * @var string
-     */
     const DB_PASSWORD = '';
+
 
     /*errors dispalying only for users with authorised access to it */
     const SHOW_ERRORS = true;
@@ -60,5 +43,8 @@ class Config
 
     // currency (sign of currency which will be displayed with prices)
     const CURRENCY = '$';
+
+    // days keeping notifications
+    const DAYS_KEEP_NOTIFICATIONS = '-10 days';
 
 }

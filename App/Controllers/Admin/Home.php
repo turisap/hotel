@@ -11,6 +11,7 @@ namespace App\Controllers\Admin;
 
 use App\Authentifiacation;
 use App\Models\Admin\Booking;
+use App\Models\Admin\Notification;
 use Core\View;
 
 class Home  extends \Core\Admin {
@@ -28,7 +29,29 @@ class Home  extends \Core\Admin {
     // renders home admin panel
     public function indexAction(){
 
-        View::renderTemplate('Admin/Home/index.html');
+        // check new unviewed notifications first (set sessions with their IDs)
+        Notification::sinceLastVisit();
+        
+        // get unviewed notifications
+        $notifications = Notification::showUnviewedNotifications();
+
+        if($notifications){ // get their types count if there are new notif
+
+            $events = Notification::getTypesCount($notifications);
+
+            // delete old notifications from the database
+            Notification::deleteOldNotifications();
+
+            View::renderTemplate('Admin/Home/index.html', [
+                'notifications' => $notifications,
+                'events'        => $events
+            ]);
+        } else {
+
+            // render just empty template
+            View::renderTemplate('Admin/Home/index.html');
+
+        }
 
     }
 

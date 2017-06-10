@@ -8,6 +8,7 @@
 
 namespace App\Models\Admin;
 
+use App\Config;
 use PDO;
 use DateTime;
 
@@ -174,6 +175,7 @@ class Notification extends \Core\Model {
             }
 
 
+
         }
 
 
@@ -204,7 +206,7 @@ class Notification extends \Core\Model {
 
         if($notification_ids) {
 
-            $sql = 'SELECT * FROM notifications WHERE notification_id = ?';
+            $sql = 'SELECT notification_id, booking_id, user_id, action FROM notifications WHERE notification_id = ?';
             $db  =  static::getDB();
 
             $stm = $db->prepare($sql);
@@ -223,6 +225,61 @@ class Notification extends \Core\Model {
 
         }
         return false;
+    }
+
+
+    // this method counts how many bookings and how many bookings, users and so on in notifications array based on previous method
+    public static function getTypesCount($notifications){
+
+        // initialize array for keeping counts
+        $events = [
+            'cancellations'   => 0,
+            'new_bookings'    => 0,
+            'new_users'       => 0,
+            'activated_users' => 0
+        ];
+
+        foreach ($notifications as $notification){
+
+            switch ($notification->action) {
+
+                case "1":
+                    $events['new_bookings']++;
+                    break;
+                case "2":
+                    $events['cancellations']++;
+                    break;
+                case "3":
+                    $events['activated_users']++;
+                    break;
+                case "4":
+                    $events['new_users']++;
+                    break;
+                default:
+                    return false;
+            }
+
+        }
+
+        return $events;
+
+    }
+
+
+    // this method deletes old notifications from the database
+    public static function deleteOldNotifications(){
+
+        $today = new DateTime();
+        $today->modify(Config::DAYS_KEEP_NOTIFICATIONS);
+        $timestamp = $today->format('Y-m-d H:i:s');
+
+        $sql = "DELETE FROM " . static::$db_table . " WHERE timestamp < '" . $timestamp . "'";
+
+        $db  = static::getDB();
+        $stm = $db->prepare($sql);
+
+        $stm->execute();
+
     }
 
 

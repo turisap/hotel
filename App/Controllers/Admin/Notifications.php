@@ -33,7 +33,7 @@ class Notifications extends \Core\Admin {
 
         } else {
 
-            Flash::addMessage('There are no unread notifications',Flash::INFO);
+            Flash::addMessage('There are no unread notifications', Flash::INFO);
             View::renderTemplate('admin/notifications/all_notifications.html', ['empty' => 1]);
 
         }

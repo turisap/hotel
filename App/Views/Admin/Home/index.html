@@ -1,9 +1,47 @@
 {% extends "admin_base.html" %}
 
 {% block title %}Home{% endblock %}
+{% block page_heading %}Welcome back, {{ current_user.first_name }} {% endblock %}
 
 {% block body %}
-{% if current_user is not empty %}
+
+
+{% if notifications is not empty %}
+
+<h2>You've got something to see!</h2>
+<p class="lead">Since your last visit:</p>
+<ul>
+    {% if events.new_bookings != 0  %}<li>{{events.new_bookings}}{% if events.new_bookings > 1 %} bookings were made {% else %} booking was made {% endif %}<a href="#">view</a></li>{% endif %}
+    {% if events.cancellations != 0 %}<li>{{events.cancellations }} {% if events.cancellations > 1 %} bookings were cancelled {% else %} booking was cancelled {% endif %}<a href="#">view</a></li>{% endif %}
+    {% if events.new_users     != 0 %}<li>{{events.new_users}} {% if events.new_users > 1 %} users registered in {% else %} user registered in {% endif %} {{site_name}}</li>{% endif %}
+    {% if events.activated_users != 0  %}<li>{{events.activated_users}} {% if events.activated_users > 1 %} users activated accounts {% else %} user activated account {% endif %}</li>{% endif %}
+</ul>
+
+{% else %}
+
+<h2>Nothing has happened since your last visit</h2>
+
+{% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--{% if current_user is not empty %}
     <h1 class="home-test">Welcome,  {{ current_user.first_name }}</h1>
 {% else %}
     <h1 class="home-test">Welcome, dear guest!</h1>
@@ -21,7 +59,7 @@
 
 {% if session is not empty %}
 <p class="lead home-test">You can see this only if session array isn't empty</p>
-{% endif %}
+{% endif %} -->
 
 {% endblock %}
 
