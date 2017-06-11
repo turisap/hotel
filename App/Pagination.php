@@ -17,8 +17,17 @@ class Pagination {
         $this->current_page = $page;
         $this->items_per_page = $items_per_page;
         $this->items_total = $items_total_count;
-        $this->
+
+        $methods = get_class_methods($this);
+
+        foreach ($methods as $method){
+            if(method_exists($this, $method) && $method != '__construct'){
+                $this->$method = call_user_func([$this, $method]);
+            }
+        }
+
     }
+
 
     // this method for swithing to the next page
     public function next(){

@@ -184,7 +184,7 @@
 <div class="row wrap">
     <div class="pagination-container">
         <ul class="pagination pagination-lg">
-            <li><a href="/admin/rooms/all-rooms?page=">Previous</a></li>
+            {% if pagination.has_previous != 0 %}<li><a href="/admin/rooms/all-rooms?page=">Previous</a></li>{% endif %}
             <li><a href="#">2</a></li>
             <li><a href="#">3</a></li>
             <li><a href="#">4</a></li>

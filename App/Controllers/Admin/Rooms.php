@@ -116,13 +116,16 @@ class Rooms extends \Core\Admin {
 
         $pagination = new Pagination($current_page, $items_per_page, $rooms_count);
 
-        print_r($pagination);
+        //print_r($pagination);
 
         // first get all rooms from the database (two parameters are limit and offset for pagination)
-      /*  $sets = Room::findAllRoomsWithPhotos($pagination->items_per_page, $pagination->offset());
+        $sets = Room::findAllRoomsWithPhotos($pagination->items_per_page, $pagination->offset());
 
         // pass them to the view
-        View::renderTemplate('admin/rooms/all_rooms.html', ['rooms' => $sets]);*/
+        View::renderTemplate('admin/rooms/all_rooms.html', [
+            'rooms'     => $sets,
+            'paginaion' => $pagination
+        ]);
 
     }
 
