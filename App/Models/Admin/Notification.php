@@ -73,7 +73,7 @@ class Notification extends \Core\Model {
                 $result['timestamp'] = self::getDaysAndHoursAgo($result['timestamp']);
 
                 // merge results into a single array
-                $full_results[] = array_merge($result, $info[0]);
+                $full_results[] = array_merge($result, $info);
 
             }
 
@@ -174,8 +174,6 @@ class Notification extends \Core\Model {
 
             }
 
-
-
         }
 
 
@@ -236,7 +234,9 @@ class Notification extends \Core\Model {
             'cancellations'   => 0,
             'new_bookings'    => 0,
             'new_users'       => 0,
-            'activated_users' => 0
+            'activated_users' => 0,
+            'cancel_ids'      => [],
+            'new_booking_ids' => []
         ];
 
         foreach ($notifications as $notification){
@@ -245,9 +245,11 @@ class Notification extends \Core\Model {
 
                 case "1":
                     $events['new_bookings']++;
+                    $events['new_booking_ids'][] = $notification->booking_id; // add IDs of new bookings
                     break;
                 case "2":
                     $events['cancellations']++;
+                    $events['cancel_ids'][] = $notification->booking_id; // add cancelled booking IDs
                     break;
                 case "3":
                     $events['activated_users']++;
@@ -281,6 +283,8 @@ class Notification extends \Core\Model {
         $stm->execute();
 
     }
+
+
 
 
 }

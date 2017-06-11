@@ -38,7 +38,7 @@ class Test
         //print_r(Notification::showUnviewedNotifications());
 
 
-        print_r(Notification::deleteOldNotifications());
+        print_r(Notification::getNotificationsInfo(3, 14));
     }
 
 

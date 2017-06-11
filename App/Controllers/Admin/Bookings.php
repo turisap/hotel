@@ -474,6 +474,36 @@ class Bookings extends \Core\Admin {
     }
 
 
+    // this method renders template for new bookings from link in admin/home page
+    public function viewNew(){
+
+        // get array of bookings from
+        $ids = $_GET['new_ids'] ?? false;
+
+        if($ids && !empty($ids['ids'])){
+
+            $booking_ids = explode(',', $ids['ids']);
+
+            $bookings = array();
+            foreach ($booking_ids as $booking_id) {
+                if($booking_id != ''){
+                    $bookings[] = Booking::findById($booking_id);
+                }
+            }
+
+            //print_r($bookings);
+
+            View::renderTemplate('admin/bookings/view_new.html', ['bookings' => $bookings]);
+
+
+        } else {
+            Flash::addMessage('It looks like there are no such bookings');
+            self:: redirect('/admin/home/index');
+        }
+
+    }
+
+
 
 
 

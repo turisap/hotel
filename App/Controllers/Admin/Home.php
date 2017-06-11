@@ -31,11 +31,11 @@ class Home  extends \Core\Admin {
 
         // check new unviewed notifications first (set sessions with their IDs)
         Notification::sinceLastVisit();
-        
+
         // get unviewed notifications
         $notifications = Notification::showUnviewedNotifications();
 
-        if($notifications){ // get their types count if there are new notif
+        if($notifications){ // get their types count if there are new notifications
 
             $events = Notification::getTypesCount($notifications);
 
@@ -43,8 +43,8 @@ class Home  extends \Core\Admin {
             Notification::deleteOldNotifications();
 
             View::renderTemplate('Admin/Home/index.html', [
-                'notifications' => $notifications,
-                'events'        => $events
+                'events'        => $events,
+                'notifications' => $notifications
             ]);
         } else {
 
