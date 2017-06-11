@@ -183,17 +183,18 @@
 
 {% if pagination.page_total > 1 %}
 
-<div class="row">
-        <ul class="pager a">
-
-            {% if pagination.has_prev != 0 %}<li class="previous"><a href="/admin/rooms/all-rooms?page={{pagination.previous}}">Previous</a></li>{% endif %}
+<div class="row pages">
+    <div class="center">
+        <ul class="pagination pagination-lg">
+            {% if pagination.has_prev != 0 %}<li><a href="/admin/rooms/all-rooms?page={{pagination.previous}}">Previous</a></li>{% endif %}
 
             {% for page in pagination.page_numbers %}
-            <li><a {% if loop.index == pagination.current_page %} class="active-page" {% endif %} href="/admin/rooms/all-rooms?page={{loop.index}}">{{loop.index}}</a></li>
+            <li {% if loop.index == pagination.current_page %} class="active" {% endif %}><a href="/admin/rooms/all-rooms?page={{loop.index}}">{{loop.index}}</a></li>
             {% endfor %}
 
-            {% if pagination.has_next != 0 %}<li class="next"><a href="/admin/rooms/all-rooms?page={{pagination.next}}">Next</a></li>{% endif %}
+            {% if pagination.has_next != 0 %}<li><a href="/admin/rooms/all-rooms?page={{pagination.next}}">Next</a></li>{% endif %}
         </ul>
+    </div>
 </div>
 
 {% endif %}
@@ -201,7 +202,6 @@
 
 {% for room in rooms %}
 <div class="row wrap">
-
 
     <div class="col-lg-3 col-md-3 col-sm-12 crop">
             <img src="{{ room.path }}" class="img-responsive img-rooms-all">
@@ -223,15 +223,29 @@
             <a href="/admin/rooms/room?id={{ room.id }}"><h3 class="room-name">{{ room.local_name }}</h3></a>
         </div>
 
-
     </div>
-
-
-
-
 </div>
 
 {% endfor %}
+
+{% if pagination.page_total > 1 %}
+
+<div class="row pages">
+    <div class="center">
+        <ul class="pagination pagination-lg">
+            {% if pagination.has_prev != 0 %}<li><a href="/admin/rooms/all-rooms?page={{pagination.previous}}">Previous</a></li>{% endif %}
+
+            {% for page in pagination.page_numbers %}
+            <li {% if loop.index == pagination.current_page %} class="active" {% endif %}><a href="/admin/rooms/all-rooms?page={{loop.index}}">{{loop.index}}</a></li>
+            {% endfor %}
+
+            {% if pagination.has_next != 0 %}<li><a href="/admin/rooms/all-rooms?page={{pagination.next}}">Next</a></li>{% endif %}
+        </ul>
+    </div>
+</div>
+
+{% endif %}
+
 
 {% endblock %}
 

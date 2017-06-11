@@ -116,8 +116,6 @@ class Rooms extends \Core\Admin {
 
         $pagination = new Pagination($current_page, $items_per_page, $rooms_count);
 
-        //print_r($pagination);
-
         // first get all rooms from the database (two parameters are limit and offset for pagination)
         $sets = Room::findAllRoomsWithPhotos($pagination->items_per_page, $pagination->offset());
 
