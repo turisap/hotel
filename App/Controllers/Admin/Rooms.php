@@ -124,7 +124,7 @@ class Rooms extends \Core\Admin {
         // pass them to the view
         View::renderTemplate('admin/rooms/all_rooms.html', [
             'rooms'     => $sets,
-            'paginaion' => $pagination
+            'pagination' => $pagination
         ]);
 
     }

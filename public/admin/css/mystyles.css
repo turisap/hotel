@@ -500,6 +500,19 @@ h3.cancel {
 }
 
 
+/*======================================== PAGINATION STYLES ========================================*/
+.pages {
+    padding: 1% 5%;
+}
+
+.active-page{
+    background-color: #000086;
+}
+.fixed-table-pagination li.active a {
+    background: #000;
+    color: #fff;
+}
+
 
 
 

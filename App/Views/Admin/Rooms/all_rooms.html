@@ -181,17 +181,22 @@
 
 <div id="scrollTo"></div>
 
-<div class="row wrap">
-    <div class="pagination-container">
-        <ul class="pagination pagination-lg">
-            {% if pagination.has_previous != 0 %}<li><a href="/admin/rooms/all-rooms?page=">Previous</a></li>{% endif %}
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="/admin/rooms/all-rooms?page=2">Next</a></li>
+{% if pagination.page_total > 1 %}
+
+<div class="row">
+        <ul class="pager a">
+
+            {% if pagination.has_prev != 0 %}<li class="previous"><a href="/admin/rooms/all-rooms?page={{pagination.previous}}">Previous</a></li>{% endif %}
+
+            {% for page in pagination.page_numbers %}
+            <li><a {% if loop.index == pagination.current_page %} class="active-page" {% endif %} href="/admin/rooms/all-rooms?page={{loop.index}}">{{loop.index}}</a></li>
+            {% endfor %}
+
+            {% if pagination.has_next != 0 %}<li class="next"><a href="/admin/rooms/all-rooms?page={{pagination.next}}">Next</a></li>{% endif %}
         </ul>
-    </div>
 </div>
+
+{% endif %}
 
 
 {% for room in rooms %}
