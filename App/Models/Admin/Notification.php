@@ -245,25 +245,31 @@ class Notification extends \Core\Model {
 
         foreach ($notifications as $notification){
 
-            switch ($notification->action) {
+            if(isset($notification->action)){ // there are maybe deleted notifications while their ids are still in the SESSION
 
-                case "1":
-                    $events['new_bookings']++;
-                    $events['booking_ids'][] = $notification->booking_id; // add IDs of new bookings
-                    break;
-                case "2":
-                    $events['cancellations']++;
-                    $events['booking_ids'][] = $notification->booking_id; // add cancelled booking IDs
-                    break;
-                case "3":
-                    $events['activated_users']++;
-                    break;
-                case "4":
-                    $events['new_users']++;
-                    break;
-                default:
-                    return false;
+                switch ($notification->action) {
+
+                    case "1":
+                        $events['new_bookings']++;
+                        $events['booking_ids'][] = $notification->booking_id; // add IDs of new bookings
+                        break;
+                    case "2":
+                        $events['cancellations']++;
+                        $events['booking_ids'][] = $notification->booking_id; // add cancelled booking IDs
+                        break;
+                    case "3":
+                        $events['activated_users']++;
+                        break;
+                    case "4":
+                        $events['new_users']++;
+                        break;
+                    default:
+                        return false;
+                }
+
             }
+
+
 
         }
 

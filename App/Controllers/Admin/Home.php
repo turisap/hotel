@@ -34,8 +34,10 @@ class Home  extends \Core\Admin {
 
         // get unviewed notifications
         $notifications = Notification::showUnviewedNotifications();
+        //print_r($notifications);
 
         if($notifications){ // get their types count if there are new notifications
+
 
             $events = Notification::getTypesCount($notifications);
 
