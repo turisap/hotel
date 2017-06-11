@@ -498,7 +498,7 @@ class Bookings extends \Core\Admin {
             }
 
             View::renderTemplate('admin/bookings/view_new.html', ['bookings' => $bookings]);
-            
+
         } else {
             Flash::addMessage('It looks like there are no such bookings');
             self:: redirect('/admin/home/index');

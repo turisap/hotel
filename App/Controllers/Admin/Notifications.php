@@ -25,11 +25,18 @@ class Notifications extends \Core\Admin {
     // renders page with all notifications
     public function allNotifications(){
 
-        $notifications = Notification::getAllNotifications(false, false);
+        // query string from Only unread button
+        $sort = $_GET['sort'] ?? false;
+
+        // get all notifications or only unread if specified
+        $notifications = $sort ? Notification::getAllNotifications(false, true, false) : Notification::getAllNotifications();
 
         if($notifications){
 
-            View::renderTemplate('admin/notifications/all_notifications.html', ['notifications' => $notifications]);
+            View::renderTemplate('admin/notifications/all_notifications.html', [
+                'notifications' => $notifications,
+                'sort'          => $sort
+            ]);
 
         } else {
 

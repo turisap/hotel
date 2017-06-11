@@ -491,6 +491,10 @@ h3.cancel {
     color: #ff8880;
 }
 
+#onlyUnread, #onlyAll {
+    margin-left: 2%;
+}
+
 
 
 

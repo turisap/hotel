@@ -72,8 +72,10 @@ class Notification extends \Core\Model {
                 // turn timestamp to a message
                 $result['timestamp'] = self::getDaysAndHoursAgo($result['timestamp']);
 
-                // merge results into a single array
-                $full_results[] = array_merge($result, $info);
+                // merge results into a single array (only if info found, it isn't in the case of manual deletion of booking or a user from the database)
+                if($info){
+                    $full_results[] = array_merge($result, $info[0]);
+                }
 
             }
 
@@ -90,6 +92,8 @@ class Notification extends \Core\Model {
         // choose a table and columns based on action parameter
         $sql = 'SELECT ' . (($action > 2) ? 'first_name, last_name ' : 'room_name, title, first_name, last_name, checkin, checkout') . ' FROM ' . (($action > 2) ? 'users' : 'bookings') . ' WHERE ' . (($action > 2) ? 'id' : 'booking_id') . ' = :id';
         $db  = static::getDB();
+
+        //return $sql;
 
         $stm = $db->prepare($sql);
         $stm->bindValue(':id', $id, PDO::PARAM_INT);
