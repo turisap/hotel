@@ -484,7 +484,7 @@ class Bookings extends \Core\Admin {
 
         // run further code only if IDs are present
         if($ids && !empty($ids)){
-            
+
             $booking_ids = explode(',', $ids);
 
             // get rid of duplicate  IDs values ( ine the case when the same booking was made and cancelled)
@@ -497,10 +497,8 @@ class Bookings extends \Core\Admin {
                 }
             }
 
-
             View::renderTemplate('admin/bookings/view_new.html', ['bookings' => $bookings]);
-
-
+            
         } else {
             Flash::addMessage('It looks like there are no such bookings');
             self:: redirect('/admin/home/index');
