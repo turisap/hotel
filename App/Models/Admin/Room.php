@@ -133,10 +133,10 @@ class Room extends \Core\Model {
 
 
     // returns array with all pictures and rooms objects
-    public static function findAllRoomsWithPhotos(){
+    public static function findAllRoomsWithPhotos($limit=[], $offset=[]){
 
-        // get all rooms
-        $rooms = static::findAll();
+        // get all rooms ( the two last parameters are limit and offset for pagination)
+        $rooms = static::findAll(null, $limit, $offset);
 
 
 

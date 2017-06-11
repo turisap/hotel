@@ -30,7 +30,7 @@ class Test
 
     public function test(){
 
-        print_r(Notification::getAllNotifications());
+        //print_r(Notification::getAllNotifications());
         //print_r(Notification::getNotificationsInfo(4, 1));
         //print_r(Notification::getGlobalPackage());
         //Notification::sinceLastVisit();
@@ -39,6 +39,8 @@ class Test
 
 
         //print_r(Notification::getNotificationsInfo(1, 14));
+
+        print_r(Room::findAll(null, 3, 5));
     }
 
 

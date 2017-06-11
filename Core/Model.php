@@ -61,11 +61,14 @@ abstract class Model
     }
 
     // returns everything from selected database table (table parameter is set for models which use several tables, like menu)
-    public static function findAll($table = null){
+    public static function findAll($table = null, $limit=null, $offset=null){
 
         $sql = 'SELECT * FROM ';
 
         $sql .= $table ? $table : static::$db_table;
+        $sql .= $limit ? ' LIMIT ' . $limit : '';
+        $sql .= $offset ? ' OFFSET ' . $offset : '';
+        //return $sql;
 
         $db  = static::getDB();
         $stm = $db->prepare($sql);

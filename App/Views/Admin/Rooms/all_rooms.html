@@ -180,8 +180,21 @@
 </div>
 
 <div id="scrollTo"></div>
-{% for room in rooms %}
 
+<div class="row wrap">
+    <div class="pagination-container">
+        <ul class="pagination pagination-lg">
+            <li><a href="/admin/rooms/all-rooms?page=">Previous</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="/admin/rooms/all-rooms?page=2">Next</a></li>
+        </ul>
+    </div>
+</div>
+
+
+{% for room in rooms %}
 <div class="row wrap">
 
 

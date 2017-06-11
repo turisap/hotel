@@ -11,10 +11,12 @@ namespace App\Controllers\Admin;
 
 use App\Flash;
 use App\Models\Admin\Photo;
+use App\Pagination;
 use Core\View;
 use App\Models\Admin\Room;
 use App\Models\Admin\Search;
 use App\Models\Admin\Booking;
+
 
 class Rooms extends \Core\Admin {
 
@@ -107,12 +109,20 @@ class Rooms extends \Core\Admin {
     // renders template for the all rooms page
     public static function allRoomsAction(){
 
-        // first get all rooms from the database
-        $sets = Room::findAllRoomsWithPhotos();
-        // pass them to the view
+        // add pagination
+        $current_page = $_GET['page'] ?? false;
+        $items_per_page = 10;
+        $rooms_count = count(Room::findAll());
 
-        //print_r($sets);
-        View::renderTemplate('admin/rooms/all_rooms.html', ['rooms' => $sets]);
+        $pagination = new Pagination($current_page, $items_per_page, $rooms_count);
+
+        print_r($pagination);
+
+        // first get all rooms from the database (two parameters are limit and offset for pagination)
+      /*  $sets = Room::findAllRoomsWithPhotos($pagination->items_per_page, $pagination->offset());
+
+        // pass them to the view
+        View::renderTemplate('admin/rooms/all_rooms.html', ['rooms' => $sets]);*/
 
     }
 
