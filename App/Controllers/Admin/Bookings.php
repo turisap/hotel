@@ -477,21 +477,26 @@ class Bookings extends \Core\Admin {
     // this method renders template for new bookings from link in admin/home page
     public function viewNew(){
 
-        // get array of bookings from
-        $ids = $_GET['new_ids'] ?? false;
+        // get array of booking IDs from query string
+        $ids = $_GET['booking_ids']['ids'] ?? false;
 
-        if($ids && !empty($ids['ids'])){
+        //print_r($ids);
 
-            $booking_ids = explode(',', $ids['ids']);
+        // run further code only if IDs are present
+        if($ids && !empty($ids)){
+            
+            $booking_ids = explode(',', $ids);
+
+            // get rid of duplicate  IDs values ( ine the case when the same booking was made and cancelled)
+            $clean_list = array_unique($booking_ids, SORT_NUMERIC);
 
             $bookings = array();
-            foreach ($booking_ids as $booking_id) {
-                if($booking_id != ''){
-                    $bookings[] = Booking::findById($booking_id);
+            foreach ($clean_list as $item) {
+                if($item != ''){
+                    $bookings[] = Booking::findById($item);
                 }
             }
 
-            //print_r($bookings);
 
             View::renderTemplate('admin/bookings/view_new.html', ['bookings' => $bookings]);
 
