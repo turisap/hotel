@@ -324,7 +324,7 @@ class Restaurant extends \Core\Admin {
 
             } else {
 
-                Flash::addMessage('There was a problem deleting these courses, pleasy try again');
+                Flash::addMessage('There was a problem deleting these courses, please try again');
                 self::redirect('/admin/restaurant/all-courses');
 
             }

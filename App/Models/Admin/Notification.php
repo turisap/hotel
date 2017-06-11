@@ -16,6 +16,7 @@ use DateTime;
 class Notification extends \Core\Model {
 
     public static $db_table = 'notifications';
+    public static $column = 'notification_id';
 
 
 

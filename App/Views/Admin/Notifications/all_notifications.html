@@ -6,6 +6,20 @@
 
 
 {% block footer %}
+<script>
+    $(document).ready(function () {
+
+        // make delete notifications button disabled if there are no checked checkboxes
+        $('.delete-notification').change(function () {
+            if($('.delete-notification').is(':checked')){
+                $('#deleteNotifications').removeAttr('disabled');
+            } else {
+                $('#deleteNotifications').attr('disabled', 'disabled');
+            }
+        })
+
+    })
+</script>
 
 
 {% endblock %}
@@ -19,6 +33,7 @@
     {% else %}
     <a class="btn btn-default" id="onlyAll" href="/admin/notifications/all-notifications?sort=0">All</a>
     {% endif %}
+
 
 </div>
 
@@ -39,14 +54,14 @@
                     <tbody>
                     {% for notification in notifications %}
                     {% if notification.action > 2 %}
-                    <tr>
-                        <td class="edit-category-table text-center">{{ notification.message}}</td>
+                    <tr class="{% if notification.read_status == 1 %} unread {% endif %}">
+                        <td class="edit-category-table text-center ">{{ notification.message}}</td>
                         <td class="edit-category-table text-center">{{ notification.timestamp }}</td>
                         <td class="edit-category-table text-center">{{ notification.first_name }} {{notification.last_name}} {% if notification.action == 3 %} activated account {% else %} joined us {% endif %}</td>
-                        <td class="edit-category-table text-center"><input type="checkbox" name="course-{{ course.course_id }}" value="{{ course.course_id }}" class="delete-course"></td>
+                        <td class="edit-category-table text-center"><input type="checkbox" name="notification-{{ notification.notification_id }}" value="{{ notification.notification_id }}" class="delete-notification"></td>
                     </tr>
                     {% else %}
-                    <tr>
+                    <tr class="{% if notification.read_status == 1 %} unread {% endif %}">
                         <td class="edit-category-table text-center">{{ notification.message}}</td>
                         <td class="edit-category-table text-center">{{ notification.timestamp }}</td>
                         <td class="edit-category-table text-center">
@@ -57,12 +72,13 @@
                                 from {{notification.checkin}} to {{ notification.checkout }}
                             </div>
                         </td>
-                        <td class="edit-category-table text-center"><input type="checkbox" name="course-{{ course.course_id }}" value="{{ course.course_id }}" class="delete-course"></td>
+                        <td class="edit-category-table text-center"><input type="checkbox" name="notification-{{ notification.notification_id }}" value="{{ notification.notification_id }}" class="delete-notification"></td>
                     </tr>
                     {% endif %}
                     {% endfor %}
                     </tbody>
                 </table>
+                <button class="btn btn-danger" type="submit" disabled="disabled" id="deleteNotifications">Delete checked</button>
              </form>
 
 </div>

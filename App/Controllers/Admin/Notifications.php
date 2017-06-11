@@ -23,7 +23,7 @@ class Notifications extends \Core\Admin {
 
 
     // renders page with all notifications
-    public function allNotifications(){
+    public function allNotificationsAction(){
 
         // query string from Only unread button
         $sort = $_GET['sort'] ?? false;
@@ -49,7 +49,7 @@ class Notifications extends \Core\Admin {
 
 
     // this method sets a notification as viewed
-    public static function setAsRead(){
+    public static function setAsReadAction(){
 
         $notification_id = $_POST['notification_id'] ?? false;
 
@@ -60,6 +60,23 @@ class Notifications extends \Core\Admin {
 
         }
         return false;
+    }
+
+    // this method deletes checked notifications
+    public function deleteCheckedAction(){
+
+        $ids = $_POST;
+
+        if( ! empty($ids)){
+
+            foreach ($ids as $id){
+                $notification = Notification::delete($id);
+            }
+
+            self::redirect('/admin/notifications/all-notifications');
+
+        }
+
     }
 
 }
