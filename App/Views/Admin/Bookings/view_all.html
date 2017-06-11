@@ -39,7 +39,7 @@
             var checkout = $(this).parents('.row').find('.checkout').text();
             var checkoutDate = new Date(checkout);
 
-            var dayStay = Math.ceil((checkoutDate.getTime() - checkInDate.getTime())/(1000 * 3600 * 24));
+            var dayStay = Math.floor((checkoutDate.getTime() - checkInDate.getTime())/(1000 * 3600 * 24));
 
             if (dayStay == 1){
                 parentRow.find('.nights-stay').text(dayStay + ' night stay');
