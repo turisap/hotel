@@ -80,12 +80,14 @@ class Bookings extends \Core\Admin {
         $smoking = $_GET['smoking'] ?? 0;
         $children = $_GET['children'] ?? 0;
         $tv = $_GET['tv'] ?? 0;
+        // print_r($category);
+        //print_r($subcategory);
 
 
         // first get data from the POST array or from query string in the case of switching of pages on pagination
-        if(isset($_POST)){
+        if(!empty($_POST)){
             $data = $_POST;
-        } elseif($category && $subcategory && !isset($_POST)){
+        } elseif($category && $subcategory){
             $data = [
                 $category  => $subcategory,
                 'pets'     => $pets,
@@ -97,6 +99,8 @@ class Bookings extends \Core\Admin {
         } else {
             $data = false;
         }
+
+        //print_r($data);
 
 
         // if there is data from form
