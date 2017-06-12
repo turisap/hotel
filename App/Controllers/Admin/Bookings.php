@@ -34,11 +34,19 @@ class Bookings extends \Core\Admin {
     // this method renders template for all bokings page
     public function viewAllBookings(){
 
-        // find all bookings
-        $bookings = Booking::findAll();
+        // add pagination
+        $count = count(Booking::findAll());
+        $items_per_page = 15;
+        $current_page = $_GET['page'] ?? 1;
 
+        $pagination = new Pagination($current_page, $items_per_page, $count);
+
+
+        // find all bookings
+        $bookings = Booking::findAll(false, $items_per_page, $pagination->offset);
         View::renderTemplate('admin/bookings/view_all.html', [
-            'bookings' => $bookings
+            'bookings'   => $bookings,
+            'pagination' => $pagination
         ]);
 
     }
@@ -113,7 +121,7 @@ class Bookings extends \Core\Admin {
             // add pagination
             $count = count(Search::findCustomSearch($data));
             $current_page = $_GET['page'] ?? 1;
-            $items_per_page = 2;
+            $items_per_page = 5;
             $pagination = new Pagination($current_page, $items_per_page, $count);
 
             $results = Search::findCustomSearch($data, $items_per_page, $pagination->offset);
