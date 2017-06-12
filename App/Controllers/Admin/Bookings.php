@@ -19,7 +19,8 @@ use App\Models\Review;
 use App\Models\User;
 use Core\View;
 use App\Models\Admin\Room;
-use \App\Models\Admin\Search;
+use App\Models\Admin\Search;
+use App\Pagination;
 
 class Bookings extends \Core\Admin {
 
@@ -55,9 +56,6 @@ class Bookings extends \Core\Admin {
 
         // get data from post (category)
         $category = $_POST['categories'] ?? false;
-
-        //print_r($category);
-
 
         if($category){
 
@@ -122,11 +120,18 @@ class Bookings extends \Core\Admin {
     // this method processes search request from find by name input
     public function findByRoomName(){
 
-        // first get data from the POST array
-        $search_terms = $_POST['search_by_name'] ?? false;
+        // first get data from the POST array or from query string in the case of pagination
+        $search_terms = $_POST['search_by_name'] ?? $_GET['name'] ?? false;
 
 
         if($search_terms){
+
+            // add pagination
+            $count = count(Search::findByRoomName($search_terms));
+            $current_page = $_GET['page'] ?? 1;
+            $items_per_page = 5;
+            $pagination = new Pagination($current_page, $items_per_page, $count);
+
 
             $results = Search::findByRoomName($search_terms);
 
@@ -146,7 +151,12 @@ class Bookings extends \Core\Admin {
                     $results_with_photos[] = array_merge((array)$result, $photo);
                 }
 
-                View::renderTemplate('admin/bookings/find_room.html', ['rooms' => $results_with_photos]);
+                View::renderTemplate('admin/bookings/search_results.html', [
+                    'rooms'         => $results_with_photos,
+                    'search'          => $search_terms,
+                    'pagination'    => $pagination,
+                    'by_room_name'  => 1
+                ]);
 
             } else {
                 Flash::addMessage('Nothing has been found', Flash::INFO);
@@ -480,7 +490,6 @@ class Bookings extends \Core\Admin {
         // get array of booking IDs from query string
         $ids = $_GET['booking_ids']['ids'] ?? false;
 
-        //print_r($ids);
 
         // run further code only if IDs are present
         if($ids && !empty($ids)){
