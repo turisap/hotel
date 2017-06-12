@@ -119,8 +119,8 @@ class Notification extends \Core\Model {
 
         $diff = $date->diff($today);
 
-        $message =  (($diff->d) > 0) ? $diff->d . ' day(s) and ' . $diff->h . ' hours ago' : '' ;
-        $message .= ($diff->d == 0 && $diff->h != 0) ? ($diff->h . ' hours ' .  $diff->i . ' minutes ago') : ( ($diff->d == 0 && $diff->h != 0) ? ($diff->i . ' minutes ago') : '');
+        $message =  (($diff->d) > 1) ? $diff->d . ' days and ' . $diff->h . ' hours ago' : (($diff->d == 1) ? $diff->d . ' day and ' . $diff->h . ' hours ago' : '');
+        $message .= ($diff->d == 0 && $diff->h != 0) ? ($diff->h . ' hours ' .  $diff->i . ' minutes ago') : ( ($diff->d == 0 && $diff->h == 0) ? ($diff->i . ' minutes ago') : '');
 
         return $message;
 
