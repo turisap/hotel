@@ -9,6 +9,7 @@
 namespace App\Controllers\Admin;
 
 use \App\Models\Admin\Notification;
+use App\Pagination;
 use \Core\View;
 use \App\Flash;
 
@@ -28,19 +29,29 @@ class Notifications extends \Core\Admin {
         // query string from Only unread button
         $sort = $_GET['sort'] ?? false;
 
-        // get all notifications or only unread if specified
-        $notifications = $sort ? Notification::getAllNotifications(false, true, false) : Notification::getAllNotifications();
+        // pagination
+        // get count of all notifications or only unread if specified
+        $count = $sort ? count(Notification::getAllNotifications(false, true, false)) : count(Notification::getAllNotifications());
+        $current_page   = $_GET['page'] ?? 1;
+        $items_per_page = 10;
+        $pagination     = new Pagination($current_page, $items_per_page, $count);
+        //print_r($pagination);
 
+        // get all notifications or only unread if specified
+        $notifications = $sort ? Notification::getAllNotifications(false, true, $items_per_page, $pagination->offset) : Notification::getAllNotifications(false, false, $items_per_page, $pagination->offset);
+
+        //print_r($notifications);
         if($notifications){
 
             View::renderTemplate('admin/notifications/all_notifications.html', [
                 'notifications' => $notifications,
-                'sort'          => $sort
-            ]);
+                'sort'          => $sort,
+                'pagination'    => $pagination
+             ]);
 
         } else {
 
-            Flash::addMessage('There are no unread notifications', Flash::INFO);
+            Flash::addMessage('There are no notifications', Flash::INFO);
             View::renderTemplate('admin/notifications/all_notifications.html', ['empty' => 1]);
 
         }

@@ -32,7 +32,7 @@ class Notification extends \Core\Model {
 
 
     // this method gets all unread notifications
-    public static function getAllNotifications($count=false, $unread=false, $limit=false){
+    public static function getAllNotifications($count=false, $unread=false, $limit=false, $offset=false){
 
         $sql = 'SELECT ' . ($count ? 'COUNT(notification_id)' :  '*') . ' FROM '  . static::$db_table;
 
@@ -43,9 +43,12 @@ class Notification extends \Core\Model {
 
         $sql .= $limit ? ' LIMIT ' . $limit : '' ;
 
-        //return $sql;
-        $db  = static::getDB();
+        // offset for pagination (LIMIT was presetn before)
+        $sql .= ($offset && $offset > 0) ? ' OFFSET ' . $offset : '';
 
+        //return $sql;
+
+        $db  = static::getDB();
         $stm = $db->prepare($sql);
 
         // fetch a class or just a column in the case if we need only the number of notifications

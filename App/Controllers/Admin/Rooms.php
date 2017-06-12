@@ -260,9 +260,11 @@ class Rooms extends \Core\Admin {
                     $results_with_photos[] = array_merge($result, (array)$photo);
                 }
 
-                //print_r($results_with_photos);
+               $sentence = $count . ' results found';
+
                 View::renderTemplate('admin/rooms/search_results.html', [
                     'rooms'        => $results_with_photos,
+                    'sentence'     => $sentence,
                     'view_all'     => 1,
                     'search'       => $search_terms,
                     'pagination'   => $pagination,
