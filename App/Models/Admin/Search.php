@@ -181,7 +181,7 @@ abstract class Search extends \Core\Model {
 
 
     // this method creates a search sentence_list based on
-    public static function assemblySearchsentence($data){
+    public static function assemblySearchsentence($data, $count=false){
 
         // first get a category from the POST array
         $category = array_keys($data)[0];
@@ -295,8 +295,12 @@ abstract class Search extends \Core\Model {
         
         // create a sentence_list out of the array
         $sentence = implode(' ', $sentence_list);
+
         // delete last comma
-        $sentence = substr($sentence, 0, -1);
+        //$sentence = substr($sentence, 0, -1);
+
+        // add the number of results
+        $sentence .= $count ? ' ' . $count .  ' results found' : '';
 
         return $sentence;
 
@@ -304,7 +308,7 @@ abstract class Search extends \Core\Model {
 
 
     // this method finds rooms by an approximate room name entered by user
-    public static function findByRoomName($search_terms){
+    public static function findByRoomName($search_terms, $limit=false, $offset=false){
 
          // search by whole sentence
         $search_terms = $search_terms ?? false;
@@ -320,7 +324,10 @@ abstract class Search extends \Core\Model {
 
             $sql = "SELECT *, MATCH (local_name) AGAINST ('" . $search_terms . "') AS relevance
              FROM rooms WHERE MATCH (local_name) AGAINST ('" . $search_terms . "' IN BOOLEAN MODE) ORDER BY relevance DESC";
-            //return $sql;
+
+            // add pagination parameters
+            $sql .= $limit  ? ' LIMIT ' . $limit : '';
+            $sql .= $offset ? ' OFFSET ' . $offset : '';
 
             $db = static::getDB();
 

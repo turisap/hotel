@@ -182,9 +182,9 @@ class Rooms extends \Core\Admin {
             $count = count(Search::findCustomSearch($data));
 
             // add pagination
-            $page = $_GET['page'] ?? 1;
+            $current_page = $_GET['page'] ?? 1;
             $items_per_page = 5;
-            $pagination = new Pagination($page, $items_per_page, $count);
+            $pagination = new Pagination($current_page, $items_per_page, $count);
 
             $results = Search::findCustomSearch($data, $items_per_page, $pagination->offset);
 
@@ -204,7 +204,7 @@ class Rooms extends \Core\Admin {
                 }
 
 
-                $search_sentence = Search::assemblySearchSentence($data);
+                $search_sentence = Search::assemblySearchSentence($data, $count);
 
                 View::renderTemplate('admin/rooms/search_results.html', [
                     'rooms'      => $results_with_photos,
@@ -232,13 +232,18 @@ class Rooms extends \Core\Admin {
     // this method processes search request from find by name input
     public function findByRoomName(){
 
-        // first get data from the POST array
-        $search_terms = $_POST['search_by_name'] ?? false;
-
+        // first get data from the POST array or query string in he case of changing pages by pagination
+        $search_terms = $_POST['search_by_name'] ?? $_GET['name'] ?? false;
 
         if($search_terms){
 
-            $results = Search::findByRoomName($search_terms);
+            // add pagination
+            $count = count(Search::findByRoomName($search_terms));
+            $current_page = $_GET['page'] ?? 1;
+            $items_per_page = 5;
+            $pagination = new Pagination($current_page, $items_per_page, $count);
+
+            $results = Search::findByRoomName($search_terms, $items_per_page, $pagination->offset);
 
             if(!empty($results)){
 
@@ -256,10 +261,12 @@ class Rooms extends \Core\Admin {
                 }
 
                 //print_r($results_with_photos);
-                View::renderTemplate('admin/rooms/all_rooms.html', [
-                    'rooms' => $results_with_photos,
-                    'view_all' => 1,
-                    'search' => $search_terms
+                View::renderTemplate('admin/rooms/search_results.html', [
+                    'rooms'        => $results_with_photos,
+                    'view_all'     => 1,
+                    'search'       => $search_terms,
+                    'pagination'   => $pagination,
+                    'by_room_name' => 1
                 ]);
 
             } else {
