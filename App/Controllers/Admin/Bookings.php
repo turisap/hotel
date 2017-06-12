@@ -75,13 +75,14 @@ class Bookings extends \Core\Admin {
         // post data from query string
         $category = array_keys($_POST)[0] ?? $_GET['category'] ?? false;
         $subcategory = $_POST[$category] ?? $_GET['subcategory'] ?? false;
-        $pets = $_GET['pets'] ?? 0;
-        $aircon = $_GET['aircon'] ?? 0;
-        $smoking = $_GET['smoking'] ?? 0;
-        $children = $_GET['children'] ?? 0;
-        $tv = $_GET['tv'] ?? 0;
-        // print_r($category);
+        $pets = $_POST['pets'] ?? $_GET['pets'] ?? 0;
+        $aircon = $_POST['aircon'] ?? $_GET['aircon'] ?? 0;
+        $smoking = $_POST['smoking'] ?? $_GET['smoking'] ?? 0;
+        $children = $_POST['children'] ?? $_GET['children'] ?? 0;
+        $tv = $_POST['tv'] ?? $_GET['tv'] ?? 0;
+        //print_r($category);
         //print_r($subcategory);
+        //print_r($_POST);
 
 
         // first get data from the POST array or from query string in the case of switching of pages on pagination
