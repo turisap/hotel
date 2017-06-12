@@ -135,7 +135,7 @@ class Bookings extends \Core\Admin {
 
                 //print_r($results_with_photos);
 
-               $search_sentence = Search::assemblySearchSentence($data);
+               $search_sentence = Search::assemblySearchSentence($data, $count);
                 View::renderTemplate('admin/bookings/booking_results.html', [
                     'rooms'        => $results_with_photos,
                     'sentence'     => $search_sentence,

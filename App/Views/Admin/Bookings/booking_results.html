@@ -189,6 +189,35 @@
 </div>
 
 <div id="scrollTo"></div>
+
+{% if pagination.page_total > 1 %}
+
+<div class="row pages">
+    <div class="center">
+        <ul class="pagination pagination-lg">
+            {% if pagination.has_prev != 0 and not by_room_name %}<li><a href="/admin/bookings/search-room?page={{pagination.previous}}&category={{category}}&subcategory={{subcategory}}{% for key, condition in data %}&{{key}}={{data.condition}}{% endfor %}">Previous</a></li>{% endif %}
+            {% if pagination.has_prev != 0 and by_room_name == 1 %}<li><a href="/admin/bookings/find-by-room-name?page={{pagination.previous}}&name={{search}}">Previous</a></li>{% endif %}
+
+            {% for page in pagination.page_numbers %}
+            {% if by_room_name == 1 %}
+            <li {% if loop.index == pagination.current_page %} class="active" {% endif %}><a href="/admin/bookings/find-by-room-name?page={{loop.index}}&name={{search}}">{{loop.index}}</a></li>
+            {% else %}
+            <li {% if loop.index == pagination.current_page %} class="active" {% endif %}><a href="/admin/bookings/search-room?page={{loop.index}}&category={{category}}&subcategory={{subcategory}}{% for key, condition in data %}&{{key}}={{condition}}{% endfor %}">{{loop.index}}</a></li>
+            {% endif %}
+            {% endfor %}
+
+            {% if pagination.has_next != 0 and not by_room_name %}<li><a href="/admin/bookings/search-room?page={{pagination.next}}&category={{category}}&subcategory={{subcategory}}{% for key, condition in data %}&{{key}}={{data.condition}}{% endfor %}">Next</a></li>{% endif %}
+            {% if pagination.has_next != 0 and by_room_name == 1 %}<li><a href="/admin/bookings/find-by-room-name?page={{pagination.next}}&name={{search}}">Next</a></li>{% endif %}
+
+        </ul>
+    </div>
+</div>
+
+{% endif %}
+
+
+
+
 {% for room in rooms %}
 <div class="row wrap">
 
@@ -240,7 +269,6 @@
 
 </div>
 {% endfor %}
-
 
 
 
