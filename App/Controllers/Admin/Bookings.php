@@ -113,7 +113,7 @@ class Bookings extends \Core\Admin {
             // add pagination
             $count = count(Search::findCustomSearch($data));
             $current_page = $_GET['page'] ?? 1;
-            $items_per_page = 2;
+            $items_per_page = 5;
             $pagination = new Pagination($current_page, $items_per_page, $count);
 
             $results = Search::findCustomSearch($data, $items_per_page, $pagination->offset);
