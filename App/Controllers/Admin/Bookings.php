@@ -104,7 +104,7 @@ class Bookings extends \Core\Admin {
             $data = false;
         }
 
-        //print_r($data);
+
 
 
         // if there is data from form
@@ -113,7 +113,7 @@ class Bookings extends \Core\Admin {
             // add pagination
             $count = count(Search::findCustomSearch($data));
             $current_page = $_GET['page'] ?? 1;
-            $items_per_page = 5;
+            $items_per_page = 2;
             $pagination = new Pagination($current_page, $items_per_page, $count);
 
             $results = Search::findCustomSearch($data, $items_per_page, $pagination->offset);

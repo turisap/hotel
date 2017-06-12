@@ -154,25 +154,33 @@ class Rooms extends \Core\Admin {
     // process search form on submission (apply button)
     public static function searchRoomAction(){
 
-        // first get data from the POST array or alternatively from the query string
-        $category    = $_GET['category'] ?? false;
-        $subcategory = $_GET['subcategory'] ?? false;
+
+        // post data from query string
+        $category = array_keys($_POST)[0] ?? $_GET['category'] ?? false;
+        $subcategory = $_POST[$category] ?? $_GET['subcategory'] ?? false;
+        $pets = $_POST['pets'] ?? $_GET['pets'] ?? 0;
+        $aircon = $_POST['aircon'] ?? $_GET['aircon'] ?? 0;
+        $smoking = $_POST['smoking'] ?? $_GET['smoking'] ?? 0;
+        $children = $_POST['children'] ?? $_GET['children'] ?? 0;
+        $tv = $_POST['tv'] ?? $_GET['tv'] ?? 0;
 
 
-        // get search terms from post data or query string
+
+        // first get data from the POST array or from query string in the case of switching of pages on pagination
         if(!empty($_POST)){
             $data = $_POST;
-        } elseif ($category && $subcategory){
-
-            // simply create an array out of query string data in  the absence of POST (in the case of switching between the pages)
+        } elseif($category && $subcategory){
             $data = [
-                (string)$category => (string)$subcategory
+                $category  => $subcategory,
+                'pets'     => $pets,
+                'aircon'   => $aircon,
+                'smoking'  => $smoking,
+                'children' => $children,
+                'tv'       => $tv
             ];
-
         } else {
             $data = false;
         }
-
 
 
         // if there is data from form or query string
@@ -183,7 +191,7 @@ class Rooms extends \Core\Admin {
 
             // add pagination
             $current_page = $_GET['page'] ?? 1;
-            $items_per_page = 5;
+            $items_per_page = 2;
             $pagination = new Pagination($current_page, $items_per_page, $count);
 
             $results = Search::findCustomSearch($data, $items_per_page, $pagination->offset);
@@ -207,12 +215,13 @@ class Rooms extends \Core\Admin {
                 $search_sentence = Search::assemblySearchSentence($data, $count);
 
                 View::renderTemplate('admin/rooms/search_results.html', [
-                    'rooms'      => $results_with_photos,
-                    'sentence'   => $search_sentence,
-                    'view_all'   => 1,
-                    'pagination' => $pagination,
-                    'key'        => array_keys($data)[0],        // pass category of search as a POST array key
-                    'value'      => $data[array_keys($data)[0]]  // pass subcategory to the view as a POST array value
+                    'rooms'       => $results_with_photos,
+                    'sentence'    => $search_sentence,
+                    'view_all'    => 1,
+                    'pagination'  => $pagination,
+                    'data'        => $data,
+                    'category'    => $category,        // pass category of search
+                    'subcategory' => $subcategory      // pass subcategory to the view
                 ]);
 
             } else {
