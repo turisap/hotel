@@ -327,7 +327,7 @@ abstract class Search extends \Core\Model {
 
             // add pagination parameters
             $sql .= $limit  ? ' LIMIT ' . $limit : '';
-            $sql .= $offset ? ' OFFSET ' . $offset : '';
+            $sql .= ($offset && $offset > 0) ? ' OFFSET ' . $offset : '';
 
             $db = static::getDB();
 

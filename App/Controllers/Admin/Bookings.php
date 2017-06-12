@@ -72,13 +72,43 @@ class Bookings extends \Core\Admin {
     // process search form on submission (apply button)
     public static function searchRoomAction(){
 
-        // first get data from the POST array
-        $data = $_POST ?? false;
+        // post data from query string
+        $category = array_keys($_POST)[0] ?? $_GET['category'] ?? false;
+        $subcategory = $_POST[$category] ?? $_GET['subcategory'] ?? false;
+        $pets = $_GET['pets'] ?? 0;
+        $aircon = $_GET['aircon'] ?? 0;
+        $smoking = $_GET['smoking'] ?? 0;
+        $children = $_GET['children'] ?? 0;
+        $tv = $_GET['tv'] ?? 0;
+
+
+        // first get data from the POST array or from query string in the case of switching of pages on pagination
+        if(isset($_POST)){
+            $data = $_POST;
+        } elseif($category && $subcategory && !isset($_POST)){
+            $data = [
+                $category  => $subcategory,
+                'pets'     => $pets,
+                'aircon'   => $aircon,
+                'smoking'  => $smoking,
+                'children' => $children,
+                'tv'       => $tv
+            ];
+        } else {
+            $data = false;
+        }
+
 
         // if there is data from form
         if($data){
 
-            $results = Search::findCustomSearch($data);
+            // add pagination
+            $count = count(Search::findCustomSearch($data));
+            $current_page = $_GET['page'] ?? 1;
+            $items_per_page = 2;
+            $pagination = new Pagination($current_page, $items_per_page, $count);
+
+            $results = Search::findCustomSearch($data, $items_per_page, $pagination->offset);
             // if search was successful create a sentence about user's search (like 'Your search was rooms with city view and aircon)
             if($results){
 
@@ -98,9 +128,13 @@ class Bookings extends \Core\Admin {
                 //print_r($results_with_photos);
 
                $search_sentence = Search::assemblySearchSentence($data);
-                View::renderTemplate('admin/bookings/find_room.html', [
-                    'rooms' => $results_with_photos,
-                    'sentence' => $search_sentence
+                View::renderTemplate('admin/bookings/search_results.html', [
+                    'rooms'        => $results_with_photos,
+                    'sentence'     => $search_sentence,
+                    'pagination'   => $pagination,
+                    'data'         => $data,
+                    'category'     => $category,
+                    'subcategory'  => $subcategory
                 ]);
 
             } else {

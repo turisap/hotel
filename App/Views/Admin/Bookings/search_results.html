@@ -186,18 +186,18 @@
 <div class="row pages">
     <div class="center">
         <ul class="pagination pagination-lg">
-            {% if pagination.has_prev != 0 and not by_room_name %}<li><a href="/admin/rooms/search-room?page={{pagination.previous}}&category={{key}}&subcategory={{value}}">Previous</a></li>{% endif %}
+            {% if pagination.has_prev != 0 and not by_room_name %}<li><a href="/admin/bookings/search-room?page={{pagination.previous}}&category={{category}}&subcategory={{subcategory}}">Previous</a></li>{% endif %}
             {% if pagination.has_prev != 0 and by_room_name == 1 %}<li><a href="/admin/bookings/find-by-room-name?page={{pagination.previous}}&name={{search}}">Previous</a></li>{% endif %}
 
             {% for page in pagination.page_numbers %}
             {% if by_room_name == 1 %}
             <li {% if loop.index == pagination.current_page %} class="active" {% endif %}><a href="/admin/bookings/find-by-room-name?page={{loop.index}}&name={{search}}">{{loop.index}}</a></li>
             {% else %}
-            <li {% if loop.index == pagination.current_page %} class="active" {% endif %}><a href="/admin/rooms/search-room?page={{loop.index}}&category={{key}}&subcategory={{value}}">{{loop.index}}</a></li>
+            <li {% if loop.index == pagination.current_page %} class="active" {% endif %}><a href="/admin/bookings/search-room?page={{loop.index}}&category={{category}}&subcategory={{subcategory}}">{{loop.index}}</a></li>
             {% endif %}
             {% endfor %}
 
-            {% if pagination.has_next != 0 and not by_room_name %}<li><a href="/admin/rooms/search-room?page={{pagination.next}}&category={{key}}&subcategory={{value}}">Next</a></li>{% endif %}
+            {% if pagination.has_next != 0 and not by_room_name %}<li><a href="/admin/bookings/search-room?page={{pagination.next}}&category={{category}}&subcategory={{subcategory}}">Next</a></li>{% endif %}
             {% if pagination.has_next != 0 and by_room_name == 1 %}<li><a href="/admin/bookings/find-by-room-name?page={{pagination.next}}&name={{search}}">Next</a></li>{% endif %}
 
         </ul>
