@@ -13,7 +13,7 @@ class Pagination {
 
 
     // constructor with some defuault values which are assinged to the object's properties and calling all methods and assigning the results to object's properties
-    function __construct($page = 1, $items_per_page = 10, $items_total_count = 0){
+    function __construct($page, $items_per_page, $items_total_count){
         $this->current_page = $page;
         $this->items_per_page = $items_per_page;
         $this->items_total = $items_total_count;

@@ -347,14 +347,14 @@ abstract class Search extends \Core\Model {
 
 
     // sorts all bookings to one room by sort terms form all bookings to one room page (if the second arg set to true it returns all bookings for all rooms)
-    public static function sortBookingSearch($param, $all){
+    public static function sortBookingSearch($params, $all, $limit=false, $offset=false){
 
         // get all sort params from POST array
-        $status    = $param['status']   ?? false;
-        $period  = $param['period'] ?? false;
-        $sort = $param['order']  ?? false;
-        $room_id = $param['room_id'] ?? false;
-        $group = $param['group'] ?? false;
+        $status    = $params['status']  ?? false;
+        $period    = $params['period']  ?? false;
+        $sort      = $params['order']   ?? false;
+        $room_id   = $params['room_id'] ?? false;
+        $group     = $params['group']   ?? false;
 
 
         // create corresponding AND parts
@@ -377,6 +377,11 @@ abstract class Search extends \Core\Model {
 
         // add group by room name or checkin if this is search around all bookings in the hotel
         $sql .= ($all && $group) ? ' ORDER BY room_name '. $sort_by : ' ORDER BY checkin ' . $sort_by;
+
+        // add pagination parameters
+        $sql .= $limit  ? ' LIMIT ' . $limit : '';
+        $sql .= ($offset && $offset > 0) ? ' OFFSET ' . $offset : '';
+
 
 
         $db  = static::getDB();

@@ -32,7 +32,7 @@ class Bookings extends \Core\Admin {
     }
 
     // this method renders template for all bokings page
-    public function viewAllBookings(){
+    public function viewAllBookingsAction(){
 
         // add pagination
         $count = count(Booking::findAll());
@@ -168,7 +168,7 @@ class Bookings extends \Core\Admin {
 
 
     // this method processes search request from find by name input
-    public function findByRoomName(){
+    public function findByRoomNameAction(){
 
         // first get data from the POST array or from query string in the case of pagination
         $search_terms = $_POST['search_by_name'] ?? $_GET['name'] ?? false;
@@ -267,7 +267,7 @@ class Bookings extends \Core\Admin {
     }
 
     // process book room form and crate a booking
-    public function newBooking(){
+    public function newBookingAction(){
 
         // get data from POST array
         $data = $_POST ?? false;
@@ -386,7 +386,7 @@ class Bookings extends \Core\Admin {
     }
 
     // processes request of canceling booking
-    public function cancel(){
+    public function cancelAction(){
 
         $booking_id = $_POST['booking_id'] ?? false;
         $message = $_POST['cancel_booking'] ?? false;
@@ -422,7 +422,7 @@ class Bookings extends \Core\Admin {
 
 
     // this method renders particular page
-    public function viewAllBookingsToOneRoom(){
+    public function viewAllBookingsToOneRoomAction(){
 
         $room_id = $_GET['id'] ?? false;
 
@@ -455,7 +455,7 @@ class Bookings extends \Core\Admin {
     }
 
     // this method processes searching params from all bookings to one room page
-    public function sortAllBookingsToOneRoom(){
+    public function sortAllBookingsToOneRoomAction(){
 
 
         // get sort params from the POST array
@@ -503,22 +503,43 @@ class Bookings extends \Core\Admin {
     // sorts all bookings in hotel accordingly with search terms
     public static function sortAllBookingsAroundHotelAction(){
 
-        $params = $_POST;
+        $status = $_POST['status'] ?? $_GET['status'] ?? false;
+        $period = $_POST['period'] ?? $_GET['period'] ?? false;
+        $order  = $_POST['order']  ?? $_GET['order']  ?? false;
+        $group  = $_POST['group']  ?? $_GET['group']  ?? false;
 
-        //print_r(Search::sortBookingSearch($params, true));
+        if(!empty($_POST)){
+            $params = $_POST;
+        } else {
+            $params = [
+                'status' => $status,
+                'period' => $period,
+                'order'  => $order,
+                'group'  => $group
+            ];
+        }
 
-        if(!empty($params)){
+
+
+        if($params){
+
+            // add pagination
+            $count = count(Search::sortBookingSearch($params, true));
+            $items_per_page = 5;
+            $current_page = $_GET['page'] ?? false;
+
+            $pagination = new Pagination($current_page, $items_per_page, $count);
 
             // if 2nd parameter set to true it returns all bookings for all rooms
-            $results = Search::sortBookingSearch($params, true);
+            $results = Search::sortBookingSearch($params, true, $items_per_page, $pagination->offset);
 
-           // print_r($results);
 
             if($results){
 
                 View::renderTemplate('admin/bookings/view_all.html', [
-                    'bookings' => $results,
-                    'params' => $params
+                    'bookings'   => $results,
+                    'params'     => $params,
+                    'pagination' => $pagination
                 ]);
 
             } else {
@@ -535,7 +556,7 @@ class Bookings extends \Core\Admin {
 
 
     // this method renders template for new bookings from link in admin/home page
-    public function viewNew(){
+    public function viewNewAction(){
 
         // get array of booking IDs from query string
         $ids = $_GET['booking_ids']['ids'] ?? false;

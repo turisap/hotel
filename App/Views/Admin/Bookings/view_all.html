@@ -140,14 +140,14 @@
 
 <div class="row pages">
     <div class="center">
-        <ul class="pagination pagination-lg">
-            {% if pagination.has_prev != 0 %}<li><a href="/admin/bookings/view-all-bookings?page={{pagination.previous}}">Previous</a></li>{% endif %}
+        <ul class="pagination">
+            {% if pagination.has_prev != 0 %}<li><a href="/admin/bookings/view-all-bookings?page={{pagination.previous}}{% for key, condition in params %}&{{key}}={{condition}}{% endfor %}">Previous</a></li>{% endif %}
 
             {% for page in pagination.page_numbers %}
-            <li {% if loop.index == pagination.current_page %} class="active" {% endif %}><a href="/admin/bookings/view-all-bookings?page={{loop.index}}">{{loop.index}}</a></li>
+            <li {% if loop.index == pagination.current_page %} class="active" {% endif %}><a href="/admin/bookings/view-all-bookings?page={{loop.index}}{% for key, condition in params %}&{{key}}={{condition}}{% endfor %}">{{loop.index}}</a></li>
             {% endfor %}
 
-            {% if pagination.has_next != 0 %}<li><a href="/admin/bookings/view-all-bookings?page={{pagination.next}}">Next</a></li>{% endif %}
+            {% if pagination.has_next != 0 %}<li><a href="/admin/bookings/view-all-bookings?page={{pagination.next}}{% for key, condition in params %}&{{key}}={{condition}}{% endfor %}">Next</a></li>{% endif %}
         </ul>
     </div>
 </div>
