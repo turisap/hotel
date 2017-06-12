@@ -67,8 +67,7 @@ abstract class Model
 
         $sql .= $table ? $table : static::$db_table;
         $sql .= $limit ? ' LIMIT ' . $limit : '';
-        $sql .= $offset ? ' OFFSET ' . $offset : '';
-        //return $sql;
+        $sql .= ($offset && $offset > 0) ? ' OFFSET ' . $offset : '';
 
         $db  = static::getDB();
         $stm = $db->prepare($sql);

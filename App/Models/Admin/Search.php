@@ -101,7 +101,7 @@ abstract class Search extends \Core\Model {
 
 
     // finds room according to the data from form
-    public static function findCustomSearch($data){
+    public static function findCustomSearch($data, $limit=false, $offset=false){
 
         $sql = 'SELECT * FROM rooms WHERE ';
 
@@ -150,6 +150,12 @@ abstract class Search extends \Core\Model {
 
         $where_clause = implode(' AND ', $where_list); // implode collected array with AND clause
         $sql .= $where_clause;
+
+        // add limit and offset for pagination
+        $sql .= $limit ? ' LIMIT ' . $limit : '';
+        $sql .= ($offset && $offset > 0) ? ' OFFSET ' . $offset : '';
+
+        //return $sql;
 
 
 

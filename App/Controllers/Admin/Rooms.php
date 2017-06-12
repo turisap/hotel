@@ -117,7 +117,7 @@ class Rooms extends \Core\Admin {
         $pagination = new Pagination($current_page, $items_per_page, $rooms_count);
 
         // first get all rooms from the database (two parameters are limit and offset for pagination)
-        $sets = Room::findAllRoomsWithPhotos($pagination->items_per_page, $pagination->offset());
+        $sets = Room::findAllRoomsWithPhotos($pagination->items_per_page, $pagination->offset);
 
         // pass them to the view
         View::renderTemplate('admin/rooms/all_rooms.html', [
@@ -154,17 +154,41 @@ class Rooms extends \Core\Admin {
     // process search form on submission (apply button)
     public static function searchRoomAction(){
 
-        // first get data from the POST array
-        $data = $_POST ?? false;
+        // first get data from the POST array or alternatively from the query string
+        $category    = $_GET['category'] ?? false;
+        $subcategory = $_GET['subcategory'] ?? false;
 
-        //print_r($data);
 
-        // if there is data from form
+        // get search terms from post data or query string
+        if(!empty($_POST)){
+            $data = $_POST;
+        } elseif ($category && $subcategory){
+
+            // simply create an array out of query string data in  the absence of POST (in the case of switching between the pages)
+            $data = [
+                (string)$category => (string)$subcategory
+            ];
+
+        } else {
+            $data = false;
+        }
+
+
+
+        // if there is data from form or query string
         if($data){
 
-            $results = Search::findCustomSearch($data);
+            // count all rooms found for search
+            $count = count(Search::findCustomSearch($data));
 
-            //print_r($results);
+            // add pagination
+            $page = $_GET['page'] ?? 1;
+            $items_per_page = 5;
+            $pagination = new Pagination($page, $items_per_page, $count);
+
+            $results = Search::findCustomSearch($data, $items_per_page, $pagination->offset);
+
+
             // if search was successful create a sentence about user's search (like 'Your search was rooms with city view and aircon)
             if($results){
 
@@ -179,13 +203,16 @@ class Rooms extends \Core\Admin {
                     $results_with_photos[] = array_merge($result, (array)$photo);
                 }
 
-                //print_r($results_with_photos);
 
                 $search_sentence = Search::assemblySearchSentence($data);
-                View::renderTemplate('admin/rooms/all_rooms.html', [
-                    'rooms' => $results_with_photos,
-                    'sentence' => $search_sentence,
-                    'view_all' => 1
+
+                View::renderTemplate('admin/rooms/search_results.html', [
+                    'rooms'      => $results_with_photos,
+                    'sentence'   => $search_sentence,
+                    'view_all'   => 1,
+                    'pagination' => $pagination,
+                    'key'        => array_keys($data)[0],        // pass category of search as a POST array key
+                    'value'      => $data[array_keys($data)[0]]  // pass subcategory to the view as a POST array value
                 ]);
 
             } else {

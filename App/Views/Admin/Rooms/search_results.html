@@ -1,0 +1,251 @@
+{% extends "admin_base.html" %}
+
+{% block title %}All rooms{% endblock %}
+{% block page_heading %} All rooms {% endblock %}
+{% block page_subheading %} view {% endblock %}
+
+
+{% block footer %}
+
+<script>
+    $(document).ready(function () {
+
+        $('.date').each(function () {
+
+            var month =  [];
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+
+            var value = $(this).text();
+            var date = new Date(value);
+            var m = month[date.getMonth()];
+            var d = date.getDate().toString();
+
+            $(this).text(m +' ' + d);
+
+        });
+
+
+
+
+
+        // submission of the first form (selectbox) on change
+        $('#searchOptions').change(function () {
+
+            $('#searchForm').submit();
+
+        });
+
+
+
+        $('html, body').animate({
+            scrollTop: ($("#scrollTo").offset().top-50) // this animates to a particular element
+        }, 1000);
+
+
+
+
+    })
+</script>
+
+{% endblock %}
+
+{% block body %}
+
+
+
+
+
+
+
+<h3 class="head">You can find a room by name</h3>
+<form action="/admin/rooms/find-by-room-name" method="post">
+    <div class="row wrap search">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="input-group input-group-lg">
+                    <input name="search_by_name" value="{% if search is not empty %}{{ search }}{% endif %}" type="text" class="form-control input-lg" id="search-church" placeholder="Room name">
+                    <span class="input-group-btn">
+        <button class="btn btn-default btn-lg" type="submit">Search</button>
+      </span>
+                </div><!-- /input-group -->
+            </div><!-- /.col-lg-6 -->
+        </div><!-- /.row -->
+
+    </div>
+</form>
+
+
+
+
+
+<h3 class="head">Or you can find a room by specifying it's parametrs</h3>
+<div class="row wrap search">
+
+    <div class="col-lg-5 col-md-5 col-sm-12 ">
+        <form class="form-horizontal" method="post"  id="searchForm"  action="/admin/rooms/search-categories">
+            <div class="form-group">
+                <label for="searchOptions">Find a room by:</label>
+                <select class="form-control" name="categories" id="searchOptions">
+                    <option value="1" {% if category == 1 %} selected {% endif %}>Please choose a category</option>
+                    <option value="room_number" {% if category == 'room_number' %} selected {% endif %}>By room number</option>
+                    <option value="class" {% if category == 'class' %} selected {% endif %}>By class</option>
+                    <option value="view" {% if category == 'view' %} selected {% endif %}>By view</option>
+                    <option value="num_guests" {% if category == 'num_guests' %} selected {% endif %}>By guests number</option>
+                    <option value="num_beds" {% if category == 'num_beds' %} selected {% endif %}>By beds number</option>
+                    <option value="num_rooms" {% if category == 'num_rooms' %} selected {% endif %}>By the number of rooms</option>
+                </select>
+            </div>
+        </form>
+    </div>
+
+    <form class="form-horizontal" method="post"  action="/admin/rooms/search-room">
+        <div class="col-lg-5 col-md-5 col-sm-12 right-input">
+
+            <div class="form-group">
+                <label for="searchOptions">Please select a subcategory now and apply search terms</label>
+                <select name="{{ category }}" class="form-control" >
+                    {% if subcategories is not empty %}
+
+                    {% for subcategory in subcategories %}
+                    <option value="{{ subcategory }}">{{ subcategory }}</option>
+                    {% endfor %}
+
+                    {% endif %}
+                </select>
+            </div>
+
+        </div>
+
+
+</div>
+
+<div class="row wrap checkboxes">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 checkboxes">
+
+        <div id="checkboxes">
+
+            <label class="checkbox-inline">
+                <input type="checkbox" {% if room.pets != 0 %}checked="checked" {% endif %}  name="pets" value="1">Pets allowed
+            </label>
+            <label class="checkbox-inline">
+                <input name="aircon" type="checkbox" value="1" {% if room.aircon != 0 %}checked="checked" {% endif %}>Aircon
+            </label>
+            <label class="checkbox-inline">
+                <input name="smoking" type="checkbox" value="1" {% if room.smoking != 0 %}checked="checked" {% endif %}>Smoking alowed
+            </label>
+            <label class="checkbox-inline">
+                <input name="children" type="checkbox" value="1" {% if room.children != 0 %}checked="checked" {% endif %}>Children allowed
+            </label>
+            <label class="checkbox-inline">
+                <input name="tv" type="checkbox" value="1" {% if room.tv != 0 %}checked="checked" {% endif %}>TV set
+            </label>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+<div class="row button">
+    <div class="form-group">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Apply</button>
+            {% if view_all == 1 %} <a href="/admin/rooms/all-rooms" class="btn btn-default">View all</a> {% endif %}
+        </div>
+    </div>
+</div>
+</form>
+</div>
+
+<br>
+<hr/>
+<br>
+
+<div class="row" >
+    <h3 id="sentence" class="lead">{% if sentence is not empty %} {{ sentence }} {% endif %}</h3>
+</div>
+
+<div id="scrollTo"></div>
+
+{% if pagination.page_total > 1 %}
+
+<div class="row pages">
+    <div class="center">
+        <ul class="pagination pagination-lg">
+            {% if pagination.has_prev != 0 %}<li><a href="/admin/rooms/search-room?page={{pagination.previous}}&category={{key}}&subcategory={{value}}">Previous</a></li>{% endif %}
+
+            {% for page in pagination.page_numbers %}
+            <li {% if loop.index == pagination.current_page %} class="active" {% endif %}><a href="/admin/rooms/search-room?page={{loop.index}}&category={{key}}&subcategory={{value}}">{{loop.index}}</a></li>
+            {% endfor %}
+
+            {% if pagination.has_next != 0 %}<li><a href="/admin/rooms/search-room?page={{pagination.next}}&category={{key}}&subcategory={{value}}">Next</a></li>{% endif %}
+        </ul>
+    </div>
+</div>
+
+{% endif %}
+
+
+{% for room in rooms %}
+<div class="row wrap">
+
+    <div class="col-lg-3 col-md-3 col-sm-12 crop">
+            <img src="{{ room.path }}" class="img-responsive img-rooms-all">
+    </div>
+
+
+    <div class="col-lg-3 col-md-3 col-sm-12 info">
+        <ul class="list-group">
+            <li class="list-group-item">Room number: {{ room.room_number }}</li>
+            <li class="list-group-item">Class: {{ room.class }}</li>
+            <li class="list-group-item">View: {{ room.view }}</li>
+            {% if room.upcoming > 0 %}<li class="alert alert-danger list-group-item">Upcoming guest!</li>{% endif %}
+        </ul>
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-12 room-name">
+
+        <div class="row room-name">
+            <a href="/admin/rooms/room?id={{ room.id }}"><h3 class="room-name">{{ room.local_name }}</h3></a>
+        </div>
+
+    </div>
+</div>
+
+{% endfor %}
+
+{% if pagination.page_total > 1 %}
+
+<div class="row pages">
+    <div class="center">
+        <ul class="pagination pagination-lg">
+            {% if pagination.has_prev != 0 %}<li><a href="/admin/rooms/all-rooms?page={{pagination.previous}}">Previous</a></li>{% endif %}
+
+            {% for page in pagination.page_numbers %}
+            <li {% if loop.index == pagination.current_page %} class="active" {% endif %}><a href="/admin/rooms/all-rooms?page={{loop.index}}">{{loop.index}}</a></li>
+            {% endfor %}
+
+            {% if pagination.has_next != 0 %}<li><a href="/admin/rooms/all-rooms?page={{pagination.next}}">Next</a></li>{% endif %}
+        </ul>
+    </div>
+</div>
+
+{% endif %}
+
+
+{% endblock %}
+
