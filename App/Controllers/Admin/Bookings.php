@@ -132,7 +132,7 @@ class Bookings extends \Core\Admin {
                 //print_r($results_with_photos);
 
                $search_sentence = Search::assemblySearchSentence($data);
-                View::renderTemplate('admin/bookings/search_results.html', [
+                View::renderTemplate('admin/bookings/booking_results.html', [
                     'rooms'        => $results_with_photos,
                     'sentence'     => $search_sentence,
                     'pagination'   => $pagination,
@@ -189,7 +189,7 @@ class Bookings extends \Core\Admin {
                     $results_with_photos[] = array_merge((array)$result, $photo);
                 }
 
-                View::renderTemplate('admin/bookings/search_results.html', [
+                View::renderTemplate('admin/bookings/booking_results.html', [
                     'rooms'         => $results_with_photos,
                     'search'          => $search_terms,
                     'pagination'    => $pagination,
