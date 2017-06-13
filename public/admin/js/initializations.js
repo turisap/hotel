@@ -13,16 +13,16 @@ $(document).ready(function () {
 
     // TINYMCE TEXTAREA PLUGIN
     tinymce.init({
-        forced_root_block : "",
+        plugins: ["paste"],
+        paste_as_text: true,
         browser_spellcheck: true,
-        plugins: 'powerpaste',
-        menu: {
-            edit: {title: 'edit', items: 'pastetext'}
-        }
+        selector: 'textarea'
     });
 
 
 });
+
+
 
 
 
