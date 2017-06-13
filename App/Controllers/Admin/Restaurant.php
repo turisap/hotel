@@ -466,7 +466,7 @@ class Restaurant extends \Core\Admin {
 
         if(!empty($_POST)){
             $data = $_POST;
-        } elseif($course_name){
+        } elseif($course_name || $category){
 
             $data = [
                 'course_name' => $course_name,
@@ -477,6 +477,9 @@ class Restaurant extends \Core\Admin {
         } else {
             $data = false;
         }
+
+        //print_r($_POST);
+        //print_r($data);
 
 
         if($data){

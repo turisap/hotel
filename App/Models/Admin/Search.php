@@ -453,7 +453,7 @@ abstract class Search extends \Core\Model {
 
             // add pagination
             $sql .= $limit ? ' LIMIT ' . $limit : '';
-            $sql .= ($offset && $offset > 0) ? ' LIMIT ' . $offset : '';
+            $sql .= ($offset && $offset > 0) ? ' OFFSET ' . $offset : '';
 
             $db  = static::getDB();
             $stm = $db->prepare($sql);
@@ -477,7 +477,7 @@ abstract class Search extends \Core\Model {
 
             // add pagination
             $sql .= $limit ? ' LIMIT ' . $limit : '';
-            $sql .= ($offset && $offset > 0) ? ' LIMIT ' . $offset : '';
+            $sql .= ($offset && $offset > 0) ? ' OFFSET ' . $offset : '';
 
             $db  = static::getDB();
             $stm = $db->prepare($sql);

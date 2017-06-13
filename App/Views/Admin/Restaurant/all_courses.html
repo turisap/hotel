@@ -65,10 +65,10 @@
             {% endif %}
 
             {% for page in pagination.page_numbers %}
-            {% if not search_terms %}
-            <li {% if loop.index == pagination.current_page %} class="active" {% endif %}><a href="/admin/restaurant/all-courses?page={{loop.index}}{% for key, condition in search_terms %}&{{key}}={{condition}}{% endfor %}">{{loop.index}}</a></li>
+            {% if search_terms %}
+            <li {% if loop.index == pagination.current_page %} class="active" {% endif %}><a href="/admin/restaurant/sort-all-courses?page={{loop.index}}{% for key, condition in search_terms %}&{{key}}={{condition}}{% endfor %}">{{loop.index}}</a></li>
             {% else %}
-            <li {% if loop.index == pagination.current_page %} class="active" {% endif %}><a href="/admin/restaurant/sort-all-courses?page={{loop.index}}">{{loop.index}}</a></li>
+            <li {% if loop.index == pagination.current_page %} class="active" {% endif %}><a href="/admin/restaurant/all-courses?page={{loop.index}}">{{loop.index}}</a></li>
             {% endif %}
             {% endfor %}
 
