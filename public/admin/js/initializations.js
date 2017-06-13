@@ -15,7 +15,10 @@ $(document).ready(function () {
     tinymce.init({
         forced_root_block : "",
         browser_spellcheck: true,
-        selector: 'textarea'
+        plugins: 'powerpaste',
+        menu: {
+            edit: {title: 'edit', items: 'pastetext'}
+        }
     });
 
 

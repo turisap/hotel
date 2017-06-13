@@ -57,7 +57,7 @@
 
 <div class="row pages">
     <div class="center">
-        <ul class="pagination pagination-lg">
+        <ul class="pagination">
             {% if pagination.has_prev != 0 %}<li><a href="/admin/restaurant/all-courses?page={{pagination.previous}}">Previous</a></li>{% endif %}
 
             {% for page in pagination.page_numbers %}
@@ -126,7 +126,7 @@
                     <td class="edit-category-table text-center">{{ course.course_name }}</td>
                     <td class="edit-category-table">{{ course.category_name }}</td>
                     <td class="edit-category-table text-center">{{ course.description}}</td>
-                    <td class="edit-category-table text-center">{{ course.price }}</td>
+                    <td class="edit-category-table text-center">{{ course.price }}{{currency_sign}}</td>
                     <td class="edit-category-table text-center"><a class="btn btn-default" href="/admin/restaurant/edit-course?id={{ course.course_id}}">Edit</a></td>
                     <td class="edit-category-table text-center"><input type="checkbox" name="course-{{ course.course_id }}" value="{{ course.course_id }}" class="delete-course"></td>
                 </tr>

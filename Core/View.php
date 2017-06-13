@@ -46,6 +46,7 @@ class View
             $twig->addGlobal('flash_messages', \App\Flash::getFlashMessage()); // add flash messages for twig global usage
             $twig->addGlobal('site_name', \App\Config::SITE_NAME); // add site name for twig global usage
             $twig->addGlobal('notifications_global', \App\Models\Admin\Notification::getGlobalPackage()); // getting notifications to show in the navbar
+            $twig->addGlobal('currency_sign', \App\Config::CURRENCY);
         }
 
         return $twig->render($template, $args);
