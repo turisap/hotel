@@ -458,22 +458,46 @@ class Restaurant extends \Core\Admin {
     // sorts courses on all courses page
     public function sortAllCoursesAction(){
 
-        $data = $_POST;
-        $categories = Menu::getAllCategories();
+        // get search params from POST or from the query string
+        $course_name = $_POST['course_name'] ?? $_GET['course_name'] ?? false;
+        $category    = $_POST['category']    ?? $_GET['category']    ?? false;
+        $order       = $_POST['order']       ?? $_GET['order']       ?? false;
 
-        //print_r($data);
 
-        if(!empty($data)){
+        if(!empty($_POST)){
+            $data = $_POST;
+        } elseif($course_name){
 
-            $results = Search::sortAllCourses($data);
+            $data = [
+                'course_name' => $course_name,
+                'category'    => $category,
+                'order'       => $order
+            ];
+
+        } else {
+            $data = false;
+        }
+
+
+        if($data){
+
+            // add pagination
+            $items_per_page = 5;
+            $count = count(Search::sortAllCourses($data));
+            $current_page = $_GET['page'] ?? 1;
+            $pagination = new Pagination($current_page, $items_per_page, $count);
+
+            $results = Search::sortAllCourses($data, $items_per_page, $pagination->offset);
+            $categories = Menu::getAllCategories();
 
             if($results){
 
-                //print_r($results);
+
                 View::renderTemplate('/admin/restaurant/all_courses.html', [
                     'courses'      => $results,
-                    'categories'     => $categories,
-                    'search_terms' => $data
+                    'categories'   => $categories,
+                    'search_terms' => $data,
+                    'pagination'   => $pagination
                 ]);
 
             } else {

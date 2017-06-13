@@ -58,13 +58,26 @@
 <div class="row pages">
     <div class="center">
         <ul class="pagination">
+            {% if not search_terms %}
             {% if pagination.has_prev != 0 %}<li><a href="/admin/restaurant/all-courses?page={{pagination.previous}}">Previous</a></li>{% endif %}
+            {% else %}
+            {% if pagination.has_prev != 0 and search_terms %}<li><a href="/admin/restaurant/sort-all-courses?page={{pagination.previous}}{% for key, condition in search_terms %}&{{key}}={{condition}}{% endfor %}">Previous</a></li>{% endif %}
+            {% endif %}
 
             {% for page in pagination.page_numbers %}
-            <li {% if loop.index == pagination.current_page %} class="active" {% endif %}><a href="/admin/restaurant/all-courses?page={{loop.index}}">{{loop.index}}</a></li>
+            {% if search_terms %}
+            <li {% if loop.index == pagination.current_page %} class="active" {% endif %}><a href="/admin/restaurant/all-courses?page={{loop.index}}{% for key, condition in search_terms %}&{{key}}={{condition}}{% endfor %}">{{loop.index}}</a></li>
+            {% else %}
+            <li {% if loop.index == pagination.current_page %} class="active" {% endif %}><a href="/admin/restaurant/sort-all-courses?page={{loop.index}}">{{loop.index}}</a></li>
+            {% endif %}
             {% endfor %}
 
-            {% if pagination.has_next != 0 %}<li><a href="/admin/restaurant/all-coursesgt?page={{pagination.next}}">Next</a></li>{% endif %}
+            {% if not search_terms %}
+            {% if pagination.has_next != 0 %}<li><a href="/admin/restaurant/all-courses?page={{pagination.next}}">Next</a></li>{% endif %}
+            {% else %}
+            {% if pagination.has_next != 0 and search_terms %}<li><a href="/admin/restaurant/sort-all-courses?page={{pagination.next}}{% for key, condition in search_terms %}&{{key}}={{condition}}{% endfor %}">Next</a></li>{% endif %}
+            {% endif %}
+
         </ul>
     </div>
 </div>

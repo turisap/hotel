@@ -438,7 +438,7 @@ abstract class Search extends \Core\Model {
 
 
     // sorts courses accordingly with search terms
-    public static function sortAllCourses($data){
+    public static function sortAllCourses($data, $limit=false, $offset=false){
 
         // get values from POST array
         $course_name = $data['course_name'] ?? false;
@@ -450,6 +450,10 @@ abstract class Search extends \Core\Model {
 
             $sql = "SELECT course_id, MATCH (course_name) AGAINST (:course_name) AS relevance
              FROM courses WHERE MATCH (course_name) AGAINST (:course_name IN BOOLEAN MODE) ORDER BY relevance DESC";
+
+            // add pagination
+            $sql .= $limit ? ' LIMIT ' . $limit : '';
+            $sql .= ($offset && $offset > 0) ? ' LIMIT ' . $offset : '';
 
             $db  = static::getDB();
             $stm = $db->prepare($sql);
@@ -470,6 +474,10 @@ abstract class Search extends \Core\Model {
 
             // add ASC or DESC price order
             $sql .= $order_price ? 'DESC' : 'ASC';
+
+            // add pagination
+            $sql .= $limit ? ' LIMIT ' . $limit : '';
+            $sql .= ($offset && $offset > 0) ? ' LIMIT ' . $offset : '';
 
             $db  = static::getDB();
             $stm = $db->prepare($sql);
