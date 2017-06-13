@@ -510,14 +510,19 @@ class Bookings extends \Core\Admin {
 
         if(!empty($_POST)){
             $params = $_POST;
-        } else {
+        } elseif ($status) {
             $params = [
                 'status' => $status,
                 'period' => $period,
                 'order'  => $order,
                 'group'  => $group
             ];
+        } else {
+            $params = false;
         }
+
+        //print_r($params);
+        //print_r($_POST);
 
 
 
@@ -526,7 +531,7 @@ class Bookings extends \Core\Admin {
             // add pagination
             $count = count(Search::sortBookingSearch($params, true));
             $items_per_page = 5;
-            $current_page = $_GET['page'] ?? false;
+            $current_page = $_GET['page'] ?? 1;
 
             $pagination = new Pagination($current_page, $items_per_page, $count);
 
@@ -539,7 +544,8 @@ class Bookings extends \Core\Admin {
                 View::renderTemplate('admin/bookings/view_all.html', [
                     'bookings'   => $results,
                     'params'     => $params,
-                    'pagination' => $pagination
+                    'pagination' => $pagination,
+                    'sort'       => 1
                 ]);
 
             } else {
@@ -550,7 +556,7 @@ class Bookings extends \Core\Admin {
             }
         } else {
             Flash::addMessage('There was a problem processing your request, please try again');
-            View::renderTemplate('admin/bookings/all_bookings_to_a_room.html');
+            self::redirect('/admin/bookings/view-all-bookings');
         }
     }
 
