@@ -346,7 +346,7 @@ div.past-event {
 }
 
 .booking-ongoing {
-    background-color: rgba(179, 135, 218, 0.97);
+    background-color: rgba(182, 176, 218, 0.72);
 }
 .upcoming, .tomorrow, .canceled {
     margin-left: 5% !important;

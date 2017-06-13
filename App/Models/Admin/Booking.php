@@ -237,7 +237,7 @@ class Booking extends \Core\Model {
             foreach ($bookings as $booking) {
 
                 // compare checkin date with the current time and check status whether it was canceled
-                if (strtotime($booking->checkin) < time() && $booking->status != 2){
+                if (strtotime($booking->checkin) < time() && $booking->status != 2 && $booking->status != 3){
 
                     self::cancelBooking($booking->booking_id, false);
 
@@ -252,11 +252,11 @@ class Booking extends \Core\Model {
     // this method cancel bookings (sets status to 2 but doesn't delete it)
     public static function cancelBooking($booking_id, $cancel = true){
 
-        // check first is cancelation is possible
-        if(self::isCancellationPossible($booking_id)){
+        // first set condition for cancelation or setting booking as past
+        $cancel_or_past = $cancel ? 2 : 0;
 
-                // first set condition for cancelation or setting booking as past
-                $cancel_or_past = $cancel ? 2 : 0;
+        // check is cancelation is possible or run code for setting old bookings to past
+        if(self::isCancellationPossible($booking_id) ||  $cancel == 0){
 
                 $sql = 'UPDATE ' . static::$db_table . ' SET status = ' . $cancel_or_past . ' WHERE booking_id = :id';
 
@@ -341,7 +341,7 @@ class Booking extends \Core\Model {
     public static function isThereOngoingBookings(){
 
         // first to set this function to run only if $_SESSION with checking isn't set (to check this ongoing only once in a session)
-        //if(!isset($_SESSION['ongoing'])){
+        if(!isset($_SESSION['ongoing'])){
 
             // set session to true in order to avoid checking during a session
             $_SESSION['ongoing'] = true;
@@ -358,7 +358,7 @@ class Booking extends \Core\Model {
 
             $stm->execute();
 
-        //}
+        }
         return false;
     }
 
