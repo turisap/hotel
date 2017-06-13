@@ -192,13 +192,17 @@ class Menu extends \Core\Model {
 
 
     // use findAll() mehtod in Core\Model to obtain all courses using array with database tables
-    public static function getAllCoursesWithCategoryNamesAndPhotos($id = false){
+    public static function getAllCoursesWithCategoryNamesAndPhotos($id=false, $limit=false, $offset=false){
 
         // the first column in  this query is for FETCH_GROUP to group by a column
         $sql = 'SELECT courses.*, meal_categories.category_name, photos.path, photos.name FROM courses LEFT JOIN meal_categories ON courses.category_id = meal_categories.category_id LEFT JOIN photos ON courses.course_id = photos.course_id';
 
         // add WHERE clause only if we need a particular course
         $sql .= $id ? ' WHERE courses.course_id = ' . $id : '';
+
+        // add pagination restrictions
+        $sql .= $limit ? ' LIMIT ' . $limit : '';
+        $sql .= ($offset && $offset > 0) ? ' OFFSET ' . $offset : '';
 
         $db  = static::getDB();
         $stm = $db->prepare($sql);

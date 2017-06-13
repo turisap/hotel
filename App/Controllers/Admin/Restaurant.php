@@ -13,6 +13,7 @@ use App\Config;
 use \App\Models\Admin\Menu;
 use App\Models\Admin\Photo;
 use App\Models\Admin\Search;
+use App\Pagination;
 use Core\View;
 use \App\Flash;
 
@@ -40,7 +41,7 @@ class Restaurant extends \Core\Admin {
 
 
     // renders create category page
-    public function createCategory(){
+    public function createCategoryAction(){
 
         View::renderTemplate('/admin/restaurant/create_category.html');
 
@@ -177,15 +178,24 @@ class Restaurant extends \Core\Admin {
     // renders template with all courses
     public function allCoursesAction(){
 
+        // add pagination
+        $count = count(Menu::getAllCoursesWithCategoryNamesAndPhotos());
+        $items_per_page = 5;
+        $current_page = $_GET['page'] ?? 1;
+
+        $pagination = new Pagination($current_page, $items_per_page, $count);
+
+
         // get all courses
-        $courses = Menu::getAllCoursesWithCategoryNamesAndPhotos();
+        $courses = Menu::getAllCoursesWithCategoryNamesAndPhotos(false, $items_per_page, $pagination->offset);
 
         // get list of all categories to pass them to the view in order to get them in selectbox
         $categories = Menu::getAllCategories();
 
         View::renderTemplate('admin/restaurant/all_courses.html', [
             'courses'    => $courses,
-            'categories' => $categories
+            'categories' => $categories,
+            'pagination' => $pagination
         ]);
 
     }
@@ -216,7 +226,7 @@ class Restaurant extends \Core\Admin {
 
 
     // create a course using data from the POST array
-    public function saveCourse(){
+    public function saveCourseAction(){
 
         $data = $_POST;
         $file = $_FILES['photo'] ?? false;
@@ -309,7 +319,7 @@ class Restaurant extends \Core\Admin {
 
 
     // this method deletes checked courses on all courses page
-    public function deleteChecked(){
+    public function deleteCheckedAction(){
 
         // array with checked checkboxes
         $data = $_POST;
@@ -340,7 +350,7 @@ class Restaurant extends \Core\Admin {
 
 
     // renders edit course page
-    public function editCourse(){
+    public function editCourseAction(){
 
         $course_id = $_GET['id'] ?? false;
 
@@ -379,7 +389,7 @@ class Restaurant extends \Core\Admin {
 
 
     // this method updates course (processes form on edit course page)
-    public function updateCourse(){
+    public function updateCourseAction(){
 
         $data = $_POST;
         // check whether a new picture was supplied in the from
@@ -446,7 +456,7 @@ class Restaurant extends \Core\Admin {
 
 
     // sorts courses on all courses page
-    public function sortAllCourses(){
+    public function sortAllCoursesAction(){
 
         $data = $_POST;
         $categories = Menu::getAllCategories();
