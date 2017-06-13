@@ -30,8 +30,7 @@ class Test
 
 
     public function test(){
-        $paginate = new Pagination(1,5,15);
-        print_r($paginate);
+       print_r(Booking::isThereOngoingBookings());
     }
 
 

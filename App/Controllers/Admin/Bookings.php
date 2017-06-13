@@ -34,6 +34,9 @@ class Bookings extends \Core\Admin {
     // this method renders template for all bokings page
     public function viewAllBookingsAction(){
 
+        // check whether there are ongoing bookings
+        Booking::isThereOngoingBookings();
+
         // add pagination
         $count = count(Booking::findAll());
         $items_per_page = 15;

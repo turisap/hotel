@@ -337,6 +337,32 @@ class Booking extends \Core\Model {
     }
 
 
+    // this method checks if there are upcoming bookings which became ongoing
+    public static function isThereOngoingBookings(){
+
+        // first to set this function to run only if $_SESSION with checking isn't set (to check this ongoing only once in a session)
+        //if(!isset($_SESSION['ongoing'])){
+
+            // set session to true in order to avoid checking during a session
+            $_SESSION['ongoing'] = true;
+
+            $today = new DateTime();
+            $today = $today->format('Y-m-d H:i:s');
+
+            $sql = "UPDATE " . static::$db_table . " SET status = 3 WHERE checkin <= :today AND checkout > :today";
+            $db  = static::getDB();
+
+            $stm = $db->prepare($sql);
+            $stm->bindValue(':today', $today, PDO::PARAM_STR);
+            $stm->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+            $stm->execute();
+
+        //}
+        return false;
+    }
+
+
 
 
 

@@ -167,9 +167,9 @@
 {% for booking in bookings %}
 
 
-<div class="row wrap {% if booking.status == 0 %} booking-past {% elseif booking.status == 2%} booking-canceled {% else %} booking-future {% endif %}">
+<div class="row wrap {% if booking.status == 0 %} booking-past {% elseif booking.status == 2 %} booking-canceled {% elseif booking.status == 3%} booking-ongoing {% else %} booking-future {% endif %}">
 
-    {% if booking.status == 1 %}                        <!-- upcoming bookings -->
+    {% if booking.status == 1 or booking.status == 3 %}                        <!-- upcoming bookings -->
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 tre notifications"><span>{{ booking.room_name }}</span></div>
     <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6  tre"><span class="checkin">Checkin:{{ booking.checkin }}</span><span class="checkout hide">{{ booking.checkout }}</span><mard><p class="nights-stay"></p></mard></div>
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6  tre"><span>{{ booking.title }} {{ booking.first_name }} {{ booking.last_name }}</span></div>
