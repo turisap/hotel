@@ -108,6 +108,7 @@
             <label class="order"><input type="checkbox"  name="order" {% if search_terms.order == 1 %} checked {% endif %} value="1" >Most expensive first</label>
         </div>
         <button class="btn btn-primary" type="submit" data-loading-text="searching" >Apply</button>
+        {% if search_terms %} <a class="btn btn-default" href="/admin/restaurant/all-courses">View all</a> {% endif %}
 
 
 
