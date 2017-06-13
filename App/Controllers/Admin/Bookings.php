@@ -521,8 +521,6 @@ class Bookings extends \Core\Admin {
             $params = false;
         }
 
-        //print_r($params);
-        //print_r($_POST);
 
 
 
@@ -530,7 +528,7 @@ class Bookings extends \Core\Admin {
 
             // add pagination
             $count = count(Search::sortBookingSearch($params, true));
-            $items_per_page = 5;
+            $items_per_page = 15;
             $current_page = $_GET['page'] ?? 1;
 
             $pagination = new Pagination($current_page, $items_per_page, $count);

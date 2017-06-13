@@ -219,5 +219,32 @@
 
 {% endif %}
 
+
+
+{% if pagination.page_total > 1 %}
+
+<div class="row pages">
+    <div class="center">
+        <ul class="pagination">
+            {% if pagination.has_prev != 0 and not sort%}<li><a href="/admin/bookings/view-all-bookings?page={{pagination.previous}}}">Previous</a></li>{% endif %}
+            {% if pagination.has_prev != 0 and sort == 1 %}<li><a href="/admin/bookings/sort-all-bookings-around-hotel?page={{pagination.previous}}{% for key, condition in params %}&{{key}}={{condition}}{% endfor %}">Previous</a></li>{% endif %}
+
+            {% for page in pagination.page_numbers %}
+            {% if not sort %}
+            <li {% if loop.index == pagination.current_page %} class="active" {% endif %}><a href="/admin/bookings/view-all-bookings?page={{loop.index}}">{{loop.index}}</a></li>
+            {% elseif sort == 1 %}
+            <li {% if loop.index == pagination.current_page %} class="active" {% endif %}><a href="/admin/bookings/sort-all-bookings-around-hotel?page={{loop.index}}{% for key, condition in params %}&{{key}}={{condition}}{% endfor %}">{{loop.index}}</a></li>
+            {% endif %}
+            {% endfor %}
+
+            {% if pagination.has_next != 0 and not sort %}<li><a href="/admin/bookings/view-all-bookings?page={{pagination.next}}">Next</a></li>{% endif %}
+            {% if pagination.has_next != 0 and sort == 1 %}<li><a href="/admin/bookings/sort-all-bookings-around-hotel?page={{pagination.next}}{% for key, condition in params %}&{{key}}={{condition}}{% endfor %}">Next</a></li>{% endif %}
+
+        </ul>
+    </div>
+</div>
+
+{% endif %}
+
 {% endblock %}
 
