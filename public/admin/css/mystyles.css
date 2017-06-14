@@ -3,6 +3,10 @@ body {
     font-family: Verdana;
 }
 
+#page-wrapper {
+    background-color: rgb(253, 251, 246);
+}
+
 
 
 /* ======================== CREATE ROOM FORM STYLES ========================================== */

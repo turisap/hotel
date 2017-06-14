@@ -57,6 +57,10 @@ class Home  extends \Core\Admin {
 
     }
 
+    public function test(){
+        View::renderTemplate('admin/home/test.html');
+    }
+
 
 
 }
