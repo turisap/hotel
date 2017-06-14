@@ -86,7 +86,7 @@
          */
         var dataChart2 = new gapi.analytics.googleCharts.DataChart({
             query: {
-                metrics: 'ga:sessions',
+                metrics: 'ga:sessions, ga:bounces',
                 dimensions: 'ga:date',
                 'start-date': '7daysAgo',
                 'end-date': 'today'
@@ -94,16 +94,38 @@
             chart: {
                 container: 'chart-2-container',
                 type: 'LINE',
-                animation: {
-                    startup: true
-                },
                 options: {
-                    title: 'The number of users',
+                    title: 'The number of sessions',
                     legend: 'none',
-                    vAxis: {
-                        minValue: 0
+                    annotations: {
+                        boxStyle: {
+                            // Color of the box outline.
+                            stroke: '#888',
+                            // Thickness of the box outline.
+                            strokeWidth: 1,
+                            // x-radius of the corner curvature.
+                            rx: 10,
+                            // y-radius of the corner curvature.
+                            ry: 10,
+                            // Attributes for linear gradient fill.
+                            gradient: {
+                                // Start color for gradient.
+                                color1: '#fbf6a7',
+                                // Finish color for gradient.
+                                color2: '#33b679',
+                                // Where on the boundary to start and
+                                // end the color1/color2 gradient,
+                                // relative to the upper left corner
+                                // of the boundary.
+                                x1: '0%', y1: '0%',
+                                x2: '100%', y2: '100%',
+                                // If true, the boundary for x1,
+                                // y1, x2, and y2 is the box. If
+                                // false, it's the entire chart.
+                                useObjectBoundingBoxUnits: true
+                            }
+                        }
                     },
-
                     width: '100%'
                 }
             }
@@ -149,15 +171,20 @@
 </div>
 
 <div class="row wrap">
+    <div id="view-selector-1-container"></div>
+    <div id="view-selector-2-container"></div>
+</div>
+
+<div class="row wrap">
     <div class="col-lg-6">
         <div class="graph-container">
-            <div id="view-selector-1-container"></div>
+
             <div id="chart-1-container"></div>
         </div>
     </div>
     <div class="col-lg-6">
         <div class="graph-container">
-            <div id="view-selector-2-container"></div>
+
             <div id="chart-2-container"></div>
         </div>
     </div>
