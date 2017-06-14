@@ -550,10 +550,24 @@ table:nth-child(2) {
     width: 150px !important;
 }
 
-#embed-api-auth-container{
-    padding-left: 20px;
+/*===================================FOR NEW DASHBOARD ===================================================*/
+
+#embed-api-auth-container, #view-name {
     font-style: italic;
 }
+
+.inline, .ViewSelector2-item, #active-users-container, #view-selector-container {
+    display: inline-block;
+}
+
+header {
+    width: 100%;
+}
+
+#active-users-container {
+    float: right;
+}
+
 
 
 
