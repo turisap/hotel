@@ -519,36 +519,6 @@ h3.cancel {
     text-align: center;
 }
 
-/*======================================= GOOGLE ANALYTICS DASHBOARD===================================*/
-
-
-#view-selector-1-container > table {
-    display: inline-block;
-    padding-bottom: 50px;
-}
-
-#view-selector-2-container > table {
-    display: inline-block;
-    padding-bottom: 50px;
-}
-
-#view-selector-1-container > table > tr, td {
-    display: block !important;
-}
-
-#view-selector-2-container > table > tr, td {
-    display: block !important;
-}
-
-table:nth-child(0) {
-    width: 100px !important;
-}
-table:nth-child(1) {
-    width: 100px !important;
-}
-table:nth-child(2) {
-    width: 150px !important;
-}
 
 /*===================================FOR NEW DASHBOARD ===================================================*/
 
@@ -582,7 +552,7 @@ header {
 
 .FormField {
     display: block;
-    width: 100%;
+    width: 150px;
     height: 34px;
     padding: 6px 12px;
     font-size: 14px;
@@ -630,6 +600,42 @@ fieldset[disabled] .FormField {
 }
 textarea.FormField {
     height: auto;
+}
+
+#sinceLastVisit > li {
+    display: inline-block;
+    padding: 0;
+    font-family: "Verdana", 'Futura', sans-serif;
+    font-weight: bold;
+    font-size: 2.5vh;
+    width: 180px;
+    height: 50px;
+    border: 1px solid #c2c2c2;
+    background-color: #cccdff;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    border-radius:5px;
+    margin: 5px;
+    text-align: center;
+}
+
+#sinceLastVisit > li > a {
+    display: block;
+    padding: 10px;
+}
+#sinceLastVisit > li > a:hover {
+    text-decoration: none;
+
+}
+
+div{
+    border: solid black 1px;
+}
+
+@media only screen and (max-width: 1600px) {
+    /* For tablets: */
+    .last-visit{ text-align: center; }
+    #view-selector-container { width: 100%; }
 }
 
 
