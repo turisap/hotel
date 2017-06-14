@@ -1,5 +1,6 @@
 body {
     overflow-x: hidden;
+    font-family: Verdana;
 }
 
 
@@ -514,9 +515,41 @@ h3.cancel {
     text-align: center;
 }
 
+/*======================================= GOOGLE ANALYTICS DASHBOARD===================================*/
 
 
+#view-selector-1-container > table {
+    display: inline-block;
+    padding-bottom: 50px;
+}
 
+#view-selector-2-container > table {
+    display: inline-block;
+    padding-bottom: 50px;
+}
+
+#view-selector-1-container > table > tr, td {
+    display: block !important;
+}
+
+#view-selector-2-container > table > tr, td {
+    display: block !important;
+}
+
+table:nth-child(0) {
+    width: 100px !important;
+}
+table:nth-child(1) {
+    width: 100px !important;
+}
+table:nth-child(2) {
+    width: 150px !important;
+}
+
+#embed-api-auth-container{
+    padding-left: 20px;
+    font-style: italic;
+}
 
 
 
