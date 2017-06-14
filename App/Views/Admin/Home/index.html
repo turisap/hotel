@@ -61,15 +61,20 @@
                 dimensions: 'ga:country',
                 'start-date': '30daysAgo',
                 'end-date': 'today',
-                'max-results': 6,
+                'max-results': 12,
                 sort: '-ga:sessions'
             },
             chart: {
                 container: 'chart-1-container',
-                type: 'PIE',
+                type: 'GEO',
                 options: {
                     width: '100%',
-                    pieHole: 4/9
+                    region: '035',
+                    colorAxis: {colors: ['#e8b67a', '#fcfc8f', '#d0fc8f', '#9bf7b2', '#6df2de', '#30a7e8', '#f28790']},
+                    showLegend: true,
+                    legend: {
+                        textStyle: {color: 'black', fontSize: 14}
+                    }
                 }
             }
         });
@@ -89,7 +94,16 @@
             chart: {
                 container: 'chart-2-container',
                 type: 'LINE',
+                animation: {
+                    startup: true
+                },
                 options: {
+                    title: 'The number of users',
+                    legend: 'none',
+                    vAxis: {
+                        minValue: 0
+                    },
+
                     width: '100%'
                 }
             }
