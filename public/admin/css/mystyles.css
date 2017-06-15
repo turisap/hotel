@@ -341,8 +341,6 @@ div.past-event {
     margin: 10px;
 }
 
-/* ================================ DELETE BOOKING PAGE ======================== */
-
 /* ============================= ALL BOOKINGS TO ONE ROOM PAGE ================================= */
 
 .booking-past {
@@ -666,14 +664,12 @@ textarea.FormField {
     header {text-align: center;}
     #sinceLastVisit{text-align: center}
 }
-
 @media only screen and (max-width : 768px)   {
     #view-selector-container { width: 100%; text-align: center; }
     .ViewSelector2-item {float: left; clear: both; width: 100%;}
     .FormField {width: 100%;}
 
 }
-
 @media only screen and (max-width: 677px) {
     .head {font-size: 16px;}
     .checkboxes {height: 100px;}
@@ -683,7 +679,8 @@ textarea.FormField {
 @media only screen and (max-width: 968px) {
     .room-name {width: 100%; text-align: center;}
     .crop {margin: 0 auto}
-
+    .all-bookings-tabs {margin-top: 5px;}
+    .view-past-bookings {margin-top: 15px!important;}
 }
 @media only screen and (min-width: 677px) {
     #checkboxes {
@@ -691,6 +688,27 @@ textarea.FormField {
         display: flex;
     }
 }
+@media only screen and (max-width: 434px) {
+    .all-bookings-tabs{font-size: 10px;}
+}
+@media only screen and (min-width: 1143px) and (max-width: 1372px) {
+    .all-bookings-tabs{font-size: 12px;}
+}
+@media only screen and (min-width: 991px) and (max-width: 1143px) {
+    .all-bookings-tabs{font-size: 10px;}
+}
+@media only screen and (min-width: 993px) and (max-width: 1115px) {
+   .tre-future, .view-past-bookings {position:absolute; right: 3%}
+}
+@media only screen and (min-width: 991px) and (max-width: 1200px) {
+    .to-right{margin-left: auto; padding: 0}
+}
+@media only screen and (max-width: 388px) {
+    h3.cancel{font-size: 135%}
+}
+
+
+
 
 
 

@@ -137,7 +137,6 @@
 
 
 {% if pagination.page_total > 1 %}
-
 <div class="row pages">
     <div class="center">
         <ul class="pagination">
@@ -158,15 +157,13 @@
         </ul>
     </div>
 </div>
-
 {% endif %}
 
 
+
+
 {% if bookings is not empty %}
-
 {% for booking in bookings %}
-
-
 <div class="row wrap {% if booking.status == 0 %} booking-past {% elseif booking.status == 2 %} booking-canceled {% elseif booking.status == 3%} booking-ongoing {% else %} booking-future {% endif %}">
 
     {% if booking.status == 1 or booking.status == 3 %}                        <!-- upcoming bookings -->
@@ -185,7 +182,7 @@
     <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6  tre"><span class="checkin">Checkin:{{ booking.checkin }}</span><span class="checkout hide">{{ booking.checkout }}</span><mard><p class="nights-stay"></p></mard></div>
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6  tre"><span>{{ booking.title }} {{ booking.first_name }} {{ booking.last_name }}</span></div>
     <div class="col-lg-1 col-md-1 col-sm-6 col-xs-6  tre"><span>{{ booking.num_guests }} guests</span></div>
-    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 ">
+    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 all-bookings-tabs">
 
         <div class="row">
             <div class="short col-lg-6 col-md-6 col-sm-6 col-xs-6 alert {% if booking.num_children != 0 %}alert-info{% else %}alert-warning{% endif %}"><span>CHILDREN</span></div>
@@ -204,30 +201,25 @@
     <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6  tre"><span>{{ booking.checkin }}<i class="nights-stay"></i></span></div>
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6  tre"><span>{{ booking.title }} {{ booking.first_name }} {{ booking.last_name }}</span></div>
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6  tre"><span>REVIEW</span></div>
-    <div class="col-lg-1 col-md-1 col-sm-6 col-xs-6"><a class="btn btn-default" href="/admin/bookings/check-booking?id={{ booking.booking_id }}">View</a></div>
+    <div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 view-past-bookings"><a class="btn btn-default" href="/admin/bookings/check-booking?id={{ booking.booking_id }}">View</a></div>
     {% endif %}
 
     {% if booking.status == 2 %}                                <!-- canceled bookings -->
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6"><span>{{ booking.room_name }}</span></div>
     <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6"><span>{{ booking.checkin }}</span></div>
-    <div class="col-lg-2 col-md-2"><span>{{ booking.title }} {{ booking.first_name }} {{ booking.last_name }}</span></div>
-    <div class="col-lg-4 col-lg-4 col-sm-6 col-xs-6"><h3 class="cancel">CANCELLED</h3></div>
-    <div class="col-lg-1 col-md-1 col-sm-6 col-xs-6"><a class="btn btn-default" href="/admin/bookings/check-booking?id={{ booking.booking_id }}">View</a></div>
+    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 t to-right"><span>{{ booking.title }} {{ booking.first_name }} {{ booking.last_name }}</span></div>
+    <div class="col-lg-4 col-lg-4 col-sm-6 col-xs-6 "><h3 class="cancel">CANCELLED</h3></div>
+    <div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 t to-right"><a class="btn btn-default view-cancelled" href="/admin/bookings/check-booking?id={{ booking.booking_id }}">View</a></div>
     {% endif %}
 
 
 </div>
-
-
-
 {% endfor %}
 
 {% else %}
-
 <div class="row wrap">
     <h3>There are currently no bookings in your hotel</h3>
 </div>
-
 {% endif %}
 
 
