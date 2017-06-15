@@ -204,11 +204,11 @@
 
 
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 info">
-        <ul class="list-group">
+        <ul class="list-group room-info">
             <li class="list-group-item">Room number: {{ room.room_number }}</li>
             <li class="list-group-item">Class: {{ room.class }}</li>
             <li class="list-group-item">View: {{ room.view }}</li>
-            {% if room.upcoming > 0 %}<li class="alert alert-danger list-group-item">Upcoming guest!</li>{% endif %}
+            {% if room.upcoming > 0 %}<li class="alert alert-danger list-group-item upcoming-guest">Upcoming guest!</li>{% endif %}
         </ul>
     </div>
 
