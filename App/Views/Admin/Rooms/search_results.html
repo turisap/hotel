@@ -66,8 +66,6 @@
 
 
 
-
-
 <h3 class="head">You can find a room by name</h3>
 <form action="/admin/rooms/find-by-room-name" method="post">
     <div class="row wrap search">
@@ -91,8 +89,7 @@
 
 <h3 class="head">Or you can find a room by specifying it's parametrs</h3>
 <div class="row wrap search">
-
-    <div class="col-lg-5 col-md-5 col-sm-12 ">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <form class="form-horizontal" method="post"  id="searchForm"  action="/admin/rooms/search-categories">
             <div class="form-group">
                 <label for="searchOptions">Find a room by:</label>
@@ -108,10 +105,12 @@
             </div>
         </form>
     </div>
+</div>
 
-    <form class="form-horizontal" method="post"  action="/admin/rooms/search-room">
-        <div class="col-lg-5 col-md-5 col-sm-12 right-input">
+<form class="form-horizontal" method="post"  action="/admin/rooms/search-room">
 
+    <div class="row wrap">
+        <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="form-group">
                 <label for="searchOptions">Please select a subcategory now and apply search terms</label>
                 <select name="{{ category }}" class="form-control" >
@@ -124,17 +123,12 @@
                     {% endif %}
                 </select>
             </div>
-
         </div>
+    </div>
 
 
-</div>
-
-<div class="row wrap checkboxes">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 checkboxes">
-
-        <div id="checkboxes">
-
+    <div class="row wrap checkboxes">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="checkboxes">
             <label class="checkbox-inline">
                 <input type="checkbox" {% if room.pets != 0 %}checked="checked" {% endif %}  name="pets" value="1">Pets allowed
             </label>
@@ -144,6 +138,7 @@
             <label class="checkbox-inline">
                 <input name="smoking" type="checkbox" value="1" {% if room.smoking != 0 %}checked="checked" {% endif %}>Smoking alowed
             </label>
+
             <label class="checkbox-inline">
                 <input name="children" type="checkbox" value="1" {% if room.children != 0 %}checked="checked" {% endif %}>Children allowed
             </label>
@@ -152,24 +147,22 @@
             </label>
 
         </div>
-
     </div>
-</div>
 
 
 
 
 
-<div class="row button">
-    <div class="form-group">
-        <div class="col-sm-10">
-            <button type="submit" class="btn btn-primary">Apply</button>
-            {% if view_all == 1 %} <a href="/admin/rooms/all-rooms" class="btn btn-default">View all</a> {% endif %}
+    <div class="row button">
+        <div class="form-group">
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Apply</button>
+                {% if view_all == 1 %} <a href="/admin/rooms/all-rooms" class="btn btn-default">View all</a> {% endif %}
+            </div>
         </div>
     </div>
-</div>
 </form>
-</div>
+
 
 <br>
 <hr/>
@@ -210,23 +203,23 @@
 
 
 {% for room in rooms %}
-<div class="row wrap">
+<div class="row wrap rooms">
 
-    <div class="col-lg-3 col-md-3 col-sm-12 crop">
-            <img src="{{ room.path }}" class="img-responsive img-rooms-all">
+    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 crop">
+        <img src="{{ room.path }}" class="img-responsive img-rooms-all">
     </div>
 
 
-    <div class="col-lg-3 col-md-3 col-sm-12 info">
-        <ul class="list-group">
+    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 info">
+        <ul class="list-group room-info">
             <li class="list-group-item">Room number: {{ room.room_number }}</li>
             <li class="list-group-item">Class: {{ room.class }}</li>
             <li class="list-group-item">View: {{ room.view }}</li>
-            {% if room.upcoming > 0 %}<li class="alert alert-danger list-group-item">Upcoming guest!</li>{% endif %}
+            {% if room.upcoming > 0 %}<li class="alert alert-danger list-group-item upcoming-guest">Upcoming guest!</li>{% endif %}
         </ul>
     </div>
 
-    <div class="col-lg-6 col-md-6 col-sm-12 room-name">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-sm-12 room-name">
 
         <div class="row room-name">
             <a href="/admin/rooms/room?id={{ room.id }}"><h3 class="room-name">{{ room.local_name }}</h3></a>
@@ -234,7 +227,6 @@
 
     </div>
 </div>
-
 {% endfor %}
 
 {% if pagination.page_total > 1 %}
