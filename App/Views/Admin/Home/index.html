@@ -17,8 +17,8 @@
         <ul id="sinceLastVisit">
             {% if events.new_bookings != 0  %}<li><a href="/admin/bookings/view-new?booking_ids[ids]={% for booking_id in events.booking_ids %} {{booking_id}}, {% endfor %}">{{events.new_bookings}}{% if events.new_bookings > 1 %} new bookings {% else %} new booking{% endif %}</a></li>{% endif %}
             {% if events.cancellations != 0 %}<li><a href="/admin/bookings/view-new?booking_ids[ids]={% for booking_id in events.booking_ids %} {{booking_id}}, {% endfor %}">{{events.cancellations }} {% if events.cancellations > 1 %} cancelled {% else %} cancelled {% endif %}</a></li>{% endif %}
-            {% if events.new_users     != 0 %}<li><a href="/admin/bookings/view-new?booking_ids[ids]={% for booking_id in events.booking_ids %} {{booking_id}}, {% endfor %}">{{events.new_users}} {% if events.new_users > 1 %} new users {% else %} new user{% endif %}</a></li>{% endif %}
-            {% if events.activated_users != 0  %}<li><a href="/admin/bookings/view-new?booking_ids[ids]={% for booking_id in events.booking_ids %} {{booking_id}}, {% endfor %}">{{events.activated_users}} {% if events.activated_users > 1 %} activated  {% else %} activated  {% endif %}</a></li>{% endif %}
+            {% if events.new_users     != 0 %}<li><a>{{events.new_users}} {% if events.new_users > 1 %} new users {% else %} new user{% endif %}</a></li>{% endif %}
+            {% if events.activated_users != 0  %}<li><a>{{events.activated_users}} {% if events.activated_users > 1 %} activated  {% else %} activated  {% endif %}</a></li>{% endif %}
         </ul>
     </div>
 

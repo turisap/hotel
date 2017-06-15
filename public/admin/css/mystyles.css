@@ -628,16 +628,23 @@ textarea.FormField {
 
 }
 
-div{
-    border: solid black 1px;
-}
 
-@media only screen and (max-width: 1600px) {
+
+@media only screen and (min-width: 768px) and (max-width: 1224px) {
     /* For tablets: */
     .last-visit{ text-align: center; }
-    #view-selector-container { width: 100%; }
+    #view-selector-container { width: 100%; text-align: center; }
+    #active-users-container {float: none;}
+    header {text-align: center;}
+    #sinceLastVisit{text-align: center}
 }
 
+@media only screen and (max-width : 768px)   {
+    #view-selector-container { width: 100%; text-align: center; }
+    .ViewSelector2-item {float: left; clear: both; width: 100%;}
+    .FormField {width: 100%;}
+    
+}
 
 
 
