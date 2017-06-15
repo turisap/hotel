@@ -348,6 +348,10 @@ div.past-event {
     opacity: 0.7;
 }
 
+.info {
+    font-size: 140%;
+}
+
 .booking-canceled {
     background-color: rgba(230, 180, 174, 0.98);
 }
@@ -359,12 +363,16 @@ div.past-event {
 .booking-ongoing {
     background-color: rgba(182, 176, 218, 0.72);
 }
-.upcoming, .tomorrow, .canceled {
+.upcoming, .tomorrow {
     margin-left: 5% !important;
     width: auto !important;
     text-align: center;
 }
-
+.canceled{
+    text-align: center;
+    width: 70%;
+    margin: 0 auto;
+}
 #sortBookings > div {
     padding: 10px;
 }
@@ -668,7 +676,6 @@ textarea.FormField {
     #view-selector-container { width: 100%; text-align: center; }
     .ViewSelector2-item {float: left; clear: both; width: 100%;}
     .FormField {width: 100%;}
-
 }
 @media only screen and (max-width: 677px) {
     .head {font-size: 16px;}
@@ -690,6 +697,7 @@ textarea.FormField {
 }
 @media only screen and (max-width: 434px) {
     .all-bookings-tabs{font-size: 10px;}
+    .page-header{font-size: 170%;}
 }
 @media only screen and (min-width: 1143px) and (max-width: 1372px) {
     .all-bookings-tabs{font-size: 12px;}
@@ -707,9 +715,35 @@ textarea.FormField {
     h3.cancel{font-size: 135%}
 }
 
+@media only screen and (min-width: 988px) and (max-width: 1372px) {
+    .info-book-room > div > p {font-size: 100%; width: 100%; padding: 0}
+    .info-book-room > div  { width: 100%; padding: 0!important; margin: 0!important}
+    .info-book-room { width: 100%; padding: 0!important; margin: 0!important}
+}
+@media only screen and  (max-width: 988px) {
+    .info-book-room > div > p {font-size: 100%; width: 100%; padding: 0}
+    .info-book-room > div  { width: 100%; padding: 0!important; margin: 0!important}
+    .info-book-room { width: 300%; padding: 0!important; margin: 0!important}
+}
+@media only screen and  (max-width: 384px) {
+    .info-book-room > div > p {font-size: 80%; width: 100%; margin: 0!important; padding: 0!important;}
+    .info-book-room > div  { width: 100%; padding: 0!important; margin: 0!important}
+    .info-book-room { width: 400%; padding: 0!important; margin: 0!important}
+    .one-room-booking-info > div > ul > li {font-size: 80%; padding: 4px;}
+}
 
 
 
+
+
+
+
+
+
+
+.test {
+    border: 1px solid black;
+}
 
 
 
