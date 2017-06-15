@@ -140,10 +140,7 @@
 </div>
 
 <div class="row wrap checkboxes">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 checkboxes">
-
-        <div id="checkboxes">
-
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 checkboxes" id="checkboxes">
             <label class="checkbox-inline">
                 <input type="checkbox" {% if room.pets != 0 %}checked="checked" {% endif %}  name="pets" value="1">Pets allowed
             </label>
@@ -159,9 +156,6 @@
             <label class="checkbox-inline">
                 <input name="tv" type="checkbox" value="1" {% if room.tv != 0 %}checked="checked" {% endif %}>TV set
             </label>
-
-        </div>
-
     </div>
 </div>
 
@@ -219,20 +213,10 @@
 
 
 {% for room in rooms %}
-<div class="row wrap">
-
-
-
+<div class="row wrap rooms">
     <div class="col-lg-3 col-md-3 col-sm-12 crop">
         <img src="{{ room.path }}" class="img-responsive img-rooms-all">
     </div>
-
-
-
-
-
-
-
     <div class="col-lg-3 col-md-3 col-sm-12 info">
         <ul class="list-group">
             <li class="list-group-item">Room number: {{ room.room_number }}</li>
@@ -242,7 +226,7 @@
         </ul>
     </div>
 
-    <div class="col-lg-6 col-md-6 col-sm-12 room-name">
+    <div class="col-lg-6 col-md-6 col-sm-12 room-name booking-container">
 
         <div class="row room-name">
             <a href="/admin/bookings/book-room?id={{ room.id }}" target="_blank"><h3 class="room-name">{{ room.local_name }}</h3></a>
@@ -260,17 +244,8 @@
             </a>
             {% endfor %}
         </div>
-
-
     </div>
-
-
-
-
 </div>
 {% endfor %}
-
-
-
 {% endblock %}
 

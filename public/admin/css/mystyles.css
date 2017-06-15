@@ -731,18 +731,20 @@ textarea.FormField {
     .info-book-room { width: 400%; padding: 0!important; margin: 0!important}
     .one-room-booking-info > div > ul > li {font-size: 80%; padding: 4px;}
 }
-
-
-
-
-
-
-
-
+@media only screen and  (max-width: 945px) {
+    .rooms > div > ul > li {padding: 2px !important; font-size: 80%;}
+    .room-name {height: 50px;}
+    .room-name > a > h3 { font-size: 120%}
+    .booking-container{
+        display: block;
+        height: auto;
+        min-height: 100%!important;
+    }
+}
 
 
 .test {
-    border: 1px solid black;
+    border: 1px solid black !important;
 }
 
 
