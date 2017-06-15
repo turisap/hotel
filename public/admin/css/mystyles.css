@@ -212,7 +212,6 @@ div.row.button {
     width: 550px;     /* set only width in order to avoid distortion*/
     display:block;   /* for aligning to center*/
     margin:auto;
-    /*height: 330px;*/
 }
 
 .buttons{
@@ -282,6 +281,7 @@ div.row.button {
 
 .checkboxes {
     height: 40px;
+    padding: 2px;
 }
 
 #sentence {
@@ -291,6 +291,22 @@ div.row.button {
 #keywords {
     margin:  10px;
 }
+
+@media only screen and (max-width: 677px) {
+    .head {font-size: 16px;}
+    .checkboxes {height: 100px;}
+    .rooms{text-align: center;}
+    .room-name {width: 100%; text-align: center;}
+    .crop {margin: 0 auto}
+
+}
+@media only screen and (min-width: 677px) {
+    #checkboxes {
+        justify-content: space-around !important;
+        display: flex;
+    }
+}
+
 
 /* ================================== STYLES FOR CREATE BOOKING PAGE =========================== */
 

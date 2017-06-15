@@ -91,8 +91,7 @@
 
 <h3 class="head">Or you can find a room by specifying it's parametrs</h3>
 <div class="row wrap search">
-
-    <div class="col-lg-5 col-md-5 col-sm-12 ">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <form class="form-horizontal" method="post"  id="searchForm"  action="/admin/rooms/search-categories">
             <div class="form-group">
                 <label for="searchOptions">Find a room by:</label>
@@ -108,50 +107,46 @@
             </div>
         </form>
     </div>
-
-    <form class="form-horizontal" method="post"  action="/admin/rooms/search-room">
-        <div class="col-lg-5 col-md-5 col-sm-12 right-input">
-
-            <div class="form-group">
-                <label for="searchOptions">Please select a subcategory now and apply search terms</label>
-                <select name="{{ category }}" class="form-control" >
-                    {% if subcategories is not empty %}
-
-                    {% for subcategory in subcategories %}
-                    <option value="{{ subcategory }}">{{ subcategory }}</option>
-                    {% endfor %}
-
-                    {% endif %}
-                </select>
-            </div>
-
-        </div>
-
-
 </div>
 
-<div class="row wrap checkboxes">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 checkboxes">
+<form class="form-horizontal" method="post"  action="/admin/rooms/search-room">
 
-        <div id="checkboxes">
+<div class="row wrap">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="form-group">
+            <label for="searchOptions">Please select a subcategory now and apply search terms</label>
+            <select name="{{ category }}" class="form-control" >
+                {% if subcategories is not empty %}
 
-            <label class="checkbox-inline">
-                <input type="checkbox" {% if room.pets != 0 %}checked="checked" {% endif %}  name="pets" value="1">Pets allowed
-            </label>
-            <label class="checkbox-inline">
-                <input name="aircon" type="checkbox" value="1" {% if room.aircon != 0 %}checked="checked" {% endif %}>Aircon
-            </label>
-            <label class="checkbox-inline">
-                <input name="smoking" type="checkbox" value="1" {% if room.smoking != 0 %}checked="checked" {% endif %}>Smoking alowed
-            </label>
-            <label class="checkbox-inline">
-                <input name="children" type="checkbox" value="1" {% if room.children != 0 %}checked="checked" {% endif %}>Children allowed
-            </label>
-            <label class="checkbox-inline">
-                <input name="tv" type="checkbox" value="1" {% if room.tv != 0 %}checked="checked" {% endif %}>TV set
-            </label>
+                {% for subcategory in subcategories %}
+                <option value="{{ subcategory }}">{{ subcategory }}</option>
+                {% endfor %}
 
+                {% endif %}
+            </select>
         </div>
+    </div>
+</div>
+
+
+<div class="row wrap checkboxes">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="checkboxes">
+        <label class="checkbox-inline">
+            <input type="checkbox" {% if room.pets != 0 %}checked="checked" {% endif %}  name="pets" value="1">Pets allowed
+        </label>
+        <label class="checkbox-inline">
+            <input name="aircon" type="checkbox" value="1" {% if room.aircon != 0 %}checked="checked" {% endif %}>Aircon
+        </label>
+        <label class="checkbox-inline">
+            <input name="smoking" type="checkbox" value="1" {% if room.smoking != 0 %}checked="checked" {% endif %}>Smoking alowed
+        </label>
+
+        <label class="checkbox-inline">
+            <input name="children" type="checkbox" value="1" {% if room.children != 0 %}checked="checked" {% endif %}>Children allowed
+        </label>
+        <label class="checkbox-inline">
+            <input name="tv" type="checkbox" value="1" {% if room.tv != 0 %}checked="checked" {% endif %}>TV set
+        </label>
 
     </div>
 </div>
@@ -169,7 +164,7 @@
     </div>
 </div>
 </form>
-</div>
+
 
 <br>
 <hr/>
@@ -201,14 +196,14 @@
 
 
 {% for room in rooms %}
-<div class="row wrap">
+<div class="row wrap rooms">
 
-    <div class="col-lg-3 col-md-3 col-sm-12 crop">
+    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 crop">
             <img src="{{ room.path }}" class="img-responsive img-rooms-all">
     </div>
 
 
-    <div class="col-lg-3 col-md-3 col-sm-12 info">
+    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 info">
         <ul class="list-group">
             <li class="list-group-item">Room number: {{ room.room_number }}</li>
             <li class="list-group-item">Class: {{ room.class }}</li>
@@ -217,7 +212,7 @@
         </ul>
     </div>
 
-    <div class="col-lg-6 col-md-6 col-sm-12 room-name">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-sm-12 room-name">
 
         <div class="row room-name">
             <a href="/admin/rooms/room?id={{ room.id }}"><h3 class="room-name">{{ room.local_name }}</h3></a>
