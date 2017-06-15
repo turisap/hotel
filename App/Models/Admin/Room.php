@@ -139,7 +139,6 @@ class Room extends \Core\Model {
         $rooms = static::findAll(null, $limit, $offset);
 
 
-
         $rooms_with_photos = array(); // array for keeping pictures and photos objects together
 
         foreach ($rooms as $room){
@@ -154,11 +153,13 @@ class Room extends \Core\Model {
 
                 $pictures = Array ( 'id' => 0, 'room_id' => 0, 'main' => 1, 'name' => '149534948934699692.jpg', 'type' => 'image/jpeg', 'size' => 85505, 'path' => '/uploads/pictures/rooms/room_placeholder.jpg');
                 $set = array_merge((array)$room, $pictures);
+                $set['room_id'] = $room->id;
 
 
             } else {
                 $set = array_merge((array)$room, $pictures);
                 $set['upcoming'] = $upcoming;
+                $set['room_id'] = $room->id;
             }
 
 
