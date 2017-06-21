@@ -30,7 +30,7 @@ class Rooms extends \Core\Admin {
 
     // renders create room page
     public function createRoomAction(){
-        View::renderTemplate('Admin/Rooms/create_room.html');
+        View::renderTemplate('admin/rooms/create_room.html');
     }
 
     // this method creates a room, saving records in photos and rooms tables
@@ -79,13 +79,13 @@ class Rooms extends \Core\Admin {
         } elseif ($room_id == false) {
 
             Flash::addMessage('Please fix all mistakes', Flash::DANGER);
-            View::renderTemplate('Admin/rooms/create_room.html', ['room' => $room]);
+            View::renderTemplate('admin/rooms/create_room.html', ['room' => $room]);
 
         } elseif(in_array('fail', $photo_errors, true)) {   // render template with errors array on failure
 
             Room::delete($room_id);                                           // delete newly create room due to errors uploading files
             Flash::addMessage('There were problems uploading images.', Flash::DANGER);
-            View::renderTemplate('Admin/rooms/create_room.html', ['room' => $room, 'photos' => $photos_objects]);
+            View::renderTemplate('admin/rooms/create_room.html', ['room' => $room, 'photos' => $photos_objects]);
 
         }
 
@@ -146,7 +146,7 @@ class Rooms extends \Core\Admin {
             // get subcategories from search model
             $subcategories = Search::findSearchSubcategories($category);
             Flash::addMessage('Please check subcategory');
-            View::renderTemplate('Admin/rooms/all_rooms.html', ['subcategories' => $subcategories, 'category' => $category]);
+            View::renderTemplate('admin/rooms/all_rooms.html', ['subcategories' => $subcategories, 'category' => $category]);
 
         } else {
             self::redirect('/admin/rooms/all');
@@ -241,7 +241,7 @@ class Rooms extends \Core\Admin {
 
 
     // this method processes search request from find by name input
-    public function findByRoomName(){
+    public function findByRoomNameAction(){
 
         // first get data from the POST array or query string in he case of changing pages by pagination
         $search_terms = $_POST['search_by_name'] ?? $_GET['name'] ?? false;
@@ -318,7 +318,7 @@ class Rooms extends \Core\Admin {
                 // find all pictures for this room
                 $pictures = Photo::findAllPhotosToONeRoom($room->id, false);
                 // render template and pass the room object
-                View::renderTemplate('Admin/rooms/check_room.html', ['room' => $room, 'pictures' => $pictures, 'room_id' => $room_id]);
+                View::renderTemplate('/admin/rooms/check_room.html', ['room' => $room, 'pictures' => $pictures, 'room_id' => $room_id]);
 
             } else { // no room found
 
@@ -498,7 +498,7 @@ class Rooms extends \Core\Admin {
                 } else {
                     // if there is no room id (or wrong one) in query string
                     Flash::addMessage('Unsuccessful saving', Flash::DANGER);
-                    self::redirect('/admin/rooms/edroom?id='.$room_id);
+                    self::redirect('/admin/rooms/room?id='.$room_id);
                 }
 
             } else {

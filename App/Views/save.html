@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- Bootstrap Theme CSS -->
+    <link rel="stylesheet" href="/css/bootstrap_cosmo_theme.css">
+    <!-- My styles -->
+    <link rel="stylesheet" href="/css/mystyles.css">
+    <!-- GOOGLE ANALITICS -->
+    <script src="/js/google_analytics.js"></script>
+</head>
+
+
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            {% if current_user.admin == 1 %}
+            <a class="navbar-brand" href="/admin/home/index">Admin</a>
+            {% else %}
+            <a class="navbar-brand" href="/"><img src="/img/logo.png"></a>
+            {% endif %}
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/login/new">Home</a></li>
+                <li><a href="/login/new">Accommodation</a></li>
+                <li><a href="/login/new">Dining</a></li>
+                {% if current_user %}
+                <li><a href="/profile/show">{{ current_user.first_name}}</a></li>
+                <li><a href="/login/logout"></span> Logout</a></li>
+                {% else %}
+                <li><a href="/login/new"></span> Login</a></li>
+                <li><a href="/signup/new"></span> Sign Up</a></li>
+                {% endif %}
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+</nav>
+
+
+
+<!-- FLASH MESSAGES -->
+{% for message in flash_messages %}
+<div class="flash_message alert alert-{{ message.type }}">{{ message.body }}</div>
+{% endfor %}
+
+
+
+
+{% block body %}
+{% endblock %}
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h2>Contuct us</h2>
+                <form method="post" action="/home/contact-us">
+                    <div class="form-group">
+                        <label for="inputEmail1">Email</label>
+                        <input type="email" class="form-control" id="inputEmail1" name="user_email" placeholder="Your Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputName">Name</label>
+                        <input type="email" class="form-control" id="inputName" name="user_name" placeholder="Your Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputMessage">Message</label>
+                        <textarea rows="5" id="inputMessage" name="user_message" class="form-control"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-default">Send Message</button>
+                </form>
+            </div>
+            <div class="col-md-4">
+                <h2>Adress</h2>
+                <p></p>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- jQuery plagin "Validate" for form validation -->
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+<!-- My custom animations -->
+<script src="/js/animations.js"></script>
+{% block footer %}
+{% endblock %}
+</body>
+</html>

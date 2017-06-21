@@ -17,7 +17,7 @@ class Password extends \Core\Controller {
 
     // renders page with reset form
     public function newAction(){
-        View::renderTemplate('Password/new.html');
+        View::renderTemplate('password/new.html');
     }
 
     // this method resets user's password
@@ -27,7 +27,7 @@ class Password extends \Core\Controller {
 
         if($user){ // if user found reset password
             $user->sendPasswordResetLink($_POST['email']);
-            View::renderTemplate('Password/success.html');
+            View::renderTemplate('password/success.html');
         } else {
             Flash::addMessage('Sorry, but there is no user with this email', Flash::INFO);
             View::renderTemplate('password/new.html', ['email' => $_POST['email']]);
@@ -39,7 +39,7 @@ class Password extends \Core\Controller {
 
         $token = $this->route_parametrs['token']; // first get the token from url
         $user = static::getUserOrExit($token); // get user model
-        View::renderTemplate('Password/reset.html', ['token' => $token]); // pass token to the form in order to use it via a hidden input
+        View::renderTemplate('password/reset.html', ['token' => $token]); // pass token to the form in order to use it via a hidden input
 
     }
 

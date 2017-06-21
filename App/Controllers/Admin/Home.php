@@ -44,14 +44,14 @@ class Home  extends \Core\Admin {
             // delete old notifications from the database
             Notification::deleteOldNotifications();
 
-            View::renderTemplate('Admin/Home/index.html', [
+            View::renderTemplate('admin/home/index.html', [
                 'events'        => $events,
                 'notifications' => $notifications
             ]);
         } else {
 
             // render just empty template
-            View::renderTemplate('Admin/Home/index.html');
+            View::renderTemplate('admin/home/index.html');
 
         }
 

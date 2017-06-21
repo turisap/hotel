@@ -73,7 +73,7 @@ class Bookings extends \Core\Admin {
             // get subcategories from search model
             $subcategories = Search::findSearchSubcategories($category);
             Flash::addMessage('Please check subcategory');
-            View::renderTemplate('Admin/bookings/find_room.html', [
+            View::renderTemplate('admin/bookings/find_room.html', [
                 'subcategories' => $subcategories,
                 'category'      => $category
             ]);

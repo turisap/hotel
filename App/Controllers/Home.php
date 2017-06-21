@@ -14,7 +14,7 @@ class Home extends \Core\Controller {
     public function indexAction(){
         // here we pass the name of a file to render as well as some data in array to display in view
         //View::render("Home/index.php", ['name' => 'David', 'colors' => ['blue', 'red', 'black']]);
-        View::renderTemplate("Home/index.html", ['name' => 'David', 'colors' => ['blue', 'red', 'black']]);
+        View::renderTemplate("home/index.html", ['name' => 'David', 'colors' => ['blue', 'red', 'black']]);
     }
 
     protected function before(){

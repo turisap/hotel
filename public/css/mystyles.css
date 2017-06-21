@@ -1,9 +1,1 @@
-.container{
-    margin: 50px 0;
-}
-
-.flash_message {
-    position: fixed !important;
-    top: 10% !important;
-    width: 95%;
-}
+.flash_message{position:fixed !important;top:10% !important;width:95%}body{padding-top:80px}.navbar-brand{height:auto;margin:0}.nav{margin-top:30px !important}.navbar-nav{margin:0;padding:0}.navbar-nav a{padding:20px;text-transform:uppercase;font-size:20px}

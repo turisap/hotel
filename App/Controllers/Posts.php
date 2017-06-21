@@ -22,7 +22,7 @@ class Posts extends \Core\Controller {
         //echo "Hello from Post controller index() method";
         //View::renderTemplate('Posts/edit.html');
         $posts = Post::getAll();
-        View::renderTemplate('Posts/edit.html', ['posts' => $posts]);
+        View::renderTemplate('posts/edit.html', ['posts' => $posts]);
     }
 
     public function addNewAction(){

@@ -231,10 +231,7 @@
 
     <div class="row form">
 
-        <div class="col-lg-12">
-
-            <div id="checkboxes">
-
+        <div class="form group row">
                 <label class="checkbox-inline">
                     <input type="checkbox" {% if room.pets != 0 %}checked="checked" {% endif %}  name="pets" value="1">Pets allowed
                 </label>
@@ -250,9 +247,6 @@
                 <label class="checkbox-inline">
                     <input name="tv" type="checkbox" value="1" {% if room.tv != 0 %}checked="checked" {% endif %}>TV set
                 </label>
-
-            </div>
-
         </div>
     </div> <!-- the fourth row -->
 

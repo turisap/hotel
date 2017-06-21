@@ -43,7 +43,7 @@ class Login extends \Core\Controller {
 
            Flash::addMessage('You are not logged in', Flash::DANGER);
            // pass state of the checkbox on unsuccessful login
-           View::renderTemplate('Login/new.html',['email' => $_POST['email'], 'remember_me' => $remember_me]);
+           View::renderTemplate('login/new.html',['email' => $_POST['email'], 'remember_me' => $remember_me]);
 
        }
 

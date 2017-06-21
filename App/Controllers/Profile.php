@@ -33,7 +33,7 @@ class Profile extends \Core\Controller {
     public function showAction(){
 
         //$user = Authentifiacation::getCurrentUser();                       // this line went to the before() action filter
-        View::renderTemplate('Profile/show.html', ['user' => $this->user]);
+        View::renderTemplate('profile/show.html', ['user' => $this->user]);
     }
 
     // renders edit page

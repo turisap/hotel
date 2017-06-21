@@ -32,7 +32,7 @@ class SignUP extends \Core\Controller
             header('Location: http://' . $_SERVER['HTTP_HOST'] . '/signup/success');
         } else {
             // render template with user object passed in as a parameter (with errors array)
-            View::renderTemplate("SignUP/new.html", ['user' => $user]);
+            View::renderTemplate("signup/new.html", ['user' => $user]);
         }
 
 
@@ -40,7 +40,7 @@ class SignUP extends \Core\Controller
 
     public function successAction(){
         // render the success page
-        View::renderTemplate("SignUP/success.html");
+        View::renderTemplate("signup/success.html");
     }
 
     // this method activates user's account via email link
@@ -55,7 +55,7 @@ class SignUP extends \Core\Controller
             if($user->activationLinkHasExpired()){           // check whether activation link has expired
 
                 User::accountActivation($token);             // activated account
-                View::renderTemplate('SignUP/activated.html', ['user' => $user]);
+                View::renderTemplate('signup/activated.html', ['user' => $user]);
 
             } else {
 

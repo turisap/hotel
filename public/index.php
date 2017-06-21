@@ -7,6 +7,7 @@ session_start();
 /* Twig */
 // we changed Twig's autoloader to composer's one  because it includes all autoloaders from installed packages through composer
 require_once dirname(__DIR__) . '/vendor/autoload.php';
+//require_once dirname(__DIR__) . '/vendor/Twig/lib/Twig/Autoloader.php';
 
 
 
