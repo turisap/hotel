@@ -58,3 +58,15 @@ section.home-carousel {
   padding:0;
 }
 
+section.booking-home {
+  background: $black;
+  color: $text_on_black;
+  height: 100px;
+  padding: 0!important;
+
+  h2{
+    text-transform: uppercase;
+    padding-top: 10px;
+  }
+}
+

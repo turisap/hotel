@@ -17,7 +17,17 @@
 </section>
 <section class="booking-home">
     <div class="container-fluid">
-
+        <div class="row">
+            <div class="col-md-4">
+                <h2>Book it online</h2>
+            </div>
+            <div class="col-md-2 col-md-offset-2">
+                <input id="checkin" type="text"/>
+            </div>
+            <div class="col-md-2 col-md-offset-2">
+                <input id="checkout" type="text"/>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -26,16 +36,46 @@
 
 {% block footer %}
 <script>
-    jQuery.easing.def = "easeOutExpo";
+    // easing
+    jQuery.easing.def = "easeOutCirc";
 
+    // slider initialization
     $(".slider").slider({
         speed: 1200,
-        delay: 2000,
+        delay: 5000,
         pagination: true,
+        height: '500px',
         buttons: {
             prev: "<div class='prev slider-buttons'><span>&#8249;</span></div>",
             next: "<div class='next slider-buttons'><span>&#8250;</span></div>"
          }
     });
+
+    $(document).ready(function () {
+
+        var checkOutCalendar =   $("#checkout").flatpickr({
+            altInput: true
+        });
+
+        var checkInCalendar = $("#checkin").flatpickr({
+            minDate: new Date(),
+            altInput: true,
+            onChange: function(selectedDates, dateStr, instance){
+
+                var checkin = selectedDates[0];
+                var checkOut = new Date(checkin);
+                checkOut.setDate(checkOut.getDate() + 1);
+                checkOutCalendar.clear();
+                checkOutCalendar.jumpToDate(checkOut);
+                checkOutCalendar.setDate(checkOut);
+                checkOutCalendar.set('minDate', checkOut);
+                checkOutCalendar.open();
+
+            }
+        });
+
+
+    })
+
 </script>
 {% endblock %}
