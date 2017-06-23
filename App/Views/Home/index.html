@@ -5,36 +5,15 @@
 {% block body %}
 
 
-<section class="home-carousel">
-        <div id="homeCarousel" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <li data-target="#homeCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#homeCarousel" data-slide-to="1"></li>
-                <li data-target="#homeCarousel" data-slide-to="2"></li>
-                <li data-target="#homeCarousel" data-slide-to="3"></li>
-                <li data-target="#homeCarousel" data-slide-to="4"></li>
-            </ol>
 
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                    <img src="/img/boat.jpg" alt="sunset on the beach">
-                </div>
-                <div class="item">
-                    <img src="/img/lotos.jpg" alt="...">
-                </div>
-                <div class="item">
-                    <img src="/img/otres.jpg" alt="...">
-                </div>
-                <div class="item">
-                    <img src="/img/sunset.jpg" alt="...">
-                </div>
-                <div class="item">
-                    <img src="/img/tinker_island.jpg" alt="...">
-                </div>
-            </div>
-        </div>
+<section class="home-carousel">
+    <ul class="slider">
+        <li><img src="/img/boat.jpg"></li>
+        <li><img src="/img/lotos.jpg"></li>
+        <li><img src="/img/otres.jpg"></li>
+        <li><img src="/img/sunset.jpg"></li>
+        <li><img src="/img/tinker_island.jpg"></li>
+    </ul>
 </section>
 <section class="booking-home">
     <div class="container-fluid">
@@ -43,14 +22,19 @@
 </section>
 
 
+{% endblock %}
 
-
-
-
-
-
-
-
-
-
+{% block footer %}
+<script>
+    $(".slider").slider({
+        speed: 1000,
+        delay: 5000,
+        autoplay: true,
+        pagination: true,
+        buttons: {
+            prev: "<div class='prev slider-buttons'><span>&#8249;</span></div>",
+            next: "<div class='next slider-buttons'><span>&#8250;</span></div>"
+         }
+    });
+</script>
 {% endblock %}
