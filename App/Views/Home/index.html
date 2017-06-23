@@ -26,10 +26,11 @@
 
 {% block footer %}
 <script>
+    jQuery.easing.def = "easeOutExpo";
+
     $(".slider").slider({
-        speed: 1000,
-        delay: 5000,
-        autoplay: true,
+        speed: 1200,
+        delay: 2000,
         pagination: true,
         buttons: {
             prev: "<div class='prev slider-buttons'><span>&#8249;</span></div>",

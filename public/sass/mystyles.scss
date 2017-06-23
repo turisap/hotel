@@ -56,23 +56,5 @@ footer {
 section.home-carousel {
   margin:0;
   padding:0;
-
-  .carousel {
-    min-height: 500px;
-
-    .item {
-      height: 500px;
-      background-color: #777;
-    }
-  }
-
-  .carousel-inner > .item > img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    min-width: 100%;
-    min-height: 500px;
-
-  }
 }
 

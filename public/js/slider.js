@@ -241,7 +241,9 @@
         _.options.initialslide = 1
       }
       _.markup.$slider.animate(
-        {'margin-left': slidePos + 'px'},
+        {
+          'margin-left': slidePos + 'px'
+        },
         _.options.speed,
         function () {
           if (frame) {
