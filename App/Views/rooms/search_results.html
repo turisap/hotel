@@ -10,7 +10,34 @@
 
 <section class="search-terms">
     <div class="row">
+        <form method="post" id="searchRefine">
+        <div class="col-md-2 col-md-offset-1 text-center terms">
+            <h4><i class="fa fa-calendar"></i> Arrival</h4>
+            <p>{{checkin}}</p>
+        </div>
+        <div class="col-md-2 text-center terms">
+            <h4><i class="fa fa-calendar"></i> Departure</h4>
+            <p>{{checkout}}</p>
+        </div>
+        <div class="col-md-2 text-center terms">
+            <h4><i class="fa fa-bed" aria-hidden="true"></i></i> Number of Guests</h4>
+            <div class="wan-spinner demo">
+                <a href="javascript:void(0)" class="minus">-</a>
+                <input type="text" value="1">
+                <a href="javascript:void(0)" class="plus">+</a>
+            </div>
 
+        </div>
+        <div class="col-md-2 text-center checkbox terms">
+            <label><h4><i class="fa fa-user"></i> Smoking Guests</h4></label>
+            <input type="checkbox" name="quux[1]">
+            <button type="submit" style="width: 1px; height: 1px; visibility: hidden"></button>
+        </div>
+
+        </form>
+        <div class="col-md-2 text-center apply-search">
+             <a id="apply-search"><h3>Apply Terms</h3></a>
+        </div>
     </div>
 </section>
 {% endblock %}
@@ -20,7 +47,27 @@
 
 {% block footer %}
 <script>
+    $(".demo").WanSpinner({
+        maxValue: 6,
+        minValue: 1,
+        inputWidth: 70
+    });
 
+    // trigger form submission on button click
+    $('.apply-search').click(function () {
+        $('#searchRefine').submit();
+    });
+
+            // Checkboxes
+            $(document).ready(function(){
+                $('.search-terms input').iCheck({
+                    checkboxClass: 'icheckbox_flat'
+                });
+            });
+
+
+
+        // vegas slideshow initialization
         $("#searchSlideShow").vegas({
             delay: 7000,
             transition: 'fade',

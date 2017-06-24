@@ -24,6 +24,10 @@ class Rooms extends \Core\Controller {
         $checkin  = $_POST['checkin'] ?? false;
         $checkout = $_POST['checkout'] ?? false;
 
-        View::renderTemplate('rooms/search_results.html', ['rooms' => 0]);
+        View::renderTemplate('rooms/search_results.html', [
+            'rooms'    => 0,
+            'checkin'  => $checkin,
+            'checkout' => $checkout
+        ]);
     }
 }

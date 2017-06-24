@@ -9,6 +9,7 @@ $text_on_black: #ddd;
 
 body{
   padding-top:80px;
+  overflow-x:hidden;
 }
 
 
@@ -237,6 +238,49 @@ section#rooms {
 div#searchSlideShow{
   margin-top: 30px;
   min-height: 500px;
+}
+
+section.search-terms {
+  margin: 0!important;
+  background: rgba(203, 204, 159, 0.41);
+  height: 100px;
+
+
+  .checkbox{
+    padding-top: 15px;
+  }
+
+  .terms {
+    padding-top: 15px;
+  }
+
+ .apply-search {
+   height: 100px;
+   background-color: rgba(139, 139, 121, 0.37);
+ }
+
+  h3{
+    padding-top: 15px;
+    text-transform: uppercase;
+    font-weight: normal;
+    color: #626262;
+  }
+  .apply-search:hover {
+    background-color: rgba(94, 94, 78, 0.59);
+    cursor: pointer!important;
+    h3{color: #cecece;}
+  }
+
+
+  a:hover{
+    text-decoration: none;
+  }
+
+  label {
+    font-weight: normal;
+    font-family:"Segoe UI","Source Sans Pro";
+  }
+
 }
 
 .test {
