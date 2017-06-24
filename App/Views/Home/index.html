@@ -7,7 +7,7 @@
 
 
 <section class="home-carousel">
-    <ul class="slider">
+    <ul class="slider rellax" data-rellax-speed="-12">
         <li><img src="/img/boat.jpg"></li>
         <li><img src="/img/lotos.jpg"></li>
         <li><img src="/img/otres.jpg"></li>
@@ -41,7 +41,7 @@
     <div class="container-fluid">
     <div class="row">
         <div class="col-md-3 col-sm-6">
-            <a href="#"><img src="/img/beach.png" class="img-responsive"></a>
+            <a href="#"><img src="/img/beach.png" class="img-responsive" ></a>
             <h2>Beautiful Beach</h2>
             <p>We have our own beach with clean white sand and turquise water. You can spend days swimming, enjoying cocktails or snorcling as well as scuba diving</p>
         </div>
@@ -138,6 +138,13 @@
 
 {% block footer %}
 <script>
+    // Also can pass in optional settings block
+    var rellax = new Rellax('.rellax');
+</script>
+<script>
+
+
+
     // easing
     jQuery.easing.def = "easeOutCirc";
 
@@ -153,7 +160,10 @@
          }
     });
 
+
+
     $(document).ready(function () {
+
 
         var checkOutCalendar =   $("#checkout").flatpickr({
             altInput: true
@@ -176,8 +186,9 @@
             }
         });
 
+    });
 
-    })
+
 
 </script>
 {% endblock %}
