@@ -6,7 +6,7 @@
 
 
 
-<section class="home-carousel">
+<section class="home-carousel" style="visibility:hidden;">
     <ul class="slider rellax" data-rellax-speed="-12">
         <li><img src="/img/boat.jpg"></li>
         <li><img src="/img/lotos.jpg"></li>
@@ -143,8 +143,6 @@
 </script>
 <script>
 
-
-
     // easing
     jQuery.easing.def = "easeOutCirc";
 
@@ -163,6 +161,8 @@
 
 
     $(document).ready(function () {
+
+        $('.home-carousel').css('visibility', 'visible');
 
 
         var checkOutCalendar =   $("#checkout").flatpickr({
