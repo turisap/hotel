@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Search Results{% endblock %}
+
+
+
+{% block body %}
+<div id="searchSlideShow">
+</div>
+
+<section class="search-terms">
+    <div class="row">
+
+    </div>
+</section>
+{% endblock %}
+
+
+
+
+{% block footer %}
+<script>
+
+        $("#searchSlideShow").vegas({
+            delay: 7000,
+            transition: 'fade',
+            transitionDuration: 2000,
+            slides: [
+                { src: "/img/green.jpg" },
+                { src: "/img/shells.jpg" },
+                { src: "/img/portal.jpg" },
+                { src: "/img/arch.jpg" }
+            ]
+        })
+
+
+</script>
+
+
+{% endblock %}

@@ -17,17 +17,17 @@
 </section>
 <section class="booking-home">
     <div class="container-fluid">
-        <form>
+        <form method="post" action="/rooms/search-results">
             <div class="row">
                 <div class="col-md-3  col-sm-3">
                     <h2>Book it online</h2>
                 </div>
                 <div class="col-md-3  col-sm-3 col-md-offset-1">
-                    <input id="checkin" type="text" class="form-control">
+                    <input id="checkin" type="text" class="form-control" name="checkin">
                     <i class="fa fa-calendar fa-2x"></i>
                 </div>
                 <div class="col-md-3 col-sm-3">
-                    <input id="checkout" type="text"/>
+                    <input id="checkout" type="text" name="checkout">
                     <i class="fa fa-calendar fa-2x"></i>
                 </div>
                 <div class="col-md-2  col-sm-3">
@@ -162,7 +162,15 @@
 
     $(document).ready(function () {
 
+        // carousel visible on ready
         $('.home-carousel').css('visibility', 'visible');
+
+        // check date inputs
+        $("form").submit(function(e){
+            if($('#checkin').val() == '' || $('#checkout').val() ==''){
+                e.preventDefault();
+            }
+        });
 
 
         var checkOutCalendar =   $("#checkout").flatpickr({
