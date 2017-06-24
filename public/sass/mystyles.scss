@@ -8,8 +8,9 @@ $text_on_black: #ddd;
 }
 
 body{
-  padding-top:110px;
+  padding-top:80px;
 }
+
 
 .navbar-brand {
   height: auto;
@@ -36,7 +37,7 @@ body{
 }
 
 footer {
-  margin-top: 80px;
+  margin-top: 30px!important;
   background: $black;
   color: $text_on_black;
   padding-bottom: 10px;
@@ -50,6 +51,11 @@ footer {
     line-height: 2em;
     letter-spacing: 1.2px;
     font-size: 14px;
+  }
+
+  button {
+    background: #fff!important;
+    color: #010101 !important;
   }
 }
 
@@ -82,5 +88,78 @@ section.booking-home {
     color: $text_on_black;
   }
 
+  .find-rooms {
+    background: #fff;
+    color: $black;
+    margin-top: 30px;
+  }
+  .find-rooms:hover {
+    background: #cccaa7 !important;
+  }
+
+}
+
+section.amenities {
+  margin-top: 100px;
+
+  h2, p {
+    text-align: center;
+  }
+  p{
+    font-size: 18px;
+  }
+  h2 {
+    text-transform: capitalize;
+  }
+  img {
+    width: 100%;
+    max-height: 400px;
+  }
+
+}
+
+section#rooms {
+  margin: 80px 0 0 0;
+
+  img{
+    width: 100%;
+    height:100% !important;
+    filter:grayscale(70%);
+  }
+  .images  {
+    position: relative !important;
+    margin: 0!important;
+    padding: 10px 10px!important;
+  }
+  img:hover{
+    filter:grayscale(0);
+    transform: scale(1.02);
+    transition: all .7s ease-out
+  }
+  .captions {
+    display: block;
+    position: absolute;
+    width: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%); // vertically and horizontally center this absolutely positioned div
+    text-align: center;
+
+    .well {
+      background: rgba(0, 0, 0, 0.6)
+    }
+  }
+
+  a {
+    color: $text_on_black;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+
+}
+
+.test {
+  border: 2px solid red;
 }
 
