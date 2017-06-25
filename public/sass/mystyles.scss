@@ -296,20 +296,28 @@ section.search-results {
     a, h3 {
       display: inline-block;
     }
+    .left-arrow, .right-arrow{
+      opacity: 0.6;
+      z-index: 1000;
+    }
+
+    .left-arrow:hover, .right-arrow:hover{
+      opacity: 1;
+      cursor: pointer;
+    }
+
+    .left-arrow{
+      position: absolute;
+      top: 45%;
+    }
+    .right-arrow {
+      position: absolute;
+      right:0;
+      top: 45%;
+    }
   }
 
-  .slick-arrow{
-    color: #f7f7f7 !important;
-    background: rgba(0, 0, 0, 0.48) !important;
-    z-index: 1000!important;
-    padding: 5px;
-  }
-  .slick-prev {
-    margin-left: 5%;
-  }
-  .slick-next {
-    margin-right: 5%;
-  }
+
 
   .panel-footer{
     img{

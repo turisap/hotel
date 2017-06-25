@@ -122,6 +122,8 @@
     $(document).ready(function () {
         {% for room in rooms %}
         $('#{{room.id}}').slick({
+            prevArrow: '<i class="fa fa-chevron-circle-left fa-3x left-arrow" aria-hidden="true"></i>',
+            nextArrow: '<i class="fa fa-chevron-circle-right fa-3x right-arrow" aria-hidden="true"></i>'
         });
         {% endfor %}
     })
