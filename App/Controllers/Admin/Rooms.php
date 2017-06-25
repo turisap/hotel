@@ -110,7 +110,7 @@ class Rooms extends \Core\Admin {
     public static function allRoomsAction(){
 
         // add pagination
-        $current_page = $_GET['page'] ?? false;
+        $current_page = $_GET['page'] ?? 1;
         $items_per_page = 10;
         $rooms_count = count(Room::findAll());
 

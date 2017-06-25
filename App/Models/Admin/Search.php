@@ -514,7 +514,7 @@ abstract class Search extends \Core\Model {
 
 
     // this method finds rooms by a range of dates entered by a user
-    public static function findRoomsByDates($checkin, $checkout){
+    public static function findRoomsByDates($checkin, $checkout, $limit=false, $offset=false){
 
         $sql = 'SELECT * FROM rooms';
         $db  = static::getDb();

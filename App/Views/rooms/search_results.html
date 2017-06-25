@@ -54,8 +54,9 @@
                         <div><img src="{{photo.path}}"></div>
                         {% endfor %}
                     </div>
-                    <a href="/rooms/room-view?id={{room.id}}"><h3>Room Details and pictures</h3></a>
+                    <a href="" class="dropdown-btn"><h3>Room Details <i class="fa fa-chevron-down fa-0.5x rotate_360"></i></h3></a>
                     <h3 class="pull-right">Price: $</h3>
+                    <div class="dropdown-text">{{room.description}}</div>
                 </div>
                 <div class="panel-footer">
                     <div class="row  border-bottom">
@@ -108,6 +109,17 @@
         </div>
     </div>
     {% endfor %}
+    <div class="row text-center">
+        <ul class="pagination pagination-lg">
+            {% if pagination.has_prev != 0 %}<li><a href="/rooms/search-results?page={{pagination.previous}}&checkin={{checkin}}&checkout={{checkout}}">Previous</a></li>{% endif %}
+
+            {% for page in pagination.page_numbers %}
+            <li {% if loop.index == pagination.current_page %} class="active" {% endif %}><a href="/rooms/search-results?page={{loop.index}}&checkin={{checkin}}&checkout={{checkout}}">{{loop.index}}</a></li>
+            {% endfor %}
+
+            {% if pagination.has_next != 0 %}<li><a href="/rooms/search-results?page={{pagination.next}}&checkin={{checkin}}&checkout={{checkout}}">Next</a></li>{% endif %}
+        </ul>
+    </div>
 </section>
 
 {% endblock %}
@@ -119,23 +131,29 @@
 
 <script>
     // slider initialization
-    $(document).ready(function () {
+    $(document).ready(function (e) {
         {% for room in rooms %}
         $('#{{room.id}}').slick({
             prevArrow: '<i class="fa fa-chevron-circle-left fa-3x left-arrow" aria-hidden="true"></i>',
             nextArrow: '<i class="fa fa-chevron-circle-right fa-3x right-arrow" aria-hidden="true"></i>'
         });
         {% endfor %}
+
+        $('.dropdown-text').slideUp();
+        $('.dropdown-btn').click( function (event) {
+            $(this).find('.fa').toggleClass('rotate_180');
+            $(this).find('.fa').toggleClass('rotate_360');
+            var menu = $(this).siblings('.dropdown-text');
+            menu.slideToggle();
+            event.preventDefault();
+        })
     })
 
 </script>
 
 <script>
 
-    // easing
-    jQuery.easing.def = "easeOutCirc";
-
-
+    //dropdownmenu
 
     // number picker
     $(".demo").WanSpinner({

@@ -9,6 +9,7 @@
 namespace App\Controllers;
 
 
+use App\Pagination;
 use Core\View;
 use App\Models\Admin\Search;
 
@@ -22,19 +23,26 @@ class Rooms extends \Core\Controller {
 
     public function searchResultsAction(){
 
-        $checkin  = $_POST['checkin'] ?? false;
-        $checkout = $_POST['checkout'] ?? false;
+        $checkin  = $_POST['checkin'] ?? $_GET['checkin'] ?? false;
+        $checkout = $_POST['checkout'] ?? $_GET['checkout'] ?? false;
 
         if($checkin && $checkout){
 
-            $rooms = Search::findRoomsByDates($checkin, $checkout);
+            $count = count(Search::findRoomsByDates($checkin, $checkout));
+            $items_per_page = 5;
+            $current_page = $_GET['page'] ?? 1;
 
-            //print_r($rooms);
+            $pagination = new Pagination($current_page, $items_per_page, $count);
+
+            $rooms = Search::findRoomsByDates($checkin, $checkout);
+            $offset = ($pagination->offset && ($pagination->offset > 0)) ? $pagination->offset : 0;
+            $rooms = array_slice($rooms, $offset, $items_per_page);
 
             View::renderTemplate('rooms/search_results.html', [
-                'rooms'    => $rooms,
-                'checkin'  => $checkin,
-                'checkout' => $checkout
+                'rooms'      => $rooms,
+                'pagination' => $pagination,
+                'checkin'    => $checkin,
+                'checkout'   => $checkout
             ]);
 
 
