@@ -298,6 +298,19 @@ section.search-results {
     }
   }
 
+  .slick-arrow{
+    color: #f7f7f7 !important;
+    background: rgba(0, 0, 0, 0.48) !important;
+    z-index: 1000!important;
+    padding: 5px;
+  }
+  .slick-prev {
+    margin-left: 5%;
+  }
+  .slick-next {
+    margin-right: 5%;
+  }
+
   .panel-footer{
     img{
       width: 50%;
