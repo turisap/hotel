@@ -283,6 +283,47 @@ section.search-terms {
 
 }
 
+section.search-results {
+
+  h2{
+    margin-left: 20px;
+  }
+
+  .panel-body {
+    img{
+      width: 100%;
+    }
+    a, h3 {
+      display: inline-block;
+    }
+  }
+
+  .panel-footer{
+    img{
+      width: 50%;
+    }
+
+    .info {
+      padding-top: 10px;
+      padding-left: 10px;
+    }
+  }
+
+
+  .border-bottom {
+    border-bottom: 1px solid #dddddd;
+  }
+
+  .bookit {
+    margin-top: 10px;
+  }
+
+}
+
+
+
+
+
 .test {
   border: 2px solid red;
 }

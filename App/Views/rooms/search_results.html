@@ -35,8 +35,61 @@
         </div>
 
         </form>
-        <div class="col-md-2 text-center apply-search">
+        <div class="col-md-2 col-sm-2 col-xs-12 text-center apply-search">
              <a id="apply-search"><h3>Apply Terms</h3></a>
+        </div>
+    </div>
+</section>
+
+<section class="search-results">
+    <h2 class="page-header">Choose the best option</h2>
+    <div class="row">
+        <div class="col-md-6 col-sm-12 col-xs-12 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading"><h3>The name of the room</h3></div>
+                <div class="panel-body">
+                    <img src="/img/rooms/delux.jpg">
+                    <a href="#"><h3>Room Details and pictures</h3></a>
+                    <h3 class="pull-right">Price: $</h3>
+                </div>
+                <div class="panel-footer">
+                    <div class="row  border-bottom">
+                        <div class="col-xs-2 text-center">
+                            <img src="/img/icons/my-icons-collection-yellow/smoking.png">
+                            <p>Smoking Allowed</p>
+                        </div>
+                        <div class="col-xs-2 text-center">
+                            <img src="/img/icons/my-icons-collection-yellow/tv.png">
+                            <p>TV set </p>
+                        </div>
+                        <div class="col-xs-2 text-center">
+                            <img src="/img/icons/my-icons-collection-yellow/snowflake.png">
+                            <p>Aircon</p>
+                        </div>
+                        <div class="col-xs-2 text-center">
+                            <img src="/img/icons/my-icons-collection-yellow/people.png">
+                            <p>Children Allowed</p>
+                        </div>
+                        <div class="col-xs-2 text-center">
+                            <img src="/img/icons/my-icons-collection-yellow/dog.png">
+                            <p>Pets Allowed</p>
+                        </div>
+                    </div>
+                    <div class="row info">
+                        <div class="col-xs-4"><p>Beds:</p></div>
+                        <div class="col-xs-4"><p>Rooms:</p></div>
+                        <div class="col-xs-4"><p>Guests:</p></div>
+                    </div>
+                    <div class="row info border-bottom">
+                        <div class="col-xs-4"><p>View:</p></div>
+                        <div class="col-xs-4"><p>Area:</p></div>
+                        <div class="col-xs-4 "><p>Class:</p></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2 pull-right"><a href="#" class="bookit btn btn-default">Book It</a></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -47,6 +100,8 @@
 
 {% block footer %}
 <script>
+
+    // number picker
     $(".demo").WanSpinner({
         maxValue: 6,
         minValue: 1,
