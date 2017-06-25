@@ -10,27 +10,27 @@
 
 <section class="search-terms">
     <div class="row">
-        <form method="post" id="searchRefine" action="/rooms/search-results">
-        <div class="col-md-2 col-xs-6 col-md-offset-1 text-center terms picker">
+        <form method="post" id="searchRefine">
+        <div class="col-md-2 col-xs-6 col-md-offset-1 text-center terms">
             <h4><i class="fa fa-calendar"></i> Arrival</h4>
-            <input id="checkin" type="text" class="form-control" name="checkin" value="{{checkin}}">
+            <p>{{checkin}}</p>
         </div>
-        <div class="col-md-2 col-xs-6 text-center terms  picker">
+        <div class="col-md-2 col-xs-6 text-center terms">
             <h4><i class="fa fa-calendar"></i> Departure</h4>
-            <input id="checkout" type="text" class="form-control" name="checkout" value="{{checkout}}">
+            <p>{{checkout}}</p>
         </div>
         <div class="col-md-2 col-xs-6 text-center terms">
             <h4><i class="fa fa-bed" aria-hidden="true"></i></i> Number of Guests</h4>
             <div class="wan-spinner demo">
                 <a href="javascript:void(0)" class="minus">-</a>
-                <input type="text" value="{% if num_guests %} {{num_guests}} {% else %} 1 {% endif %}" name="num_guests" >
+                <input type="text" value="1">
                 <a href="javascript:void(0)" class="plus">+</a>
             </div>
 
         </div>
         <div class="col-md-2 col-xs-6 text-center checkbox terms">
             <label><h4><i class="fa fa-user"></i> Smoking Guests</h4></label>
-            <input type="checkbox" name="smoking" {% if smoking %} checked="checked" {% else %}{% endif %}>
+            <input type="checkbox" name="quux[1]">
             <button type="submit" style="width: 1px; height: 1px; visibility: hidden"></button>
         </div>
 
@@ -111,13 +111,13 @@
     {% endfor %}
     <div class="row text-center">
         <ul class="pagination pagination-lg">
-            {% if pagination.has_prev != 0 %}<li><a href="/rooms/search-results?page={{pagination.previous}}&checkin={{checkin}}&checkout={{checkout}}&smoking={{smoking}}&num_guests={{num_guests}}">Previous</a></li>{% endif %}
+            {% if pagination.has_prev != 0 %}<li><a href="/rooms/search-results?page={{pagination.previous}}&checkin={{checkin}}&checkout={{checkout}}">Previous</a></li>{% endif %}
 
             {% for page in pagination.page_numbers %}
-            <li {% if loop.index == pagination.current_page %} class="active" {% endif %}><a href="/rooms/search-results?page={{loop.index}}&checkin={{checkin}}&checkout={{checkout}}&smoking={{smoking}}&num_guests={{num_guests}}">{{loop.index}}</a></li>
+            <li {% if loop.index == pagination.current_page %} class="active" {% endif %}><a href="/rooms/search-results?page={{loop.index}}&checkin={{checkin}}&checkout={{checkout}}">{{loop.index}}</a></li>
             {% endfor %}
 
-            {% if pagination.has_next != 0 %}<li><a href="/rooms/search-results?page={{pagination.next}}&checkin={{checkin}}&checkout={{checkout}}&smoking={{smoking}}&num_guests={{num_guests}}">Next</a></li>{% endif %}
+            {% if pagination.has_next != 0 %}<li><a href="/rooms/search-results?page={{pagination.next}}&checkin={{checkin}}&checkout={{checkout}}">Next</a></li>{% endif %}
         </ul>
     </div>
 </section>
@@ -130,7 +130,7 @@
 {% block footer %}
 
 <script>
-    // sliders initialization
+    // slider initialization
     $(document).ready(function (e) {
         {% for room in rooms %}
         $('#{{room.id}}').slick({
@@ -139,19 +139,12 @@
         });
         {% endfor %}
 
-        // dropdowns
         $('.dropdown-text').slideUp();
         $('.dropdown-btn').click( function (event) {
             $(this).find('.fa').toggleClass('rotate_180');
             $(this).find('.fa').toggleClass('rotate_360');
             var menu = $(this).siblings('.dropdown-text');
             menu.slideToggle();
-            event.preventDefault();
-        });
-
-        //form submission on click of link APPLY TERMS
-        $('#apply-search').click(function (event) {
-            $('#searchRefine').submit();
             event.preventDefault();
         })
     })

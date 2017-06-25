@@ -8,7 +8,7 @@ $text_on_black: #ddd;
 }
 
 body{
-  padding-top:80px;
+  padding-top:60px;
   overflow-x:hidden;
 }
 
@@ -245,7 +245,9 @@ section.search-terms {
   background: rgba(203, 204, 159, 0.41);
   height: 100px;
 
-
+  .picker {
+    margin-top: -12px;
+  }
   .checkbox{
     padding-top: 15px;
   }

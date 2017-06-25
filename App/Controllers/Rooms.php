@@ -21,20 +21,25 @@ class Rooms extends \Core\Controller {
     }
 
 
+    // search by dates or by dates and num_guests and smoking
     public function searchResultsAction(){
+
+        //print_r($_POST);
 
         $checkin  = $_POST['checkin'] ?? $_GET['checkin'] ?? false;
         $checkout = $_POST['checkout'] ?? $_GET['checkout'] ?? false;
+        $smoking  = $_POST['smoking'] ?? $_GET['smoking'] ?? false;
+        $guests   = $_POST['num_guests'] ?? $_GET['num_guests'] ?? false;
 
         if($checkin && $checkout){
 
-            $count = count(Search::findRoomsByDates($checkin, $checkout));
+            $count = count(Search::findRoomsByDates($checkin, $checkout, $smoking, $guests));
             $items_per_page = 5;
             $current_page = $_GET['page'] ?? 1;
 
             $pagination = new Pagination($current_page, $items_per_page, $count);
 
-            $rooms = Search::findRoomsByDates($checkin, $checkout);
+            $rooms = Search::findRoomsByDates($checkin, $checkout, $smoking, $guests);
             $offset = ($pagination->offset && ($pagination->offset > 0)) ? $pagination->offset : 0;
             $rooms = array_slice($rooms, $offset, $items_per_page);
 
@@ -42,11 +47,15 @@ class Rooms extends \Core\Controller {
                 'rooms'      => $rooms,
                 'pagination' => $pagination,
                 'checkin'    => $checkin,
-                'checkout'   => $checkout
+                'checkout'   => $checkout,
+                'smoking'    => $smoking,
+                'num_guests' => $guests
             ]);
 
 
         }
 
     }
+
+
 }
