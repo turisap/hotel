@@ -226,6 +226,19 @@ class Room extends \Core\Model {
 
     }
 
+    // gets a rooms object with al photos
+    public static function getOneRoomWithPhotos($room_id){
+
+        $room = static::findById($room_id);
+        $photos = Photo::findAllPhotosToONeRoom($room_id, false);
+
+        if($room && $photos){
+            $room->photos = $photos;
+            return $room;
+        }
+        return false;
+    }
+
 
 
 

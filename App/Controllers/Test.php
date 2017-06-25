@@ -30,7 +30,7 @@ class Test
 
 
     public function test(){
-       print_r(Booking::isThereOngoingBookings());
+       print_r(Search::findRoomsByDates(3,3));
     }
 
 

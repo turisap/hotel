@@ -513,6 +513,39 @@ abstract class Search extends \Core\Model {
     }
 
 
+    // this method finds rooms by a range of dates entered by a user
+    public static function findRoomsByDates($checkin, $checkout){
+
+        $sql = 'SELECT * FROM rooms';
+        $db  = static::getDb();
+
+        $stm = $db->prepare($sql);
+        $stm->execute();
+        $rooms = $stm->fetchAll(PDO::FETCH_CLASS);
+
+        // array for available rooms ids
+        $available_rooms_id = array();
+        if(!empty($rooms)){
+            foreach($rooms as $room){
+                if( ! Booking::isBookedCheckinDate($checkin, $room->id) && ! Booking::isBookedCheckOutDate($checkout, $room->id)){
+                    $available_rooms_id[] = $room->id;
+                }
+            }
+
+            // array for available rooms with photos objects
+            $available_rooms = array();
+            if(!empty($available_rooms_id)){
+                foreach ($available_rooms_id as $available_room_id){
+                    $available_rooms[] = Room::getOneRoomWithPhotos($available_room_id);
+                }
+            }
+
+            return $available_rooms;
+        }
+        return false;
+    }
+
+
 
 
 

@@ -10,6 +10,7 @@ namespace App\Controllers;
 
 
 use Core\View;
+use App\Models\Admin\Search;
 
 class Rooms extends \Core\Controller {
 
@@ -24,10 +25,20 @@ class Rooms extends \Core\Controller {
         $checkin  = $_POST['checkin'] ?? false;
         $checkout = $_POST['checkout'] ?? false;
 
-        View::renderTemplate('rooms/search_results.html', [
-            'rooms'    => 0,
-            'checkin'  => $checkin,
-            'checkout' => $checkout
-        ]);
+        if($checkin && $checkout){
+
+            $rooms = Search::findRoomsByDates($checkin, $checkout);
+
+            //print_r($rooms);
+
+            View::renderTemplate('rooms/search_results.html', [
+                'rooms'    => $rooms,
+                'checkin'  => $checkin,
+                'checkout' => $checkout
+            ]);
+
+
+        }
+
     }
 }
