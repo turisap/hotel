@@ -137,7 +137,7 @@
                 <p>We can find a vehicle for you to rent</p>
             </div>
             <div class="col-sm-2 checkboxes">
-                <input type="checkbox" name="quite_room"  class="pull-right checkbox-input">
+                <input type="checkbox" name="bike_rent"  class="pull-right checkbox-input">
             </div>
         </div>
     </div>
@@ -145,7 +145,7 @@
 
 <section id="credentials">
     <div class="container-fluid">
-        <h3>Please tell us your name and email</h3>
+        <h3>Please tell us you</h3>
         <div class="row">
             <div class="col-sm-3">
                 <div class="form-group">
@@ -176,6 +176,32 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="form-group">
+                    <label>Wishes</label>
+                    <textarea class="form-control"  type="text" name="wishes" id="arrival"></textarea>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>Approximate arrival time:</label>
+                    <select class="form-control" name="arrival_time" id="wishes">
+                        <option value="00:00 - 02:00">00:00 - 02:00</option>
+                        <option value="02:00 - 04:00">02:00 - 04:00</option>
+                        <option value="04:00 - 06:00">04:00 - 06:00</option>
+                        <option value="06:00 - 08:00">06:00 - 08:00</option>
+                        <option value="10:00 - 12:00">10:00 - 12:00</option>
+                        <option value="12:00 - 14:00">12:00 - 14:00</option>
+                        <option value="16:00 - 18:00">16:00 - 18:00</option>
+                        <option value="18:00 - 20:00">18:00 - 20:00</option>
+                        <option value="20:00 - 22:00">20:00 - 22:00</option>
+                        <option value="22:00 -240:00">22:00 - 24:00</option>
+                        <option value="0" >I'm not sure</option>
+                    </select>
+                </div>
+            </div>
+        </div>
         <div class="row" id="buttons">
             <div class="col-md-12">
                 <div class="form-group">
@@ -186,6 +212,10 @@
         </div>
     </div>
 </section>
+<input type="hidden" value="{{room.local_name}}" name="local_name">
+<input type="hidden" value="{{checkin}}" name="checkin">
+<input type="hidden" value="{{checkout}}" name="checkout">
+<input type="hidden" value="{{room.id}}" name="room_id">
 </form>
 
 {% endblock %}

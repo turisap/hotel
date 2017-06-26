@@ -13,6 +13,9 @@ use App\Models\Admin\Room;
 use App\Pagination;
 use Core\View;
 use App\Models\Admin\Search;
+use App\Models\Admin\Booking;
+use App\Flash;
+use App\Mail;
 
 class Rooms extends \Core\Controller {
 
@@ -66,14 +69,51 @@ class Rooms extends \Core\Controller {
 
         if($room_id){
             $room = Room::findById($room_id);
+
+            View::renderTemplate('rooms/prebook_room.html', [
+                'checkin'  => $checkin,
+                'checkout' => $checkout,
+                'room'     => $room
+            ]);
+        } else {
+            Flash::addMessage('There is no such a room');
+            self::redirect('/home/index');
         }
 
-        View::renderTemplate('rooms/prebook_room.html', [
-            'checkin'  => $checkin,
-            'checkout' => $checkout,
-            'room'     => $room
-        ]);
+
     }
 
+
+
+
+    // creates booking f
+    public function bookRoomAction(){
+
+        $data = $_POST ?? false;
+        $room_name = $_POST['local_name'] ?? false;
+
+        if(!empty($data)){
+
+            // create a new Booking object based on POST data
+            $booking = new Booking($data);
+
+            // call Booking model's method to create a record in the database and proceed on success
+
+            if($booking->newBooking($room_name)){
+
+                Flash::addMessage('Your booking was created successfully');
+                // get current user's object
+                Mail::send($data['email'], 'MyHotelSystem', 'New booking', View::getTemplate('admin/bookings/booking_email.html', [
+
+                ]));
+
+                echo 'success';
+
+            } else {
+                Flash::addMessage('there was a problem processing your requests, please try again');
+                self::redirect('/home/index');
+            }
+        }
+    }
 
 }

@@ -57,9 +57,10 @@ class Booking extends \Core\Model {
             $quite_room = isset($this->quite_room) ?? 0;
             $bike_rent  = isset($this->bike_rent)  ?? 0;
             $num_children = isset($this->num_children) ? $this->num_children : null;
+            $user_id = $this->user_id ?? null;
 
             $stm->bindValue(':room_id', $this->room_id, PDO::PARAM_INT);
-            $stm->bindValue(':user_id', $this->user_id, PDO::PARAM_INT);
+            $stm->bindValue(':user_id', $user_id, PDO::PARAM_INT);
             $stm->bindValue(':room_name', $room_name, PDO::PARAM_STR);
             $stm->bindValue(':title', $this->title, PDO::PARAM_STR);
             $stm->bindValue(':first_name', $this->first_name, PDO::PARAM_STR);

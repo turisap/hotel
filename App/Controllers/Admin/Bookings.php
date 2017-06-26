@@ -269,13 +269,15 @@ class Bookings extends \Core\Admin {
 
     }
 
-    // process book room form and crate a booking
+    // process book room form and create a booking
     public function newBookingAction(){
 
         // get data from POST array
         $data = $_POST ?? false;
         // extract room id in order to pass it to the view in the case of error
         $room_id = $_POST['room_id'] ?? false;
+
+        //print_r($data);
 
 
         if(!empty($data)){
