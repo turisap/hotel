@@ -34,4 +34,15 @@ $(document).ready(function () {
 
         }
     });
+
+    // Checkboxes
+    $('.search-terms input').iCheck({
+        checkboxClass: 'icheckbox_flat'
+    });
+    // Checkboxes
+    $('.checkbox-input').iCheck({
+        checkboxClass: 'icheckbox_flat'
+    });
+
+
 });

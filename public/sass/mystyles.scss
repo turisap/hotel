@@ -414,6 +414,67 @@ section.search-results {
   }
 }
 
+/*========================= PREBOOK PAGE =======================================*/
+section.search-terms.prebook {
+  margin-top: 50px!important;
+}
+
+section.header {
+  padding-left: 40px !important;
+}
+
+section.extras {
+  padding-left: 40px!important;
+  padding-right: 40px!important;
+
+  input, select {
+    width: 100%!important;
+  }
+  .select{
+    margin-left: 10%;
+  }
+
+  img {
+    width: 100%;
+  }
+  img.icon {
+    width: 20%!important;
+    position: absolute;
+    top: 12%;
+    left: -5%;
+  }
+
+  .form-group.breakfast {
+    margin-top: 20px;
+  }
+  .extras {
+    border-bottom: 1px solid #ddd;
+    padding: 20px;
+    h3, input{
+      display: inline-block;
+      margin: 0!important;
+      padding: 0!important;
+    }
+    p{
+      margin: 10px 0 0 0!important;
+    }
+    .icheckbox_flat {
+      position: absolute!important;
+      right: 15px!important;
+      margin-top: 20px;
+    }
+
+  }
+
+  .checkbox-input.pull-right{
+    width: 20px!important;
+  }
+
+
+}
+
+
+
 
 
 

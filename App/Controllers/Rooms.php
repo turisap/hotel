@@ -9,6 +9,7 @@
 namespace App\Controllers;
 
 
+use App\Models\Admin\Room;
 use App\Pagination;
 use Core\View;
 use App\Models\Admin\Search;
@@ -55,6 +56,23 @@ class Rooms extends \Core\Controller {
 
         }
 
+    }
+
+    public function prebookRoomAction(){
+
+        $checkin = $_GET['checkin']   ?? false;
+        $checkout = $_GET['checkout'] ?? false;
+        $room_id  = $_GET['id'] ?? false;
+
+        if($room_id){
+            $room = Room::findById($room_id);
+        }
+
+        View::renderTemplate('rooms/prebook_room.html', [
+            'checkin'  => $checkin,
+            'checkout' => $checkout,
+            'room'     => $room
+        ]);
     }
 
 
