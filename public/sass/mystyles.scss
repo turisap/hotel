@@ -30,6 +30,7 @@ body{
     padding: 20px;
     text-transform: uppercase;
     font-size: 20px;
+    font-weight: 200;
   }
 
   a:hover{
@@ -429,11 +430,8 @@ section.extras {
   padding-left: 40px!important;
   padding-right: 40px!important;
 
-  input, select {
-    width: 100%!important;
-  }
   .selects, .breakfast{
-    width: 250px!important;
+    width: 250px;
   }
 
   img {
@@ -475,17 +473,14 @@ section.extras {
 
 }
 
-section.credentials {
+section#credentials {
   margin-top: 70px;
-  padding-left: 40px!important;
-  padding-right: 40px!important;
+  padding-left: 40px;
+  padding-right: 40px;
 
   h3 {
-    margin-bottom: 20px!important;
+    margin-bottom: 40px;
   }
-
-
-
 
   button, #facebook {
     margin-top: 40px;
@@ -496,6 +491,42 @@ section.credentials {
   }
 }
 
+@media (max-width: 770px){
+  .col-sm-4 > div.selects, .col-sm-4 > div.breakfast{
+    width: 100%;
+  }
+  section.extras .selects {
+    margin-top: 20px;
+  }
+  section.extras .checkboxes .icheckbox_flat{
+    top: -55px;
+  }
+
+}
+@media (max-width: 444px){
+  section.header {
+    display: none;
+  }
+  section#credentials {
+    margin-top: 20px;
+    h3 {
+      font-size: 20px;
+    }
+  }
+  .row#buttons {
+    text-align: center;
+  }
+  section.extras .extras div p {
+    display: none;
+  }
+  section.extras .extras div h3 {
+    font-size: 16px;
+  }
+  section.extras .checkboxes .icheckbox_flat{
+    top: -35px;
+  }
+
+}
 
 
 
