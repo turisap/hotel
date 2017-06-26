@@ -39,22 +39,33 @@
     </div>
 </section>
 <section class="header">
-    <h1 class="page-header">Booking</h1>
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">Booking</h1>
+        </div>
+    </div>
 </section>
+
+<form action="/rooms/book-room" method="post" id="bookingForm">
 <section class="extras">
     <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>{{room.local_name}}<small> please choose extras if you want</small></h2>
+            </div>
+        </div>
         <div class="row extras">
-            <h2>{{room.local_name}}<small> please choose extras if you want</small></h2>
             <div class="col-sm-4">
                 <h3><img src="/img/icons/my-icons-collection-yellow/breakfast.png" class="icon"> Breakfast</h3>
                 <img src="/img/food/breakfast.jpg">
             </div>
             <div class="col-sm-4 col-sm-offset-4">
-                <div class="form-group breakfast  pull-right">
+                <div class="form-group breakfast pull-right">
                     <label for="num_guests_breakfast">For how many guests</label>
                     <select class="form-control" id="num_guests_breakfast" name="num_guests_breakfast">
+                        <option value="0">I don't need breakfast</option>
                         {% for i in 1..room.num_guests %}
-                        <option>{{loop.index}}</option>
+                        <option value="{{loop.index}}">{{loop.index}}</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -66,11 +77,28 @@
                 <p>Please tell us how big your company is</p>
             </div>
             <div class="col-sm-4">
-                <div class="form-group pull-right" style="width: 150px!important;">
+                <div class="form-group pull-right selects">
                     <label for="num_guests">How many guests</label>
                     <select class="form-control" id="num_guests" name="num_guests">
                         {% for i in 1..room.num_guests %}
-                        <option>{{loop.index}}</option>
+                        <option value="{{loop.index}}">{{loop.index}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row extras">
+            <div class="col-sm-8">
+                <h3>Happy Children</h3>
+                <p>Please tell us how many children will be with you</p>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group pull-right selects">
+                    <label for="num_guests">How many children</label>
+                    <select class="form-control" id="num_children" name="num_children">
+                        <option value="0">No children</option>
+                        {% for i in 1..room.num_guests %}
+                        <option value="{{loop.index}}">{{loop.index}}</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -115,6 +143,51 @@
     </div>
 </section>
 
+<section class="credentials">
+    <div class="container-fluid">
+        <h3>Please tell us your name and email</h3>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="num_guests">Title</label>
+                    <select class="form-control" id="title" name="title">
+                        <option value="Mr.">Mr.</option>
+                        <option value="Ms.">Ms.</option>
+                        <option value="Mrs.">Mrs.</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>First Name</label>
+                    <input class="form-control" name="first_name">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="num_guests">Last Name</label>
+                    <input class="form-control"  name="last_name">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="num_guests">Email</label>
+                    <input class="form-control" name="email" type="email">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <button class="btn btn-default btn-lg" type="submit">BOOK</button>
+                    <a id="facebook" class="btn btn-default btn-lg" href="/rooms/facebook"><i class="fa fa-facebook"></i> Use facebook</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</form>
+
 {% endblock %}
 
 
@@ -129,18 +202,47 @@
 <script>
 
 
-    // number picker
-    $(".demo").WanSpinner({
-        maxValue: 6,
-        minValue: 1,
-        inputWidth: 70
-    });
-
     // trigger form submission on button click
     $('.apply-search').click(function () {
         $('#searchRefine').submit();
     });
 
+    $(document).ready(function () {
+        //form validation using jQuery Validate plagin
+        $(document).ready(function() {
+
+            $('#bookingForm').validate({
+                rules: {
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    first_name: {
+                        required: true
+                    },
+                    last_name: {
+                        required: true
+                    }
+
+                },
+                messages: {
+                    email: {
+                        required: 'We do need your email',
+                        email: 'Please enter a valid email'
+                    },
+                    first_name: {
+                        required: 'We do need your name'
+                    },
+                    last_name: {
+                        required: 'We do need your last name'
+                    }
+
+                }
+            });
+
+        });
+
+    })
 
 
 

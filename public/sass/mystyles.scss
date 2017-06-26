@@ -417,10 +417,12 @@ section.search-results {
 /*========================= PREBOOK PAGE =======================================*/
 section.search-terms.prebook {
   margin-top: 50px!important;
+
 }
 
 section.header {
   padding-left: 40px !important;
+  padding-right: 40px!important;
 }
 
 section.extras {
@@ -430,8 +432,8 @@ section.extras {
   input, select {
     width: 100%!important;
   }
-  .select{
-    margin-left: 10%;
+  .selects, .breakfast{
+    width: 250px!important;
   }
 
   img {
@@ -449,7 +451,7 @@ section.extras {
   }
   .extras {
     border-bottom: 1px solid #ddd;
-    padding: 20px;
+    padding: 20px 0;
     h3, input{
       display: inline-block;
       margin: 0!important;
@@ -471,6 +473,27 @@ section.extras {
   }
 
 
+}
+
+section.credentials {
+  margin-top: 70px;
+  padding-left: 40px!important;
+  padding-right: 40px!important;
+
+  h3 {
+    margin-bottom: 20px!important;
+  }
+
+
+
+
+  button, #facebook {
+    margin-top: 40px;
+  }
+
+  #facebook i{
+    color: #000092;
+  }
 }
 
 
