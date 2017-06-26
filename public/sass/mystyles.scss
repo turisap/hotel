@@ -3,8 +3,19 @@ $text_on_black: #ddd;
 
 .flash_message {
   position: fixed !important;
-  top: 10% !important;
+  top: 30% !important;
+  left: 2.55%;
   width: 95%;
+  z-index: 1000;
+}
+.flash_message.alert-success {
+  background: #9fd1aa;
+}
+.flash_message.alert-info {
+  background: #a28aea;
+}
+.flash_message.alert-danger {
+  background: rgba(214, 61, 62, 0.39);
 }
 
 body{
@@ -39,7 +50,6 @@ body{
 }
 
 footer {
-  margin-top: 30px!important;
   background: $black;
   color: $text_on_black;
   padding-bottom: 10px;
@@ -531,8 +541,17 @@ section#credentials {
 
 }
 
-
-
+/*==================== BOOKING SUCCESS PAGE ==============================================*/
+section#booking-success {
+  padding-top: 100px;
+  height: 80vh;
+  background: url(../img/shells_grey.png) no-repeat center;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -o-background-size: cover;
+  -moz-background-size: cover;
+  color: $text_on_black;
+}
 
 
 .test {

@@ -1,5 +1,7 @@
 <h2>New booking</h2>
 
+{% if user %}
+
 Dear {{ user.first_name }} {{ user.last_name }},
 
 <br>
@@ -9,4 +11,21 @@ You just made a reservation on {{ site_name }}. Your reservation number
 If it weren't you, please let us know.
 <p>You reserved {{ booking.room_name }}</p>
 <p>Your booking number is #{{ booking.booking_id }}, check and check out dates are {{ booking.checkin }} and {{ booking.checkout }}</p>
+
+<p>See you soon!</p>
+
+{% else %}
+
+Dear  {{ booking.title }} {{ booking.first_name }} {{ booking.last_name }},
+
+<br>
+
+You just made a reservation on {{ site_name }}. Your reservation number
+
+If it weren't you, please let us know.
+<p>You reserved {{ room_name }}</p>
+<p>Your booking number is #{{ booking.booking_id }}, check and check out dates are {{ booking.checkin }} and {{ booking.checkout }}</p>
+
+<p>See you soon!</p>
+{% endif %}
 

@@ -65,9 +65,6 @@
                 {% if current_user %}
                 <li><a href="/profile/show">{{ current_user.first_name}}</a></li>
                 <li><a href="/login/logout"></span> Logout</a></li>
-                {% else %}
-                <li><a href="/login/new"></span> Login</a></li>
-                <li><a href="/signup/new"></span> Sign Up</a></li>
                 {% endif %}
             </ul>
         </div><!--/.nav-collapse -->

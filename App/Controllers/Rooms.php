@@ -104,15 +104,22 @@ class Rooms extends \Core\Controller {
                 Flash::addMessage('Your booking was created successfully');
                 // get current user's object
                 Mail::send($data['email'], 'MyHotelSystem', 'New booking', View::getTemplate('admin/bookings/booking_email.html', [
-
+                    'booking' => $booking,
+                    'room_name' => $room_name
                 ]));
 
-                echo 'success';
+
+               View:: renderTemplate('/rooms/booked_successfully.html',[
+                    'booking'   => $booking,
+                    'room_name' => $room_name
+                ]);
 
             } else {
-                Flash::addMessage('there was a problem processing your requests, please try again');
+                Flash::addMessage('There was a problem processing your requests, please try again');
                 self::redirect('/rooms/prebook-room?checkin='. $data['checkin'] . '&checkout=' . $data['checkout'] . '&id=' .$data['room_id']);
             }
+        } else {
+            self::redirect('home/index');
         }
     }
 

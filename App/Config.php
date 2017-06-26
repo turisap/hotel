@@ -24,7 +24,7 @@ class Config
     const SECRET_KEW_HASHING = 'r7OOn90q3swhv64AbLE80N9ufEsHL63W';
 
     // website name
-    const SITE_NAME = 'MyhotelSystem';
+    const SITE_NAME = 'Roksana Blue';
 
     // if this set to true then users can use the same password on reset
     const SAME_PASSWORD = false;

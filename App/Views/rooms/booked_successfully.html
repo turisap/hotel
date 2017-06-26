@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Success{% endblock %}
+
+
+
+{% block body %}
+
+<section id="booking-success">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Congratulations! Your booking is done.</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p>Your booking for {{room_name}} has been made successfully. </p>
+                <p>You check in on {{booking.checkin}} and check out on {{booking.checkout}}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

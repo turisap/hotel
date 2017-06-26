@@ -21,6 +21,7 @@ use \App\Token;
 use App\Models\RememberedLogin;
 use App\Models\Admin\Room;
 use App\Models\Admin\Menu;
+use Core\View;
 
 
 class Test
@@ -30,7 +31,7 @@ class Test
 
 
     public function test(){
-       print_r(Search::findRoomsByDates(3,3));
+       View::renderTemplate('rooms/booked_successfully.html');
     }
 
 
