@@ -405,8 +405,13 @@ class Bookings extends \Core\Admin {
             if(Booking::cancelBooking($booking_id, true)){
 
                 // send email to the user
-                $user = User::findById($booking->user_id);
-                Mail::send($user->email, 'MyhotelSystem', 'Booking cancelation', $message);
+                if(isset($booking->user_id)){
+                    $user = User::findById($booking->user_id);
+                    $email = $user->email;
+                } else {
+                    $email = $booking->user_email;
+                }
+                Mail::send($email, 'MyhotelSystem', 'Booking cancelation', $message);
 
                 // and redirect
                 Flash::addMessage('Booking was successfully canceled');
