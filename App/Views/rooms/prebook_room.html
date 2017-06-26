@@ -62,7 +62,7 @@
             <div class="col-sm-4 col-sm-offset-4">
                 <div class="form-group breakfast pull-right">
                     <label for="num_guests_breakfast">For how many guests</label>
-                    <select class="form-control" id="num_guests_breakfast" name="num_guests_breakfast">
+                    <select class="form-control" id="num_guests_breakfast" name="breakfast">
                         <option value="0">I don't need breakfast</option>
                         {% for i in 1..room.num_guests %}
                         <option value="{{loop.index}}">{{loop.index}}</option>
