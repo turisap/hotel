@@ -111,7 +111,7 @@ class Rooms extends \Core\Controller {
 
             } else {
                 Flash::addMessage('there was a problem processing your requests, please try again');
-                self::redirect('/home/index');
+                self::redirect('/rooms/prebook-room?checkin='. $data['checkin'] . '&checkout=' . $data['checkout'] . '&id=' .$data['room_id']);
             }
         }
     }
