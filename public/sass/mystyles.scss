@@ -270,6 +270,10 @@ section.search-terms {
  .apply-search {
    height: 100px;
    background-color: rgba(139, 139, 121, 0.37);
+   -moz-transition: all .5s ease-in;
+   -webkit-transition: all .5s ease-in;
+   -o-transition: all .5s ease-in;
+   transition: all .5s ease-in;
  }
 
   h3{
@@ -277,11 +281,25 @@ section.search-terms {
     text-transform: uppercase;
     font-weight: normal;
     color: #626262;
+    -moz-transition: all .5s ease-in;
+    -webkit-transition: all .5s ease-in;
+    -o-transition: all .5s ease-in;
+    transition: all .5s ease-in;
   }
   .apply-search:hover {
     background-color: rgba(94, 94, 78, 0.59);
+    -moz-transition: all .5s ease-in;
+    -webkit-transition: all .5s ease-in;
+    -o-transition: all .5s ease-in;
+    transition: all .5s ease-in;
     cursor: pointer!important;
-    h3{color: #cecece;}
+    h3{
+      color: #cecece;
+      -moz-transition: all .5s ease-in;
+      -webkit-transition: all .5s ease-in;
+      -o-transition: all .5s ease-in;
+      transition: all .5s ease-in;
+    }
   }
 
 
@@ -558,7 +576,13 @@ div#restaurantSlideShow{
   margin-top: 30px;
   min-height: 400px;
 }
-
+section#diningLanding{
+  min-height: 70vh;
+  margin-bottom: 80px;
+  #formCategories {
+    padding-top: 80px;
+  }
+}
 .test {
   border: 2px solid red;
 }
