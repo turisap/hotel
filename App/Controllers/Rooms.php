@@ -130,7 +130,8 @@ class Rooms extends \Core\Controller {
         $current_page = $_GET['page'] ?? 1;
         $pagination = new Pagination($current_page, $items_per_page, $count);
 
-        $rooms = Room::findAllRoomsWithPhotos($items_per_page, $pagination->offset);
+        $rooms = Room::findAllRoomsWithAllPhotos($items_per_page, $pagination->offset);
+        //print_r($rooms);
         View::renderTemplate('/rooms/all_rooms.html', [
             'rooms'      => $rooms,
             'pagination' => $pagination

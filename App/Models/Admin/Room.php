@@ -239,6 +239,34 @@ class Room extends \Core\Model {
         return false;
     }
 
+    // this method finds rooms by a range of dates entered by a user
+    public static function findAllRoomsWithAllPhotos($limit, $offset){
+
+        $sql  = 'SELECT * FROM rooms';
+
+        // add pagination restrictions
+        $sql .= $limit ? ' LIMIT ' . $limit : '';
+        $sql .= ($offset && $offset > 0) ? ' OFFSET ' . $offset : '';
+        $db  = static::getDb();
+
+        $stm = $db->prepare($sql);
+        $stm->execute();
+        $rooms = $stm->fetchAll(PDO::FETCH_CLASS);
+
+
+        if(!empty($rooms)){
+
+            // array for available rooms with photos objects
+            $rooms_with_photos = array();
+             foreach ($rooms as $room){
+                $available_rooms[] = Room::getOneRoomWithPhotos($room->id);
+             }
+            return $available_rooms;
+        }
+        return false;
+    }
+
+
 
 
 
