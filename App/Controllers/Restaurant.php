@@ -37,7 +37,7 @@ class Restaurant extends \Core\Controller {
             View::renderTemplate('restaurant/show_courses.html', [
                 'courses'    => $courses,
                 'categories' => $categories,
-                'category'   => $category
+                'chosen_category'   => $category
             ]);
         } else {
             self: self::redirect('/restaurant/dining');
