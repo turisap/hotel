@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block title %}Restaurant{% endblock %}
+
+
+
+{% block body %}
+<div id="restaurantSlideShow">
+</div>
+
+<section class="search-terms">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-10">
+                <form method="post" id="searchCategoryForm" action="/restaurant/show-category">
+                    <div class="form-group">
+                        <label>Category:</label>
+                        <select class="form-control"  name="category">
+                            {% for category in categories %}
+                            <option value="{{category.category_id}}">{{category.category_name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-2 col-sm-12 col-xs-12 text-center apply-search">
+                 <a id="searchCategory"><h3>Apply Terms</h3></a>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="navigationDining">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+            </div>
+        </div>
+    </div>
+</section>
+<section id="diningLanding">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">BAR&RESTAURANT</h1>
+                <h3>Welcome to our amazing restaurant zone</h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}
+
+
+
+
+{% block footer %}
+
+<script>
+    // sliders initialization
+    $(document).ready(function (e) {
+
+        //form submission on click of link APPLY TERMS
+        $('#searchCategory').click(function (event) {
+            $('#searchCategoryForm').submit();
+            event.preventDefault();
+        });
+        // number picker
+        $(".demo").WanSpinner({
+            maxValue: 6,
+            minValue: 1,
+            inputWidth: 70
+        });
+
+        // vegas slideshow initialization
+        $("#restaurantSlideShow").vegas({
+            delay: 7000,
+            transition: 'fade',
+            transitionDuration: 2000,
+            slides: [
+                { src: "/img/restaurant/spicy.jpeg" },
+                { src: "/img/restaurant/food.jpeg" },
+                { src: "/img/restaurant/spicy3.jpeg" },
+                { src: "/img/restaurant/food1.jpg" }
+            ]
+        })
+
+    })
+
+</script>
+
+
+
+{% endblock %}
