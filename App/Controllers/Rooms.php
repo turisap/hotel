@@ -92,13 +92,13 @@ class Rooms extends \Core\Controller {
         $data = $_POST ?? false;
         $room_name = $_POST['local_name'] ?? false;
 
+
         if(!empty($data)){
 
             // create a new Booking object based on POST data
             $booking = new Booking($data);
 
             // call Booking model's method to create a record in the database and proceed on success
-
             if($booking->newBooking($room_name)){
 
                 Flash::addMessage('Your booking was created successfully');
@@ -107,7 +107,6 @@ class Rooms extends \Core\Controller {
                     'booking' => $booking,
                     'room_name' => $room_name
                 ]));
-
 
                View:: renderTemplate('/rooms/booked_successfully.html',[
                     'booking'   => $booking,
@@ -121,6 +120,21 @@ class Rooms extends \Core\Controller {
         } else {
             self::redirect('home/index');
         }
+    }
+
+    // all rooms
+    public function viewAll(){
+
+        $count = count(Room::findAllRoomsWithPhotos());
+        $items_per_page = 10;
+        $current_page = $_GET['page'] ?? 1;
+        $pagination = new Pagination($current_page, $items_per_page, $count);
+
+        $rooms = Room::findAllRoomsWithPhotos($items_per_page, $pagination->offset);
+        View::renderTemplate('/rooms/all_rooms.html', [
+            'rooms'      => $rooms,
+            'pagination' => $pagination
+        ]);
     }
 
 }

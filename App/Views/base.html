@@ -59,9 +59,9 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/login/new">Home</a></li>
-                <li><a href="/login/new">Accommodation</a></li>
-                <li><a href="/login/new">Dining</a></li>
+                <li><a href="/home/index">Home</a></li>
+                <li><a href="/rooms/view-all">Accommodation</a></li>
+                <li><a href="/restaurant/show">Dining</a></li>
                 {% if current_user %}
                 <li><a href="/profile/show">{{ current_user.first_name}}</a></li>
                 <li><a href="/login/logout"></span> Logout</a></li>
@@ -73,10 +73,7 @@
 
 
 
-<!-- FLASH MESSAGES -->
-{% for message in flash_messages %}
-<div class="flash_message alert alert-{{ message.type }}">{{ message.body }}</div>
-{% endfor %}
+
 
 
 
@@ -92,18 +89,18 @@
         <div class="row">
             <div class="col-md-6">
                 <h2>Contuct us</h2>
-                <form method="post" action="/home/contact-us">
+                <form method="post" action="/home/contact-us" id="contactUs">
                     <div class="form-group">
                         <label for="inputEmail1">Email</label>
-                        <input type="email" class="form-control" id="inputEmail1" name="user_email" placeholder="Your Email">
+                        <input type="email" class="form-control" id="inputEmail1" name="email" placeholder="Your Email">
                     </div>
                     <div class="form-group">
                         <label for="inputName">Name</label>
-                        <input type="email" class="form-control" id="inputName" name="user_name" placeholder="Your Name">
+                        <input type="text" class="form-control" id="inputName" name="name" placeholder="Your Name">
                     </div>
                     <div class="form-group">
                         <label for="inputMessage">Message</label>
-                        <textarea rows="5" id="inputMessage" name="user_message" class="form-control"></textarea>
+                        <textarea rows="5" id="inputMessage" name="message" class="form-control"></textarea>
                     </div>
                     <button type="submit" class="btn btn-default">Send Message</button>
                 </form>
@@ -151,5 +148,10 @@
 <script src="/js/datepickers_init.js"></script>
 {% block footer %}
 {% endblock %}
+
+<!-- FLASH MESSAGES -->
+{% for message in flash_messages %}
+<p class="flash_message alert alert-{{ message.type }}">{{ message.body }}</p>
+{% endfor %}
 </body>
 </html>

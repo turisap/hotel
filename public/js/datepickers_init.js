@@ -7,7 +7,7 @@ $(document).ready(function () {
     $('.home-carousel').css('visibility', 'visible');
 
     // check date inputs
-    $("form").submit(function(e){
+    $("#searchHome").submit(function(e){
         if($('#checkin').val() == '' || $('#checkout').val() ==''){
             e.preventDefault();
         }
@@ -43,6 +43,67 @@ $(document).ready(function () {
     $('.checkbox-input').iCheck({
         checkboxClass: 'icheckbox_flat'
     });
+
+    //form validation using jQuery Validate plagin
+
+    $('#bookingForm').validate({
+        rules: {
+            email: {
+                required: true,
+                email: true
+            },
+            first_name: {
+                required: true
+            },
+            last_name: {
+                required: true
+            }
+
+        },
+        messages: {
+            email: {
+                required: 'We do need your email',
+                email: 'Please enter a valid email'
+            },
+            first_name: {
+                required: 'We do need your name'
+            },
+            last_name: {
+                required: 'We do need your last name'
+            }
+
+        }
+    });
+
+    $('#contactUs').validate({
+        rules: {
+            email: {
+                required: true,
+                email: true
+            },
+            name: {
+                required: true
+            },
+            message: {
+                required: true
+            }
+
+        },
+        messages: {
+            email: {
+                required: 'We do need your email',
+                email: 'Please enter a valid email'
+            },
+            name: {
+                required: 'We do need your name'
+            },
+            message: {
+                required: 'Please enter your message'
+            }
+
+        }
+    });
+
 
 
 });

@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+
+{% block title %}Search Results{% endblock %}
+
+
+
+{% block body %}
+<div id="searchSlideShow">
+</div>
+
+<section class="search-terms">
+    <div class="row">
+        <form method="post" id="searchRefine" action="/rooms/search-results">
+        <div class="col-md-2 col-xs-6 col-md-offset-1 text-center terms picker">
+            <h4><i class="fa fa-calendar"></i> Arrival</h4>
+            <input id="checkin" type="text" class="form-control" name="checkin" value="{{checkin}}">
+        </div>
+        <div class="col-md-2 col-xs-6 text-center terms  picker">
+            <h4><i class="fa fa-calendar"></i> Departure</h4>
+            <input id="checkout" type="text" class="form-control" name="checkout" value="{{checkout}}">
+        </div>
+        <div class="col-md-2 col-xs-6 text-center terms">
+            <h4><i class="fa fa-bed" aria-hidden="true"></i></i> Number of Guests</h4>
+            <div class="wan-spinner demo">
+                <a href="javascript:void(0)" class="minus">-</a>
+                <input type="text" value="{% if num_guests %} {{num_guests}} {% else %} 1 {% endif %}" name="num_guests" >
+                <a href="javascript:void(0)" class="plus">+</a>
+            </div>
+
+        </div>
+        <div class="col-md-2 col-xs-6 text-center checkbox terms">
+            <label><h4><i class="fa fa-user"></i> Smoking Guests</h4></label>
+            <input type="checkbox" name="smoking" {% if smoking %} checked="checked" {% else %}{% endif %}>
+            <button type="submit" style="width: 1px; height: 1px; visibility: hidden"></button>
+        </div>
+
+        </form>
+        <div class="col-md-2 col-sm-12 col-xs-12 text-center apply-search">
+             <a id="apply-search"><h3>Apply Terms</h3></a>
+        </div>
+    </div>
+</section>
+
+<section class="search-results">
+    <h2 class="page-header">Choose the best option</h2>
+    {% for room in rooms %}
+    <div class="row">
+        <div class="col-md-6 col-sm-12 col-xs-12 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading"><h3>{{room.local_name}}</h3></div>
+                <div class="panel-body">
+                    <div id="{{room.id}}">
+                        {% for photo in room.photos %}
+                        <div><img src="{{photo.path}}"></div>
+                        {% endfor %}
+                    </div>
+                    <a href="" class="dropdown-btn"><h3>Room Details <i class="fa fa-chevron-down fa-0.5x rotate_360"></i></h3></a>
+                    <h3 class="pull-right">Price: $</h3>
+                    <div class="dropdown-text">{{room.description}}</div>
+                </div>
+                <div class="panel-footer">
+                    <div class="row  border-bottom">
+                        {% if room.smoking == 1 %}
+                        <div class="col-xs-2 text-center">
+                            <img src="/img/icons/my-icons-collection-yellow/smoking.png" class="icon-room">
+                            <p>Smoking Allowed</p>
+                        </div>
+                        {% endif %}
+                        {% if room.tv == 1 %}
+                        <div class="col-xs-2 text-center">
+                            <img src="/img/icons/my-icons-collection-yellow/tv.png" class="icon-room">
+                            <p>TV set </p>
+                        </div>
+                        {% endif %}
+                        {% if room.aircon == 1 %}
+                        <div class="col-xs-2 text-center">
+                            <img src="/img/icons/my-icons-collection-yellow/snowflake.png" class="icon-room">
+                            <p>Aircon</p>
+                        </div>
+                        {% endif %}
+                        {% if room.children == 1 %}
+                        <div class="col-xs-2 text-center">
+                            <img src="/img/icons/my-icons-collection-yellow/people.png" class="icon-room">
+                            <p>Children facilities</p>
+                        </div>
+                        {% endif %}
+                        {% if room.pets == 1 %}
+                        <div class="col-xs-2 text-center">
+                            <img src="/img/icons/my-icons-collection-yellow/dog.png" class="icon-room">
+                            <p>Pets Allowed</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="row info">
+                        <div class="col-xs-4"><p>Beds: {{room.num_beds}}</p></div>
+                        <div class="col-xs-4"><p>Rooms: {{room.num_rooms}}</p></div>
+                        <div class="col-xs-4"><p>Guests: {{room.num_guests}}</p></div>
+                    </div>
+                    <div class="row info border-bottom">
+                        <div class="col-xs-4"><p>View: {{room.view}}</p></div>
+                        <div class="col-xs-4"><p>Area: {{room.area}} m2</p></div>
+                        <div class="col-xs-4 "><p>Class: {{room.class}}</p></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2 pull-right"><a href="/rooms/prebook-room?id={{room.id}}&checkin={{checkin}}&checkout={{checkout}}" class="bookit btn btn-default">Book It</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <div class="row text-center">
+        <ul class="pagination pagination-lg">
+            {% if pagination.has_prev != 0 %}<li><a href="/rooms/view-all?page={{pagination.previous}}">Previous</a></li>{% endif %}
+
+            {% for page in pagination.page_numbers %}
+            <li {% if loop.index == pagination.current_page %} class="active" {% endif %}><a href="/rooms/view-all?page={{loop.index}}">{{loop.index}}</a></li>
+            {% endfor %}
+
+            {% if pagination.has_next != 0 %}<li><a href="/rooms/view-all?page={{pagination.next}}">Next</a></li>{% endif %}
+        </ul>
+    </div>
+</section>
+
+{% endblock %}
+
+
+
+
+{% block footer %}
+
+<script>
+    // sliders initialization
+    $(document).ready(function (e) {
+        {% for room in rooms %}
+        $('#{{room.id}}').slick({
+            prevArrow: '<i class="fa fa-chevron-circle-left fa-3x left-arrow" aria-hidden="true"></i>',
+            nextArrow: '<i class="fa fa-chevron-circle-right fa-3x right-arrow" aria-hidden="true"></i>'
+        });
+        {% endfor %}
+
+        // dropdowns
+        $('.dropdown-text').slideUp();
+        $('.dropdown-btn').click( function (event) {
+            $(this).find('.fa').toggleClass('rotate_180');
+            $(this).find('.fa').toggleClass('rotate_360');
+            var menu = $(this).siblings('.dropdown-text');
+            menu.slideToggle();
+            event.preventDefault();
+        });
+
+        //form submission on click of link APPLY TERMS
+        $('#apply-search').click(function (event) {
+            $('#searchRefine').submit();
+            event.preventDefault();
+        })
+    })
+
+</script>
+
+<script>
+
+    //dropdownmenu
+
+    // number picker
+    $(".demo").WanSpinner({
+        maxValue: 6,
+        minValue: 1,
+        inputWidth: 70
+    });
+
+    // trigger form submission on button click
+    $('.apply-search').click(function () {
+        $('#searchRefine').submit();
+    });
+
+
+
+
+
+        // vegas slideshow initialization
+        $("#searchSlideShow").vegas({
+            delay: 7000,
+            transition: 'fade',
+            transitionDuration: 2000,
+            slides: [
+                { src: "/img/green.jpg" },
+                { src: "/img/shells.jpg" },
+                { src: "/img/portal.jpg" },
+                { src: "/img/arch.jpg" }
+            ]
+        })
+
+
+</script>
+
+
+{% endblock %}

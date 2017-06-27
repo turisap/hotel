@@ -9,5 +9,5 @@ $(document).ready(function () {
 
 // fading out of flash messages
 function fadeMessage() {
-    $('.flash_message').fadeOut(500);
+    $('.flash_message').fadeOut(500).remove();
 }

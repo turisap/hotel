@@ -237,42 +237,7 @@
         $('#searchRefine').submit();
     });
 
-    $(document).ready(function () {
-        //form validation using jQuery Validate plagin
-        $(document).ready(function() {
 
-            $('#bookingForm').validate({
-                rules: {
-                    email: {
-                        required: true,
-                        email: true
-                    },
-                    first_name: {
-                        required: true
-                    },
-                    last_name: {
-                        required: true
-                    }
-
-                },
-                messages: {
-                    email: {
-                        required: 'We do need your email',
-                        email: 'Please enter a valid email'
-                    },
-                    first_name: {
-                        required: 'We do need your name'
-                    },
-                    last_name: {
-                        required: 'We do need your last name'
-                    }
-
-                }
-            });
-
-        });
-
-    })
 
 
 
