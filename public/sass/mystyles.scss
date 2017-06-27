@@ -579,11 +579,59 @@ div#restaurantSlideShow{
 section#diningLanding{
   min-height: 70vh;
   margin-bottom: 80px;
+  div#formCategories {
+    padding-top: 50px;
+  }
+  h1{
+    margin-top:0;
+  }
   #formCategories {
-    padding-top: 80px;
+    padding-top: 10px;
+  }
+  button {
+    margin-left: 20px;
+  }
+}
+section#coursesLanding{
+  margin-bottom: 80px;
+  div#formCategories {
+    padding-top: 50px;
+  }
+  h1{
+    margin-top:0;
+  }
+  #formCategories {
+    padding-top: 10px;
+  }
+  button {
+    margin-left: 20px;
   }
 }
 .test {
   border: 2px solid red;
+}
+
+section#courses {
+  padding-bottom: 40px;
+  .course {
+    margin-bottom: 60px;
+    border-bottom: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    padding: 40px 40px;
+  }
+  h3{
+    margin-top: 0;
+  }
+  img {
+    width: 300px;
+    height: auto;
+    max-height: 150px;
+    object-fit: cover!important;
+  }
+  .price {
+    position: absolute;
+    bottom: 25%;
+    right: 5%;
+  }
 }
 

@@ -32,7 +32,13 @@ class Restaurant extends \Core\Controller {
 
         if($category){
             $courses = Search::sortAllCourses($_POST);
-            print_r($courses);
+            //print_r($courses);
+            $categories = Menu::getAllCategories();
+            View::renderTemplate('restaurant/show_courses.html', [
+                'courses'    => $courses,
+                'categories' => $categories,
+                'category'   => $category
+            ]);
         } else {
             self: self::redirect('/restaurant/dining');
         }

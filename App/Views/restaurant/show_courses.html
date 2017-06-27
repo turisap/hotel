@@ -49,20 +49,13 @@
         </div>
     </div>
 </section>
-<section id="diningLanding">
+<section id="coursesLanding">
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-5">
-                <h1 class="page-header">BAR&RESTAURANT</h1>
-                <h3>Welcome to our amazing restaurant zone</h3>
-                <p>When you dine at Roksana Blue Restaurant, not only do you get to savor delicious Asian cuisine, you also consume an important story.</p>
-                <p>Our restaurant was born in 2004 out of the desire and passion to restore Asian cuisine to its former glory and put it back on the map as a culinary destination. Renowned for its fresh seasonal produce, delicate flavours and generous hospitality Master Chef  and his team, decided to revive Asian cuisine from the past, adapt it to the present and preserve it for the future.</p>
-                <p>The beautiful interiors are inspired by temples boasting high ceilings, grey stone and a sense of space. Asian art and handicrafts feature throughout, embracing the local culture.</p>
-                <p>The new restaurant will feature a dining area, bar and lounge downstairs with private dining rooms and a cooking school upstairs.</p>
-            </div>
-        </div>
         <div class="row" id="formCategories">
-            <div class="col-md-5">
+            <div class="col-sm-5">
+                <h1 class="page-header">BAR&RESTAURANT</h1>
+            </div>
+            <div class="col-sm-4 col-sm-offset-3">
                 <form class="form-inline" method="post" id="searchCategoryForm" action="/restaurant/show-category">
                     <div class="form-group">
                         <label>Category:</label>
@@ -78,6 +71,26 @@
                 </form>
             </div>
         </div>
+    </div>
+</section>
+<section id="courses">
+    <div class="container-fluid">
+        {% for course in courses %}
+        <div class="row">
+            <div class="col-sm-7 col-sm-offset-2">
+                <div class="row course">
+                    <div class="col-sm-4">
+                        <img src="{{course.path}}" class="img-responsive">
+                    </div>
+                    <div class="col-sm-8">
+                        <h3>{{course.course_name}}<small> {{course.category_name}}</small></h3>
+                        {{course.description}}
+                    </div>
+                    <div class="pull-right price"><h4>Price:{{course.price}}{{currency_sign}}</h4></div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
     </div>
 </section>
 
