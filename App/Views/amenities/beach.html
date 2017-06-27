@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}Menu{% endblock %}
+{% block title %}Our Beach{% endblock %}
 
 
 
 {% block body %}
 <section>
-    <div data-rellax-speed="-10" class="rellax"  id="restaurantSlideShow"></div>
+    <div data-rellax-speed="-10" class="rellax"  id="beachSlideShow"></div>
 </section>
 
 <section class="search-terms">
@@ -42,45 +42,21 @@
     </div>
 </section>
 
-<section id="coursesLanding">
+<section id="galleryBeach">
     <div class="container-fluid">
-        <div class="row" id="formCategories">
-            <div class="col-sm-5">
-                <h1 class="page-header">BAR&RESTAURANT</h1>
-            </div>
-            <div class="col-sm-7">
-                <form class="form-inline" method="post" id="searchCategoryForm" action="/restaurant/show-category">
-                    <div class="form-group pull-right">
-                        <label>Category:</label>
-                        <select class="form-control"  name="category" id="selectCategory">
-                            {% for category in categories %}
-                            <option value="{{category.category_id}}" {% if category.category_id == chosen_category %}selected{% endif %}>{{category.category_name}}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                </form>
+        <div class="row">
+            <div class="col-md-5">
+                <h1 class="page-header">BEACH&SWIMMING</h1>
+                <h3>Expirience our private wild pristine beach</h3>
+                <p>Our coastline has avoided the mass construction and urbanization that has befallen other pieces of beauty on the region</p>
+                <p>Here you can enjoy swimming with frieds or family, sunbathing with a cocktail, behold beautiful sunset, go for scuba diving and discover colorful and vibrant corral life</p>
             </div>
         </div>
     </div>
-</section>
-<section id="courses">
-    <div class="container-fluid">
-        {% for course in courses %}
-        <div class="row">
-            <div class="col-sm-7 col-sm-offset-2">
-                <div class="row course">
-                    <div class="col-sm-4">
-                        <img src="{{course.path}}" class="img-responsive">
-                    </div>
-                    <div class="col-sm-8">
-                        <h3>{{course.course_name}}<small> {{course.category_name}}</small></h3>
-                        <p>{{course.description}}</p>
-                    </div>
-                    <div class="pull-right price"><h4>Price:{{course.price}}{{currency_sign}}</h4></div>
-                </div>
-            </div>
+    <div id="beachPhotos" class="row">
+        <div class="col-md-8 col-md-offset-2">
+
         </div>
-        {% endfor %}
     </div>
 </section>
 
@@ -98,15 +74,6 @@
     // sliders initialization
     $(document).ready(function (e) {
 
-
-        scrollSearch();
-
-
-        $('#selectCategory').change(function(){
-            $('#searchCategoryForm').submit();
-        })
-
-
         //form submission on click of link APPLY TERMS
         $('#apply-search').click(function (event) {
             if(($('#checkout').val() != '') && ($('#checkin').val() != '')){
@@ -122,26 +89,18 @@
         });
 
         // vegas slideshow initialization
-        $("#restaurantSlideShow").vegas({
+        $("#beachSlideShow").vegas({
             delay: 7000,
             transition: 'fade',
             transitionDuration: 2000,
             slides: [
-                { src: "/img/restaurant/spicy.jpeg" },
-                { src: "/img/restaurant/food.jpeg" },
-                { src: "/img/restaurant/spicy3.jpeg" },
-                { src: "/img/restaurant/food1.jpg" }
+                { src: "/img/gallery/beach/seastar.jpg" },
+                { src: "/img/gallery/beach/pebbels.jpg" },
+                { src: "/img/gallery/baech/sand.jpg" }
             ]
         })
 
-    });
-
-    function scrollSearch(){
-        var top = $('h1.page-header').offset().top;
-        $('html, body').animate({scrollTop:top},2000, 'easeOutExpo');
-    }
-
-
+    })
 
 </script>
 
