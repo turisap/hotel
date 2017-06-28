@@ -52,10 +52,20 @@
                 <p>Here you can enjoy swimming with frieds or family, sunbathing with a cocktail, behold beautiful sunset, go for scuba diving and discover colorful and vibrant corral life</p>
             </div>
         </div>
-    </div>
-    <div id="beachPhotos" class="row">
-        <div class="col-md-8 col-md-offset-2">
-
+        <div id="beachPhotos" class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div id="masonryBeach">
+                    <div class="grid-sizer"></div>
+                    <div class="beach-item"><img src="/img/gallery/beach/beach.jpg"></div>
+                    <div class="beach-item"><img src="/img/gallery/beach/meditation.jpg"></div>
+                    <div class="beach-item"><img src="/img/gallery/beach/phangan.jpg"></div>
+                    <div class="beach-item"><img src="/img/gallery/beach/sea.jpg"></div>
+                    <div class="beach-item"><img src="/img/gallery/beach/shells.jpg"></div>
+                    <div class="beach-item"><img src="/img/gallery/beach/sunrise.jpg"></div>
+                    <div class="beach-item"><img src="/img/gallery/beach/sunset.jpg"></div>
+                    <div class="beach-item"><img src="/img/gallery/beach/girl.jpg"></div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -71,8 +81,23 @@
 {% block footer %}
 
 <script>
-    // sliders initialization
     $(document).ready(function (e) {
+
+        // activate masonry only after images loaded (images loaded script)
+        var $grid = $('#masonryBeach').imagesLoaded( function() {
+            // init Masonry after all images have loaded
+            $grid.masonry({
+                    itemSelector: '.beach-item',
+                    columnWidth: '.grid-sizer',
+                    percentPosition: true,
+                    transitionDuration: '0.3s',
+                    gutter: 20
+
+                });
+        });
+
+
+
 
         //form submission on click of link APPLY TERMS
         $('#apply-search').click(function (event) {
