@@ -19,8 +19,15 @@ class Amenities extends \Core\Controller {
 
     }
 
-    public function beachGallery(){
-        View::renderTemplate('/amenities/beach.html');
+    public function beachGalleryAction(){
+        View::renderTemplate('/amenities/amenities.html', ['content' => 1]);
+    }
+
+    public function spaGalleryAction(){
+        View::renderTemplate('/amenities/amenities.html', ['content' => 2]);
+    }
+    public function partyGalleryAction(){
+        View::renderTemplate('/amenities/amenities.html', ['content' => 3]);
     }
 
 }

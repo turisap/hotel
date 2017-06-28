@@ -1,13 +1,21 @@
 {% extends "base.html" %}
 
-{% block title %}Our Beach{% endblock %}
+{% block title %}Our facilities{% endblock %}
 
 
 
 {% block body %}
+{% if content == 1 %}
 <section>
     <div data-rellax-speed="-10" class="rellax"  id="beachSlideShow"></div>
 </section>
+{% endif %}
+{% if content == 2 %}
+<section>
+    <div data-rellax-speed="-10" class="rellax"  id="spaSlideShow"></div>
+</section>
+{% endif %}
+
 
 <section class="search-terms">
     <div class="row">
@@ -42,6 +50,7 @@
     </div>
 </section>
 
+{% if content == 1 %}
 <section id="galleryBeach">
     <div class="container-fluid">
         <div class="row">
@@ -69,19 +78,76 @@
                     <a href="/img/gallery/beach/cocktail.jpeg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/beach/cocktail.jpeg"></div></a>
                     <a href="/img/gallery/beach/shells.jpg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/beach/shells.jpg"></div></a>
                     <a href="/img/gallery/beach/palms-vert.jpg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/beach/palms-vert.jpg"></div></a>
-                    <a href="/img/gallery/beach/beach-horizontal.jpeg" data-lightbox="beach" ><div class="masonry-item masonry-item-width-2"><img src="/img/gallery/beach/beach-horizontal.jpeg"></div></a>
-                    <a href="/img/gallery/beach/sunrise.jpg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/beach/sunrise.jpg"></div></a>
+                    <a href="/img/gallery/beach/soap.jpeg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/beach/soap.jpeg"></div></a>
                     <a href="/img/gallery/beach/sunset.jpg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/beach/sunset.jpg"></div></a>
+                    <a href="/img/gallery/beach/beach-horizontal.jpeg" data-lightbox="beach" ><div class="masonry-item masonry-item-width-2"><img src="/img/gallery/beach/beach-horizontal.jpeg"></div></a>
                     <a href="/img/gallery/beach/boat.jpeg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/beach/boat.jpeg"></div></a>
                     <a href="/img/gallery/beach/shells-vert.jpg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/beach/shells-vert.jpg"></div></a>
                     <a href="/img/gallery/beach/girl.jpg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/beach/girl.jpg"></div></a>
-                    <a href="/img/gallery/beach/soap.jpeg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/beach/soap.jpeg"></div></a>
+                    <a href="/img/gallery/beach/sunrise.jpg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/beach/sunrise.jpg"></div></a>
                 </div>
             </div>
         </div>
     </div>
 </section>
+{% endif %}
 
+{% if content == 2 %}
+<section id="gallerySpa">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-5">
+                <h1 class="page-header">SPA CENTER</h1>
+                <h3>Lose truck of time enjoying massage, sauna and other activities</h3>
+                <p>Spa center of the hotel offers an indoor pool with jacuzzi, dry sauna with aromatic oils, steam bath and the most modern gym in which there is an upright bike, orbitek Elliptical, treadmill and others</p>
+                <p>We aim to achieve the harmonious connection of body, mind and soul. We offer high quality services and prepare the best products and treatments</p>
+            </div>
+        </div>
+        <div id="spaPhotos" class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div id="masonrySpa">
+                    <div class="grid-sizer"></div>
+                    <div class="gutter-sizer"></div>
+                    <a href="/img/gallery/spa/wellness1.jpg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/spa/wellness1.jpg"></div></a>
+                    <a href="/img/gallery/spa/wellness.jpg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/spa/wellness.jpg"></div></a>
+                    <a href="/img/gallery/spa/essential-oils.jpg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/spa/essential-oils.jpg"></div></a>
+                    <a href="/img/gallery/spa/lotus.jpg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/spa/lotus.jpg"></div></a>
+                    <a href="/img/gallery/spa/spa.jpg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/spa/spa.jpg"></div></a>
+                    <a href="/img/gallery/spa/wellness2.jpg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/spa/wellness2.jpg"></div></a>
+                    <a href="/img/gallery/spa/strawberry.jpg" data-lightbox="beach" ><div class="masonry-item masonry-item-width-2"><img src="/img/gallery/spa/strawberry.jpg"></div></a>
+                    <a href="/img/gallery/spa/massage-therapy.jpg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/spa/massage-therapy.jpg"></div></a>
+                    <a href="/img/gallery/spa/massage-therapy1.jpg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/spa/massage-therapy1.jpg"></div></a>
+                    <a href="/img/gallery/spa/spa2.jpg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/spa/spa2.jpg"></div></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+{% if content == 3 %}
+<section id="galleryParty">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-5">
+                <h1 class="page-header">COCTAIL EVENINGS</h1>
+                <h3>Participate in our parties in the bar</h3>
+                <p>Cocktail parties are a great way to gather together old and new friends over drinks and food in a fun environment. Since cocktail parties are usually only a couple of hours long and do not require a sit-down meal, it is a low stakes way of hosting a fancy or casual get together. </p>
+                <p>Try a huge variety of cocktails from different parts of the world </p>
+            </div>
+        </div>
+        <div id="partyPhotos" class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div id="masonryParty">
+                    <div class="grid-sizer"></div>
+                    <div class="gutter-sizer"></div>
+                    <a href="/img/gallery/spa/essential-oils.jpg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/spa/essential-oils.jpg"></div></a>
+                    <a href="/img/gallery/spa/strawberry.jpg" data-lightbox="beach" ><div class="masonry-item masonry-item-width-2"><img src="/img/gallery/spa/strawberry.jpg"></div></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
 
 
 
@@ -106,6 +172,18 @@
                     transitionDuration: '0.3s'
 
                 });
+        });
+
+        var $gridSpa = $('#masonrySpa').imagesLoaded( function() {
+            // init Masonry after all images have loaded
+            $gridSpa.masonry({
+                itemSelector: '.masonry-item',
+                columnWidth: '.grid-sizer',
+                gutter: '.gutter-sizer',
+                percentPosition: true,
+                transitionDuration: '0.3s'
+
+            });
         });
 
 
@@ -134,6 +212,17 @@
                 { src: "/img/gallery/beach/seastar.jpg" },
                 { src: "/img/gallery/beach/pebbels.jpg" },
                 { src: "/img/gallery/baech/sand.jpg" }
+            ]
+        });
+
+        $("#spaSlideShow").vegas({
+            delay: 7000,
+            transition: 'fade',
+            transitionDuration: 2000,
+            slides: [
+                { src: "/img/gallery/spa/pebbles.jpg" },
+                { src: "/img/gallery/spa/pomegranate.jpg" },
+                { src: "/img/gallery/spa/smoothies.jpg" }
             ]
         })
 

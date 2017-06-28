@@ -673,36 +673,68 @@ section#galleryBeach {
   #beachPhotos {
    margin-top: 40px;
   }
+
+}
+// masonry styles
+.grid-sizer, .masonry-item {
+  width: 32%;
+}
+.gutter-sizer {
+  width: 1%
+}
+.masonry-item-width-2.masonry-item {
+  width: 65%;
+}
+.masonry-item {
+  margin-bottom: 1%;
+}
+.masonry-item img{
+  width: 100%;
+  height: auto;
+  filter: opacity(1);
+  -webkit-transition: filter 7s cubic-bezier(0.19, 1, 0.22, 1);
+  -moz-transition: filter 7s cubic-bezier(0.19, 1, 0.22, 1);
+  -o-transition: filter 7s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: filter 7s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.masonry-item img:hover{
+  filter: opacity(0.4);
+  -webkit-filter: opacity(0.4);
+  -ms-filter: opacity(0.4);
+  -webkit-transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
+  -moz-transition:all 2s cubic-bezier(0.19, 1, 0.22, 1);
+  -o-transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+@media (max-width: 770px){
   .grid-sizer, .masonry-item {
-    width: 32%;
-  }
-  .gutter-sizer {
-    width: 1%
+    width: 49%!important;
   }
   .masonry-item-width-2.masonry-item {
-    width: 65%;
-  }
-  .masonry-item {
-    margin-bottom: 1%;
-  }
-  .masonry-item img{
-    width: 100%;
-    height: auto;
-    filter: opacity(1);
-    -webkit-transition: filter 7s cubic-bezier(0.19, 1, 0.22, 1);
-    -moz-transition: filter 7s cubic-bezier(0.19, 1, 0.22, 1);
-    -o-transition: filter 7s cubic-bezier(0.19, 1, 0.22, 1);
-    transition: filter 7s cubic-bezier(0.19, 1, 0.22, 1);
-  }
-
-  .masonry-item img:hover{
-    filter: opacity(0.4);
-    -webkit-filter: opacity(0.4);
-    -ms-filter: opacity(0.4);
-    -webkit-transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
-    -moz-transition:all 2s cubic-bezier(0.19, 1, 0.22, 1);
-    -o-transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
-    transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
+    width: 99%!important;
   }
 }
+
+/*================================ SPA PAGE ============================================*/
+div#spaSlideShow{
+  margin-top: 30px;
+  min-height: 350px;
+}
+
+section#gallerySpa {
+  margin-bottom: 70px;
+  margin-top: 40px;
+
+  section#gallerySpa {
+    margin-bottom: 40px;
+  }
+  #spaPhotos {
+    margin-top: 80px;
+  }
+
+}
+
+
 
