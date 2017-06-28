@@ -676,9 +676,14 @@ section#galleryBeach {
   .grid-sizer, .masonry-item {
     width: 32%;
   }
+  .gutter-sizer {
+    width: 1%
+  }
+  .masonry-item-width-2.masonry-item {
+    width: 65%;
+  }
   .masonry-item {
-    margin-bottom: 20px;
-
+    margin-bottom: 1%;
   }
   .masonry-item img{
     width: 100%;
@@ -699,20 +704,5 @@ section#galleryBeach {
     -o-transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
     transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
   }
+}
 
-}
-@media (max-width: 1230px){
-  .grid-sizer, .masonry-item {
-    width: 31%!important;
-  }
-}
-@media (max-width: 770px){
-  .grid-sizer, .masonry-item {
-    width: 47%!important;
-  }
-}
-@media (max-width: 576px){
-  .grid-sizer, .masonry-item {
-    width: 98%!important;
-  }
-}

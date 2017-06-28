@@ -56,22 +56,26 @@
             <div class="col-md-10 col-md-offset-1">
                 <div id="masonryBeach">
                     <div class="grid-sizer"></div>
-                    <div class="masonry-item"><img src="/img/gallery/beach/flower-vert.jpg"></div>
-                    <div class="masonry-item"><img src="/img/gallery/beach/beach.jpg"></div>
-                    <div class="masonry-item"><img src="/img/gallery/beach/meditation.jpg"></div>
-                    <div class="masonry-item"><img src="/img/gallery/beach/sunglasses.jpeg"></div>
-                    <div class="masonry-item"><img src="/img/gallery/beach/phangan.jpg"></div>
-                    <div class="masonry-item"><img src="/img/gallery/beach/sea.jpg"></div>
-                    <div class="masonry-item"><img src="/img/gallery/beach/wave.jpeg"></div>
-                    <div class="masonry-item"><img src="/img/gallery/beach/pear-vert.jpg"></div>
-                    <div class="masonry-item"><img src="/img/gallery/beach/shells.jpg"></div>
-                    <div class="masonry-item"><img src="/img/gallery/beach/palms-vert.jpg"></div>
-                    <div class="masonry-item"><img src="/img/gallery/beach/sunrise.jpg"></div>
-                    <div class="masonry-item"><img src="/img/gallery/beach/sunset.jpg"></div>
-                    <div class="masonry-item"><img src="/img/gallery/beach/boat.jpeg"></div>
-                    <div class="masonry-item"><img src="/img/gallery/beach/shells-vert.jpg"></div>
-                    <div class="masonry-item"><img src="/img/gallery/beach/girl.jpg"></div>
-                    <div class="masonry-item"><img src="/img/gallery/beach/soap.jpeg"></div>
+                    <div class="gutter-sizer"></div>
+                    <a href="/img/gallery/beach/flower-vert.jpg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/beach/flower-vert.jpg"></div></a>
+                    <a href="/img/gallery/beach/beach.jpg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/beach/beach.jpg"></div></a>
+                    <a href="/img/gallery/beach/meditation.jpg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/beach/meditation.jpg"></div></a>
+                    <a href="/img/gallery/beach/jump-horizontal.jpeg" data-lightbox="beach" ><div class="masonry-item masonry-item-width-2"><img src="/img/gallery/beach/jump-horizontal.jpeg"></div></a>
+                    <a href="/img/gallery/beach/sunglasses.jpeg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/beach/sunglasses.jpeg"></div></a>
+                    <a href="/img/gallery/beach/phangan.jpg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/beach/phangan.jpg"></div></a>
+                    <a href="/img/gallery/beach/sea.jpg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/beach/sea.jpg"></div></a>
+                    <a href="/img/gallery/beach/wave.jpeg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/beach/wave.jpeg"></div></a>
+                    <a href="/img/gallery/beach/pear-vert.jpg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/beach/pear-vert.jpg"></div></a>
+                    <a href="/img/gallery/beach/cocktail.jpeg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/beach/cocktail.jpeg"></div></a>
+                    <a href="/img/gallery/beach/shells.jpg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/beach/shells.jpg"></div></a>
+                    <a href="/img/gallery/beach/palms-vert.jpg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/beach/palms-vert.jpg"></div></a>
+                    <a href="/img/gallery/beach/beach-horizontal.jpeg" data-lightbox="beach" ><div class="masonry-item masonry-item-width-2"><img src="/img/gallery/beach/beach-horizontal.jpeg"></div></a>
+                    <a href="/img/gallery/beach/sunrise.jpg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/beach/sunrise.jpg"></div></a>
+                    <a href="/img/gallery/beach/sunset.jpg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/beach/sunset.jpg"></div></a>
+                    <a href="/img/gallery/beach/boat.jpeg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/beach/boat.jpeg"></div></a>
+                    <a href="/img/gallery/beach/shells-vert.jpg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/beach/shells-vert.jpg"></div></a>
+                    <a href="/img/gallery/beach/girl.jpg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/beach/girl.jpg"></div></a>
+                    <a href="/img/gallery/beach/soap.jpeg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/beach/soap.jpeg"></div></a>
                 </div>
             </div>
         </div>
@@ -97,9 +101,9 @@
             $grid.masonry({
                     itemSelector: '.masonry-item',
                     columnWidth: '.grid-sizer',
+                    gutter: '.gutter-sizer',
                     percentPosition: true,
-                    transitionDuration: '0.3s',
-                    gutter: 20
+                    transitionDuration: '0.3s'
 
                 });
         });
