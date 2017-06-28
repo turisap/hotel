@@ -15,7 +15,11 @@
     <div data-rellax-speed="-10" class="rellax"  id="spaSlideShow"></div>
 </section>
 {% endif %}
-
+{% if content == 3 %}
+<section>
+    <div data-rellax-speed="-10" class="rellax"  id="partySlideShow"></div>
+</section>
+{% endif %}
 
 <section class="search-terms">
     <div class="row">
@@ -140,8 +144,21 @@
                 <div id="masonryParty">
                     <div class="grid-sizer"></div>
                     <div class="gutter-sizer"></div>
-                    <a href="/img/gallery/spa/essential-oils.jpg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/spa/essential-oils.jpg"></div></a>
-                    <a href="/img/gallery/spa/strawberry.jpg" data-lightbox="beach" ><div class="masonry-item masonry-item-width-2"><img src="/img/gallery/spa/strawberry.jpg"></div></a>
+                    <a href="/img/gallery/party/alcohol.jpg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/party/alcohol.jpg"></div></a>
+                    <a href="/img/gallery/party/bar.jpg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/party/bar.jpg"></div></a>
+                    <a href="/img/gallery/party/bar.jpeg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/party/bar.jpeg"></div></a>
+                    <a href="/img/gallery/party/beer.jpg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/party/beer.jpg"></div></a>
+                    <a href="/img/gallery/party/vine.jpg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/party/vine.jpeg"></div></a>
+                    <a href="/img/gallery/party/kiwi.jpg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/party/kiwi.jpg"></div></a>
+                    <a href="/img/gallery/party/alcohol_vert.jpg" data-lightbox="beach" ><div class="masonry-item masonry-item-width-2"><img src="/img/gallery/party/alcohol_vert.jpg"></div></a>
+                    <a href="/img/gallery/party/cocktail.jpg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/party/cocktail.jpg"></div></a>
+                    <a href="/img/gallery/party/cheers.jpg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/party/cheers.jpg"></div></a>
+                    <a href="/img/gallery/party/white.jpeg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/party/white.jpeg"></div></a>
+                    <a href="/img/gallery/party/cocktail.jpeg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/party/cocktail.jpeg"></div></a>
+                    <a href="/img/gallery/party/cocktail3.jpg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/party/cocktail3.jpg"></div></a>
+                    <a href="/img/gallery/party/cocktail4.jpg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/party/cocktail4.jpg"></div></a>
+                    <a href="/img/gallery/party/beer-vert.jpg" data-lightbox="beach" ><div class="masonry-item masonry-item-width-2"><img src="/img/gallery/party/beer-vert.jpg"></div></a>
+                    <a href="/img/gallery/party/gin.jpg" data-lightbox="beach" ><div class="masonry-item"><img src="/img/gallery/party/gin.jpg"></div></a>
                 </div>
             </div>
         </div>
@@ -177,6 +194,18 @@
         var $gridSpa = $('#masonrySpa').imagesLoaded( function() {
             // init Masonry after all images have loaded
             $gridSpa.masonry({
+                itemSelector: '.masonry-item',
+                columnWidth: '.grid-sizer',
+                gutter: '.gutter-sizer',
+                percentPosition: true,
+                transitionDuration: '0.3s'
+
+            });
+        });
+
+        var $gridParty = $('#masonryParty').imagesLoaded( function() {
+            // init Masonry after all images have loaded
+            $gridParty.masonry({
                 itemSelector: '.masonry-item',
                 columnWidth: '.grid-sizer',
                 gutter: '.gutter-sizer',
@@ -223,6 +252,19 @@
                 { src: "/img/gallery/spa/pebbles.jpg" },
                 { src: "/img/gallery/spa/pomegranate.jpg" },
                 { src: "/img/gallery/spa/smoothies.jpg" }
+            ]
+        });
+
+        $("#partySlideShow").vegas({
+            delay: 7000,
+            transition: 'fade',
+            transitionDuration: 2000,
+            slides: [
+                { src: "/img/gallery/party/lime.jpg" },
+                { src: "/img/gallery/party/leisure.jpg" },
+                { src: "/img/gallery/party/musician.jpg" },
+                { src: "/img/gallery/party/champagner.jpg" }
+
             ]
         })
 

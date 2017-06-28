@@ -665,10 +665,11 @@ div#beachSlideShow{
 }
 
 section#galleryBeach {
-  margin-bottom: 40px;
+  margin-bottom: 70px;
+  margin-top: 40px;
 
   section#galleryBeach {
-    margin-bottom: 40px;
+    margin-bottom: 80px;
   }
   #beachPhotos {
    margin-top: 40px;
@@ -717,24 +718,33 @@ section#galleryBeach {
   }
 }
 
-/*================================ SPA PAGE ============================================*/
+/*================================ SPA, PARTY, VIEW PAGES ============================================*/
+
 div#spaSlideShow{
   margin-top: 30px;
   min-height: 350px;
 }
-
 section#gallerySpa {
   margin-bottom: 70px;
   margin-top: 40px;
-
-  section#gallerySpa {
-    margin-bottom: 40px;
-  }
   #spaPhotos {
     margin-top: 80px;
   }
 
 }
+
+div#partySlideShow{
+  margin-top: 30px;
+  min-height: 350px;
+}
+section#galleryParty {
+  margin-bottom: 70px;
+  margin-top: 40px;
+  #partyPhotos {
+    margin-top: 80px;
+  }
+}
+
 
 
 
