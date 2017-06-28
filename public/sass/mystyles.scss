@@ -673,13 +673,14 @@ section#galleryBeach {
   #beachPhotos {
    margin-top: 40px;
   }
-  .grid-sizer, .beach-item {
+  .grid-sizer, .masonry-item {
     width: 32%;
   }
-  .beach-item {
+  .masonry-item {
     margin-bottom: 20px;
+
   }
-  .beach-item img{
+  .masonry-item img{
     width: 100%;
     height: auto;
     filter: opacity(1);
@@ -689,7 +690,7 @@ section#galleryBeach {
     transition: filter 7s cubic-bezier(0.19, 1, 0.22, 1);
   }
 
-  .beach-item img:hover{
+  .masonry-item img:hover{
     filter: opacity(0.4);
     -webkit-filter: opacity(0.4);
     -ms-filter: opacity(0.4);
@@ -699,4 +700,19 @@ section#galleryBeach {
     transition: all 2s cubic-bezier(0.19, 1, 0.22, 1);
   }
 
+}
+@media (max-width: 1230px){
+  .grid-sizer, .masonry-item {
+    width: 31%!important;
+  }
+}
+@media (max-width: 770px){
+  .grid-sizer, .masonry-item {
+    width: 47%!important;
+  }
+}
+@media (max-width: 576px){
+  .grid-sizer, .masonry-item {
+    width: 98%!important;
+  }
 }
