@@ -170,6 +170,27 @@ section#rooms {
   }
 
 }
+section#addServices {
+  padding: 0 50px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+
+  h1{
+    margin-bottom: 80px;
+    border-bottom: 1px solid #ddd;
+  }
+  .service {
+    margin-bottom: 40px;
+    min-height: 100%;  /* vertical align div with text in a row */
+    display: flex;
+    align-items: center;
+  }
+  .service img {
+    width: 100%;
+    height: 20vw;
+    object-fit: cover;
+  }
+}
 
 
 @media (min-width: 770px) and (max-width: 1070px) {
