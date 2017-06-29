@@ -157,28 +157,28 @@
             </div>
         </div>
         <div class="row service  align-items-center">
-            <div class="col-xs-7">
+            <div class="col-sm-7">
                 <img src="/img/jungle.jpeg">
             </div>
-            <div class="col-xs-5 text">
+            <div class="col-sm-5 text">
                 <h3>Jungle tours</h3>
                 <p>We offer complex jungle tours with different duration and complexity. You can try family rides on elephants, one-week wild tours or just one-day observing tour in mountains</p>
             </div>
         </div>
         <div class="row service">
-            <div class="col-xs-5">
+            <div class="col-sm-5 boat-text">
                 <h3>Boat trips</h3>
                 <p>Discover nearest wild untouched island with our professional crew, stay a night at uninhabited island or just try snorkeling at nearest corral rifs</p>
             </div>
-            <div class="col-xs-7 images">
+            <div class="col-sm-7 images boat-img">
                 <img src="/img/ocean.jpg">
             </div>
         </div>
         <div class="row service">
-            <div class="col-xs-7  images">
+            <div class="col-sm-7  images">
                 <img src="/img/cooking.jpg">
             </div>
-            <div class="col-xs-5">
+            <div class="col-sm-5">
                 <h3>Cooking courses</h3>
                 <p>Try to learn how to cook right Tom Yam, Pad Thai or other local cuisine</p>
             </div>
@@ -210,6 +210,22 @@
             next: "<div class='next slider-buttons'><span>&#8250;</span></div>"
          }
     });
+
+    $(window).resize(function () {
+        switchColumns();
+    });
+    $(document).ready(function () {
+        switchColumns();
+    });
+
+    // switch columns' places on resize
+    function switchColumns(){
+        if($(window).width() < 771){
+            $(".boat-text").before($(".boat-img"));
+        } else {
+            $(".boat-text").after($(".boat-img"));
+        }
+    }
 
 
 
