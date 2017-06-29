@@ -3,12 +3,21 @@
  */
 $(document).ready(function () {
 
+    // adding and removing class form navbar on scrolling  and removing while it's on top
+    $(window).scroll(function(){
+        if($('.navbar').offset().top > 50){
+            $('.navbar-fixed-top').addClass('top-nav-collapse');
+        } else {
+            $('.navbar-fixed-top').removeClass('top-nav-collapse');
+        }
+    });
+
     // carousel visible on ready
     $('.home-carousel').css('visibility', 'visible');
 
     // check date inputs
     $("#searchHome").submit(function(e){
-        if($('#checkin').val() == '' || $('#checkout').val() ==''){
+        if($('#checkin').val() == '' || $('#checkout').val() == ''){
             e.preventDefault();
         }
     });

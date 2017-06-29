@@ -19,34 +19,67 @@ $text_on_black: #ddd;
 }
 
 body{
-  padding-top:60px;
   overflow-x:hidden;
 }
 
+#logo {
+  height: 7.5rem;
+}
 
 .navbar-brand {
   height: auto;
   margin: 0;
+  padding: 5px 15px 0;
 }
 
-.nav {
-  margin-top: 30px!important;
-}
-
-.navbar-nav{
+.navbar-custom {
   margin: 0;
-  padding: 0;
+  border: none;
+  background: transparent;
+  transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+}
+.navbar-brand:focus {
+  outline: none;
+}
+#navbar ul.nav {
+  color: $text_on_black;
+  text-transform: uppercase;
+  font-size: 18px;
+  height: 7.5rem;      //instead of % to get 100% height if its impossible using percents
+  display: flex;       // vertical alignment
+  align-items: center;
+  margin-right: 30px;
+}
 
-  a{
-    padding: 20px;
-    text-transform: uppercase;
-    font-size: 20px;
-    font-weight: 200;
-  }
+#navbar ul li a {
+  padding: 20px;
+  transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+}
 
-  a:hover{
-    color: $text_on_black!important;
-  }
+#navbar ul li a:hover {
+  padding: 20px;
+  background: #ddd;
+  color: #000;
+  transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+}
+
+.top-nav-collapse{
+  background: rgba(0, 0, 0, 0.75);
+  padding: 10px 0;
+  color: $text_on_black;
+  transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
 }
 
 footer {
@@ -195,7 +228,7 @@ section#addServices {
   }
   .service img {
     width: 100%;
-    height: 16vw;
+    height: 20vw;
     object-fit: cover;
   }
 }
@@ -262,6 +295,18 @@ section#addServices {
 }
 
 @media (max-width: 770px){
+
+  .top-nav-collapse{
+    background: rgba(28, 28, 28, 0.97);
+    padding: 10px 0;
+    color: $text_on_black;
+  }
+  .navbar-custom {
+    margin: 0;
+    border: none;
+    background: rgba(28, 28, 28, 0.97);
+  }
+
   section.booking-home{
     height: auto;
     width: 100%;
@@ -271,6 +316,15 @@ section#addServices {
     }
     padding-bottom: 10px!important;
   }
+  #logo {
+    display: none;
+  }
+
+  #navbar ul.navbar-nav {
+    height: auto;
+    display: block;
+  }
+
   body p {
     font-size: 12px;
   }
@@ -300,8 +354,8 @@ section#addServices {
 /* ============================= SEARCH RESULTS ============================================*/
 
 div#searchSlideShow{
-  margin-top: 30px;
-  min-height: 500px;
+  margin-top: 0;
+  min-height: 40vw;
 }
 
 section.search-terms {
@@ -627,12 +681,13 @@ section#booking-success {
 
 /*==================================== DINING PAGE =====================================================*/
 div#restaurantSlideShow{
-  margin-top: 30px;
-  min-height: 400px;
+  margin-top: 0;
+  height: 40vw;
 }
 section#diningLanding{
   min-height: 70vh;
   margin-bottom: 80px;
+  margin-top: 40px;
   div#formCategories {
     padding-top: 50px;
   }
@@ -713,12 +768,12 @@ section#courses {
 /*========================= STYLES FOR GALLERY PAGES =========================================*/
 
 div#beachSlideShow{
-  margin-top: 30px;
-  min-height: 350px;
+  margin-top: 0;
+  height: 40vw;
 }
 
 section#galleryBeach {
-  margin-bottom: 70px;
+  margin-bottom: 0;
   margin-top: 40px;
 
   section#galleryBeach {
@@ -774,8 +829,8 @@ section#galleryBeach {
 /*================================ SPA, PARTY, VIEW PAGES ============================================*/
 
 div#spaSlideShow{
-  margin-top: 30px;
-  min-height: 350px;
+  margin-top: 0;
+  height: 40vw;
 }
 section#gallerySpa {
   margin-bottom: 70px;
@@ -787,8 +842,8 @@ section#gallerySpa {
 }
 
 div#partySlideShow{
-  margin-top: 30px;
-  min-height: 350px;
+  margin-top: 0;
+  height: 40vw;
 }
 section#galleryParty {
   margin-bottom: 70px;

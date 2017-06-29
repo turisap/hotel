@@ -299,10 +299,6 @@ class Rooms extends \Core\Admin {
     }
 
 
-
-
-
-
     // renders page for a particular room
     public function roomAction(){
 
@@ -434,11 +430,8 @@ class Rooms extends \Core\Admin {
                     }
 
                 }
-
                 Flash::addMessage('Room has been deleted');
                 self::redirect('/admin/rooms/all-rooms');
-
-
             }
 
         } else {

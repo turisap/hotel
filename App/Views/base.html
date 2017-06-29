@@ -41,7 +41,7 @@
 
 
 <body>
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -53,7 +53,7 @@
             {% if current_user.admin == 1 %}
             <a class="navbar-brand" href="/admin/home/index">Admin</a>
             {% else %}
-            <a class="navbar-brand" href="/"><img src="/img/logo.png"></a>
+            <a class="navbar-brand" href="/" id="logo"><img src="/img/logo.png"></a>
             {% endif %}
         </div>
         <div id="navbar" class="navbar-collapse collapse">

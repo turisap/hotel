@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Search Results{% endblock %}
+{% block title %}All rooms{% endblock %}
 
 
 
@@ -33,7 +33,6 @@
             <input type="checkbox" name="smoking" {% if smoking %} checked="checked" {% else %}{% endif %}>
             <button type="submit" style="width: 1px; height: 1px; visibility: hidden"></button>
         </div>
-
         </form>
         <div class="col-md-2 col-sm-12 col-xs-12 text-center apply-search">
              <a id="apply-search"><h3>Apply Terms</h3></a>
@@ -149,11 +148,6 @@
             event.preventDefault();
         });
 
-        //form submission on click of link APPLY TERMS
-        $('#apply-search').click(function (event) {
-            $('#searchRefine').submit();
-            event.preventDefault();
-        })
     })
 
 </script>
@@ -169,25 +163,27 @@
         inputWidth: 70
     });
 
-    // trigger form submission on button click
-    $('.apply-search').click(function () {
-        $('#searchRefine').submit();
+    // check date inputs
+    $('#apply-search').click(function(e){
+        if($('#checkin').val() !== '' && $('#checkout').val() !==''){
+            $('#searchRefine').submit();
+            event.preventDefault();
+        }
     });
 
 
 
-
-
-        // vegas slideshow initialization
+    // vegas slideshow initialization
         $("#searchSlideShow").vegas({
             delay: 7000,
             transition: 'fade',
             transitionDuration: 2000,
             slides: [
-                { src: "/img/green.jpg" },
-                { src: "/img/shells.jpg" },
-                { src: "/img/portal.jpg" },
-                { src: "/img/arch.jpg" }
+                { src: "/img/turtle.jpeg" },
+                { src: "/img/palms.jpeg" },
+                { src: "/img/bottle.jpeg" },
+                { src: "/img/pear.jpeg" },
+                { src: "/img/books.jpg" }
             ]
         })
 
