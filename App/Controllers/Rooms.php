@@ -57,6 +57,8 @@ class Rooms extends \Core\Controller {
             ]);
 
 
+        } else {
+            self::redirect('/home/index');
         }
 
     }

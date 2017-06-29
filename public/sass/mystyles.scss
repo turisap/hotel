@@ -110,14 +110,15 @@ section.booking-home {
 
 }
 
+section#intro{
+  margin-top: 40px;
+}
+
 section.amenities {
-  margin-top: 100px;
+  margin-top: 80px;
 
   h2, p {
     text-align: center;
-  }
-  p{
-    font-size: 18px;
   }
   h2 {
     text-transform: capitalize;
