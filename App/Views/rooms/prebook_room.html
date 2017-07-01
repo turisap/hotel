@@ -5,6 +5,7 @@
 
 
 {% block body %}
+<script type="text/javascript" src="/js/fb.js"></script>
 
 <section class="search-terms prebook">
     <div class="row">
@@ -208,7 +209,8 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <button class="btn btn-default btn-lg" type="submit">BOOK</button>
-                    <a id="facebook" class="btn btn-default btn-lg" href="/rooms/facebook"><i class="fa fa-facebook"></i> Use facebook</a>
+                    <a id="facebook" class="btn btn-default btn-lg" href="/info/get-user-info"><i class="fa fa-facebook"></i> Use facebook</a>
+                    <div class="fb-login-button" data-scope="public_profile,email"></div>
                 </div>
             </div>
         </div>

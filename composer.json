@@ -4,7 +4,8 @@
     "phpmailer/phpmailer" : "~5.2",
     "twig/twig": "~2.0",
     "kartik-v/bootstrap-fileinput": "@dev",
-    "google/apiclient": "^2.0"
+    "google/apiclient": "^2.0",
+    "facebook/graph-sdk": "^5.5"
   },
   "autoload" : { 
     "psr-4" : {

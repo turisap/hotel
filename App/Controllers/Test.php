@@ -31,7 +31,7 @@ class Test
 
 
     public function test(){
-       View::renderTemplate('rooms/booked_successfully.html');
+        print_r($_SESSION);
     }
 
 
