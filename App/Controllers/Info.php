@@ -8,88 +8,83 @@
 
 namespace App\Controllers;
 
+
 use Facebook;
-use \Core\Controller;
+
 
 class Info
 {
 
-    public static function getUserInfo() {
-
-        //print_r(dirname(__DIR__, 2) . '/Facebook/src/autoload.php');
-        //require_once(dirname(__DIR__, 2) . '/Facebook/src/Facebook/autoload.php');
-
-        $fb = new Facebook\Facebook([
+    public function __construct(){
+        $this->fb = new Facebook\Facebook([
             'app_id' => '321611971611782',
             'app_secret' => '7151d1bf1477b4c8e7cd09540d0e74ce',
             'default_graph_version' => 'v2.2'
         ]);
+    }
 
-        $helper = $fb->getRedirectLoginHelper();
-        $permissions = ['email']; // optional
+    public function getUserInfo() {
+
+        $helper = $this->fb->getRedirectLoginHelper();
 
         try {
-            if (isset($_SESSION['facebook_access_token'])) {
-                $accessToken = $_SESSION['facebook_access_token'];
-            } else {
-                $accessToken = $helper->getAccessToken();
-            }
-        } catch(Facebook\Exceptions\FacebookResponseException $e) {
-            // When Graph returns an error
-            echo 'Graph returned an error: ' . $e->getMessage();
-            exit;
+            $accessToken = $helper->getAccessToken();
         } catch(Facebook\Exceptions\FacebookSDKException $e) {
-            // When validation fails or other local issues
-            echo 'Facebook SDK returned an error: ' . $e->getMessage();
+            // There was an error communicating with Graph
+            echo $e->getMessage();
             exit;
         }
+
         if (isset($accessToken)) {
-            if (isset($_SESSION['facebook_access_token'])) {
-                $fb->setDefaultAccessToken($_SESSION['facebook_access_token']);
-            } else {
-                // getting short-lived access token
-                $_SESSION['facebook_access_token'] = (string) $accessToken;
-                // OAuth 2.0 client handler
-                $oAuth2Client = $fb->getOAuth2Client();
-                // Exchanges a short-lived access token for a long-lived one
-                $longLivedAccessToken = $oAuth2Client->getLongLivedAccessToken($_SESSION['facebook_access_token']);
-                $_SESSION['facebook_access_token'] = (string) $longLivedAccessToken;
-                // setting default access token to be used in script
-                $fb->setDefaultAccessToken($_SESSION['facebook_access_token']);
-            }
-            // redirect the user back to the same page if it has "code" GET variable
-            if (isset($_GET['code'])) {
-                header('Location: ./');
-            }
-            // getting basic info about user
+            // User authenticated your app!
+            // Save the access token to a session and redirect
+            $_SESSION['facebook_access_token'] = (string) $accessToken;
+            // Log them into your web framework here . . .
+
             try {
-                $profile_request = $fb->get('/me?fields=name,first_name,last_name,email');
-                $profile = $profile_request->getGraphNode()->asArray();
+                // Returns a `Facebook\FacebookResponse` object
+                $response = $this->fb->get('/me?fields=email,first_name,last_name', $accessToken);
             } catch(Facebook\Exceptions\FacebookResponseException $e) {
-                // When Graph returns an error
                 echo 'Graph returned an error: ' . $e->getMessage();
-                session_destroy();
-                // redirecting user back to app login page
-                header("Location: ./");
                 exit;
             } catch(Facebook\Exceptions\FacebookSDKException $e) {
-                // When validation fails or other local issues
                 echo 'Facebook SDK returned an error: ' . $e->getMessage();
                 exit;
             }
 
-            // printing $profile array on the screen which holds the basic info about user
-            //print_r($profile);
-            $_SESSION['facebook_first_name'] = $profile['first_name'];
-            $_SESSION['facebook_last_name']  = $profile['last_name'];
-            $_SESSION['facebook_email']      = $profile['email'];
-            Controller::redirect('/rooms/prebookRoom');
-            // Now you can redirect to another page and use the access token from $_SESSION['facebook_access_token']
-        } else {
-            // replace your website URL same as added in the developers.facebook.com/apps e.g. if you used http instead of https and you used non-www version or www version of your website then you must add the same here
-            $loginUrl = $helper->getLoginUrl('localhost/info/get-user-info', $permissions);
-            echo '<a href="' . $loginUrl . '">Log in with Facebook!</a>';
+            $user = $response->getGraphUser();
+            $_SESSION['facebook_first_name'] = $user['first_name'] ?? null;
+            $_SESSION['facebook_last_name']  = $user['last_name'] ?? null;
+            $_SESSION['facebook_email']      = $user['email'] ?? null;
+            $checkin  = $_GET['checkin'] ?? false;
+            $checkout = $_GET['checkout'] ?? false;
+            $room_id  = $_GET['room_id']  ?? false;
+            header('Location: http://' . $_SERVER['HTTP_HOST'] . "/rooms/prebook-room-action?id={$room_id}&checkin={$checkin}&checkout={$checkout}", true, 303);
+            exit;
+
+        } elseif ($helper->getError()) {
+            // The user denied the request
+            // You could log this data . . .
+            var_dump($helper->getError());
+            var_dump($helper->getErrorCode());
+            var_dump($helper->getErrorReason());
+            var_dump($helper->getErrorDescription());
+            // You could display a message to the user
+            // being all like, "What? You don't like me?"
+            exit;
         }
+        return false;
+    }
+
+    public function getLoginUrl($room_id, $checkin, $checkout){
+
+        $helper = $this->fb->getRedirectLoginHelper();
+        $permissions = ['public_profile'];
+        $callback    = "http://localhost/info/get-user-info?room_id={$room_id}&checkin={$checkin}&checkout={$checkout}";
+        $loginUrl    = $helper->getLoginUrl($callback, $permissions);
+        return $loginUrl;
 
     }
+
+
 }

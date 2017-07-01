@@ -209,7 +209,9 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <button class="btn btn-default btn-lg" type="submit">BOOK</button>
-                    <a id="facebook" class="btn btn-default btn-lg" href="/info/get-user-info"><i class="fa fa-facebook"></i> Use facebook</a>
+                    {% if not session.facebook_last_name %}
+                    <a id="facebook" class="btn btn-default btn-lg" href="{{url}}"><i class="fa fa-facebook"></i> Use facebook</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -227,16 +229,13 @@
 
 
 {% block footer %}
-<script>
-
-</script>
-
 
 <script>
     // trigger form submission on button click
     $('.apply-search').click(function () {
         $('#searchRefine').submit();
     });
+
 </script>
 
 

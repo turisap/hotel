@@ -58,7 +58,7 @@ class Rooms extends \Core\Controller {
 
 
         } else {
-            self::redirect('/home/index');
+            self::redirect('/');
         }
 
     }
@@ -71,15 +71,18 @@ class Rooms extends \Core\Controller {
 
         if($room_id){
             $room = Room::findById($room_id);
+            $fb   = new Info();
+            $url  = $fb->getLoginUrl($room_id, $checkin, $checkout);
 
             View::renderTemplate('rooms/prebook_room.html', [
                 'checkin'  => $checkin,
                 'checkout' => $checkout,
-                'room'     => $room
+                'room'     => $room,
+                'url'      => $url
             ]);
         } else {
             Flash::addMessage('There is no such a room');
-            self::redirect('/home/index');
+            self::redirect('/');
         }
 
 

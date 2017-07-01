@@ -22,6 +22,7 @@ use App\Models\RememberedLogin;
 use App\Models\Admin\Room;
 use App\Models\Admin\Menu;
 use Core\View;
+use App\Controllers\Info;
 
 
 class Test
@@ -31,7 +32,9 @@ class Test
 
 
     public function test(){
-        print_r($_SESSION);
+        $fb = new Info();
+        $url = $fb->getLoginUrl();
+        print_r($url);
     }
 
 
