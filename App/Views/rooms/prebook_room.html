@@ -163,19 +163,19 @@
             <div class="col-sm-3">
                 <div class="form-group">
                     <label>First Name</label>
-                    <input class="form-control" name="first_name">
+                    <input class="form-control" name="first_name" value="{{session.facebook_first_name}}">
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="form-group">
                     <label for="num_guests">Last Name</label>
-                    <input class="form-control"  name="last_name">
+                    <input class="form-control"  name="last_name" value="{{session.facebook_last_name}}">
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="form-group">
                     <label for="num_guests">Email</label>
-                    <input class="form-control" name="email" type="email">
+                    <input class="form-control" name="email" type="email" value="{{session.facebook_email}}">
                 </div>
             </div>
         </div>
@@ -210,7 +210,6 @@
                 <div class="form-group">
                     <button class="btn btn-default btn-lg" type="submit">BOOK</button>
                     <a id="facebook" class="btn btn-default btn-lg" href="/info/get-user-info"><i class="fa fa-facebook"></i> Use facebook</a>
-                    <div class="fb-login-button" data-scope="public_profile,email"></div>
                 </div>
             </div>
         </div>
@@ -234,17 +233,10 @@
 
 
 <script>
-
-
     // trigger form submission on button click
     $('.apply-search').click(function () {
         $('#searchRefine').submit();
     });
-
-
-
-
-
 </script>
 
 
