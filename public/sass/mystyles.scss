@@ -21,15 +21,31 @@ $text_on_black: #ddd;
 body{
   overflow-x:hidden;
 }
+body#utility {
+  margin-top: 5vw;
+  margin-left: 5vw;
+  .navbar-custom {
+    background: black!important;
+  }
+}
 
 #logo {
-  height: 7.5rem;
+  height: 7.5rem;      //instead of % to get 100% height if its impossible using percents
 }
 
 .navbar-brand {
   height: auto;
   margin: 0;
   padding: 5px 15px 0;
+}
+
+.navbar-header {
+  height: 7.5rem;      //instead of % to get 100% height if its impossible using percents
+  display: flex;       // vertical alignment
+  align-items: center;
+  a {
+    padding-top: 0;
+  }
 }
 
 .navbar-custom {
