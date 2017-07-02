@@ -208,7 +208,7 @@
         <div class="row" id="buttons">
             <div class="col-md-12">
                 <div class="form-group">
-                    <button class="btn btn-default btn-lg" type="submit">BOOK</button>
+                    <button class="btn btn-default btn-lg" type="submit" id="bookRoom">BOOK</button>
                     {% if not session.facebook_last_name %}
                     <a id="facebook" class="btn btn-default btn-lg" href="{{url}}"><i class="fa fa-facebook"></i> Use facebook</a>
                     {% endif %}
@@ -235,6 +235,21 @@
     $('.apply-search').click(function () {
         $('#searchRefine').submit();
     });
+
+
+    $('#bookingForm').submit(function (event) {
+        if($('#checkin').val() == '' || $('#checkout').val() == ''){
+            scrollToDatepickers();
+            event.preventDefault();
+        }
+    });
+
+
+    function scrollToDatepickers(){
+        var top = $('.prebook').offset().top;
+        $('html, body').animate({scrollTop:top}, 2000, 'easeOutExpo');
+    }
+
 
 </script>
 

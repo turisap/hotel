@@ -44,6 +44,20 @@ $(document).ready(function () {
         }
     });
 
+    $('#bookingForm').submit(function (event) {
+        if($('#checkin').val() == '' || $('#checkout').val() == ''){
+            scrollToDatepickers();
+            checkInCalendar.open();
+            event.preventDefault();
+        }
+    });
+
+
+    function scrollToDatepickers(){
+        var top = $('.prebook').offset().top;
+        $('html, body').animate({scrollTop:top}, 2000, 'easeOutExpo');
+    }
+
     // Checkboxes
     $('.search-terms input').iCheck({
         checkboxClass: 'icheckbox_flat'

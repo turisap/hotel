@@ -76,6 +76,7 @@ class Info
         return false;
     }
 
+    // creates a url for login (along with keeping room id and dates as query string for redirect in the method above)
     public function getLoginUrl($room_id, $checkin, $checkout){
 
         $helper = $this->fb->getRedirectLoginHelper();
