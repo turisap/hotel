@@ -70,14 +70,18 @@ class Notification extends \Core\Model {
                 $action = $result['action'] ?? false;
                 $id     = ($result['action'] > 2) ? $result['user_id'] : $result['booking_id'];
 
+                //return array($action, $id);
+
                 // get notification info
                 $info = self::getNotificationsInfo($action, $id);
 
                 // turn timestamp to a message
                 $result['timestamp'] = self::getDaysAndHoursAgo($result['timestamp']);
 
+                //return $info;
+
                 // merge results into a single array (only if info found, it isn't in the case of manual deletion of booking or a user from the database)
-                if($info){
+                if(!empty($info)){
                     $full_results[] = array_merge($result, $info[0]);
                 }
 
@@ -132,7 +136,7 @@ class Notification extends \Core\Model {
 
         return [
             'count' => self::getAllNotifications(true, true, false),
-            'notifications'           => self::getAllNotifications(false, true, 4)
+            'notifications'           => self::getAllNotifications(false, 1, 4)
         ];
 
     }

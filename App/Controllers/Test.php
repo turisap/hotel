@@ -32,9 +32,8 @@ class Test
 
 
     public function test(){
-        $fb = new Info();
-        $url = $fb->getLoginUrl();
-        print_r($url);
+        print_r(Notification::getAllNotifications(false, 1, 4));
+        //print_r(Notification::getNotificationsInfo(1, 50));
     }
 
 
