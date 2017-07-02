@@ -40,10 +40,10 @@ $(document).ready(function () {
             checkOutCalendar.setDate(checkOut);
             checkOutCalendar.set('minDate', checkOut);
             checkOutCalendar.open();
-
         }
     });
 
+    // if while booking a room dates weren't specified, prompt the user to enter them
     $('#bookingForm').submit(function (event) {
         if($('#checkin').val() == '' || $('#checkout').val() == ''){
             scrollToDatepickers();
@@ -51,6 +51,20 @@ $(document).ready(function () {
             event.preventDefault();
         }
     });
+
+    // rewrite thoose dates to our form's hidden inputs
+    $('input.flatpickr-input').change(function () {
+        if($('#checkin').val() != 0){
+            var checkinDate = $('#checkin').val();
+            $('#checkin-hidden').val(checkinDate);
+        }
+        if($('#checkout').val() != 0){
+            var checkOutDate = $('#checkout').val();
+            $('#checkout-hidden').val(checkOutDate);
+        }
+    });
+
+
 
 
     function scrollToDatepickers(){

@@ -7,7 +7,7 @@
 {% block body %}
 <script type="text/javascript" src="/js/fb.js"></script>
 
-<section class="search-terms prebook">
+<section class="search-terms prebook" id="prebook">
     <div class="row">
         <form method="post" id="searchRefine" action="/rooms/search-results">
             <div class="col-md-2 col-xs-6 col-md-offset-1 text-center terms picker">
@@ -218,8 +218,8 @@
     </div>
 </section>
 <input type="hidden" value="{{room.local_name}}" name="local_name">
-<input type="hidden" value="{{checkin}}" name="checkin">
-<input type="hidden" value="{{checkout}}" name="checkout">
+<input type="hidden" value="{{checkin}}" name="checkin" id="checkin-hidden">
+<input type="hidden" value="{{checkout}}" name="checkout" id="checkout-hidden">
 <input type="hidden" value="{{room.id}}" name="room_id">
 </form>
 
@@ -235,21 +235,6 @@
     $('.apply-search').click(function () {
         $('#searchRefine').submit();
     });
-
-
-    $('#bookingForm').submit(function (event) {
-        if($('#checkin').val() == '' || $('#checkout').val() == ''){
-            scrollToDatepickers();
-            event.preventDefault();
-        }
-    });
-
-
-    function scrollToDatepickers(){
-        var top = $('.prebook').offset().top;
-        $('html, body').animate({scrollTop:top}, 2000, 'easeOutExpo');
-    }
-
 
 </script>
 
