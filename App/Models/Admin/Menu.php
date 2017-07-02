@@ -232,7 +232,7 @@ class Menu extends \Core\Model {
             $stm = $db->prepare($sql);
             $stm->bindValue(':category_id', self::getCleanName($this->category_id), PDO::PARAM_INT);
             $stm->bindValue(':course_name', $this->course_name, PDO::PARAM_STR);
-            $stm->bindValue(':description', $this->course_description, PDO::PARAM_STR);
+            $stm->bindValue(':description', strip_tags($this->course_description), PDO::PARAM_STR);
             $stm->bindValue(':price', $this->course_price, PDO::PARAM_INT);
 
             return $stm->execute() ? $db->lastInsertId() : false;    // return the last inserted id on success and false on failure
