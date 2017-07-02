@@ -84,7 +84,6 @@ class Notification extends \Core\Model {
                 if(!empty($info)){
                     $full_results[] = array_merge($result, $info[0]);
                 }
-
             }
 
             return $full_results;
