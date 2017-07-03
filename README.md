@@ -1,4 +1,4 @@
-# hotel
+# Hotel booking system
 Hotel booking system with admin functionality
 Front-end of this app consists of the following features: 
 1) Search of a room by dates and types
