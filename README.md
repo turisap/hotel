@@ -7,7 +7,7 @@ Front-end of this app consists of the following features:
 4) Gallery
 5) Restaurant pages
 
-Admin panel has next features:
+Admin panel has the following features:
 1) Creating, editing and deleting rooms
 2) Creating bookings and their canceletions
 3) Getting bookings info and availability of rooms on a calendar
