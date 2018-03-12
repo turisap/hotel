@@ -14,3 +14,5 @@ Admin panel has the following features:
 4) Creating, editing and deleting meal categories and courses
 5) Google Analitics on Dashboard
 6) Notification system
+[FRONT-END APP](https://kirill-shakirov.000webhostapp.com/)
+[ADMIN PANEL](https://kirill-shakirov.000webhostapp.com/admin/home/index)
